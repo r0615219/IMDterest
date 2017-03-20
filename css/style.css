@@ -1,0 +1,56 @@
+body{
+    font-family: sans-serif;
+    text-align: center;
+}
+
+h1{
+    color: darkred;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 3em;
+}
+
+.signup{
+    display: block;
+    width: 250px;
+    -webkit-border-radius:; 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    margin: 5em auto;
+    padding:25px;
+    background-color: darkred;
+}
+
+.signup label{
+    color: white;
+    display: block;
+    text-align: left;
+}
+
+.signup div{
+    margin: 25px auto;
+}
+
+.signup input{
+    display: block;
+    width:95%;
+    margin:0px auto;
+    padding:15px 0px;
+    color: gainsboro;
+    background-color: darkred;
+    border: 0px solid darkred;
+    border-bottom: 1px solid white;
+}
+
+.signup input[type=submit] {
+    display: block;
+    width:150px;
+    margin: 25px auto;
+    background-color: gainsboro;
+    color: black;
+    -webkit-border-radius:15px;
+    -moz-border-radius:15px;
+    border-radius:15px;
+    cursor: pointer;
+
+}
