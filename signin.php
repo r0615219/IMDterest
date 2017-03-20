@@ -32,31 +32,34 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>IMDterest | Sign Up</title>
+    <title>IMDterest | Sign In</title>
 </head>
 <body>
+    <section class="container">
 
-<h1>Welcome to IMDterest!</h1>
+        <div class="head">
+            <h1>Welcome to IMDterest!</h1>
 
-<h2>Please sign in</h2>
-
-<div class="signup">
-    <form action="" method="POST"">
-        <div>
-            <label for="username">Username</label> <br>
-            <input type="text" name="username" id="username">
+            <h2>Please sign in</h2>
         </div>
-        <div>
-            <label for="password">Password</label> <br>
-            <input type="password" name="password" id="password">
-        </div>
-        <div>
-            <input type="submit" value="Sign up">
-        </div>
-    </form>
-</div>
 
-<p>Don't have an account yet? <a href="signup.php">Sign up.</a></p>
+        <div class="signup">
+            <form action="" method="POST"">
+                <div>
+                    <!--<label for="username">Username</label>-->
+                    <input type="text" name="username" id="username" placeholder="Username">
+                </div>
+                <div>
+                    <!--<label for="password">Password</label>-->
+                    <input type="password" name="password" id="password" placeholder="Password">
+                </div>
+                <div>
+                    <input type="submit" value="Sign in">
+                </div>
+            </form>
+            <p>Don't have an account yet? <a href="signup.php">Sign up.</a></p>
+        </div>
 
+    </section>
 </body>
 </html>

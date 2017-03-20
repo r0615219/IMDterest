@@ -31,39 +31,48 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>IMDterest | Sign In</title>
+    <title>IMDterest | Sign Up</title>
 </head>
 <body>
 
-<h1>Welcome to IMDterest!</h1>
+    <section class="container">
 
-<h2>Please sign up</h2>
+        <div class="head">
+            <h1>Welcome to IMDterest!</h1>
 
-<div class="signup">
-    <form action="" method="POST"">
-        <div>
-            <label for="email">E-mail</label> <br>
-            <input type="email" name="email" id="email">
+            <h2>Please sign up</h2>
         </div>
-        <div>
-            <label for="fullname">Full Name</label> <br>
-            <input type="text" name="fullname" id="fullname">
-        </div>
-        <div>
-            <label for="username">Username</label> <br>
-            <input type="text" name="username" id="username">
-        </div>
-        <div>
-            <label for="password">Password</label> <br>
-            <input type="password" name="password" id="password">
-        </div>
-        <div>
-            <input type="submit" value="Sign up">
-        </div>
-    </form>
-</div>
 
-<p>You have already an account? <a href="signin.php">Sign in.</a></p>
+        <div class="signup">
+            <form action="" method="POST"">
+            <div class="flex">
+                <div>
+                    <!--<label for="email">E-mail</label> <br>-->
+                    <input type="email" name="email" id="email" placeholder="E-mail">
+                </div>
+                <div>
+                    <!--<label for="fullname">Full Name</label> <br>-->
+                    <input type="text" name="fullname" id="fullname" placeholder="Full Name">
+                </div>
+            </div>
+            <div class="flex">
+                <div>
+                    <!--<label for="username">Username</label> <br>-->
+                    <input type="text" name="username" id="username" placeholder="Username">
+                </div>
+                <div>
+                    <!--<label for="password">Password</label> <br>-->
+                    <input type="password" name="password" id="password" placeholder="Password">
+                </div>
+            </div>
+                <div>
+                    <input type="submit" value="Sign up">
+                </div>
+            </form>
+            <p>You have already an account? <a href="signin.php">Sign in.</a></p>
+        </div>
+
+    </section>
 
 </body>
 </html>
