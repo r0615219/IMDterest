@@ -32,6 +32,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
+
     <title>IMDterest | Sign In</title>
 </head>
 <body>

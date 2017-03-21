@@ -58,11 +58,13 @@
         //WERKT NOG NIET !
         public function Login(){
             $conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
-            $statement = $conn->prepare("SELECT `username`, `password` FROM `users` WHERE (username = :username AND password = :password);");
+            $statement = $conn->prepare("SELECT `username` FROM `users` WHERE (username = :username);");
             $statement->bindValue(":username", $this->m_sUsername);
-            $statement->bindValue(":password", $this->m_sPassword);
             $result = $statement->execute();
             return $result;
+
+            //FETCH_ASSOC?
+            //if(password_verify($password, $user['password'])){
         }
 
     }
