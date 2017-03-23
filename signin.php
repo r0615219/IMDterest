@@ -10,8 +10,9 @@ if(!empty($_POST)){
     //WERKT NOG NIET !
     if( $user->Login() ){
         session_start();
-        header('Location: home.php');
         $_SESSION['user']=$user->Username;
+        $_SESSION['fullname']=$user->Fullname;
+        header('Location: home.php');
     } else {
         echo 'Whoops, something went wrong.';
     }
@@ -32,7 +33,7 @@ if(!empty($_POST)){
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 
-    <title>IMDterest | Sign Up</title>
+    <title>IMDterest | Sign In</title>
 </head>
 <body>
 
