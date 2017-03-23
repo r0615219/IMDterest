@@ -14,6 +14,7 @@ if(!empty($_POST)){
     if( $user->Register()){
         session_start();
         $_SESSION['user']=$user->Username;
+        $_SESSION['fullname']=$user->Fullname;
         header('Location: home.php');
     } else {
         echo 'Whoops, something went wrong.';
@@ -51,18 +52,8 @@ if(!empty($_POST)){
             <a class="navbar-brand" href="#">IMDterest</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <!--<form class="navbar-form navbar-right" method="post">
-                <div class="form-group">
-                    <input type="text" placeholder="Username" name="username" id="username" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" name="password" id="password" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-success">Sign in</button>
-            </form>-->
             <form class="navbar-form navbar-right">
                 <p class="white">Already have an account? &nbsp; <a class="btn btn-success" href="signin.php">Sign in!</a> </p>
-
             </form>
         </div><!--/.navbar-collapse -->
     </div>
@@ -72,32 +63,8 @@ if(!empty($_POST)){
     <div class="container">
         <h1>A creative way to share ideas!</h1>
         <p>Join our community!</p>
-        <!--<div class="signup">
-            <form action="" method="POST">
-                <div class="flex">
-                    <div>
-                        <input type="email" name="email" id="email" placeholder="E-mail">
-                    </div>
-                    <div>
-                        <input type="text" name="fullname" id="fullname" placeholder="Full Name">
-                    </div>
-                </div>
-                <div class="flex">
-                    <div>
-                        <input type="text" name="username" id="username" placeholder="Username">
-                    </div>
-                    <div>
-                        <input type="password" name="password" id="password" placeholder="Password">
-                    </div>
-                </div>
-                <div>
-                    <input type="submit" value="Sign up">
-                </div>
-            </form>
-            <p>You have already an account? <a href="signin.php">Sign in.</a></p>
-        </div>-->
 
-        <form action="post">
+        <form method="post">
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
                 <input type="text" class="form-control" placeholder="Full Name" name="fullname" id="fullname" aria-describedby="basic-addon1">
