@@ -4,19 +4,14 @@
 
     if(!empty($_POST)){
         $user = new User();
-        $user->Email = $_POST['email'];
-        $user->Fullname = $_POST['fullname'];
         $user->Username = $_POST['username'];
-
-        $options = [
-            'cost' => 12,
-        ];
-        $user->Password = password_hash( $_POST['password'], PASSWORD_DEFAULT, $options );
-
+        $user->Password = $_POST['password'];
+        
         //WERKT NOG NIET !
         if( $user->Login() ){
             session_start();
             header('Location: home.php');
+            $_SESSION['user']=$user->Username;
         } else {
             echo 'Whoops, something went wrong.';
         }
@@ -47,7 +42,7 @@
         </div>
 
         <div class="signup">
-            <form action="" method="POST"">
+            <form action="" method="POST">
                 <div>
                     <!--<label for="username">Username</label>-->
                     <input type="text" name="username" id="username" placeholder="Username">

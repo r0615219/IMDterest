@@ -13,6 +13,7 @@
 
         if( $user->Register()){
             session_start();
+            $_SESSION['user']=$user->Username;
             header('Location: home.php');
         } else {
             echo 'Whoops, something went wrong.';
@@ -45,7 +46,7 @@
         </div>
 
         <div class="signup">
-            <form action="" method="POST"">
+            <form action="" method="POST">
             <div class="flex">
                 <div>
                     <!--<label for="email">E-mail</label> <br>-->
