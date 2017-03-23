@@ -5,6 +5,7 @@
         private $m_sFullname;
         private $m_sUsername;
         private $m_sPassword;
+        private $m_sImage = "http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png";
 
         public function __set($p_sProperty, $p_vValue){
             switch ( $p_sProperty ){
@@ -23,6 +24,9 @@
                 case "Password":
                     $this->m_sPassword = $p_vValue;
                     break;
+                case "Image":
+                    $this->m_sImage = $p_vValue;
+                    break;
             }
 
         }
@@ -40,6 +44,9 @@
                     break;
                 case "Password":
                     return $this->m_sPassword;
+                    break;
+                case "Image":
+                    return $this->m_sImage;
                     break;
             }
         }
