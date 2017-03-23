@@ -44,7 +44,13 @@
             }
         }
 
-        public function Save(){
+        public function Register(){
+
+            $options = [
+                'cost' => 12,
+            ];
+            $this->m_sPassword = password_hash( $this->m_sPassword, PASSWORD_DEFAULT, $options );
+
             $conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
             $statement = $conn->prepare("INSERT INTO users (`email`, `fullname`, `username`, `password`) VALUES (:email, :fullname, :username, :password);");
             $statement->bindValue(":email", $this->m_sEmail);
