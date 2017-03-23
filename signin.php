@@ -6,7 +6,7 @@
         $user = new User();
         $user->Username = $_POST['username'];
         $user->Password = $_POST['password'];
-
+        
         //WERKT NOG NIET !
         if( $user->Login() ){
             session_start();
