@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <!--<link rel="stylesheet" href="css/signup-style.css">-->
+    <link rel="stylesheet" href="css/signup-style.css">
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 
