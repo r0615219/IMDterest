@@ -13,6 +13,7 @@
 
         if( $user->Register()){
             session_start();
+            $_SESSION['user']=$user->Username;
             header('Location: home.php');
         } else {
             echo 'Whoops, something went wrong.';
