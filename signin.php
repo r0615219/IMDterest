@@ -12,6 +12,7 @@ if(!empty($_POST)){
         session_start();
         $_SESSION['user']=$user->Username;
         $_SESSION['fullname']=$user->Fullname;
+        $_SESSION['email']=$user->Email;
         header('Location: home.php');
     } else {
         echo 'Whoops, something went wrong.';
