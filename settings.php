@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 
 <!doctype html>
@@ -19,8 +19,15 @@
 </head>
 <body>
 
-<?php include_once('header.inc.php'); ?>
+<!-- todo: werkt nog niet! :( -->
 
+<?php include_once('header.inc.php'); ?>
+<div class="settings">
+    <div class="profile_link"><img src="<?php
+        foreach($_SESSION['user'] as $item){
+            echo $item->Image;
+        }?>" alt="Profile Picture" class="profilepicture"></div>
+</div>
 
 </body>
 </html>
