@@ -1,19 +1,17 @@
 <?php
 
     include_once 'classes/User.php';
+    //autoloading?
 
     if(!empty($_POST)){
         $user = new User();
         $user->Email = $_POST['email'];
         $user->Fullname = $_POST['fullname'];
         $user->Username = $_POST['username'];
+        $user->Password = $_POST['password'];
 
-        $options = [
-            'cost' => 12,
-        ];
-        $user->Password = password_hash( $_POST['password'], PASSWORD_DEFAULT, $options );
 
-        if( $user->Save() ){
+        if( $user->Register()){
             session_start();
             header('Location: home.php');
         } else {
