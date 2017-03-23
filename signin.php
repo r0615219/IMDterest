@@ -47,7 +47,7 @@
         </div>
 
         <div class="signup">
-            <form action="" method="POST"">
+            <form action="" method="POST">
                 <div>
                     <!--<label for="username">Username</label>-->
                     <input type="text" name="username" id="username" placeholder="Username">
