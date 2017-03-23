@@ -47,7 +47,7 @@
         </div>
 
         <div class="signup">
-            <form action="" method="POST"">
+            <form action="" method="POST">
             <div class="flex">
                 <div>
                     <!--<label for="email">E-mail</label> <br>-->
