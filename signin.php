@@ -2,16 +2,20 @@
 
 include_once 'classes/User.php';
 
-if(!empty($_POST)){
-    $user = new User();
-    $user->Username = $_POST['username'];
-    $user->Password = $_POST['password'];
+try{
+    if(!empty($_POST)){
+        $user = new User();
+        $user->Username = $_POST['username'];
+        $user->Password = $_POST['password'];
 
-    if( $user->CanLogin() === true ){
-        $user->HandleLogin();
-    } else {
-        echo 'failed to sign in.';
+        if( $user->CanLogin() === true ){
+            $user->HandleLogin();
+        } else {
+            $error = "Failed to sign in.";
+        }
     }
+} catch (exception $e){
+    $error= $e->getMessage();
 }
 ?>
 

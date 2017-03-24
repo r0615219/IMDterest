@@ -82,11 +82,11 @@
                     return true;
                 } else {
                     return false;
-                    echo "het password is fout.";
+                    throw new exception("Failed to sign in. Wrong password or username.");
                 }
             } else {
                 return false;
-                echo "Niet alle velden zijn ingevuld.";
+                throw new exception("Failed to sign in. All fields need to be filled in.");
             }
         }
         
