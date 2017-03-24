@@ -7,15 +7,10 @@ if(!empty($_POST)){
     $user->Username = $_POST['username'];
     $user->Password = $_POST['password'];
 
-    //WERKT NOG NIET !
-    if( $user->Login() ){
-        session_start();
-        $_SESSION['user']=$user->Username;
-        $_SESSION['fullname']=$user->Fullname;
-        $_SESSION['email']=$user->Email;
-        header('Location: home.php');
+    if( $user->CanLogin() === true ){
+        $user->HandleLogin();
     } else {
-        echo 'Whoops, something went wrong.';
+        echo 'failed to sign in.';
     }
 }
 ?>
@@ -34,7 +29,7 @@ if(!empty($_POST)){
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 
-    <title>IMDterest | Sign In</title>
+    <title>IMDterest | Sign Up</title>
 </head>
 <body>
 
