@@ -96,6 +96,7 @@
             $_SESSION['fullname']=$user->Fullname;
             $_SESSION['email']=$user->Email;
             header('Location: home.php');
+
         }
 
     }
