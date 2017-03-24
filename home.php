@@ -1,5 +1,11 @@
 <?php
     session_start();
+    //stuur de gebruiker weg als ze niet zijn ingelogd
+    if( isset( $_SESSION['user'] ) ){
+    }
+    else {
+        header('Location: signin.php');
+    }
 ?>
 
 <!doctype html>
