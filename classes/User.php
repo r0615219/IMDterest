@@ -67,23 +67,35 @@
             $result = $statement->execute();
             return $result;
         }
-
-        //WERKT NOG NIET !
-        public function Login(){
-            $conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
-            $statement = $conn->prepare("SELECT `username` FROM `users` WHERE (username = :username)");
-            $statement->bindValue(":username", $this->m_sUsername);
-            $result = $statement->execute();
-            
-            if(password_verify($this->m_sPassword, $result['password'])){
-                return true;
+        
+        public function CanLogin(){ //checken of we mogen inloggen
+            if( !empty( $_POST['username'] && $_POST['password']) ){
+                $conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
+                $statement = $conn->prepare("SELECT `password` FROM `users` WHERE (username = :username)");
+                $statement->bindValue(":username", $this->m_sUsername);
+                $wachtwoord = $statement->execute();
+                $res = $statement->fetch(PDO::FETCH_ASSOC);
+                
+                $wachtwoord = $res["password"];
+                
+                if(password_verify($this->m_sPassword, $wachtwoord)){
+                    return true;
+                } else {
+                    return false;
+                    echo "het password is fout.";
+                }
             } else {
                 return false;
+                echo "Niet alle velden zijn ingevuld.";
             }
-            
-
-            //FETCH_ASSOC?
-            //if(password_verify($password, $user['password'])){
+        }
+        
+        public function HandleLogin() { //inloggen
+            session_start();
+            $_SESSION['user']=$user->Username;
+            $_SESSION['fullname']=$user->Fullname;
+            $_SESSION['email']=$user->Email;
+            header('Location: home.php');
         }
 
     }
