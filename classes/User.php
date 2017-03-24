@@ -74,12 +74,11 @@
             $statement = $conn->prepare("SELECT `username` FROM `users` WHERE (username = :username)");
             $statement->bindValue(":username", $this->m_sUsername);
             $result = $statement->execute();
-            return $result;
             
-            if(password_verify(m_sPassword, $user['password'])){
-                echo "yup!";
+            if(password_verify($this->m_sPassword, $result['password'])){
+                return true;
             } else {
-                echo "nope.";
+                return false;
             }
             
 
