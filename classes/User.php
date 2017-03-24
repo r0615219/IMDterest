@@ -92,11 +92,10 @@
         
         public function HandleLogin() { //inloggen
             session_start();
-            $_SESSION['user']=$user->Username;
-            $_SESSION['fullname']=$user->Fullname;
-            $_SESSION['email']=$user->Email;
+            $_SESSION['user']=$this->m_sUsername;
+            $_SESSION['fullname']=$this->m_sFullname;
+            $_SESSION['email']=$this->m_SEmail;
             header('Location: home.php');
-
         }
 
     }
