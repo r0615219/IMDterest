@@ -58,7 +58,7 @@
             ];
             $this->m_sPassword = password_hash( $this->m_sPassword, PASSWORD_DEFAULT, $options );
 
-            $conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
+            $conn = Db::getInstance();
             $statement = $conn->prepare("INSERT INTO users (`email`, `fullname`, `username`, `password`, `image`) VALUES (:email, :fullname, :username, :password, :image);");
             $statement->bindValue(":email", $this->m_sEmail);
             $statement->bindValue(":fullname", $this->m_sFullname);
@@ -71,7 +71,7 @@
         
         public function CanLogin(){ //checken of we mogen inloggen
             if( !empty( $_POST['username'] && $_POST['password']) ){
-                $conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
+                $conn = Db::getInstance();
                 $statement = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
                 $statement->bindValue(":username", $this->m_sUsername);
                 $password = $statement->execute();
@@ -91,7 +91,7 @@
         
         public function HandleLogin() { //inloggen
             
-            $conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
+            $conn = Db::getInstance();
             $statement = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
             $statement->bindValue(":username", $this->m_sUsername);
             $password = $statement->execute();

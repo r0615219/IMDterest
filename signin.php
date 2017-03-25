@@ -1,6 +1,7 @@
 <?php
 
 include_once 'classes/User.php';
+include_once 'classes/Db.php';
 
 try{
     if(!empty($_POST)){
