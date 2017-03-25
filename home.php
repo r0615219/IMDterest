@@ -1,5 +1,8 @@
 <?php
     session_start();
+spl_autoload_register(function($class){
+    include_once("classes/" . $class . ".php");
+});
     //stuur de gebruiker weg als ze niet zijn ingelogd
     if( isset( $_SESSION['user'] ) ){
     }

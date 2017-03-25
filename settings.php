@@ -1,6 +1,8 @@
 <?php
 session_start();
-include_once('classes/User.php');
+spl_autoload_register(function($class){
+    include_once("classes/" . $class . ".php");
+});
 //stuur de gebruiker weg als ze niet zijn ingelogd
 if (isset($_SESSION['user'])) {
 } else {
@@ -8,19 +10,34 @@ if (isset($_SESSION['user'])) {
 }
 
 if(!empty($_POST)){
-    $user = new User;
-    $user->Fullname = $_POST['fullname'];
-    $user->Username = $_POST['username'];
-    $user->Email = $_POST['email'];
-    //TODO: nieuw wachtwoord mag niet zoals oud wachtwoord zijn
-    //TODO: nieuw wachtwoord moet gelijk zijn als controlewachtwoord
-    if(!empty($_POST['newPassword'])){
-        $user->Password = $_POST['newPassword'];
+    try {
+        $user = new User;
+        $user->Fullname = $_POST['fullname'];
+        $user->Email = $_POST['email'];
+        if (!empty($_POST['newPassword']))
+        //TODO: error messages kloppen niet (zijn die van login)
+        {
+            if ($_POST['newPassword'] == $_POST['password']) {
+                $error = "Your new password can't be the same as your current one.";
+            } else if ($_POST['newPassword'] != $_POST['controlPassword']) {
+                $error = "Your passwords don't match.";
+            } else {
+                $user->Username = $_SESSION['user'];
+                if ($user->CanLogin()) {
+                    $user->Password = $_POST['newPassword'];
+                } else {
+                    $error = "Your current password is incorrect.";
+                }
+            }
+        }
+        $user->Username = $_POST['username'];
+        if (!empty($_POST['image'])) {
+            $user->Image = $_POST['image'];
+        }
+        $user->updateDatabase();
+    } catch (Exception $e) {
+        $error = $e->getMessage();
     }
-    if(!empty($_POST['image'])){
-        $user->Image = $_POST['image'];
-    }
-    $user->updateDatabase();
 
     //TODO: afbeelding in databank steken -> kan niet lezen
 
@@ -51,7 +68,12 @@ if(!empty($_POST)){
 
 <?php include_once('header.inc.php'); ?>
 
+
+
 <div class="container" style="margin-top:50px;">
+    <?php if(isset($error)){
+        echo "<p>$error</p>";
+    } ?>
     <h1 class="media-heading">Account settings</h1>
     <div class="media-body">
         <form action="" method="post">
@@ -108,18 +130,18 @@ if(!empty($_POST)){
                             </div>
                             <div class="modal-body">
                                 <div class="input-group">
-                                    <label for="oldPassword">Old password</label>
-                                    <input type="password" class="form-control" placeholder="Password" name="oldPassword" id="password" aria-describedby="basic-addon1">
+                                    <label for="password">Current password</label>
+                                    <input type="password" class="form-control" placeholder="Current password" name="password" id="password" aria-describedby="basic-addon1">
                                 </div>
 
                                 <div class="input-group">
                                     <label for="newPassword">New password</label>
-                                    <input type="password" class="form-control" placeholder="Password" name="newPassword" id="password" aria-describedby="basic-addon1">
+                                    <input type="password" class="form-control" placeholder="New password" name="newPassword" id="newPassword" aria-describedby="basic-addon1">
                                 </div>
 
                                 <div class="input-group">
-                                    <label for="repeatPassword">Repeat new password</label>
-                                    <input type="password" class="form-control" placeholder="Password" name="password" id="password" aria-describedby="basic-addon1">
+                                    <label for="controlPassword">Repeat new password</label>
+                                    <input type="password" class="form-control" placeholder="Repeat new password" name="controlPassword" id="controlPassword" aria-describedby="basic-addon1">
                                 </div>
                             </div>
                             <div class="modal-footer">
