@@ -7,26 +7,22 @@ if (isset($_SESSION['user'])) {
     header('Location: signin.php');
 }
 
-if(isset($_POST)){
+if(!empty($_POST)){
     $user = new User;
-    if (isset($_POST['fullname'])) {
-        $user->Fullname = $_POST['fullname'];
-        $user->updateDatabase('fullname', $user->Fullname);
-    }
-    if (isset($_POST['user'])) {
-        $user->Username = $_POST['user'];
-        $user->updateDatabase('username', $user->Username);
-    }
-
-    if(isset($_POST['newPassword'])){
+    $user->Fullname = $_POST['fullname'];
+    $user->Username = $_POST['username'];
+    $user->Email = $_POST['email'];
+    //TODO: nieuw wachtwoord mag niet zoals oud wachtwoord zijn
+    //TODO: nieuw wachtwoord moet gelijk zijn als controlewachtwoord
+    if(!empty($_POST['newPassword'])){
         $user->Password = $_POST['newPassword'];
-        $user->updateDatabase('password', $user->Password);
     }
-    if(isset($_POST['image'])){
+    if(!empty($_POST['image'])){
         $user->Image = $_POST['image'];
-        $user->updateDatabase('image', $user->Image);
     }
+    $user->updateDatabase();
 
+    //TODO: afbeelding in databank steken -> kan niet lezen
 
 }
 ?>
@@ -86,7 +82,7 @@ if(isset($_POST)){
                                 <h4 class="modal-title">Upload profile picture</h4>
                             </div>
                             <div class="modal-body">
-                                <input type="file">
+                                <input type="file" name="image">
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-default" data-dismiss="modal">Save</button>
@@ -113,12 +109,12 @@ if(isset($_POST)){
                             <div class="modal-body">
                                 <div class="input-group">
                                     <label for="oldPassword">Old password</label>
-                                    <input type="password" class="form-control" placeholder="Password" name="password" id="password" aria-describedby="basic-addon1">
+                                    <input type="password" class="form-control" placeholder="Password" name="oldPassword" id="password" aria-describedby="basic-addon1">
                                 </div>
 
                                 <div class="input-group">
                                     <label for="newPassword">New password</label>
-                                    <input type="password" class="form-control" placeholder="Password" name="password" id="password" aria-describedby="basic-addon1">
+                                    <input type="password" class="form-control" placeholder="Password" name="newPassword" id="password" aria-describedby="basic-addon1">
                                 </div>
 
                                 <div class="input-group">

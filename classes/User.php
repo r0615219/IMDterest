@@ -96,7 +96,6 @@
             $statement->bindValue(":username", $this->m_sUsername);
             $statement->execute();
             $res = $statement->fetch(PDO::FETCH_ASSOC);
-            
             $fullname = $res["fullname"];
             $email = $res["email"];
             $image = $res["image"];
@@ -111,17 +110,23 @@
 
 
 
-        public function updateDatabase($p_sParameter, $p_vValue){
+        public function updateDatabase(){
 
             try {
                 $conn = new PDO("mysql:host=localhost;dbname=imdterest", 'root','');
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $statement = $conn->prepare("UPDATE users SET fullname = :value where username = :username");
-                //$statement->bindValue(":parameter", $p_sParameter);
-                $statement->bindValue(":value", $p_vValue);
-                $statement->bindValue(":username", $_SESSION['user']);
+                $statement = $conn->prepare("UPDATE users SET fullname = :fullname, username = :username, email = :email, password = :password, image = :image where username = :oldUsername");
+                $statement->bindValue(":fullname", $this->m_sFullname);
+                $statement->bindValue(":username", $this->m_sUsername);
+                $statement->bindValue(":email", $this->m_sEmail);
+                $statement->bindValue(":password", $this->m_sPassword);
+                $statement->bindValue(":image", $this->m_sImage);
+                $statement->bindValue(":oldUsername", $_SESSION['user']);
                 $statement->execute();
-                $_SESSION[$p_sParameter]=$p_vValue;
+                $_SESSION['user']=$this->m_sUsername;
+                $_SESSION['fullname']=$this->m_sFullname;
+                $_SESSION['email']=$this->m_sEmail;
+                $_SESSION['image']=$this->m_sImage;
                 echo $statement->rowCount() . " records UPDATED successfully";
             }
             catch(PDOException $e)
