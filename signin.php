@@ -1,7 +1,8 @@
 <?php
 
-include_once 'classes/User.php';
-include_once 'classes/Db.php';
+spl_autoload_register(function($class){
+        include_once("classes/" . $class . ".php");
+    });
 
 try{
     if(!empty($_POST)){
