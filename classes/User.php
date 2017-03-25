@@ -71,14 +71,14 @@
         public function CanLogin(){ //checken of we mogen inloggen
             if( !empty( $_POST['username'] && $_POST['password']) ){
                 $conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
-                $statement = $conn->prepare("SELECT `password` FROM `users` WHERE (username = :username)");
+                $statement = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
                 $statement->bindValue(":username", $this->m_sUsername);
-                $wachtwoord = $statement->execute();
+                $password = $statement->execute();
                 $res = $statement->fetch(PDO::FETCH_ASSOC);
                 
-                $wachtwoord = $res["password"];
+                $password = $res["password"];
                 
-                if(password_verify($this->m_sPassword, $wachtwoord)){
+                if(password_verify($this->m_sPassword, $password)){
                     return true;
                 } else {
                     return false;
@@ -91,10 +91,20 @@
         }
         
         public function HandleLogin() { //inloggen
+            
+            $conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
+            $statement = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
+            $statement->bindValue(":username", $this->m_sUsername);
+            $password = $statement->execute();
+            $res = $statement->fetch(PDO::FETCH_ASSOC);
+            
+            $fullname = $res["fullname"];
+            $email = $res["email"];
+            
             session_start();
             $_SESSION['user']=$this->m_sUsername;
-            $_SESSION['fullname']=$this->m_sFullname;
-            $_SESSION['email']=$this->m_SEmail;
+            $_SESSION['fullname']=$fullname;
+            $_SESSION['email']=$email;
             header('Location: home.php');
         }
 
