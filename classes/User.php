@@ -5,7 +5,7 @@
         private $m_sFullname;
         private $m_sUsername;
         private $m_sPassword;
-        private $m_sImage = "http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png";
+        private $m_sImage;
 
         public function __set($p_sProperty, $p_vValue){
             switch ( $p_sProperty ){
@@ -59,11 +59,12 @@
             $this->m_sPassword = password_hash( $this->m_sPassword, PASSWORD_DEFAULT, $options );
 
             $conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
-            $statement = $conn->prepare("INSERT INTO users (`email`, `fullname`, `username`, `password`) VALUES (:email, :fullname, :username, :password);");
+            $statement = $conn->prepare("INSERT INTO users (`email`, `fullname`, `username`, `password`, `image`) VALUES (:email, :fullname, :username, :password, :image);");
             $statement->bindValue(":email", $this->m_sEmail);
             $statement->bindValue(":fullname", $this->m_sFullname);
             $statement->bindValue(":username", $this->m_sUsername);
             $statement->bindValue(":password", $this->m_sPassword);
+            $statement->bindValue(":image", $this->m_sImage);
             $result = $statement->execute();
             return $result;
         }
