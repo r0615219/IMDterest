@@ -94,7 +94,7 @@
             $conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
             $statement = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
             $statement->bindValue(":username", $this->m_sUsername);
-            $password = $statement->execute();
+            $statement->execute();
             $res = $statement->fetch(PDO::FETCH_ASSOC);
             
             $fullname = $res["fullname"];
@@ -109,4 +109,28 @@
             header('Location: home.php');
         }
 
+
+
+        public function updateDatabase($p_sParameter, $p_vValue){
+
+            try {
+                $conn = new PDO("mysql:host=localhost;dbname=imdterest", 'root','');
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $statement = $conn->prepare("UPDATE users SET fullname = :value where username = :username");
+                //$statement->bindValue(":parameter", $p_sParameter);
+                $statement->bindValue(":value", $p_vValue);
+                $statement->bindValue(":username", $_SESSION['user']);
+                $statement->execute();
+                $_SESSION[$p_sParameter]=$p_vValue;
+                echo $statement->rowCount() . " records UPDATED successfully";
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+
+            $conn = null;
+        }
     }
+
+

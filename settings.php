@@ -1,9 +1,33 @@
 <?php
 session_start();
+include_once('classes/User.php');
 //stuur de gebruiker weg als ze niet zijn ingelogd
 if (isset($_SESSION['user'])) {
 } else {
     header('Location: signin.php');
+}
+
+if(isset($_POST)){
+    $user = new User;
+    if (isset($_POST['fullname'])) {
+        $user->Fullname = $_POST['fullname'];
+        $user->updateDatabase('fullname', $user->Fullname);
+    }
+    if (isset($_POST['user'])) {
+        $user->Username = $_POST['user'];
+        $user->updateDatabase('username', $user->Username);
+    }
+
+    if(isset($_POST['newPassword'])){
+        $user->Password = $_POST['newPassword'];
+        $user->updateDatabase('password', $user->Password);
+    }
+    if(isset($_POST['image'])){
+        $user->Image = $_POST['image'];
+        $user->updateDatabase('image', $user->Image);
+    }
+
+
 }
 ?>
 
