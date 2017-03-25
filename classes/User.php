@@ -81,11 +81,9 @@
                 if(password_verify($this->m_sPassword, $password)){
                     return true;
                 } else {
-                    return false;
                     throw new exception("Failed to sign in. Wrong password or username.");
                 }
             } else {
-                return false;
                 throw new exception("Failed to sign in. All fields need to be filled in.");
             }
         }
@@ -100,11 +98,13 @@
             
             $fullname = $res["fullname"];
             $email = $res["email"];
+            $image = $res["image"];
             
             session_start();
             $_SESSION['user']=$this->m_sUsername;
             $_SESSION['fullname']=$fullname;
             $_SESSION['email']=$email;
+            $_SESSION['image']=$image;
             header('Location: home.php');
         }
 
