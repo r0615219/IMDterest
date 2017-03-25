@@ -21,6 +21,10 @@ if (isset($_SESSION['user'])) {
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/npm.js"></script>
+
     <title>IMDterest | Settings</title>
 </head>
 <body>
@@ -35,31 +39,48 @@ if (isset($_SESSION['user'])) {
             <input type="text" value="<?php echo $_SESSION['fullname']; ?>" id="fullname" name="fullname"
                    class="form-control">
 
-            <label for="email" style="margin-top:20px;">Email</label>
+            <label for="email" style="margin-top:30px;">Email</label>
             <input type="text" value="<?php echo $_SESSION['email']; ?>" id="email" name="email"
                    class="form-control">
 
-            <label for="username" style="margin-top:20px;">Username</label>
+            <label for="username" style="margin-top:30px;">Username</label>
             <input type="text" value="<?php echo $_SESSION['user']; ?>" id="username" name="username"
                    class="form-control">
 
-            <div class="media">
-                <img src="<?php echo $_SESSION['image']; ?>" alt="profile picture" style="margin-top:20px;">
-                <button class="btn media">Change profile picture</button>
+            <div class="media" style="margin-top:30px;">
+                <img src="<?php echo $_SESSION['image']; ?>" alt="profile picture">
+                <button class="btn media" data-toggle="modal" data-target="#uploadImage">Change profile picture</button>
             </div>
 
-            <label for="password" style="margin-top:20px;" class="col-xs-12">Password</label>
-            <a href="#" class="col-xs-12">Change your password</a>
+            <div id="uploadImage" class="modal fade" role="dialog">
+                <div class="modal-dialog">
 
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Upload profile picture</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="margin-top:30px;">
+                <label for="password" class="col-xs-12">Password</label>
+                <button class="btn btn-link">Change your password</button>
+            </div>
             <button type="submit" class="btn btn-success" style="margin-top: 50px;">Save settings</button>
 
         </form>
     </div>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/npm.js"></script>
 
 </body>
 </html>

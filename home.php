@@ -7,6 +7,9 @@
         header('Location: signin.php');
     }
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/npm.js"></script>
 
 <!doctype html>
 <html lang="en">
@@ -28,9 +31,7 @@
 
 <?php include_once('header.inc.php'); ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/npm.js"></script>
+
 
 </body>
 </html>
