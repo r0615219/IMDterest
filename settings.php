@@ -1,9 +1,29 @@
 <?php
 session_start();
+include_once('classes/User.php');
 //stuur de gebruiker weg als ze niet zijn ingelogd
 if (isset($_SESSION['user'])) {
 } else {
     header('Location: signin.php');
+}
+
+if(!empty($_POST)){
+    $user = new User;
+    $user->Fullname = $_POST['fullname'];
+    $user->Username = $_POST['username'];
+    $user->Email = $_POST['email'];
+    //TODO: nieuw wachtwoord mag niet zoals oud wachtwoord zijn
+    //TODO: nieuw wachtwoord moet gelijk zijn als controlewachtwoord
+    if(!empty($_POST['newPassword'])){
+        $user->Password = $_POST['newPassword'];
+    }
+    if(!empty($_POST['image'])){
+        $user->Image = $_POST['image'];
+    }
+    $user->updateDatabase();
+
+    //TODO: afbeelding in databank steken -> kan niet lezen
+
 }
 ?>
 
@@ -62,7 +82,7 @@ if (isset($_SESSION['user'])) {
                                 <h4 class="modal-title">Upload profile picture</h4>
                             </div>
                             <div class="modal-body">
-                                <input type="file">
+                                <input type="file" name="image">
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-default" data-dismiss="modal">Save</button>
@@ -89,12 +109,12 @@ if (isset($_SESSION['user'])) {
                             <div class="modal-body">
                                 <div class="input-group">
                                     <label for="oldPassword">Old password</label>
-                                    <input type="password" class="form-control" placeholder="Password" name="password" id="password" aria-describedby="basic-addon1">
+                                    <input type="password" class="form-control" placeholder="Password" name="oldPassword" id="password" aria-describedby="basic-addon1">
                                 </div>
 
                                 <div class="input-group">
                                     <label for="newPassword">New password</label>
-                                    <input type="password" class="form-control" placeholder="Password" name="password" id="password" aria-describedby="basic-addon1">
+                                    <input type="password" class="form-control" placeholder="Password" name="newPassword" id="password" aria-describedby="basic-addon1">
                                 </div>
 
                                 <div class="input-group">
