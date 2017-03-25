@@ -12,8 +12,12 @@ if (isset($_SESSION['user'])) {
 if(!empty($_POST)){
     try {
         $user = new User;
-        $user->Fullname = $_POST['fullname'];
-        $user->Email = $_POST['email'];
+        if (!empty($_POST['fullname'])) {
+            $user->Fullname = $_POST['fullname'];
+        }
+        if (!empty($_POST['email'])) {
+            $user->Email = $_POST['email'];
+        }
         if (!empty($_POST['newPassword']))
         //TODO: error messages kloppen niet (zijn die van login)
         {
@@ -30,9 +34,13 @@ if(!empty($_POST)){
                 }
             }
         }
-        $user->Username = $_POST['username'];
-        if (!empty($_POST['image'])) {
-            $user->Image = $_POST['image'];
+        if (!empty($_POST['username'])) {
+            $user->Username = $_POST['username'];
+        }
+        if (!empty($_FILES['image'])) {
+            move_uploaded_file($_FILES["image"]["tmp_name"],
+                "images/users/" . $_FILES["fileName"]["name"]);
+
         }
         $user->updateDatabase();
     } catch (Exception $e) {
@@ -76,7 +84,7 @@ if(!empty($_POST)){
     } ?>
     <h1 class="media-heading">Account settings</h1>
     <div class="media-body">
-        <form action="" method="post">
+        <form enctype="multipart/form-data" action="" method="post">
             <label for="fullname">Full name</label>
             <input type="text" value="<?php echo $_SESSION['fullname']; ?>" id="fullname" name="fullname"
                    class="form-control">

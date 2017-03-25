@@ -115,7 +115,7 @@
             try {
                 $conn = Db::getInstance();
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $statement = $conn->prepare("UPDATE users SET fullname = :fullname, username = :username, email = :email, password = :password, image = :image where username = :oldUsername");
+                $statement = $conn->prepare("UPDATE users SET fullname = :fullname, username = :username, email = :email, password = :password where username = :oldUsername");
                 $statement->bindValue(":fullname", $this->m_sFullname);
                 $statement->bindValue(":username", $this->m_sUsername);
                 $statement->bindValue(":email", $this->m_sEmail);
@@ -124,7 +124,6 @@
                 ];
                 $this->m_sPassword = password_hash( $this->m_sPassword, PASSWORD_DEFAULT, $options );
                 $statement->bindValue(":password", $this->m_sPassword);
-                $statement->bindValue(":image", $this->m_sImage);
                 $statement->bindValue(":oldUsername", $_SESSION['user']);
                 $statement->execute();
                 $_SESSION['user']=$this->m_sUsername;
