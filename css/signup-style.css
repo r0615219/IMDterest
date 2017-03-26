@@ -15,3 +15,8 @@ body {
     -moz-border-radius:50%;
     border-radius:50%;*/
 }
+
+.error{
+  margin-bottom: 5px;
+  color:red;
+}

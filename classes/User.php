@@ -9,9 +9,11 @@
         private $m_aTopics=[];
 
         public function __set($p_sProperty, $p_vValue){
+          if(empty($p_vValue)){
+                  throw new Exception ('There are empty fields.');}
             switch ( $p_sProperty ){
                 case "Email":
-                    /*if(empty($p_vValue)){
+                /*    if(empty($p_vValue)){
                         throw new Exception ('E-mail cannot be empty.');
                     }*/
                     $this->m_sEmail = $p_vValue;
@@ -23,6 +25,9 @@
                     $this->m_sUsername = $p_vValue;
                     break;
                 case "Password":
+                    if(strlen($p_vValue)<6){
+                      throw new Exception ('This password is too short!');
+                    }
                     $this->m_sPassword = $p_vValue;
                     break;
                 case "Image":
@@ -74,8 +79,9 @@
             $result = $statement->execute();
             return $result;
         }
-        
+
         public function CanLogin(){ //checken of we mogen inloggen
+
             $conn = Db::getInstance();
             $statement = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
             $statement->bindValue(":username", $this->m_sUsername);
@@ -88,7 +94,7 @@
                 throw new exception("Failed to sign in. Wrong password or username.");
             }
         }
-        
+
         public function HandleLogin() { //inloggen
             try {
                 $conn = Db::getInstance();
@@ -169,5 +175,3 @@
 
         public function addTopic(){}
     }
-
-

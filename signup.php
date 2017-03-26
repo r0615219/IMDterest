@@ -5,6 +5,8 @@ spl_autoload_register(function($class){
         include_once("classes/" . $class . ".php");
     });
 
+$required = array('email', 'fullname', 'username', 'password');
+try{
 if(!empty($_POST)){
     $user = new User();
     $user->Email = $_POST['email'];
@@ -13,14 +15,26 @@ if(!empty($_POST)){
     $user->Password = $_POST['password'];
     $user->Image = "http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png";
 
+      if( $user->Register()){
+          $user->HandleLogin();
+      }
+  }
 
-    if( $user->Register()){
-        $user->HandleLogin();
-    } else {
-        echo 'Whoops, something went wrong.';
-    }
-}
-?>
+}catch (Exception $e) {
+  $error = $e->getMessage();
+  foreach($required as $field) {
+  if (empty($_POST[$field])) {
+    echo '<style type="text/css">
+          #'.$field.'{border:4px solid red;
+          background-color: #FFA3A3;
+        }</style>';
+      $missingfields = 1;}}
+  if (strlen($_POST['password'])<6) {
+    echo '<style type="text/css">
+          #password{border:4px solid red;
+          background-color: #FFA3A3;
+        }</style>';}
+  };?>
 
 <!doctype html>
 <html lang="en">
@@ -65,6 +79,13 @@ if(!empty($_POST)){
         <p>Join our community!</p>
 
         <form method="post">
+        <?php if (isset($missingfields)) {
+            echo "<div class='error'> You didn't fill in all the fields!</div>";
+          }
+          if(!empty($_POST['password']) && strlen($_POST['password'])<6){
+            echo "<div class='error'> This password is too short!</div>";
+          }?>
+
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
                 <input type="text" class="form-control" placeholder="Full Name" name="fullname" id="fullname" aria-describedby="basic-addon1">
