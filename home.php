@@ -9,6 +9,19 @@ spl_autoload_register(function($class){
     else {
         header('Location: signin.php');
     }
+$topicArray = [];
+$conn = Db::getInstance();
+$statement = $conn->prepare("SELECT * FROM `topics`");
+$statement->execute();
+$res = $statement->rowCount();
+
+for($i = 1; $i<$res; $i++){
+    $topic = $i;
+    $topic = new Topics;
+    $topic->getTopic($i);
+    array_push($topicArray, $topic);
+}
+
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -25,6 +38,7 @@ spl_autoload_register(function($class){
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/signup-style.css">
+    <link rel="stylesheet" href="css/topics.css">
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 
@@ -33,7 +47,20 @@ spl_autoload_register(function($class){
 <body>
 
 <?php include_once('header.inc.php'); ?>
-
+<div class="container">
+    <h1 class="h1">Choose 5 topics to follow</h1>
+    <form action="" method="post">
+        <div class="btn-group btn-block" data-toggle="buttons">
+            <?php
+            foreach ($topicArray as $t):?>
+                <label class="btn topic-div" style="background-image: url(<?php echo $t->Image; ?>);">
+                    <input type="checkbox" autocomplete="off"> <?php echo $t->Name; ?>
+                </label>
+            <?php endforeach; ?>
+        </div>
+        <button class="btn btn-success save" type="submit">Save topics</button>
+    </form>
+</div>
 
 
 </body>

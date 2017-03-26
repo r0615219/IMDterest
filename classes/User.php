@@ -6,6 +6,7 @@
         private $m_sUsername;
         private $m_sPassword;
         private $m_sImage;
+        private $m_aTopics=[];
 
         public function __set($p_sProperty, $p_vValue){
             switch ( $p_sProperty ){
@@ -26,6 +27,9 @@
                     break;
                 case "Image":
                     $this->m_sImage = $p_vValue;
+                    break;
+                case "Topics":
+                    array_push($this->m_aTopics, $p_vValue);
                     break;
             }
 
@@ -48,6 +52,8 @@
                 case "Image":
                     return $this->m_sImage;
                     break;
+                case "Topics":
+                    return $this->m_aTopics;
             }
         }
 
@@ -98,7 +104,15 @@
                 $_SESSION['fullname'] = $fullname;
                 $_SESSION['email'] = $email;
                 $_SESSION['image'] = $image;
-                echo 'signed in';
+
+                $statement = $conn->prepare("SELECT * FROM `users_topics` WHERE users_ID in (SELECT id from users where username = :username)");
+                $statement->bindValue(":username", $this->m_sUsername);
+                $statement->execute();
+                $res = $statement->fetchAll(PDO::FETCH_ASSOC);
+                $topics = [];
+                array_push($topics, $res['topics_ID']);
+                $_SESSION['topics'] = $topics;
+
                 header('Location: home.php');
             } catch (Exception $e) {
                 echo $e->getMessage();
@@ -152,6 +166,8 @@
 
             $conn = null;
         }
+
+        public function addTopic(){}
     }
 
 
