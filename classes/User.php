@@ -22,9 +22,6 @@
                     $this->m_sUsername = $p_vValue;
                     break;
                 case "Password":
-                    if(strlen($p_vValue)<6){
-                      throw new Exception ('This password is too short!');
-                    }
                     $this->m_sPassword = $p_vValue;
                     break;
                 case "Image":
@@ -64,6 +61,8 @@
             $options = [
                 'cost' => 12,
             ];
+            if(strlen($this->m_sPassword)<6){
+            throw new Exception ('This password is too short!');}
             $this->m_sPassword = password_hash( $this->m_sPassword, PASSWORD_DEFAULT, $options );
 
             $conn = Db::getInstance();
@@ -75,8 +74,7 @@
               $found_duplicates = $checkduplicate->fetch(PDO::FETCH_ASSOC);
               if (!empty($found_duplicates)) {
                 echo"oh no";
-                throw new Exception("email already registered");
-              }
+                throw new Exception("email already registered");}
             $statement->bindValue(":fullname", $this->m_sFullname);
             $statement->bindValue(":username", $this->m_sUsername);
             $statement->bindValue(":password", $this->m_sPassword);
