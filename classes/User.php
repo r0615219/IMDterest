@@ -8,9 +8,11 @@
         private $m_sImage = "http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png";
 
         public function __set($p_sProperty, $p_vValue){
+          if(empty($p_vValue)){
+                  throw new Exception ('There are empty fields.');}
             switch ( $p_sProperty ){
                 case "Email":
-                    /*if(empty($p_vValue)){
+                /*    if(empty($p_vValue)){
                         throw new Exception ('E-mail cannot be empty.');
                     }*/
                     $this->m_sEmail = $p_vValue;
@@ -22,6 +24,9 @@
                     $this->m_sUsername = $p_vValue;
                     break;
                 case "Password":
+                    if(strlen($p_vValue)<6){
+                      throw new Exception ('This password is too short!');
+                    }
                     $this->m_sPassword = $p_vValue;
                     break;
                 case "Image":
@@ -67,7 +72,7 @@
             $result = $statement->execute();
             return $result;
         }
-        
+
         public function CanLogin(){ //checken of we mogen inloggen
             if( !empty( $_POST['username'] && $_POST['password']) ){
                 $conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
@@ -75,9 +80,9 @@
                 $statement->bindValue(":username", $this->m_sUsername);
                 $wachtwoord = $statement->execute();
                 $res = $statement->fetch(PDO::FETCH_ASSOC);
-                
+
                 $wachtwoord = $res["password"];
-                
+
                 if(password_verify($this->m_sPassword, $wachtwoord)){
                     return true;
                 } else {
@@ -89,7 +94,7 @@
                 throw new exception("Failed to sign in. All fields need to be filled in.");
             }
         }
-        
+
         public function HandleLogin() { //inloggen
             session_start();
             $_SESSION['user']=$this->m_sUsername;
