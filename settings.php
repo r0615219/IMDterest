@@ -39,7 +39,7 @@ if(!empty($_POST)){
         }
         if (!empty($_FILES['image'])) {
             move_uploaded_file($_FILES["image"]["tmp_name"],
-                "images/users/" . $_FILES["fileName"]["name"]);
+                "images/users/" . $_FILES["image"]["name"]);
 
         }
         $user->updateDatabase();
