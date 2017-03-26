@@ -5,7 +5,7 @@
         private $m_sFullname;
         private $m_sUsername;
         private $m_sPassword;
-        private $m_sImage = "http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png";
+        private $m_sImage;
 
         public function __set($p_sProperty, $p_vValue){
           if(empty($p_vValue)){
@@ -63,44 +63,99 @@
             ];
             $this->m_sPassword = password_hash( $this->m_sPassword, PASSWORD_DEFAULT, $options );
 
-            $conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
-            $statement = $conn->prepare("INSERT INTO users (`email`, `fullname`, `username`, `password`) VALUES (:email, :fullname, :username, :password);");
+            $conn = Db::getInstance();
+            $statement = $conn->prepare("INSERT INTO users (`email`, `fullname`, `username`, `password`, `image`) VALUES (:email, :fullname, :username, :password, :image);");
             $statement->bindValue(":email", $this->m_sEmail);
             $statement->bindValue(":fullname", $this->m_sFullname);
             $statement->bindValue(":username", $this->m_sUsername);
             $statement->bindValue(":password", $this->m_sPassword);
+            $statement->bindValue(":image", $this->m_sImage);
             $result = $statement->execute();
             return $result;
         }
 
         public function CanLogin(){ //checken of we mogen inloggen
-            if( !empty( $_POST['username'] && $_POST['password']) ){
-                $conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
-                $statement = $conn->prepare("SELECT `password` FROM `users` WHERE (username = :username)");
-                $statement->bindValue(":username", $this->m_sUsername);
-                $wachtwoord = $statement->execute();
-                $res = $statement->fetch(PDO::FETCH_ASSOC);
 
-                $wachtwoord = $res["password"];
-
-                if(password_verify($this->m_sPassword, $wachtwoord)){
-                    return true;
-                } else {
-                    return false;
-                    throw new exception("Failed to sign in. Wrong password or username.");
-                }
+            $conn = Db::getInstance();
+            $statement = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
+            $statement->bindValue(":username", $this->m_sUsername);
+            $statement->execute();
+            $res = $statement->fetch(PDO::FETCH_ASSOC);
+            $password = $res["password"];
+            if(password_verify($this->m_sPassword, $password)){
+                return true;
             } else {
-                return false;
-                throw new exception("Failed to sign in. All fields need to be filled in.");
+                throw new exception("Failed to sign in. Wrong password or username.");
             }
         }
 
         public function HandleLogin() { //inloggen
-            session_start();
-            $_SESSION['user']=$this->m_sUsername;
-            $_SESSION['fullname']=$this->m_sFullname;
-            $_SESSION['email']=$this->m_SEmail;
-            header('Location: home.php');
+            try {
+                $conn = Db::getInstance();
+                $statement = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
+                $statement->bindValue(":username", $this->m_sUsername);
+                $statement->execute();
+                $res = $statement->fetch(PDO::FETCH_ASSOC);
+                $fullname = $res["fullname"];
+                $email = $res["email"];
+                $image = $res["image"];
+                session_start();
+                $_SESSION['user'] = $this->m_sUsername;
+                $_SESSION['fullname'] = $fullname;
+                $_SESSION['email'] = $email;
+                $_SESSION['image'] = $image;
+                echo 'signed in';
+                header('Location: home.php');
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
         }
 
+
+
+        public function updateDatabase(){
+
+            try {
+                $conn = Db::getInstance();
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $statement = $conn->prepare("UPDATE users SET fullname = :fullname, username = :username, email = :email, password = :password where username = :oldUsername");
+                $statement->bindValue(":fullname", $this->m_sFullname);
+                $statement->bindValue(":username", $this->m_sUsername);
+                $statement->bindValue(":email", $this->m_sEmail);
+
+
+                if ($this->m_sPassword != '') {
+                    $options = [
+                        'cost' => 12,
+                    ];
+                    $this->m_sPassword = password_hash($this->m_sPassword, PASSWORD_DEFAULT, $options);
+                    $statement->bindValue(":password", $this->m_sPassword);
+
+                } else {
+
+                    //todo: HELP HELP HELP WERKT NIET -> geeft leeg wachtwoord in
+                    $stmt = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
+                    $stmt->bindValue(":username", $this->m_sUsername);
+                    $stmt->execute();
+                    $res = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $password = $res["password"];
+                    $statement->bindValue(":password", $password);
+                }
+
+
+                $statement->bindValue(":oldUsername", $_SESSION['user']);
+                $statement->execute();
+                $_SESSION['user']=$this->m_sUsername;
+                $_SESSION['fullname']=$this->m_sFullname;
+                $_SESSION['email']=$this->m_sEmail;
+                $_SESSION['image']=$this->m_sImage;
+                echo $statement->rowCount() . " records UPDATED successfully";
+            }
+            catch(PDOException $e)
+            {
+                echo $e->getMessage();
+            }
+
+            $conn = null;
+        }
     }
