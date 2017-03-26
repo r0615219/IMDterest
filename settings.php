@@ -18,6 +18,7 @@ if(!empty($_POST)){
         if (!empty($_POST['email'])) {
             $user->Email = $_POST['email'];
         }
+        
         if (!empty($_POST['newPassword']))
         //TODO: error messages kloppen niet (zijn die van login)
         {
@@ -38,6 +39,7 @@ if(!empty($_POST)){
         else{
             $user->Password = '';
         }
+    
         if (!empty($_POST['username'])) {
             $user->Username = $_POST['username'];
         }
