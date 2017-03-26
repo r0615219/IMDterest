@@ -13,9 +13,6 @@
                   throw new Exception ('There are empty fields.');}
             switch ( $p_sProperty ){
                 case "Email":
-                /*    if(empty($p_vValue)){
-                        throw new Exception ('E-mail cannot be empty.');
-                    }*/
                     $this->m_sEmail = $p_vValue;
                     break;
                 case "Fullname":
@@ -72,6 +69,14 @@
             $conn = Db::getInstance();
             $statement = $conn->prepare("INSERT INTO users (`email`, `fullname`, `username`, `password`, `image`) VALUES (:email, :fullname, :username, :password, :image);");
             $statement->bindValue(":email", $this->m_sEmail);
+              $checkduplicate = $conn->prepare("SELECT * FROM `users` WHERE (email =:email)");
+              $checkduplicate->bindValue(":email",$this->m_sEmail);
+              $checkduplicate->execute();
+              $found_duplicates = $checkduplicate->fetch(PDO::FETCH_ASSOC);
+              if (!empty($found_duplicates)) {
+                echo"oh no";
+                throw new Exception("email already registered");
+              }
             $statement->bindValue(":fullname", $this->m_sFullname);
             $statement->bindValue(":username", $this->m_sUsername);
             $statement->bindValue(":password", $this->m_sPassword);
