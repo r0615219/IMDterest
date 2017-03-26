@@ -11,16 +11,31 @@ spl_autoload_register(function($class){
     }
 $topicArray = [];
 $conn = Db::getInstance();
-$statement = $conn->prepare("SELECT * FROM `topics`");
-$statement->execute();
-$res = $statement->rowCount();
+if(empty($_SESSION['topics'])){
+    $statement = $conn->prepare("SELECT * FROM `topics`");
+    $statement->execute();
+    $res = $statement->rowCount();
 
-for($i = 1; $i<$res; $i++){
-    $topic = $i;
-    $topic = new Topics;
-    $topic->getTopic($i);
-    array_push($topicArray, $topic);
+    for($i = 1; $i<$res; $i++){
+        $topic = $i;
+        $topic = new Topics;
+        $topic->getTopic($i);
+        array_push($topicArray, $topic);
+    }
 }
+else{
+    foreach($_SESSION['topics'] as $t) {
+        $statement = $conn->prepare("SELECT * FROM `topics` where id = :id");
+        $statement->bindValue(":id", $t);
+        $statement->execute();
+        $res = $statement->fetch(PDO::FETCH_ASSOC);
+        $topic = new Topics;
+        $topic->Name = $res["name"];
+        $topic->Image = $res['image'];
+        array_push($topicArray, $topic);
+    }
+}
+
 
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
