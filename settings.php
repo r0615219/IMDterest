@@ -32,7 +32,11 @@ if(!empty($_POST)){
                 } else {
                     $error = "Your current password is incorrect.";
                 }
+                $user->Password = $_POST['newPassword'];
             }
+        }
+        else{
+            $user->Password = '';
         }
         if (!empty($_POST['username'])) {
             $user->Username = $_POST['username'];
@@ -40,7 +44,6 @@ if(!empty($_POST)){
         if (!empty($_FILES['image'])) {
             move_uploaded_file($_FILES["image"]["tmp_name"],
                 "images/users/" . $_FILES["image"]["name"]);
-
         }
         $user->updateDatabase();
     } catch (Exception $e) {

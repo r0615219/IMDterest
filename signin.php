@@ -1,24 +1,28 @@
 <?php
-
 spl_autoload_register(function($class){
         include_once("classes/" . $class . ".php");
     });
-
-try{
-    if(!empty($_POST)){
-        $user = new User();
-        $user->Username = $_POST['username'];
-        $user->Password = $_POST['password'];
-
-        if( $user->CanLogin() === true ){
-            $user->HandleLogin();
-        } else {
-            $error = "Failed to sign in.";
+if(!empty($_POST)){
+    try{
+        if( !empty( $_POST['username'] && $_POST['password']) ){
+            $user = new User();
+            $user->Username = $_POST['username'];
+            $user->Password = $_POST['password'];
+            if( $user->CanLogin()){
+                echo'canlogin';
+                $user->HandleLogin();
+            } else {
+                $error = "Failed to sign in.";
+            }
         }
+        else {
+            throw new exception("Failed to sign in. All fields need to be filled in.");
+        }
+    } catch (exception $e){
+        $error= $e->getMessage();
     }
-} catch (exception $e){
-    $error= $e->getMessage();
 }
+
 ?>
 
 <!doctype html>
@@ -66,6 +70,9 @@ try{
 
 <div class="jumbotron">
     <div class="container">
+        <?php if(isset($error)){
+            echo "<p>$error</p>";
+        } ?>
         <h1>A creative way to share ideas!</h1>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
         <p>Join our community!</p>

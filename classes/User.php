@@ -70,42 +70,39 @@
         }
         
         public function CanLogin(){ //checken of we mogen inloggen
-            if( !empty( $_POST['username'] && $_POST['password']) ){
-                $conn = Db::getInstance();
-                $statement = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
-                $statement->bindValue(":username", $this->m_sUsername);
-                $password = $statement->execute();
-                $res = $statement->fetch(PDO::FETCH_ASSOC);
-                
-                $password = $res["password"];
-                
-                if(password_verify($this->m_sPassword, $password)){
-                    return true;
-                } else {
-                    throw new exception("Failed to sign in. Wrong password or username.");
-                }
-            } else {
-                throw new exception("Failed to sign in. All fields need to be filled in.");
-            }
-        }
-        
-        public function HandleLogin() { //inloggen
-            
             $conn = Db::getInstance();
             $statement = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
             $statement->bindValue(":username", $this->m_sUsername);
             $statement->execute();
             $res = $statement->fetch(PDO::FETCH_ASSOC);
-            $fullname = $res["fullname"];
-            $email = $res["email"];
-            $image = $res["image"];
-            
-            session_start();
-            $_SESSION['user']=$this->m_sUsername;
-            $_SESSION['fullname']=$fullname;
-            $_SESSION['email']=$email;
-            $_SESSION['image']=$image;
-            header('Location: home.php');
+            $password = $res["password"];
+            if(password_verify($this->m_sPassword, $password)){
+                return true;
+            } else {
+                throw new exception("Failed to sign in. Wrong password or username.");
+            }
+        }
+        
+        public function HandleLogin() { //inloggen
+            try {
+                $conn = Db::getInstance();
+                $statement = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
+                $statement->bindValue(":username", $this->m_sUsername);
+                $statement->execute();
+                $res = $statement->fetch(PDO::FETCH_ASSOC);
+                $fullname = $res["fullname"];
+                $email = $res["email"];
+                $image = $res["image"];
+                session_start();
+                $_SESSION['user'] = $this->m_sUsername;
+                $_SESSION['fullname'] = $fullname;
+                $_SESSION['email'] = $email;
+                $_SESSION['image'] = $image;
+                echo 'signed in';
+                header('Location: home.php');
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
         }
 
 
@@ -119,11 +116,27 @@
                 $statement->bindValue(":fullname", $this->m_sFullname);
                 $statement->bindValue(":username", $this->m_sUsername);
                 $statement->bindValue(":email", $this->m_sEmail);
-                $options = [
-                    'cost' => 12,
-                ];
-                $this->m_sPassword = password_hash( $this->m_sPassword, PASSWORD_DEFAULT, $options );
-                $statement->bindValue(":password", $this->m_sPassword);
+
+
+                if ($this->m_sPassword != '') {
+                    $options = [
+                        'cost' => 12,
+                    ];
+                    $this->m_sPassword = password_hash($this->m_sPassword, PASSWORD_DEFAULT, $options);
+                    $statement->bindValue(":password", $this->m_sPassword);
+
+                } else {
+
+                    //todo: HELP HELP HELP WERKT NIET -> geeft leeg wachtwoord in
+                    $stmt = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
+                    $stmt->bindValue(":username", $this->m_sUsername);
+                    $stmt->execute();
+                    $res = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $password = $res["password"];
+                    $statement->bindValue(":password", $password);
+                }
+
+
                 $statement->bindValue(":oldUsername", $_SESSION['user']);
                 $statement->execute();
                 $_SESSION['user']=$this->m_sUsername;
