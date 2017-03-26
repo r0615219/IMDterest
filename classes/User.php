@@ -142,21 +142,38 @@
                 $statement->bindValue(":email", $this->m_sEmail);
                 
                 //PASSWORD:
-                if (isset($this->m_sPassword)) {
-                    // hier zetten we de input als een nieuw gehast wachtwoord in de database 
-                    $options = [
-                        'cost' => 12,
-                    ];
-                    $this->m_sPassword = password_hash($this->m_sPassword, PASSWORD_DEFAULT, $options);
-                    $statement->bindValue(":password", $this->m_sPassword);
+                if (!empty($_POST['newPassword'])) {
+                    // hier zetten we de input als een nieuw gehast wachtwoord in de database
+                    if ($_POST['newPassword'] == $_POST['password']) {
+                        throw new exception("Unable to change the password. Your new password can't be the same as your current one.");
+                    } else if ($_POST['newPassword'] != $_POST['controlPassword']) {
+                        throw new exception("Unable to change the password. Your passwords don't match.");
+                    } else {
+                        //checken of het oude paswoord overeen komt met het huidige
+                    $stmt1 = $conn->prepare("SELECT * FROM `users` WHERE (username = :oldusername)");
+                    $stmt1->bindValue(":oldusername", $_SESSION['user']);
+                    $stmt1->execute();
+                    $res = $stmt1->fetch(PDO::FETCH_ASSOC);
+                    $controleerpassword = $res["password"];
+                    if(password_verify($_POST['password'], $controleerpassword)){
+                    //nieuw passwoord in database zetten
+                        $options = [
+                            'cost' => 12,
+                        ];
+                        $this->m_sPassword = password_hash($_POST['newPassword'], PASSWORD_DEFAULT, $options);
+                        $statement->bindValue(":password", $this->m_sPassword);
+                    } else {
+                        throw new exception("Unable to change the password. Your current password was wrong.");
+                    }
+                    }
 
                 } else {
 
                     //hier wordt het huidige wachtwoord opnieuw in de database geset als de gebruiker geen nieuw wachtwoord heeft ingesteld
-                    $stmt = $conn->prepare("SELECT * FROM `users` WHERE (username = :oldusername)");
-                    $stmt->bindValue(":oldusername", $_SESSION['user']);
-                    $stmt->execute();
-                    $res = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $stmt2 = $conn->prepare("SELECT * FROM `users` WHERE (username = :oldusername)");
+                    $stmt2->bindValue(":oldusername", $_SESSION['user']);
+                    $stmt2->execute();
+                    $res = $stmt2->fetch(PDO::FETCH_ASSOC);
                     $password = $res["password"];
                     $statement->bindValue(":password", $password);
                 }

@@ -18,27 +18,6 @@ if(!empty($_POST)){
         if (!empty($_POST['email'])) {
             $user->Email = $_POST['email'];
         }
-        
-        /*if (!empty($_POST['newPassword']))
-        //TODO: error messages kloppen niet (zijn die van login)
-        {
-            if ($_POST['newPassword'] == $_POST['password']) {
-                $error = "Your new password can't be the same as your current one.";
-            } else if ($_POST['newPassword'] != $_POST['controlPassword']) {
-                $error = "Your passwords don't match.";
-            } else {
-                $user->Username = $_SESSION['user'];
-                if ($user->CanLogin()) {
-                    $user->Password = $_POST['newPassword'];
-                } else {
-                    $error = "Your current password is incorrect.";
-                }
-                $user->Password = $_POST['newPassword'];
-            }
-        }
-        else{
-            $user->Password = '';
-        }*/
     
         if (!empty($_POST['username'])) {
             $user->Username = $_POST['username'];
