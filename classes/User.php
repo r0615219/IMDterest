@@ -133,15 +133,17 @@
         public function updateDatabase(){
 
             try {
+                //alles dat in de velden staat wordt heringesteld in de database
                 $conn = Db::getInstance();
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $statement = $conn->prepare("UPDATE users SET fullname = :fullname, username = :username, email = :email, password = :password where username = :oldUsername");
                 $statement->bindValue(":fullname", $this->m_sFullname);
                 $statement->bindValue(":username", $this->m_sUsername);
                 $statement->bindValue(":email", $this->m_sEmail);
-
-
-                if ($this->m_sPassword != '') {
+                
+                //PASSWORD:
+                if (isset($this->m_sPassword)) {
+                    // hier zetten we de input als een nieuw gehast wachtwoord in de database 
                     $options = [
                         'cost' => 12,
                     ];
@@ -150,16 +152,16 @@
 
                 } else {
 
-                    //todo: HELP HELP HELP WERKT NIET -> geeft leeg wachtwoord in
-                    $stmt = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
-                    $stmt->bindValue(":username", $this->m_sUsername);
+                    //hier wordt het huidige wachtwoord opnieuw in de database geset als de gebruiker geen nieuw wachtwoord heeft ingesteld
+                    $stmt = $conn->prepare("SELECT * FROM `users` WHERE (username = :oldusername)");
+                    $stmt->bindValue(":oldusername", $_SESSION['user']);
                     $stmt->execute();
                     $res = $stmt->fetch(PDO::FETCH_ASSOC);
                     $password = $res["password"];
                     $statement->bindValue(":password", $password);
                 }
-
-
+                
+                
                 $statement->bindValue(":oldUsername", $_SESSION['user']);
                 $statement->execute();
                 $_SESSION['user']=$this->m_sUsername;
