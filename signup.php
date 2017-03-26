@@ -26,15 +26,23 @@ if(!empty($_POST)){
   if (empty($_POST[$field])) {
     echo '<style type="text/css">
           #'.$field.'{border:4px solid red;
-          background-color: #FFA3A3;
-        }</style>';
+          background-color: #FFA3A3;}
+          </style>';
       $missingfields = 1;}}
   if (strlen($_POST['password'])<6) {
     echo '<style type="text/css">
           #password{border:4px solid red;
-          background-color: #FFA3A3;
-        }</style>';}
-  };?>
+          background-color: #FFA3A3;}
+          </style>';
+      $shortpassword = 1;}
+  if ($error=="email already registered") {
+    echo '<style type="text/css">
+          #email{border:4px solid red;
+          background-color: #FFA3A3;}
+          </style>';
+    $duplicatemail = 1;
+  }
+};?>
 
 <!doctype html>
 <html lang="en">
@@ -79,12 +87,18 @@ if(!empty($_POST)){
         <p>Join our community!</p>
 
         <form method="post">
-        <?php if (isset($missingfields)) {
+        <?php
+          if (isset($missingfields)) {
             echo "<div class='error'> You didn't fill in all the fields!</div>";
           }
           if(!empty($_POST['password']) && strlen($_POST['password'])<6){
             echo "<div class='error'> This password is too short!</div>";
-          }?>
+          }
+          if (isset($duplicatemail)) {
+            echo "<div class='error'> This email is already in use!</div>";
+          }
+
+          ?>
 
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
