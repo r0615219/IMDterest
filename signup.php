@@ -5,6 +5,8 @@ spl_autoload_register(function($class){
         include_once("classes/" . $class . ".php");
     });
 
+$required = array('email', 'fullname', 'username', 'password');
+try{
 if(!empty($_POST)){
     $user = new User();
     $user->Email = $_POST['email'];
@@ -13,13 +15,11 @@ if(!empty($_POST)){
     $user->Password = $_POST['password'];
     $user->Image = "http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png";
 
-
       if( $user->Register()){
           $user->HandleLogin();
       }
-
-
   }
+
 }catch (Exception $e) {
   $error = $e->getMessage();
   foreach($required as $field) {
