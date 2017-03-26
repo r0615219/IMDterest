@@ -1,16 +1,18 @@
 <?php
 
-include_once 'classes/User.php';
-//autoloading?
-$required = array('email', 'fullname', 'username', 'password');
+session_start();
+spl_autoload_register(function($class){
+        include_once("classes/" . $class . ".php");
+    });
 
-try {
-  if(!empty($_POST)){
-      $user = new User();
-      $user->Email = $_POST['email'];
-      $user->Fullname = $_POST['fullname'];
-      $user->Username = $_POST['username'];
-      $user->Password = $_POST['password'];
+if(!empty($_POST)){
+    $user = new User();
+    $user->Email = $_POST['email'];
+    $user->Fullname = $_POST['fullname'];
+    $user->Username = $_POST['username'];
+    $user->Password = $_POST['password'];
+    $user->Image = "http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png";
+
 
       if( $user->Register()){
           $user->HandleLogin();
