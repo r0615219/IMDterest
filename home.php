@@ -11,7 +11,8 @@ spl_autoload_register(function($class){
     }
 $topicArray = [];
 $conn = Db::getInstance();
-if(empty($_SESSION['topics'])){
+if(!isset($_SESSION['topics'])){
+	echo 'empty';
     $statement = $conn->prepare("SELECT * FROM `topics`");
     $statement->execute();
     $res = $statement->rowCount();
@@ -24,6 +25,7 @@ if(empty($_SESSION['topics'])){
     }
 }
 else{
+	echo 'full';
     foreach($_SESSION['topics'] as $t) {
         $statement = $conn->prepare("SELECT * FROM `topics` where id = :id");
         $statement->bindValue(":id", $t);

@@ -117,10 +117,14 @@
                 $statement = $conn->prepare("SELECT * FROM `users_topics` WHERE users_ID in (SELECT id from users where username = :username)");
                 $statement->bindValue(":username", $this->m_sUsername);
                 $statement->execute();
-                $res = $statement->fetchAll(PDO::FETCH_ASSOC);
-                $topics = [];
-                array_push($topics, $res['topics_ID']);
-                $_SESSION['topics'] = $topics;
+                $res = $statement->rowCount();
+                if($res > 0){
+                    $res = $statement->fetchAll(PDO::FETCH_ASSOC);
+                    $topics = [];
+                    array_push($topics, $res['topics_ID']);
+                    $_SESSION['topics'] = $topics;
+                }
+
 
                 header('Location: home.php');
             } catch (Exception $e) {
