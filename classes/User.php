@@ -198,6 +198,4 @@
 
             $conn = null;
         }
-
-        public function addTopic(){}
     }

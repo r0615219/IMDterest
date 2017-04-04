@@ -10,22 +10,24 @@ spl_autoload_register(function($class){
         header('Location: signin.php');
     }
 $topicArray = [];
-$conn = Db::getInstance();
-if(!isset($_SESSION['topics'])){
-	echo 'empty';
-    $statement = $conn->prepare("SELECT * FROM `topics`");
-    $statement->execute();
-    $res = $statement->rowCount();
+$userTopics = [];
 
-    for($i = 1; $i<$res; $i++){
-        $topic = $i;
-        $topic = new Topics;
-        $topic->getTopic($i);
-        array_push($topicArray, $topic);
-    }
+// alle topics uit databank halen en in topicArray steken
+$conn = Db::getInstance();
+$statement = $conn->prepare("SELECT * FROM `topics`");
+$statement->execute();
+$res = $statement->rowCount();
+
+for($i = 1; $i<$res; $i++){
+    $topic = $i;
+    $topic = new Topics;
+    $topic->getTopic($i);
+    array_push($topicArray, $topic);
 }
-else{
-	echo 'full';
+
+//kijken of de gebruiker topics al heeft.
+//indien ja, deze topics is userTopics array steken
+if(isset($_SESSION['topics'])){
     foreach($_SESSION['topics'] as $t) {
         $statement = $conn->prepare("SELECT * FROM `topics` where id = :id");
         $statement->bindValue(":id", $t);
@@ -34,10 +36,18 @@ else{
         $topic = new Topics;
         $topic->Name = $res["name"];
         $topic->Image = $res['image'];
-        array_push($topicArray, $topic);
+        array_push($userTopics, $topic);
     }
 }
 
+if (isset($_POST['selectedTopics'])) {
+    $selectedTopics = $_POST['selectedTopics'];
+    for ($i=0; $i<count($selectedTopics); $i++) {
+        $usertopic = new Topics();
+        $usertopic->Name = $selectedTopics[$i];
+        $usertopic->saveUserTopic();
+    }
+}
 
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -65,20 +75,19 @@ else{
 
 <?php include_once('header.inc.php'); ?>
 <div class="container">
-    <h1 class="h1">Choose 5 topics to follow</h1>
-    <form action="" method="post">
-        <div class="btn-group btn-block" data-toggle="buttons">
-            <?php
-            foreach ($topicArray as $t):?>
-                <label class="btn topic-div" style="background-image: url(<?php echo $t->Image; ?>);">
-                    <input type="checkbox" autocomplete="off"> <?php echo $t->Name; ?>
-                </label>
-            <?php endforeach; ?>
-        </div>
-        <button class="btn btn-success save" type="submit">Save topics</button>
-    </form>
-</div>
 
+    <?php
+
+    if(isset($_SESSION['topics'])){
+        include_once('userHome.php');
+    }
+    else{
+        include_once('chooseTopics.php');
+    }
+
+    ?>
+
+</div>
 
 </body>
 </html>
