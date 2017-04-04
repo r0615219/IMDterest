@@ -9,44 +9,34 @@ spl_autoload_register(function($class){
     else {
         header('Location: signin.php');
     }
-$topicArray = [];
-$userTopics = [];
 
-// alle topics uit databank halen en in topicArray steken
-$conn = Db::getInstance();
-$statement = $conn->prepare("SELECT * FROM `topics`");
-$statement->execute();
-$res = $statement->rowCount();
+//indien de gebruiker nog geen topics heeft
+if (!isset($_SESSION['topics'])) {
+    $topicArray = [];
 
-for($i = 1; $i<$res; $i++){
-    $topic = $i;
-    $topic = new Topics;
-    $topic->getTopic($i);
-    array_push($topicArray, $topic);
-}
+    // alle topics uit databank halen en in topicArray steken
+    $conn = Db::getInstance();
+    $statement = $conn->prepare("SELECT * FROM `topics`");
+    $statement->execute();
+    $res = $statement->rowCount();
 
-//kijken of de gebruiker topics al heeft.
-//indien ja, deze topics is userTopics array steken
-if(isset($_SESSION['topics'])){
-    foreach($_SESSION['topics'] as $t) {
-        $statement = $conn->prepare("SELECT * FROM `topics` where id = :id");
-        $statement->bindValue(":id", $t);
-        $statement->execute();
-        $res = $statement->fetch(PDO::FETCH_ASSOC);
+    for ($i = 1; $i < $res; $i++) {
+        $topic = $i;
         $topic = new Topics;
-        $topic->Name = $res["name"];
-        $topic->Image = $res['image'];
-        array_push($userTopics, $topic);
+        $topic->getTopic($i);
+        array_push($topicArray, $topic);
     }
 }
 
+//kijken of de gebruiker topics gekozen heeft
 if (isset($_POST['selectedTopics'])) {
     $selectedTopics = $_POST['selectedTopics'];
-    for ($i=0; $i<count($selectedTopics); $i++) {
+    for ($i = 0; $i < count($selectedTopics); $i++) {
         $usertopic = new Topics();
         $usertopic->Name = $selectedTopics[$i];
         $usertopic->saveUserTopic();
     }
+    $_SESSION['topics'][] = $selectedTopics;
 }
 
 ?>

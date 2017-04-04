@@ -50,7 +50,6 @@ class Topics{
         $statement1->execute();
         $res1 = $statement1->fetch(PDO::FETCH_ASSOC);
         $userID = $res1["id"];
-        echo $userID;
 
         //id van topic ophalen en in $res2 steken
         $statement2 = $conn->prepare("SELECT `id` FROM `topics` WHERE name = :name");
@@ -58,13 +57,11 @@ class Topics{
         $statement2->execute();
         $res2 = $statement2->fetch(PDO::FETCH_ASSOC);
         $topicsID = $res2["id"];
-        echo $topicsID;
 
         //id van user en van topic in users_topics steken
         $statement3 = $conn->prepare("INSERT INTO `users_topics` (`users_ID`, `topics_ID`) VALUES (:userID, :topicsID);");
         $statement3->bindValue(":userID", $userID);
         $statement3->bindValue(":topicsID", $topicsID);
         $result = $statement3->execute();
-        return $result;
     }
 }
