@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 26 mrt 2017 om 11:49
+-- Gegenereerd op: 10 apr 2017 om 17:46
 -- Serverversie: 10.1.21-MariaDB
--- PHP-versie: 7.1.1
+-- PHP-versie: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -54,8 +54,8 @@ INSERT INTO `topics` (`id`, `name`, `image`) VALUES
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fullname` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `username` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `firstname` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lastname` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -64,7 +64,7 @@ CREATE TABLE `users` (
 -- Gegevens worden geëxporteerd voor tabel `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `fullname`, `username`, `password`, `image`) VALUES
+INSERT INTO `users` (`id`, `email`, `firstname`, `lastname`, `password`, `image`) VALUES
 (3, '123@test.be', 'Name', 'Hi', '$2y$12$ZnyoBlC5EZNBaUGN33MOs.zBXuvRxEDslqRuuzucwm9ldlBPNgEae', ''),
 (4, '456@mail.be', 'John Smith', 'jsmith', '$2y$12$V97o6.6iqQLTF4/ywpDhDeCsiClku4yg8rfrlB2JA3hNKKbSRDSmu', ''),
 (5, 'simon.vanherzele@gmail.com', 'Simon Van Herzele', 'DonSimon', '$2y$12$XanG5JbTwmCzCOHECaUENuYdjdvA7shAbT8XMpQuwY7RdGCbhAg7i', ''),
@@ -73,7 +73,13 @@ INSERT INTO `users` (`id`, `email`, `fullname`, `username`, `password`, `image`)
 (8, 'fFrank@gmail.tank', 'Frank De Tank', 'Tank', '$2y$12$wjjMC.Nz4Y42ycOKrA0MFOvODzJfAM56S8xFVpWDGbEG1CXEBdaDa', ''),
 (11, 'blub@blub.com', 'blub blub', 'blub', '$2y$12$92Bp5t0h3tkdvL5rfeucqu63SYkDK6OzOGF6l1QhRMVMdEbqg01Ye', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
 (12, 'nieuw@email.be', 'nieuwe test', 'nieuwe username', '$2y$12$.HnQEXHkh84nJrF84QvI7u9ph/x0QT4JiesbpGZlQZMilhmYHXxlC', ''),
-(13, 'test@user.com', 'testnaam', 'test', '$2y$12$p7U17D092TJHJ0578yavH.N3c7hEd46t3F.KBfxZyDLfhgAjE6Cpm', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png');
+(13, 'test@user.com', 'testnaam', 'test', '$2y$12$p7U17D092TJHJ0578yavH.N3c7hEd46t3F.KBfxZyDLfhgAjE6Cpm', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
+(14, 'a@a.a', 'Armand De Backer', 'Arrie', '$2y$12$5rN3QqZB/QXhJNDgpvRzpuWHoNCgoMQXGbcKg1WRxPmJ21Om8tYhW', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
+(15, 'helena@mail.be', 'Helena Sollie', 'Helena', '$2y$12$4IT8DnMzKoGzlV/ffWEzpu7rTvIGQx8p/GVK/AA7bCSyx.aXY.cye', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
+(16, 'f@f.com', 'test', 'f', '$2y$12$zjlKNZ539FXHz.Ti9Y8vAuHp2EwPCsLTQpZsn.2gKScyp4CF8b9h6', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
+(17, 'carolineboeykens@hotmail.com', 'Caroline', 'Boeykens', '$2y$12$nIzUo8fb25ptbNPao1gFPuVL.PHNe6WHSGM0Fk.RYMBfat/4tqmq2', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
+(18, 'mail@email.be', 'caro', 'boeykens', '$2y$12$z1guujdyqUOcRIH6qwFx/.cg2AI6i8F2LeFOy03IZn8L52QCdxZNW', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
+(19, 'email@hotmail.com', 'firstname', 'lastname', '$2y$12$HjWVDKpMQ5WdLYVMj4IR..GYIWW1TFbEK7beLkRxyjrjue5ce8/uG', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png');
 
 -- --------------------------------------------------------
 
@@ -124,7 +130,7 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT voor een tabel `users_topics`
 --
