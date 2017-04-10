@@ -110,27 +110,33 @@
                 $email = $res["email"];
                 $image = $res["image"];
                 session_start();
-                $_SESSION['user'] = $this->m_sFirstname;
+                $_SESSION['user'] = $this->m_sEmail;
                 $_SESSION['firstname'] = $firstname;
                 $_SESSION['lastname'] = $lastname;
                 $_SESSION['email'] = $email;
                 $_SESSION['image'] = $image;
 
-                $statement = $conn->prepare("SELECT * FROM `users_topics` WHERE users_ID in (SELECT id from users where email = :email)");
-                $statement->bindValue(":email", $this->m_sEmail);
-                $statement->execute();
-                $res = $statement->rowCount();
-                if($res > 0){
-                    $res = $statement->fetchAll(PDO::FETCH_ASSOC);
-                    $topics = [];
-                    array_push($topics, $res['topics_ID']);
-                    $_SESSION['topics'] = $topics;
-                }
-
+                $this->getUserTopics();
 
                 header('Location: home.php');
             } catch (Exception $e) {
                 echo $e->getMessage();
+            }
+        }
+
+        //kijken of de gebruiker topics heeft
+        //aparte functie want nieuwe query nodig
+        public function getUserTopics(){
+            $conn = Db::getInstance();
+            $statement = $conn->prepare("SELECT name, image FROM topics where id in (SELECT topics_ID FROM `users_topics` WHERE users_ID in (SELECT id from users where email = :email))");
+            $statement->bindValue(":email", $this->m_sEmail);
+            $statement->execute();
+            $rows = $statement->rowCount();
+            //als de gebruiker topics heeft deze als Topics object aanmaken -> afbeelding en naam van topic ophalen
+            if($rows > 0){
+                while($topic = $statement->fetch(PDO::FETCH_OBJ)){
+                    $_SESSION['topics'][] = $topic;
+                }
             }
         }
 
@@ -142,7 +148,7 @@
                 //alles dat in de velden staat wordt heringesteld in de database
                 $conn = Db::getInstance();
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $statement = $conn->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, password = :password where username = :oldUsername");
+                $statement = $conn->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, password = :password where email = :oldEmail");
                 $statement->bindValue(":firstname", $this->m_sFirstname);
                 $statement->bindValue(":lastname", $this->m_sLastname);
                 $statement->bindValue(":email", $this->m_sEmail);
