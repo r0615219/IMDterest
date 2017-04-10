@@ -114,17 +114,7 @@
                 $_SESSION['email'] = $email;
                 $_SESSION['image'] = $image;
 
-                if($this->getUserTopics()){
-                    $userTopics = $this->getUserTopics();
-                    $userTopicsArray = [];
-                    foreach($userTopics as $row){
-                        $topic = new Topics;
-                        $topic->getTopic($row);
-                        array_push($userTopicsArray, $topic);
-                    }
-                    $_SESSION['topics'][] = $userTopicsArray;
-                }
-
+                $this->getUserTopics();
 
                 header('Location: home.php');
             } catch (Exception $e) {
@@ -133,19 +123,18 @@
         }
 
         //kijken of de gebruiker topics heeft
+        //aparte functie want nieuwe query nodig
         public function getUserTopics(){
             $conn = Db::getInstance();
-            $statement = $conn->prepare("SELECT * FROM `users_topics` WHERE users_ID in (SELECT id from users where username = :username)");
+            $statement = $conn->prepare("SELECT name, image FROM topics where id in (SELECT topics_ID FROM `users_topics` WHERE users_ID in (SELECT id from users where username = :username))");
             $statement->bindValue(":username", $this->m_sUsername);
             $statement->execute();
-            $res = $statement->rowCount();
+            $rows = $statement->rowCount();
             //als de gebruiker topics heeft deze als Topics object aanmaken -> afbeelding en naam van topic ophalen
-            //topics van de gebruiker in session steken
-            if($res > 0){
-                return $res = $statement->fetchAll();
-            }
-            else{
-                return false;
+            if($rows > 0){
+                while($topic = $statement->fetch(PDO::FETCH_OBJ)){
+                    $_SESSION['topics'][] = $topic;
+                }
             }
         }
 
