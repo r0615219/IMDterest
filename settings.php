@@ -12,16 +12,17 @@ if (isset($_SESSION['user'])) {
 if(!empty($_POST)){
     try {
         $user = new User;
-        if (!empty($_POST['fullname'])) {
-            $user->Fullname = $_POST['fullname'];
+        if (!empty($_POST['firstname'])) {
+            $user->Firstname = $_POST['firstname'];
         }
+        if (!empty($_POST['lastname'])) {
+            $user->Lastname = $_POST['lastname'];
+        }
+
         if (!empty($_POST['email'])) {
             $user->Email = $_POST['email'];
         }
-    
-        if (!empty($_POST['username'])) {
-            $user->Username = $_POST['username'];
-        }
+
         if (!empty($_FILES['image'])) {
             move_uploaded_file($_FILES["image"]["tmp_name"],
                 "images/users/" . $_FILES["image"]["name"]);
@@ -69,16 +70,16 @@ if(!empty($_POST)){
     <h1 class="media-heading">Account settings</h1>
     <div class="media-body">
         <form enctype="multipart/form-data" action="" method="post">
-            <label for="fullname">Full name</label>
-            <input type="text" value="<?php echo $_SESSION['fullname']; ?>" id="fullname" name="fullname"
+            <label for="firstname">Firstname</label>
+            <input type="text" value="<?php echo $_SESSION['firstname']; ?>" id="firstname" name="firstname"
+                   class="form-control">
+
+            <label for="lastname" style="margin-top:30px;">Lastname</label>
+            <input type="text" value="<?php echo $_SESSION['lastname']; ?>" id="lastname" name="lastname"
                    class="form-control">
 
             <label for="email" style="margin-top:30px;">Email</label>
             <input type="text" value="<?php echo $_SESSION['email']; ?>" id="email" name="email"
-                   class="form-control">
-
-            <label for="username" style="margin-top:30px;">Username</label>
-            <input type="text" value="<?php echo $_SESSION['user']; ?>" id="username" name="username"
                    class="form-control">
 
             <div class="media" style="margin-top:30px;">

@@ -1,38 +1,3 @@
-<!--<header>
-    <h1>IMDterest</h1>
-
-    <div class="profile">
-        <a href="settings.php" class="profile_link"><img src="http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png" alt="Profile Picture" class="profilepicture"></a>
-        <a href="logout.php" class="logout">Log out</a>
-    </div>
-</header>-->
-
-<!--<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">IMDterest</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right" method="post">
-                <div class="form-group">
-                    <input type="text" placeholder="Username" name="username" id="username" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" name="password" id="password" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-success">Sign in</button>
-            </form>
-        </div>
-    </div>
-</nav>-->
-
-
 <nav class="navbar navbar-inverse navbar-fixed-top"> //navbar-default
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -76,7 +41,7 @@
                 <!--<li><a href="#">Link</a></li>-->
                 <li><a href="#"><img class="media-object profile-pic" src="<?php echo $_SESSION['image']; ?>" alt="profile"></a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['fullname']; ?> <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['firstname']; ?> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Profile</a></li>
                         <li><a href="settings.php">Settings</a></li>

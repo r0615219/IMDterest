@@ -68,8 +68,7 @@ else{
     <h1 class="h1">Choose 5 topics to follow</h1>
     <form action="" method="post">
         <div class="btn-group btn-block" data-toggle="buttons">
-            <?php
-            foreach ($topicArray as $t):?>
+            <?php foreach ($topicArray as $t):?>
                 <label class="btn topic-div" style="background-image: url(<?php echo $t->Image; ?>);">
                     <input type="checkbox" autocomplete="off"> <?php echo $t->Name; ?>
                 </label>
