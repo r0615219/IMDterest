@@ -23,8 +23,9 @@ if(!empty($_POST)){
             $user->Username = $_POST['username'];
         }
         if (!empty($_FILES['image'])) {
+            echo "Er is een afbeelding!";
             move_uploaded_file($_FILES["image"]["tmp_name"],
-                "images/users/" . $_FILES["image"]["name"]);
+                "images/uploads/userImages/" . $_FILES["image"]["name"]);
         }
         $user->updateDatabase();
     } catch (Exception $e) {

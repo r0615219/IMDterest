@@ -206,7 +206,10 @@
                 $_SESSION['image']=$this->m_sImage;
                 echo $statement->rowCount() . " records UPDATED successfully";
                 
+                //als de gebruiker het onvolledig heeft ingevuld -> een foutmelding
+                if(!empty($_POST['password']) || !empty($_POST['newPassword']) || !empty($_POST['controlPassword']) ){
                 throw new exception("Unable to change the password. You didn't fill in all required fields.");
+                }
             }
             catch(PDOException $e)
             {
