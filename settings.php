@@ -23,11 +23,13 @@ if(!empty($_POST)){
             $user->Username = $_POST['username'];
         }
         if (!empty($_FILES['image'])) {
-            echo "Er is een afbeelding!";
             move_uploaded_file($_FILES["image"]["tmp_name"],
                 "images/uploads/userImages/" . $_FILES["image"]["name"]);
+            $user->Image = $_FILES['image']['name'];
         }
+        
         $user->updateDatabase();
+        
     } catch (Exception $e) {
         $error = $e->getMessage();
     }
@@ -83,7 +85,7 @@ if(!empty($_POST)){
                    class="form-control">
 
             <div class="media" style="margin-top:30px;">
-                <img src="<?php echo $_SESSION['image']; ?>" alt="profile picture">
+                <img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt="profile picture">
                 <button type="button" class="btn media" data-toggle="modal" data-target="#uploadImage">Change profile picture</button>
 
 

@@ -9,8 +9,9 @@
         private $m_aTopics=[];
 
         public function __set($p_sProperty, $p_vValue){
-          if(empty($p_vValue)){
-                  throw new Exception ('There are empty fields.');}
+          /*if(empty($p_vValue)){
+                  throw new Exception ('There are empty fields.');}*/
+        //dit stukje code is in comments gezet door Roel omdat het optionele tekstvelden onmogelijk maakt, wat absoluut nodig blijkt te zijn voor updateDatabase(). Er wordt al op andere plaatsen voor gezorgd dat alle velden in signin.php en singup.php zijn ingevuld.
             switch ( $p_sProperty ){
                 case "Email":
                     $this->m_sEmail = $p_vValue;
@@ -57,7 +58,7 @@
         }
 
         public function Register(){
-
+            if(!empty($this->m_sFullname) && !empty($this->m_sEmail) && !empty($this->m_sUsername) && !empty($this->m_sPassword)){
             $options = [
                 'cost' => 12,
             ];
@@ -81,6 +82,9 @@
             $statement->bindValue(":image", $this->m_sImage);
             $result = $statement->execute();
             return $result;
+            } else {
+                throw new Exception ('There are empty fields.');
+            }
         }
 
         public function CanLogin(){ //checken of we mogen inloggen
@@ -155,7 +159,7 @@
                 //alles dat in de velden staat wordt heringesteld in de database
                 $conn = Db::getInstance();
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $statement = $conn->prepare("UPDATE users SET fullname = :fullname, username = :username, email = :email, password = :password where username = :oldUsername");
+                $statement = $conn->prepare("UPDATE users SET fullname = :fullname, username = :username, email = :email, password = :password, image = :image where username = :oldUsername");
                 $statement->bindValue(":fullname", $this->m_sFullname);
                 $statement->bindValue(":username", $this->m_sUsername);
                 $statement->bindValue(":email", $this->m_sEmail);
@@ -202,7 +206,13 @@
                     }
                 }
                 
+                //IMAGE:
+                if(empty($this->m_sImage)){
+                    $this->m_sImage = $_SESSION['image'];
+                }
+                $statement->bindValue(":image", $this->m_sImage);
                 
+                //EXECUTE en sessions
                 $statement->bindValue(":oldUsername", $_SESSION['user']);
                 $statement->execute();
                 $_SESSION['user']=$this->m_sUsername;

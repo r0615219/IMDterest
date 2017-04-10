@@ -74,7 +74,7 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <!--<li><a href="#">Link</a></li>-->
-                <li><a href="#"><img class="media-object profile-pic" src="<?php echo $_SESSION['image']; ?>" alt="profile"></a></li>
+                <li><a href="#"><img class="media-object profile-pic" src="images/uploads/userImages/<?php echo $_SESSION['image'];?>" alt="profile"></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['fullname']; ?> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
