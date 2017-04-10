@@ -161,7 +161,7 @@
                 $statement->bindValue(":email", $this->m_sEmail);
                 
                 //PASSWORD:
-                if (!empty($_POST['newPassword'])) {
+                if (!empty($_POST['password']) && !empty($_POST['newPassword']) && !empty($_POST['controlPassword']) ) {
                     // hier zetten we de input als een nieuw gehast wachtwoord in de database
                     if ($_POST['newPassword'] == $_POST['password']) {
                         throw new exception("Unable to change the password. Your new password can't be the same as your current one.");
@@ -205,6 +205,8 @@
                 $_SESSION['email']=$this->m_sEmail;
                 $_SESSION['image']=$this->m_sImage;
                 echo $statement->rowCount() . " records UPDATED successfully";
+                
+                throw new exception("Unable to change the password. You didn't fill in all required fields.");
             }
             catch(PDOException $e)
             {
