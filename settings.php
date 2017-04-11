@@ -30,7 +30,7 @@ if(!empty($_POST)){
             $user->Password = $_POST['password'];
         }
     
-        if (!empty($_FILES['image'])) {
+        if (!empty($_FILES['image']['name'])) {
 
             $bestandsnaam = $_FILES['image']['name'];
             
