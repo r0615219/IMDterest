@@ -4,9 +4,9 @@ spl_autoload_register(function($class){
     });
 if(!empty($_POST)){
     try{
-        if( !empty( $_POST['username'] && $_POST['password']) ){
+        if( !empty( $_POST['email'] && $_POST['password']) ){
             $user = new User();
-            $user->Username = $_POST['username'];
+            $user->Email = $_POST['email'];
             $user->Password = $_POST['password'];
             if( $user->CanLogin()){
                 echo'canlogin';
@@ -57,7 +57,7 @@ if(!empty($_POST)){
         <div id="navbar" class="navbar-collapse collapse">
             <form class="navbar-form navbar-right" method="post">
                 <div class="form-group">
-                    <input type="text" placeholder="Username" name="username" id="username" class="form-control">
+                    <input type="text" placeholder="Email" name="email" id="email" class="form-control">
                 </div>
                 <div class="form-group">
                     <input type="password" placeholder="Password" name="password" id="password" class="form-control">

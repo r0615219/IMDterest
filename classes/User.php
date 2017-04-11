@@ -90,8 +90,8 @@
         public function CanLogin(){ //checken of we mogen inloggen
 
             $conn = Db::getInstance();
-            $statement = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
-            $statement->bindValue(":username", $this->m_sUsername);
+            $statement = $conn->prepare("SELECT * FROM `users` WHERE (email = :email)");
+            $statement->bindValue(":email", $this->m_sEmail);
             $statement->execute();
             $res = $statement->fetch(PDO::FETCH_ASSOC);
             $password = $res["password"];
