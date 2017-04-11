@@ -5,14 +5,13 @@ spl_autoload_register(function($class){
         include_once("classes/" . $class . ".php");
     });
 
-$required = array('email', 'fullname', 'username', 'password');
+$required = array('email', 'firstname', 'lastname', 'password');
 try{
 if(!empty($_POST)){
     $user = new User();
     $user->Email = $_POST['email'];
     $user->Firstname = $_POST['firstname'];
     $user->Lastname = $_POST['lastname'];
-    $user->Username = $_POST['username'];
     $user->Password = $_POST['password'];
     $user->Image = "http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png";
 
@@ -114,11 +113,6 @@ if(!empty($_POST)){
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
                 <input type="email" class="form-control" placeholder="E-mail" name="email" id="email" aria-describedby="basic-addon1">
-            </div>
-            <br>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></span>
-                <input type="text" class="form-control" placeholder="Username" name="username" id="username" aria-describedby="basic-addon1">
             </div>
             <br>
             <div class="input-group">

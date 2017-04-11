@@ -4,7 +4,6 @@
         private $m_sEmail;
         private $m_sFirstname;
         private $m_sLastname;
-        private $m_sUsername;
         private $m_sPassword;
         private $m_sImage;
         private $m_aTopics=[];
@@ -22,9 +21,6 @@
                     break;
                 case "Lastname":
                     $this->m_sLastname = $p_vValue;
-                    break;
-                case "Username":
-                    $this->m_sUsername = $p_vValue;
                     break;
                 case "Password":
                     $this->m_sPassword = $p_vValue;
@@ -50,9 +46,6 @@
                 case "Lastname":
                     return $this->m_sLastname;
                     break;
-                case "Username":
-                    return $this->m_sUsername;
-                    break;
                 case "Password":
                     return $this->m_sPassword;
                     break;
@@ -65,7 +58,7 @@
         }
 
         public function Register(){
-            if(!empty($this->m_sFirstname) && !empty($this->m_sLastname) && !empty($this->m_sEmail) && !empty($this->m_sUsername) && !empty($this->m_sPassword)){
+            if(!empty($this->m_sFirstname) && !empty($this->m_sLastname) && !empty($this->m_sEmail) && !empty($this->m_sPassword)){
             $options = [
                 'cost' => 12,
             ];
@@ -74,7 +67,7 @@
             $this->m_sPassword = password_hash( $this->m_sPassword, PASSWORD_DEFAULT, $options );
 
             $conn = Db::getInstance();
-            $statement = $conn->prepare("INSERT INTO users (`email`, `firstname`, `lastname`, `username`, `password`, `image`) VALUES (:email, :firstname, :lastname, :username, :password, :image);");
+            $statement = $conn->prepare("INSERT INTO users (`email`, `firstname`, `lastname`, `password`, `image`) VALUES (:email, :firstname, :lastname, :password, :image);");
             $statement->bindValue(":email", $this->m_sEmail);
               $checkduplicate = $conn->prepare("SELECT * FROM `users` WHERE (email =:email)");
               $checkduplicate->bindValue(":email",$this->m_sEmail);
@@ -85,7 +78,6 @@
                 throw new Exception("email already registered");}
             $statement->bindValue(":firstname", $this->m_sFirstname);
               $statement->bindValue(":lastname", $this->m_sLastname);
-            $statement->bindValue(":username", $this->m_sUsername);
             $statement->bindValue(":password", $this->m_sPassword);
             $statement->bindValue(":image", $this->m_sImage);
             $result = $statement->execute();
