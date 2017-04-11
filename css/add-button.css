@@ -1,0 +1,10 @@
+
+.add{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 3px 3px 5px #888888;
+}
