@@ -37,7 +37,7 @@ try {
 //5. indien topics gekozen -> topics in databank steken
     if (isset($_POST['selectedTopics'])) {
         $selectedTopics = $_POST['selectedTopics'];
-        for ($i = 0; $i <= count($selectedTopics); $i++) {
+        for ($i = 0; $i < count($selectedTopics); $i++) {
             $usertopic = new Topics();
             $usertopic->id = $selectedTopics[$i];
             $usertopic->saveUserTopic();
