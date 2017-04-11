@@ -94,7 +94,7 @@ if(!empty($_POST)){
                    class="form-control">
 
             <div class="media" style="margin-top:30px;">
-                <img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt="profile picture">
+                <img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt="profile picture" style="max-width:150px;">
                 <button type="button" class="btn media" data-toggle="modal" data-target="#uploadImage">Change profile picture</button>
 
 
