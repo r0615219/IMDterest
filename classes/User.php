@@ -105,8 +105,8 @@
         public function HandleLogin() { //inloggen
             try {
                 $conn = Db::getInstance();
-                $statement = $conn->prepare("SELECT * FROM `users` WHERE (username = :username)");
-                $statement->bindValue(":username", $this->m_sUsername);
+                $statement = $conn->prepare("SELECT * FROM `users` WHERE (email = :email)");
+                $statement->bindValue(":email", $this->m_sEmail);
                 $statement->execute();
                 $res = $statement->fetch(PDO::FETCH_ASSOC);
                 $firstname = $res["firstname"];
@@ -114,10 +114,9 @@
                 $email = $res["email"];
                 $image = $res["image"];
                 session_start();
-                $_SESSION['user'] = $this->m_sUsername;
+                $_SESSION['user'] = $this->m_sEmail;
                 $_SESSION['firstname'] = $firstname;
                 $_SESSION['lastname'] = $lastname;
-                $_SESSION['email'] = $email;
                 $_SESSION['image'] = $image;
 
                 $this->getUserTopics();
