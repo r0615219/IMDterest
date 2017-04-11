@@ -131,7 +131,7 @@
         //aparte functie want nieuwe query nodig
         public function getUserTopics(){
             $conn = Db::getInstance();
-            $statement = $conn->prepare("SELECT name, image FROM topics where id in (SELECT topics_ID FROM `users_topics` WHERE users_ID in (SELECT id from users where email = :email))");
+            $statement = $conn->prepare("SELECT id, name, image FROM topics where id in (SELECT topics_ID FROM `users_topics` WHERE users_ID in (SELECT id from users where email = :email))");
             $statement->bindValue(":email", $_SESSION['user']);
             $statement->execute();
             $rows = $statement->rowCount();

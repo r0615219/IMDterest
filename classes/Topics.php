@@ -62,6 +62,6 @@ class Topics{
         $statement2 = $conn->prepare("INSERT INTO `users_topics` (`users_ID`, `topics_ID`) VALUES (:userID, :topicsID);");
         $statement2->bindValue(":userID", $userID);
         $statement2->bindValue(":topicsID", $this->m_iID);
-        $result = $statement2->execute();
+        $statement2->execute();
     }
 }

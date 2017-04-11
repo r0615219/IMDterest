@@ -42,7 +42,6 @@ if(!empty($_POST)){
         $error = $e->getMessage();
     }
 
-    //TODO: afbeelding in databank steken -> kan niet lezen
 
 }
 ?>
