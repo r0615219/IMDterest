@@ -79,7 +79,7 @@
             $statement->bindValue(":firstname", $this->m_sFirstname);
               $statement->bindValue(":lastname", $this->m_sLastname);
             $statement->bindValue(":password", $this->m_sPassword);
-            $statement->bindValue(":image", $this->m_sImage);
+            $statement->bindValue(":image", "profile_placeholder.png");
             $result = $statement->execute();
             return $result;
             } else {
@@ -209,7 +209,7 @@
                 $_SESSION['firstname']=$this->m_sFirstname;
                 $_SESSION['lastname']=$this->m_sLastname;
                 $_SESSION['image']=$this->m_sImage;
-                echo $statement->rowCount() . " records UPDATED successfully";
+                //echo $statement->rowCount() . " records UPDATED successfully";
                 
             }
             catch(PDOException $e)
