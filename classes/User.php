@@ -202,6 +202,8 @@
                 if(empty($this->m_sImage)){
                     //pad naar afbeelding behouden als de gebruiker het veld leeg laat.
                     $this->m_sImage = $_SESSION['image'];
+                } else if(($_SESSION["image"] != "profile_placeholder.png") && ($_SESSION["image"] != $this->m_sImage)){
+                    unlink("images/uploads/userImages/" . $_SESSION["image"] . "");
                 }
                 $statement->bindValue(":image", $this->m_sImage);
                 
