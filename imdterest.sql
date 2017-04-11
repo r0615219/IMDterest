@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 26 mrt 2017 om 11:49
+-- Gegenereerd op: 11 apr 2017 om 14:29
 -- Serverversie: 10.1.21-MariaDB
 -- PHP-versie: 7.1.1
 
@@ -54,7 +54,8 @@ INSERT INTO `topics` (`id`, `name`, `image`) VALUES
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fullname` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `firstname` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lastname` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL
@@ -64,16 +65,9 @@ CREATE TABLE `users` (
 -- Gegevens worden geëxporteerd voor tabel `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `fullname`, `username`, `password`, `image`) VALUES
-(3, '123@test.be', 'Name', 'Hi', '$2y$12$ZnyoBlC5EZNBaUGN33MOs.zBXuvRxEDslqRuuzucwm9ldlBPNgEae', ''),
-(4, '456@mail.be', 'John Smith', 'jsmith', '$2y$12$V97o6.6iqQLTF4/ywpDhDeCsiClku4yg8rfrlB2JA3hNKKbSRDSmu', ''),
-(5, 'simon.vanherzele@gmail.com', 'Simon Van Herzele', 'DonSimon', '$2y$12$XanG5JbTwmCzCOHECaUENuYdjdvA7shAbT8XMpQuwY7RdGCbhAg7i', ''),
-(6, 'test@test.be', 'Test', 'Test123', '$2y$12$bh4VVEohScZlgWVKd9Kgb.3muwx858dv6lAqd5qh5rgZyCjGkOypm', ''),
-(7, 'Persoon@test.com', 'Mens De Persoon', 'Mens', '$2y$12$okGCwaKfe5gLgdpaVkcnNewPsXnBFVMs41MFqprFg3FUXf8jrKamS', ''),
-(8, 'fFrank@gmail.tank', 'Frank De Tank', 'Tank', '$2y$12$wjjMC.Nz4Y42ycOKrA0MFOvODzJfAM56S8xFVpWDGbEG1CXEBdaDa', ''),
-(11, 'blub@blub.com', 'blub blub', 'blub', '$2y$12$92Bp5t0h3tkdvL5rfeucqu63SYkDK6OzOGF6l1QhRMVMdEbqg01Ye', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
-(12, 'nieuw@email.be', 'nieuwe test', 'nieuwe username', '$2y$12$.HnQEXHkh84nJrF84QvI7u9ph/x0QT4JiesbpGZlQZMilhmYHXxlC', ''),
-(13, 'test@user.com', 'testnaam', 'test', '$2y$12$p7U17D092TJHJ0578yavH.N3c7hEd46t3F.KBfxZyDLfhgAjE6Cpm', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png');
+INSERT INTO `users` (`id`, `email`, `firstname`, `lastname`, `username`, `password`, `image`) VALUES
+(16, 'lisa@m-release.com', 'Lisa', 'Wouters', 'LisaTest', '$2y$12$K6KCysJ28yp4UcyCZMyZ8e87nKtYig60nIgqvsvOfJj.LRSqQOGsW', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
+(17, 'blub@blab.com', 'blub', 'blab', 'blubblab', '$2y$12$Jqz6YTD8zkzwuSEx/y6.b.HfxHjzjXmx7vI6OUz9fbk9laklaDR1y', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png');
 
 -- --------------------------------------------------------
 
@@ -86,6 +80,22 @@ CREATE TABLE `users_topics` (
   `users_ID` int(11) NOT NULL,
   `topics_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `users_topics`
+--
+
+INSERT INTO `users_topics` (`id`, `users_ID`, `topics_ID`) VALUES
+(4, 16, 2),
+(5, 16, 4),
+(6, 16, 7),
+(7, 17, 1),
+(8, 17, 2),
+(9, 17, 3),
+(10, 17, 4),
+(11, 17, 5),
+(12, 17, 6),
+(13, 17, 7);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -124,12 +134,12 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT voor een tabel `users_topics`
 --
 ALTER TABLE `users_topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
