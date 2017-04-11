@@ -20,7 +20,8 @@ if (!isset($_SESSION['topics'])) {
     $statement->execute();
     $res = $statement->rowCount();
 
-    for ($i = 1; $i <= $res; $i++) {
+    for ($i = 1; $i < $res; $i++) {
+        $topic = $i;
         $topic = new Topics;
         $topic->getTopic($i);
         array_push($topicArray, $topic);
@@ -32,7 +33,7 @@ if (isset($_POST['selectedTopics'])) {
     $selectedTopics = $_POST['selectedTopics'];
     for ($i = 0; $i < count($selectedTopics); $i++) {
         $usertopic = new Topics();
-        $usertopic->Name = $selectedTopics[$i];
+        $usertopic->name = $selectedTopics[$i];
         $usertopic->saveUserTopic();
     }
     $_SESSION['topics'][] = $selectedTopics;

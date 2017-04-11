@@ -3,8 +3,8 @@
     <div class="btn-group btn-block" data-toggle="buttons">
         <?php
         foreach ($topicArray as $t):?>
-            <label class="btn topic-div" style="background-image: url(<?php echo $t->Image; ?>);">
-                <input type="checkbox" name="selectedTopics[]" value="<?php echo $t->Name; ?>"> <?php echo $t->Name; ?>
+            <label class="btn topic-div" style="background-image: url(<?php echo $t->image; ?>);">
+                <input type="checkbox" name="selectedTopics[]" value="<?php echo $t->name; ?>"> <?php echo $t->name; ?>
             </label>
         <?php endforeach; ?>
     </div>

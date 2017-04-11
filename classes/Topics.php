@@ -6,11 +6,11 @@ class Topics{
 
     public function __set($p_sProperty, $p_vValue){
         switch ( $p_sProperty ){
-            case 'Name':
+            case 'name':
                 $this->m_sName = $p_vValue;
                 break;
 
-            case 'Image':
+            case 'image':
                 $this->m_sImage = $p_vValue;
                 break;
         }
@@ -18,11 +18,11 @@ class Topics{
 
     public function __get($p_sProperty){
         switch ( $p_sProperty ){
-            case 'Name':
+            case 'name':
                 return $this->m_sName;
                 break;
 
-            case 'Image':
+            case 'image':
                 return $this->m_sImage;
                 break;
         }
@@ -45,8 +45,8 @@ class Topics{
     public function saveUserTopic(){
         $conn = Db::getInstance();
         //id van user ophalen en in $res1 steken
-        $statement1 = $conn->prepare("SELECT * FROM `users` WHERE username = :username");
-        $statement1->bindValue(":username", $_SESSION['user']);
+        $statement1 = $conn->prepare("SELECT * FROM `users` WHERE email = :email");
+        $statement1->bindValue(":email", $_SESSION['user']);
         $statement1->execute();
         $res1 = $statement1->fetch(PDO::FETCH_ASSOC);
         $userID = $res1["id"];
