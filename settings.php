@@ -24,6 +24,11 @@ if(!empty($_POST)){
         if (!empty($_POST['email'])) {
             $user->Email = $_POST['email'];
         }
+        
+        //oud passwoord
+        if (!empty($_POST['password'])) {
+            $user->Password = $_POST['password'];
+        }
     
         if (!empty($_FILES['image'])) {
             move_uploaded_file($_FILES["image"]["tmp_name"],

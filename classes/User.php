@@ -155,9 +155,9 @@
                 $statement->bindValue(":email", $this->m_sEmail);
                 
                 //PASSWORD:
-                if (!empty($_POST['password']) && !empty($_POST['newPassword']) && !empty($_POST['controlPassword']) ) {
+                if (!empty($this->m_sPassword) && !empty($_POST['newPassword']) && !empty($_POST['controlPassword']) ) {
                     // hier zetten we de input als een nieuw gehast wachtwoord in de database
-                    if ($_POST['newPassword'] == $_POST['password']) {
+                    if ($_POST['newPassword'] == $this->m_sPassword) {
                         throw new exception("Unable to change the password. Your new password can't be the same as your current one.");
                     } else if ($_POST['newPassword'] != $_POST['controlPassword']) {
                         throw new exception("Unable to change the password. Your passwords don't match.");
@@ -168,7 +168,7 @@
                     $stmt1->execute();
                     $res = $stmt1->fetch(PDO::FETCH_ASSOC);
                     $controleerpassword = $res["password"];
-                    if(password_verify($_POST['password'], $controleerpassword)){
+                    if(password_verify($this->m_sPassword, $controleerpassword)){
                     //nieuw passwoord in database zetten
                         $options = [
                             'cost' => 12,
@@ -191,7 +191,7 @@
                     $statement->bindValue(":password", $password);
                     
                     //als de gebruiker het onvolledig heeft ingevuld -> een foutmelding
-                    if(!empty($_POST['password']) || !empty($_POST['newPassword']) || !empty($_POST['controlPassword']) ){
+                    if(!empty($this->m_sPassword) || !empty($_POST['newPassword']) || !empty($_POST['controlPassword']) ){
                     throw new exception("Unable to change the password. You didn't fill in all required fields.");
                     }
                 }
