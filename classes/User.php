@@ -132,7 +132,7 @@
         public function getUserTopics(){
             $conn = Db::getInstance();
             $statement = $conn->prepare("SELECT name, image FROM topics where id in (SELECT topics_ID FROM `users_topics` WHERE users_ID in (SELECT id from users where email = :email))");
-            $statement->bindValue(":email", $this->m_sEmail);
+            $statement->bindValue(":email", $_SESSION['user']);
             $statement->execute();
             $rows = $statement->rowCount();
             //als de gebruiker topics heeft deze als Topics object aanmaken -> afbeelding en naam van topic ophalen
