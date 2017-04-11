@@ -113,11 +113,13 @@
                 $lastname = $res["lastname"];
                 $email = $res["email"];
                 $image = $res["image"];
+                $id = $res["id"];
                 session_start();
                 $_SESSION['user'] = $this->m_sEmail;
                 $_SESSION['firstname'] = $firstname;
                 $_SESSION['lastname'] = $lastname;
                 $_SESSION['image'] = $image;
+                $_SESSION['userid'] = $id;
 
                 $this->getUserTopics();
 
@@ -198,9 +200,9 @@
                 
                 //IMAGE:
                 if(empty($this->m_sImage)){
+                    //pad naar afbeelding behouden als de gebruiker het veld leeg laat.
                     $this->m_sImage = $_SESSION['image'];
-                } else if($_SESSION['image'] != "profile_placeholder.png"){
-                    unlink("images/uploads/userImages/" . $_SESSION['image'] . "");
+                    
                 }
                 $statement->bindValue(":image", $this->m_sImage);
                 

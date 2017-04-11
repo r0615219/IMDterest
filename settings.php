@@ -31,9 +31,27 @@ if(!empty($_POST)){
         }
     
         if (!empty($_FILES['image'])) {
-            move_uploaded_file($_FILES["image"]["tmp_name"],
+            //file uploaden en hernoemen
+            
+            /*move_uploaded_file($_FILES["image"]["tmp_name"],
                 "images/uploads/userImages/" . $_FILES["image"]["name"]);
-            $user->Image = $_FILES['image']['name'];
+            $user->Image = $_FILES['image']['name'];*/
+            
+            $bestandsnaam = $_FILES['image']['name'];
+            
+            if (strpos($bestandsnaam, ".png")){
+                        move_uploaded_file($_FILES["image"]["tmp_name"],
+                "images/uploads/userImages/" . $_SESSION['userid'] . ".png");
+                        $user->Image = $_SESSION['userid'] . ".png";
+                    } else if(strpos($bestandsnaam, ".jpg")){
+                        move_uploaded_file($_FILES["image"]["tmp_name"],
+                "images/uploads/userImages/" . $_SESSION['userid'] . ".jpg");
+                        $user->Image = $_SESSION['userid'] . ".jpg";
+                    } else if(strpos($bestandsnaam, ".gif")){
+                        move_uploaded_file($_FILES["image"]["tmp_name"],
+                "images/uploads/userImages/" . $_SESSION['userid'] . ".gif");
+                        $user->Image = $_SESSION['userid'] . ".gif";
+                    }
         }
         
         $user->updateDatabase();
