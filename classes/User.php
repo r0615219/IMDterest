@@ -202,7 +202,6 @@
                 if(empty($this->m_sImage)){
                     //pad naar afbeelding behouden als de gebruiker het veld leeg laat.
                     $this->m_sImage = $_SESSION['image'];
-                    
                 }
                 $statement->bindValue(":image", $this->m_sImage);
                 

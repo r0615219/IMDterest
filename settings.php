@@ -31,12 +31,7 @@ if(!empty($_POST)){
         }
     
         if (!empty($_FILES['image'])) {
-            //file uploaden en hernoemen
-            
-            /*move_uploaded_file($_FILES["image"]["tmp_name"],
-                "images/uploads/userImages/" . $_FILES["image"]["name"]);
-            $user->Image = $_FILES['image']['name'];*/
-            
+
             $bestandsnaam = $_FILES['image']['name'];
             
             if (strpos($bestandsnaam, ".png")){
@@ -51,7 +46,9 @@ if(!empty($_POST)){
                         move_uploaded_file($_FILES["image"]["tmp_name"],
                 "images/uploads/userImages/" . $_SESSION['userid'] . ".gif");
                         $user->Image = $_SESSION['userid'] . ".gif";
-                    }
+                    } else {
+                throw new exception("Unable to change profile picture. The uploaded file must be a JPEG, PNG or GIF.");
+            }
         }
         
         $user->updateDatabase();
