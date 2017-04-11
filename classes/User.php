@@ -149,10 +149,9 @@
                 //alles dat in de velden staat wordt heringesteld in de database
                 $conn = Db::getInstance();
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $statement = $conn->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, username = :username, email = :email, password = :password, image = :image where username = :oldUsername");
+                $statement = $conn->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, password = :password, image = :image where email = :oldemail");
                 $statement->bindValue(":firstname", $this->m_sFirstname);
                 $statement->bindValue(":lastname", $this->m_sLastname);
-                $statement->bindValue(":username", $this->m_sUsername);
                 $statement->bindValue(":email", $this->m_sEmail);
                 
                 //PASSWORD:
@@ -164,8 +163,8 @@
                         throw new exception("Unable to change the password. Your passwords don't match.");
                     } else {
                         //checken of het oude paswoord overeen komt met het huidige
-                    $stmt1 = $conn->prepare("SELECT * FROM `users` WHERE (username = :oldusername)");
-                    $stmt1->bindValue(":oldusername", $_SESSION['user']);
+                    $stmt1 = $conn->prepare("SELECT * FROM `users` WHERE (email = :oldemail)");
+                    $stmt1->bindValue(":oldemail", $_SESSION['user']);
                     $stmt1->execute();
                     $res = $stmt1->fetch(PDO::FETCH_ASSOC);
                     $controleerpassword = $res["password"];
@@ -184,8 +183,8 @@
                 } else {
 
                     //hier wordt het huidige wachtwoord opnieuw in de database geset als de gebruiker geen nieuw wachtwoord heeft ingesteld
-                    $stmt2 = $conn->prepare("SELECT * FROM `users` WHERE (username = :oldusername)");
-                    $stmt2->bindValue(":oldusername", $_SESSION['user']);
+                    $stmt2 = $conn->prepare("SELECT * FROM `users` WHERE (email = :oldemail)");
+                    $stmt2->bindValue(":oldemail", $_SESSION['user']);
                     $stmt2->execute();
                     $res = $stmt2->fetch(PDO::FETCH_ASSOC);
                     $password = $res["password"];
@@ -204,12 +203,11 @@
                 $statement->bindValue(":image", $this->m_sImage);
                 
                 //EXECUTE en sessions
-                $statement->bindValue(":oldUsername", $_SESSION['user']);
+                $statement->bindValue(":oldemail", $_SESSION['user']);
                 $statement->execute();
-                $_SESSION['user']=$this->m_sUsername;
+                $_SESSION['user']=$this->m_sEmail;
                 $_SESSION['firstname']=$this->m_sFirstname;
                 $_SESSION['lastname']=$this->m_sLastname;
-                $_SESSION['email']=$this->m_sEmail;
                 $_SESSION['image']=$this->m_sImage;
                 echo $statement->rowCount() . " records UPDATED successfully";
                 
