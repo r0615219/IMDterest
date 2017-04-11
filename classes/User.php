@@ -2,7 +2,8 @@
 
     class User {
         private $m_sEmail;
-        private $m_sFullname;
+        private $m_sFirstname;
+        private $m_sLastname;
         private $m_sUsername;
         private $m_sPassword;
         private $m_sImage;
@@ -16,8 +17,11 @@
                 case "Email":
                     $this->m_sEmail = $p_vValue;
                     break;
-                case "Fullname":
-                    $this->m_sFullname = $p_vValue;
+                case "Firstname":
+                    $this->m_sFirstname = $p_vValue;
+                    break;
+                case "Lastname":
+                    $this->m_sLastname = $p_vValue;
                     break;
                 case "Username":
                     $this->m_sUsername = $p_vValue;
@@ -40,8 +44,11 @@
                 case "Email":
                     return $this->m_sEmail;
                     break;
-                case "Fullname":
-                    return $this->m_sFullname;
+                case "Firstname":
+                    return $this->m_sFirstname;
+                    break;
+                case "Lastname":
+                    return $this->m_sLastname;
                     break;
                 case "Username":
                     return $this->m_sUsername;
@@ -58,7 +65,7 @@
         }
 
         public function Register(){
-            if(!empty($this->m_sFullname) && !empty($this->m_sEmail) && !empty($this->m_sUsername) && !empty($this->m_sPassword)){
+            if(!empty($this->m_sFirstname) && !empty($this->m_sLastname) && !empty($this->m_sEmail) && !empty($this->m_sUsername) && !empty($this->m_sPassword)){
             $options = [
                 'cost' => 12,
             ];
@@ -67,7 +74,7 @@
             $this->m_sPassword = password_hash( $this->m_sPassword, PASSWORD_DEFAULT, $options );
 
             $conn = Db::getInstance();
-            $statement = $conn->prepare("INSERT INTO users (`email`, `fullname`, `username`, `password`, `image`) VALUES (:email, :fullname, :username, :password, :image);");
+            $statement = $conn->prepare("INSERT INTO users (`email`, `firstname`, `lastname`, `username`, `password`, `image`) VALUES (:email, :firstname, :lastname, :username, :password, :image);");
             $statement->bindValue(":email", $this->m_sEmail);
               $checkduplicate = $conn->prepare("SELECT * FROM `users` WHERE (email =:email)");
               $checkduplicate->bindValue(":email",$this->m_sEmail);
@@ -76,7 +83,8 @@
               if (!empty($found_duplicates)) {
                 echo"oh no";
                 throw new Exception("email already registered");}
-            $statement->bindValue(":fullname", $this->m_sFullname);
+            $statement->bindValue(":firstname", $this->m_sFirstname);
+              $statement->bindValue(":lastname", $this->m_sLastname);
             $statement->bindValue(":username", $this->m_sUsername);
             $statement->bindValue(":password", $this->m_sPassword);
             $statement->bindValue(":image", $this->m_sImage);
@@ -109,12 +117,14 @@
                 $statement->bindValue(":username", $this->m_sUsername);
                 $statement->execute();
                 $res = $statement->fetch(PDO::FETCH_ASSOC);
-                $fullname = $res["fullname"];
+                $firstname = $res["firstname"];
+                $lastname = $res["lastname"];
                 $email = $res["email"];
                 $image = $res["image"];
                 session_start();
                 $_SESSION['user'] = $this->m_sUsername;
-                $_SESSION['fullname'] = $fullname;
+                $_SESSION['firstname'] = $firstname;
+                $_SESSION['lastname'] = $lastname;
                 $_SESSION['email'] = $email;
                 $_SESSION['image'] = $image;
 
@@ -148,8 +158,9 @@
                 //alles dat in de velden staat wordt heringesteld in de database
                 $conn = Db::getInstance();
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $statement = $conn->prepare("UPDATE users SET fullname = :fullname, username = :username, email = :email, password = :password, image = :image where username = :oldUsername");
-                $statement->bindValue(":fullname", $this->m_sFullname);
+                $statement = $conn->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, username = :username, email = :email, password = :password, image = :image where username = :oldUsername");
+                $statement->bindValue(":firstname", $this->m_sFirstname);
+                $statement->bindValue(":lastname", $this->m_sLastname);
                 $statement->bindValue(":username", $this->m_sUsername);
                 $statement->bindValue(":email", $this->m_sEmail);
                 
@@ -205,7 +216,8 @@
                 $statement->bindValue(":oldUsername", $_SESSION['user']);
                 $statement->execute();
                 $_SESSION['user']=$this->m_sUsername;
-                $_SESSION['fullname']=$this->m_sFullname;
+                $_SESSION['firstname']=$this->m_sFirstname;
+                $_SESSION['lastname']=$this->m_sLastname;
                 $_SESSION['email']=$this->m_sEmail;
                 $_SESSION['image']=$this->m_sImage;
                 echo $statement->rowCount() . " records UPDATED successfully";

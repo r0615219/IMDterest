@@ -20,8 +20,7 @@ if (!isset($_SESSION['topics'])) {
     $statement->execute();
     $res = $statement->rowCount();
 
-    for ($i = 1; $i < $res; $i++) {
-        $topic = $i;
+    for ($i = 1; $i <= $res; $i++) {
         $topic = new Topics;
         $topic->getTopic($i);
         array_push($topicArray, $topic);

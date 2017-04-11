@@ -10,7 +10,8 @@ try{
 if(!empty($_POST)){
     $user = new User();
     $user->Email = $_POST['email'];
-    $user->Fullname = $_POST['fullname'];
+    $user->Firstname = $_POST['firstname'];
+    $user->Lastname = $_POST['lastname'];
     $user->Username = $_POST['username'];
     $user->Password = $_POST['password'];
     $user->Image = "http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png";
@@ -102,7 +103,12 @@ if(!empty($_POST)){
 
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-                <input type="text" class="form-control" placeholder="Full Name" name="fullname" id="fullname" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="First Name" name="firstname" id="firstname" aria-describedby="basic-addon1">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                <input type="text" class="form-control" placeholder="Last Name" name="lastname" id="lastname" aria-describedby="basic-addon1">
             </div>
             <br>
             <div class="input-group">
