@@ -55,6 +55,22 @@ catch (Exception $e) {
     $error= $e->getMessage();
 }
 
+
+// post verwerking
+
+if(isset($_POST['imgSubmit'])){
+move_uploaded_file($_FILES["img"]["tmp_name"],
+        "images/uploads/posts/" . $_FILES["img"]["name"]);
+    $topicsID = $_POST['imgTopic'];
+    $description = $_POST['imgDescription'];
+    $post = new Post;
+    $post->image = $_FILES['img']['name'];
+    $post->description = $description;
+    $post->topicsID = (int)$topicsID;
+    $post->save();
+}
+
+
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

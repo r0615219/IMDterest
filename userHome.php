@@ -1,11 +1,4 @@
-<?php
 
-    if(!empty($_POST['imgPost'])){
-        $image = $_POST['img'];
-        $description = $_POST['description'];
-    }
-
-?>
 
 <!-- HIER KOMEN ALLE POSTS DAT TE MAKEN HEBBEN MET DE TOPICS GEKOZEN DOOR DE USER -->
     <div class="container">
@@ -40,14 +33,27 @@
                         <h4 class="modal-title">Create new post</h4>
                     </div>
                     <div class="modal-body">
+
                         <form action="" method="post" name="imgPost">
-                            <input type="file" name="img"/>
-                            <textarea rows="3" name="imgDescription" placeholder="Geef een beschrijving van je post"></textarea>
+                            <input type="file" name="img">
+
+                            <textarea rows="3" name="imgDescription" id="imgDescription" placeholder="Geef een beschrijving van je post"></textarea>
+
+                            <label for="imgTopic">Topic</label>
+                            <select name="imgTopic" id="imgTopic">
+                                <option value="none">Kies een topic</option>
+                                <?php foreach ($_SESSION['topics'] as $t):?>
+                                    <option value="<?php echo $t->id; ?>"><?php echo $t->name; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+
+                            <input type="submit" name="imgSubmit" class="btn btn-default" value="Opslaan">
+
+
                         </form>
+
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-default" data-dismiss="modal">Save</button>
-                    </div>
+
                 </div>
 
             </div>
@@ -63,10 +69,22 @@
                         <h4 class="modal-title">Create new post</h4>
                     </div>
                     <div class="modal-body">
+
                         <form action="" method="post" name="urlPost">
+
                             <input type="url" name="url" placeholder="http://"/>
+
                             <textarea rows="3" name="urlDescription" placeholder="Geef een beschrijving van je post"></textarea>
+
+                            <label for="urlTopic">Topic</label>
+                            <select name="urlTopic" id="urlTopic">
+                                <option value="none">Kies een topic</option>
+                                <?php foreach ($_SESSION['topics'] as $t):?>
+                                    <option value="<?php echo $t->id; ?>"><?php echo $t->name; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </form>
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-default" data-dismiss="modal">Save</button>
