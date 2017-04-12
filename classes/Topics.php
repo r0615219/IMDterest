@@ -51,17 +51,9 @@ class Topics{
     //functie om topic aan user te koppelen
     public function saveUserTopic(){
         $conn = Db::getInstance();
-        //id van user ophalen en in $res1 steken
-        $statement1 = $conn->prepare("SELECT id FROM `users` WHERE email = :email");
-        $statement1->bindValue(":email", $_SESSION['user']);
-        $statement1->execute();
-        $res1 = $statement1->fetch(PDO::FETCH_ASSOC);
-        $userID = $res1["id"];
-
-        //id van user en van topic in users_topics steken
-        $statement2 = $conn->prepare("INSERT INTO `users_topics` (`users_ID`, `topics_ID`) VALUES (:userID, :topicsID);");
-        $statement2->bindValue(":userID", $userID);
-        $statement2->bindValue(":topicsID", $this->m_iID);
-        $result = $statement2->execute();
+        $statement = $conn->prepare("INSERT INTO `users_topics` (`users_ID`, `topics_ID`) VALUES (:userID, :topicsID);");
+        $statement->bindValue(":userID", $_SESSION['userID']);
+        $statement->bindValue(":topicsID", $this->m_iID);
+        $result = $statement->execute();
     }
 }
