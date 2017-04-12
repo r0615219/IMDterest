@@ -66,7 +66,7 @@ try {
         $description = $_POST['imgDescription'];
         $post = new Post;
         $post->description = $description;
-        $post->topicsId = (int)$topicsId;
+        $post->topics_ID = (int)$topicsId;
 
         if (isset($_FILES['img'])) {
             $bestandsnaam = $_FILES['img']['name'];

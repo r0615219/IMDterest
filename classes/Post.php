@@ -65,6 +65,8 @@ class Post{
             $statement->bindValue(":link", $this->m_sLink);
             $statement->bindValue(":topics_ID", $this->m_iTopicsId);
             $statement->execute();
+            $arr = $statement->errorInfo();
+            print_r($arr);
 
         }
         catch (PDOException $e) {
