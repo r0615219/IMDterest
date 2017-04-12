@@ -1,5 +1,3 @@
-
-
 <!-- HIER KOMEN ALLE POSTS DAT TE MAKEN HEBBEN MET DE TOPICS GEKOZEN DOOR DE USER -->
     <div class="container">
         <h1 class="h1">Your topics</h1>
@@ -34,8 +32,8 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="" method="post" name="imgPost">
-                            <input type="file" name="img">
+                        <form action="" method="post" name="imgPost" enctype="multipart/form-data">
+                            <input type="file" name="img" />
 
                             <textarea rows="3" name="imgDescription" id="imgDescription" placeholder="Geef een beschrijving van je post"></textarea>
 
@@ -47,7 +45,7 @@
                                 <?php endforeach; ?>
                             </select>
 
-                            <input type="submit" name="imgSubmit" class="btn btn-default" value="Opslaan">
+                            <input type="submit" name="imgSubmit" class="btn btn-default" value="Opslaan" />
 
 
                         </form>

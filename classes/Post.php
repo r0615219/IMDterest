@@ -58,7 +58,7 @@ class Post{
     public function savePost(){
         try {
             $conn = Db::getInstance();
-            $statement = $conn->prepare("INSERT INTO `posts` (`user_ID`, `image`, `description`, `link`, `topics_ID`) VALUES (:user_ID :image, :description, :link, :topicsID);");
+            $statement = $conn->prepare("INSERT INTO `posts` (`user_ID`, `image`, `description`, `link`, `topics_ID`) VALUES (:user_ID, :image, :description, :link, :topicsID);");
             $statement->bindValue(":user_ID", $_SESSION['userid']);
             $statement->bindValue(":image", $this->m_sImage);
             $statement->bindValue(":description", $this->m_sDescription);
@@ -67,7 +67,8 @@ class Post{
             $statement->execute();
         }
         catch (PDOException $e) {
-            return $e->getMessage();
+           $error = $e->getMessage();
         }
+
     }
 }

@@ -59,53 +59,43 @@ catch (Exception $e) {
 
 // post verwerking
 
-if(isset($_POST['imgSubmit'])){
+try {
+    if (isset($_POST['imgSubmit'])) {
 
-    $topicsId = $_POST['imgTopic'];
-    $description = $_POST['imgDescription'];
-    $post = new Post;
-    $post->description = $description;
-    $post->topicsId = (int)$topicsId;
+        $topicsId = $_POST['imgTopic'];
+        $description = $_POST['imgDescription'];
+        $post = new Post;
+        $post->description = $description;
+        $post->topicsId = (int)$topicsId;
 
-    if (!empty($_FILES['img']['name'])) {
+        if (isset($_FILES['img'])) {
+            $bestandsnaam = $_FILES['img']['name'];
 
-        $bestandsnaam = $_FILES['img']['name'];
-
-        if (strpos($bestandsnaam, ".png")){
-            move_uploaded_file($_FILES["img"]["tmp_name"],
-                "images/uploads/postImages/" . $_FILES["img"]["tmp_name"] . ".png");
-            $post->image = $_FILES['img']['name'] . ".png";
-        } else if(strpos($bestandsnaam, ".jpg")){
-            move_uploaded_file($_FILES["img"]["tmp_name"],
-                "images/uploads/userImages/" . $_FILES["img"]["tmp_name"] . ".jpg");
-            $post->image = $_FILES['img']['name'] . ".jpg";
-        } else if(strpos($bestandsnaam, ".gif")){
-            move_uploaded_file($_FILES["img"]["tmp_name"],
-                "images/uploads/userImages/" . $_FILES["img"]["tmp_name"] . ".gif");
-            $post->image = $_FILES['img']['name'] . ".gif";
+            if (strpos($bestandsnaam, ".png")) {
+                move_uploaded_file($_FILES["img"]["tmp_name"],
+                    "images/uploads/postImages/" . $_FILES["img"]["name"]);
+                $post->image = $_FILES['img']['name'];
+            } else if (strpos($bestandsnaam, ".jpg")) {
+                move_uploaded_file($_FILES["img"]["tmp_name"],
+                    "images/uploads/postImages/" . $_FILES["img"]["name"]);
+                $post->image = $_FILES['img']['name'];
+            } else if (strpos($bestandsnaam, ".gif")) {
+                move_uploaded_file($_FILES["img"]["tmp_name"],
+                    "images/uploads/postImages/" . $_FILES["img"]["name"]);
+                $post->image = $_FILES['img']['name'];
+            } else {
+                throw new exception("Unable to create post. The uploaded image must be a JPEG, PNG or GIF.");
+            }
         } else {
-            throw new exception("Unable to create post. The uploaded image must be a JPEG, PNG or GIF.");
+            $post->image = "profile_placeholder.png";
         }
+
+        $post->link = "";
+        $post ->savePost();
+
     }
-    else{
-        $post->image = "profile_placeholder.png";
-    }
-    $post->link = "";
-    var_dump($post);
-
-
-    // ROEL HELP ME PLS !!!
-
-
-    //$post->savePost();
-
-    /*if($post->savePost()){
-        echo "post saved";
-    }
-    else{
-        echo 'failed';
-    }*/
-
+} catch (Exception $e) {
+        $error = $e->getMessage();
 }
 
 
