@@ -1,6 +1,6 @@
 <!-- HIER KOMEN ALLE POSTS DAT TE MAKEN HEBBEN MET DE TOPICS GEKOZEN DOOR DE USER -->
-    <div class="container">
-        <h1 class="h1">Your topics</h1>
+
+        <!--<h1 class="h1">Your topics</h1>
         <div style="width: 100%; display: flex;">
             <?php
             //7. session uitlezen in doc = voorlopige test of het werkt
@@ -10,6 +10,20 @@
                 </div>
             <?php endforeach; ?>
         </div>
+        -->
+
+<?php
+if(isset( $_SESSION['posts'])){?>
+<?php foreach ($_SESSION['posts'] as $p):?>
+        <div class="userPost">
+            <div class="userPostImg" style="background-image: url(images/uploads/postImages/<?php echo $p->image; ?>);">
+            </div>
+            <h2><?php echo $p->description; ?></h2>
+        </div>
+    <?php endforeach; }?>
+
+
+
 
         <div class="add">
             <button type="button" class="btn btn-success addBtn" id="addBtn">+</button>
@@ -45,7 +59,7 @@
                                 <?php endforeach; ?>
                             </select>
 
-                            <input type="submit" name="imgSubmit" class="btn btn-default" value="Opslaan" />
+                            <input type="submit" name="imgSubmit" class="btn btn-default submitBtn" value="Opslaan" />
 
 
                         </form>
@@ -68,14 +82,14 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="" method="post" name="urlPost">
+                        <form action="" method="post" name="linkPost" enctype="multipart/form-data">
 
-                            <input type="url" name="url" placeholder="http://"/>
+                            <input type="url" name="link" placeholder="http://"/>
 
-                            <textarea rows="3" name="urlDescription" placeholder="Geef een beschrijving van je post"></textarea>
+                            <textarea rows="3" name="linkDescription" placeholder="Geef een beschrijving van je post"></textarea>
 
-                            <label for="urlTopic">Topic</label>
-                            <select name="urlTopic" id="urlTopic">
+                            <label for="linkTopic">Topic</label>
+                            <select name="linkTopic" id="linkTopic">
                                 <option value="none">Kies een topic</option>
                                 <?php foreach ($_SESSION['topics'] as $t):?>
                                     <option value="<?php echo $t->id; ?>"><?php echo $t->name; ?></option>
@@ -85,13 +99,13 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-default" data-dismiss="modal">Save</button>
+                        <button type="submit" class="btn btn-default submitBtn" data-dismiss="modal">Save</button>
                     </div>
                 </div>
 
             </div>
         </div>
-    </div>
+
 
 <script>
     $(document).ready(function(){

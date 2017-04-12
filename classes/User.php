@@ -122,6 +122,7 @@
                 $_SESSION['userid'] = $id;
 
                 $this->getUserTopics();
+                $this->getUserPosts();
 
                 header('Location: home.php');
             } catch (Exception $e) {
@@ -133,7 +134,7 @@
         //aparte functie want nieuwe query nodig
         public function getUserTopics(){
             $conn = Db::getInstance();
-            $statement = $conn->prepare("SELECT id, name, image FROM topics where id in (SELECT topics_ID FROM `users_topics` WHERE users_ID in (SELECT id from users where email = :email))");
+            $statement = $conn->prepare("SELECT * FROM topics where id in (SELECT topics_ID FROM `users_topics` WHERE users_ID in (SELECT id from users where email = :email))");
             $statement->bindValue(":email", $_SESSION['user']);
             $statement->execute();
             $rows = $statement->rowCount();
@@ -141,6 +142,22 @@
             if($rows > 0){
                 while($topic = $statement->fetch(PDO::FETCH_OBJ)){
                     $_SESSION['topics'][] = $topic;
+                }
+            }
+        }
+
+        //kijken of de gebruiker posts heeft
+        //aparte functie want nieuwe query nodig
+        public function getUserPosts(){
+            $conn = Db::getInstance();
+            $statement = $conn->prepare("SELECT * FROM posts where user_ID in (SELECT id FROM `users` WHERE email = :email)");
+            $statement->bindValue(":email", $_SESSION['user']);
+            $statement->execute();
+            $rows = $statement->rowCount();
+            //als de gebruiker topics heeft deze als Topics object aanmaken -> afbeelding en naam van topic ophalen
+            if($rows > 0){
+                while($post = $statement->fetch(PDO::FETCH_OBJ)){
+                    $_SESSION['posts'][] = $post;
                 }
             }
         }

@@ -117,6 +117,7 @@ try {
     <link rel="stylesheet" href="css/signup-style.css">
     <link rel="stylesheet" href="css/topics.css">
     <link rel="stylesheet" href="css/add-button.css">
+    <link rel="stylesheet" href="css/posts.css">
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 
