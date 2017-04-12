@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 12 apr 2017 om 15:15
+-- Gegenereerd op: 12 apr 2017 om 16:18
 -- Serverversie: 10.1.21-MariaDB
 -- PHP-versie: 7.1.1
 
@@ -40,7 +40,9 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `user_ID`, `image`, `description`, `link`, `topics_ID`) VALUES
-(4, 26, 'autumn_background_208623.jpg', 'blaadje', '', 7);
+(20, 21, '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe zei de koe!', '', 3),
+(21, 21, 'sXjhX44-cow-backgrounds.jpg', 'Boeien, zeiden de koeien', '', 3),
+(22, 21, '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe, zei weer de koe', '', 4);
 
 -- --------------------------------------------------------
 
@@ -145,8 +147,7 @@ INSERT INTO `users_topics` (`id`, `users_ID`, `topics_ID`) VALUES
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `topics_ID` (`topics_ID`),
-  ADD UNIQUE KEY `user_ID` (`user_ID`);
+  ADD KEY `posts_ibfk_1` (`topics_ID`);
 
 --
 -- Indexen voor tabel `topics`
@@ -176,7 +177,7 @@ ALTER TABLE `users_topics`
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT voor een tabel `topics`
 --
@@ -200,8 +201,7 @@ ALTER TABLE `users_topics`
 -- Beperkingen voor tabel `posts`
 --
 ALTER TABLE `posts`
-  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`topics_ID`) REFERENCES `topics` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`user_ID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`topics_ID`) REFERENCES `topics` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Beperkingen voor tabel `users_topics`
