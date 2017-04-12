@@ -25,7 +25,7 @@ class Post{
                 $this->m_sLink = $p_vValue;
                 break;
 
-            case 'topicsId':
+            case 'topics_ID':
                 $this->m_iTopicsId = $p_vValue;
                 break;
         }
@@ -49,7 +49,7 @@ class Post{
                 return $this->m_sLink;
                 break;
 
-            case 'topicsId':
+            case 'topics_ID':
                 return $this->m_iTopicsId;
                 break;
         }
@@ -58,15 +58,13 @@ class Post{
     public function savePost(){
         try {
             $conn = Db::getInstance();
-            $statement = $conn->prepare("INSERT INTO `posts` (`user_ID`, `image`, `description`, `link`, `topics_ID`) VALUES (:user_ID, :image, :description, :link, :topicsID);");
+            $statement = $conn->prepare("INSERT INTO `posts` (`user_ID`, `image`, `description`, `link`, `topics_ID`) VALUES (:user_ID, :image, :description, :link, :topics_ID);");
             $statement->bindValue(":user_ID", $_SESSION['userid']);
             $statement->bindValue(":image", $this->m_sImage);
             $statement->bindValue(":description", $this->m_sDescription);
             $statement->bindValue(":link", $this->m_sLink);
-            $statement->bindValue(":topicsID", $this->m_iTopicsId);
+            $statement->bindValue(":topics_ID", $this->m_iTopicsId);
             $statement->execute();
-            $arr = $statement->errorInfo();
-            print_r($arr);
 
         }
         catch (PDOException $e) {
@@ -74,4 +72,6 @@ class Post{
         }
 
     }
+
+
 }

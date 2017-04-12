@@ -17,11 +17,15 @@
     background-position: center;
 }
 
-.userPostDescription{
+.userPostDescription, .userPostTopic{
     position: absolute;
     width: 300px;
-    margin-top: 200px;
+    margin-top: 230px;
     padding: 10px;
+}
+
+.userPostTopic{
+    margin-top: 180px;
 }
 
 .userPostInfo{

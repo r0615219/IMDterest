@@ -1,6 +1,7 @@
 <?php
 
     class User {
+        private $m_iId;
         private $m_sEmail;
         private $m_sFirstname;
         private $m_sLastname;
@@ -13,6 +14,9 @@
                   throw new Exception ('There are empty fields.');}*/
         //dit stukje code is in comments gezet door Roel omdat het optionele tekstvelden onmogelijk maakt, wat absoluut nodig blijkt te zijn voor updateDatabase(). Er wordt al op andere plaatsen voor gezorgd dat alle velden in signin.php en singup.php zijn ingevuld.
             switch ( $p_sProperty ){
+                case "id":
+                    $this->m_iId = $p_vValue;
+                    break;
                 case "Email":
                     $this->m_sEmail = $p_vValue;
                     break;
@@ -37,6 +41,9 @@
 
         public function __get($p_sProperty){
             switch($p_sProperty){
+                case "id":
+                    return $this->m_iId;
+                    break;
                 case "Email":
                     return $this->m_sEmail;
                     break;
@@ -243,5 +250,16 @@
             }
 
             $conn = null;
+        }
+
+        public function getUserInfo(){
+            $conn = Db::getInstance();
+            $statement = $conn->prepare("SELECT firstname, lastname, image FROM users where id = :user_ID ");
+            $statement->bindValue(":user_ID", $this->m_iId);
+            $statement->execute();
+            $res = $statement->fetch(PDO::FETCH_ASSOC);
+            $this->Firstname = $res["firstname"];
+            $this->Lastname = $res["lastname"];
+            $this->Image = $res["image"];
         }
     }

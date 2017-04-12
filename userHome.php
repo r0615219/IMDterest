@@ -17,16 +17,35 @@ if(isset( $_SESSION['posts'])){?>
 <?php foreach ($_SESSION['posts'] as $p):?>
         <div class="userPost">
             <div class="userPostImg" style="background-image: url(images/uploads/postImages/<?php echo $p->image; ?>);"></div>
-            <div class="userPostDescription"><h3><?php echo $p->description; ?></h3></div>
+            <div class="userPostTopic">
+                <h3>
+                    <a href="#">
+                    <?php
+                    $topic = new Topics();
+                    $topic->id = $p->topics_ID;
+                    $topic->getTopic();
+                    echo $topic->name;
+                    ?>
+                    </a>
+                </h3>
+            </div>
+            <div class="userPostDescription"><h4><?php echo $p->description; ?></h4></div>
             <hr>
             <div class="userPostInfo">
 
                 <div class="userInfo">
                     <a href="#">
-                        <img class="media-object profile-pic" src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt="post">
+                        <img class="media-object profile-pic" src="images/uploads/userImages/<?php
+                        $user = new User;
+                        $user->id = $p->user_ID;
+                        $user->getUserInfo();
+                        echo $user->Image;
+                        ?>" alt="post">
                     </a>
                     <a href="#">
-                        <?php echo $_SESSION['firstname']; ?> <?php echo $_SESSION['lastname']; ?>
+                        <?php
+                        echo $user->Firstname . " " . $user->Lastname;
+                        ?>
                     </a>
                 </div>
 
