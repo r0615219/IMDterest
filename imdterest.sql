@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 11 apr 2017 om 15:42
+-- Gegenereerd op: 12 apr 2017 om 15:15
 -- Serverversie: 10.1.21-MariaDB
--- PHP-versie: 5.6.30
+-- PHP-versie: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `imdterest`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL,
+  `image` varchar(200) NOT NULL,
+  `description` text NOT NULL,
+  `link` varchar(200) NOT NULL,
+  `topics_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `posts`
+--
+
+INSERT INTO `posts` (`id`, `user_ID`, `image`, `description`, `link`, `topics_ID`) VALUES
+(4, 26, 'autumn_background_208623.jpg', 'blaadje', '', 7);
 
 -- --------------------------------------------------------
 
@@ -65,10 +87,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `firstname`, `lastname`, `password`, `image`) VALUES
-(16, 'lisa@m-release.com', 'Lisa', 'Wouters', '$2y$12$K6KCysJ28yp4UcyCZMyZ8e87nKtYig60nIgqvsvOfJj.LRSqQOGsW', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
 (17, 'blub@blab.com', 'blub', 'blab', '$2y$12$Jqz6YTD8zkzwuSEx/y6.b.HfxHjzjXmx7vI6OUz9fbk9laklaDR1y', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
 (18, 'test@test.com', 'Test', 'Persoon', '$2y$12$UzoRl9eBeDIhzRv7f925zOoxOPJVixU.gkshlAFtRJoI2FVFpRrgW', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
-(19, 'test2@test.com', 'Test2', 'Persoon', '$2y$12$4NgfniKjq3eCFuK2Q9B9A.zgE8wkJ2Ba1YG0N49lXWNd/3SIOMw06', 'woef.jpg');
+(19, 'test2@test.com', 'Test2', 'Persoon', '$2y$12$4NgfniKjq3eCFuK2Q9B9A.zgE8wkJ2Ba1YG0N49lXWNd/3SIOMw06', 'woef.jpg'),
+(21, 'test@tester.be', 'test', 'tester', '$2y$12$O3idPcbJQGEhjfwmikGcPecOOwL7DnE.KacHjHbNLGwypohRUMFZ.', '21.jpg'),
+(22, 'topicstest@topicstest.be', 'topics', 'test', '$2y$12$4jE5ASVDGOUjSKFC0wpFF.nhcQ6IjeAxl9IfAXmr0EYKY7wDtp27i', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
+(23, 'aiaiai@aiai.com', 'aiaiai', 'aiaiai', '$2y$12$IwLL5Lhy7ZBbU/eiIbNOc.XbjIruEGdtZrgYWwFCo35sDMUzLW766', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
+(24, 'blie@blaa.com', 'blieblaa', 'blieblaa', '$2y$12$B7RVu4kY6/7a3ywEiVi59uxlq5Hb..6rld5qLOPo7bl9yXs.fh/pq', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
+(25, 'nog@eentest.be', 'nog een test', 'nog een test', '$2y$12$NsIpUTkhjiNcCWtpYJv08uJ35hPJAauFYb9UD/qm15qvGpOKbeXPW', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
+(26, 'idk@idk.be', 'idk', 'idk', '$2y$12$zY.Xufqh5OmADOf41S7uve0UvZmn4ImCfNhEmWB5r7sDwykr009Ly', '26.jpg');
 
 -- --------------------------------------------------------
 
@@ -87,20 +114,39 @@ CREATE TABLE `users_topics` (
 --
 
 INSERT INTO `users_topics` (`id`, `users_ID`, `topics_ID`) VALUES
-(4, 16, 2),
-(5, 16, 4),
-(6, 16, 7),
 (7, 17, 1),
 (8, 17, 2),
 (9, 17, 3),
 (10, 17, 4),
 (11, 17, 5),
 (12, 17, 6),
-(13, 17, 7);
+(13, 17, 7),
+(14, 21, 3),
+(15, 21, 4),
+(16, 22, 5),
+(17, 22, 6),
+(18, 23, 4),
+(19, 23, 7),
+(20, 24, 3),
+(21, 24, 5),
+(22, 25, 4),
+(24, 26, 3),
+(23, 26, 4),
+(25, 26, 5),
+(26, 26, 6),
+(27, 26, 7);
 
 --
 -- Indexen voor geëxporteerde tabellen
 --
+
+--
+-- Indexen voor tabel `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `topics_ID` (`topics_ID`),
+  ADD UNIQUE KEY `user_ID` (`user_ID`);
 
 --
 -- Indexen voor tabel `topics`
@@ -127,6 +173,11 @@ ALTER TABLE `users_topics`
 --
 
 --
+-- AUTO_INCREMENT voor een tabel `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT voor een tabel `topics`
 --
 ALTER TABLE `topics`
@@ -135,15 +186,22 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT voor een tabel `users_topics`
 --
 ALTER TABLE `users_topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
+
+--
+-- Beperkingen voor tabel `posts`
+--
+ALTER TABLE `posts`
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`topics_ID`) REFERENCES `topics` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`user_ID`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Beperkingen voor tabel `users_topics`
