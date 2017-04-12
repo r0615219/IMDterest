@@ -1,4 +1,5 @@
 <?php
+
     session_start();
 spl_autoload_register(function($class){
     include_once("classes/" . $class . ".php");
@@ -59,15 +60,47 @@ catch (Exception $e) {
 // post verwerking
 
 if(isset($_POST['imgSubmit'])){
-move_uploaded_file($_FILES["img"]["tmp_name"],
-        "images/uploads/posts/" . $_FILES["img"]["name"]);
-    $topicsID = $_POST['imgTopic'];
+
+    $topicsId = $_POST['imgTopic'];
     $description = $_POST['imgDescription'];
     $post = new Post;
-    $post->image = $_FILES['img']['name'];
     $post->description = $description;
-    $post->topicsID = (int)$topicsID;
-    $post->save();
+    $post->topicsId = (int)$topicsId;
+
+    if (!empty($_FILES['img']['name'])) {
+
+        $bestandsnaam = $_FILES['img']['name'];
+
+        if (strpos($bestandsnaam, ".png")){
+            move_uploaded_file($_FILES["img"]["tmp_name"],
+                "images/uploads/postImages/" . $_FILES["img"]["tmp_name"] . ".png");
+            $post->image = $_FILES['img']['name'] . ".png";
+        } else if(strpos($bestandsnaam, ".jpg")){
+            move_uploaded_file($_FILES["img"]["tmp_name"],
+                "images/uploads/userImages/" . $_FILES["img"]["tmp_name"] . ".jpg");
+            $post->image = $_FILES['img']['name'] . ".jpg";
+        } else if(strpos($bestandsnaam, ".gif")){
+            move_uploaded_file($_FILES["img"]["tmp_name"],
+                "images/uploads/userImages/" . $_FILES["img"]["tmp_name"] . ".gif");
+            $post->image = $_FILES['img']['name'] . ".gif";
+        } else {
+            throw new exception("Unable to create post. The uploaded image must be a JPEG, PNG or GIF.");
+        }
+    }
+    else{
+        $post->image = "profile_placeholder.png";
+    }
+    $post->link = "";
+    var_dump($post);
+    //$post->savePost();
+
+    /*if($post->savePost()){
+        echo "post saved";
+    }
+    else{
+        echo 'failed';
+    }*/
+
 }
 
 

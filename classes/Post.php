@@ -55,21 +55,19 @@ class Post{
         }
     }
 
-    public function save(){
-        $conn = Db::getInstance();
-        //id van user ophalen en in $res1 steken
-        $statement1 = $conn->prepare("SELECT id FROM `users` WHERE email = :email");
-        $statement1->bindValue(":email", $_SESSION['user']);
-        $statement1->execute();
-        $res1 = $statement1->fetch(PDO::FETCH_ASSOC);
-        $userID = $res1["id"];
-
-        $statement = $conn->prepare("INSERT INTO `posts` (`user_ID`, `image`, `description`, `link`, `topics_ID`) VALUES (:user_ID :image, :description, :link, :topicsID);");
-        $statement->bindValue(":user_ID", $userID);
-        $statement->bindValue(":image", $this->m_sImage);
-        $statement->bindValue(":description", $this->m_sDescription);
-        $statement->bindValue(":link", $this->m_sLink);
-        $statement->bindValue(":topicsID", $this->m_iTopicsId);
-        $statement->execute();
+    public function savePost(){
+        try {
+            $conn = Db::getInstance();
+            $statement = $conn->prepare("INSERT INTO `posts` (`user_ID`, `image`, `description`, `link`, `topics_ID`) VALUES (:user_ID :image, :description, :link, :topicsID);");
+            $statement->bindValue(":user_ID", $_SESSION['userid']);
+            $statement->bindValue(":image", $this->m_sImage);
+            $statement->bindValue(":description", $this->m_sDescription);
+            $statement->bindValue(":link", $this->m_sLink);
+            $statement->bindValue(":topicsID", $this->m_iTopicsId);
+            $statement->execute();
+        }
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
     }
 }
