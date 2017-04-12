@@ -92,6 +92,11 @@ if(isset($_POST['imgSubmit'])){
     }
     $post->link = "";
     var_dump($post);
+
+
+    // ROEL HELP ME PLS !!!
+
+
     //$post->savePost();
 
     /*if($post->savePost()){
