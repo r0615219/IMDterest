@@ -133,6 +133,7 @@
         //kijken of de gebruiker topics heeft
         //aparte functie want nieuwe query nodig
         public function getUserTopics(){
+            unset ($_SESSION['topics']);
             $conn = Db::getInstance();
             $statement = $conn->prepare("SELECT * FROM topics where id in (SELECT topics_ID FROM `users_topics` WHERE users_ID in (SELECT id from users where email = :email))");
             $statement->bindValue(":email", $_SESSION['user']);
@@ -149,10 +150,12 @@
         //kijken of de gebruiker posts heeft
         //aparte functie want nieuwe query nodig
         public function getUserPosts(){
+            unset ($_SESSION['posts']);
             $conn = Db::getInstance();
             $statement = $conn->prepare("SELECT * FROM posts where user_ID in (SELECT id FROM `users` WHERE email = :email)");
             $statement->bindValue(":email", $_SESSION['user']);
             $statement->execute();
+
             $rows = $statement->rowCount();
             //als de gebruiker topics heeft deze als Topics object aanmaken -> afbeelding en naam van topic ophalen
             if($rows > 0){

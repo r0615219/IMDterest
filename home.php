@@ -92,6 +92,9 @@ try {
 
         $post->link = "";
         $post ->savePost();
+        $user = new User;
+        $user->Email = $_SESSION['user'];
+        $user->getUserPosts();
 
     }
 } catch (Exception $e) {

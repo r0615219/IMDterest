@@ -6,6 +6,11 @@ body{box-sizing: border-box;}
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+}
+
+body{
+    background-color: #F0F0F0;
 }
 
 .h1{
