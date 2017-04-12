@@ -52,7 +52,7 @@ class Topics{
     public function saveUserTopic(){
         $conn = Db::getInstance();
         $statement = $conn->prepare("INSERT INTO `users_topics` (`users_ID`, `topics_ID`) VALUES (:userID, :topicsID);");
-        $statement->bindValue(":userID", $_SESSION['userID']);
+        $statement->bindValue(":userID", $_SESSION['userid']);
         $statement->bindValue(":topicsID", $this->m_iID);
         $result = $statement->execute();
     }

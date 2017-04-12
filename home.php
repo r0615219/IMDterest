@@ -1,4 +1,5 @@
 <?php
+
     session_start();
 spl_autoload_register(function($class){
     include_once("classes/" . $class . ".php");
@@ -56,42 +57,48 @@ catch (Exception $e) {
 }
 
 
-//indien de gebruiker nog geen topics heeft
-/*if (!isset($_SESSION['topics'])) {
-    $topicArray = [];
+// post verwerking
 
-    // alle topics uit databank halen en in topicArray steken
-    $conn = Db::getInstance();
-    $statement = $conn->prepare("SELECT * FROM `topics`");
-    $statement->execute();
-    $res = $statement->rowCount();
+try {
+    if (isset($_POST['imgSubmit'])) {
 
-    for ($i = 1; $i < $res; $i++) {
-        $topic = $i;
-        $topic = new Topics;
-        $topic->getTopic($i);
-        array_push($topicArray, $topic);
+        $topicsId = $_POST['imgTopic'];
+        $description = $_POST['imgDescription'];
+        $post = new Post;
+        $post->description = $description;
+        $post->topicsId = (int)$topicsId;
+
+        if (isset($_FILES['img'])) {
+            $bestandsnaam = $_FILES['img']['name'];
+
+            if (strpos($bestandsnaam, ".png")) {
+                move_uploaded_file($_FILES["img"]["tmp_name"],
+                    "images/uploads/postImages/" . $_FILES["img"]["name"]);
+                $post->image = $_FILES['img']['name'];
+            } else if (strpos($bestandsnaam, ".jpg")) {
+                move_uploaded_file($_FILES["img"]["tmp_name"],
+                    "images/uploads/postImages/" . $_FILES["img"]["name"]);
+                $post->image = $_FILES['img']['name'];
+            } else if (strpos($bestandsnaam, ".gif")) {
+                move_uploaded_file($_FILES["img"]["tmp_name"],
+                    "images/uploads/postImages/" . $_FILES["img"]["name"]);
+                $post->image = $_FILES['img']['name'];
+            } else {
+                throw new exception("Unable to create post. The uploaded image must be a JPEG, PNG or GIF.");
+            }
+        } else {
+            $post->image = "profile_placeholder.png";
+        }
+
+        $post->link = "";
+        $post ->savePost();
+
     }
-}*/
+} catch (Exception $e) {
+        $error = $e->getMessage();
+}
 
 
-
-//kijken of de gebruiker topics gekozen heeft
-/*if (isset($_POST['selectedTopics'])) {
-    $selectedTopics = $_POST['selectedTopics'];
-    for ($i = 0; $i <= count($selectedTopics); $i++) {
-        $usertopic = new Topics();
-        $usertopic->name = $selectedTopics[$i];
-        $usertopic->saveUserTopic();
-        $_SESSION['topics'][] = $usertopic;
-    }
-}*/
-
-
-
-//TODO: topics bijvoegen
-// topic toevoegen = mee in databank steken + automatisch bij session invoegen
-// -> 1 functie: array met gekozen topics -> in databank -> databank opnieuw uitlezen -> session refreshen => AJAX??
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -109,6 +116,8 @@ catch (Exception $e) {
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/signup-style.css">
     <link rel="stylesheet" href="css/topics.css">
+    <link rel="stylesheet" href="css/add-button.css">
+    <link rel="stylesheet" href="css/posts.css">
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 
