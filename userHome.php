@@ -131,7 +131,7 @@ if(isset( $_SESSION['posts'])){?>
                                 <?php endforeach; ?>
                             </select>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-default submitBtn" name="linkSubmit" data-dismiss="modal">Save</button>
+                                <input type="submit" name="linkSubmit" class="btn btn-default submitBtn" value="Opslaan" />
                             </div>
                         </form>
 
@@ -149,6 +149,7 @@ if(isset( $_SESSION['posts'])){?>
         var imageBtn = $('#imageBtn');
         var linkBtn = $('#linkBtn');
         var open = false;
+        var submitBtn = $(".submitBtn");
         imageBtn.hide();
         linkBtn.hide();
 
@@ -162,19 +163,33 @@ if(isset( $_SESSION['posts'])){?>
                 linkBtn.animate({
                     marginRight: "0px"
                 }, 200);
-                imageBtn.hide();
-                linkBtn.hide();
+                imageBtn.hide(0);
+                linkBtn.hide(0);
             }
             else {
+                imageBtn.show(0);
+                linkBtn.show(0);
                 imageBtn.animate({
                     marginBottom: "100px"
                 }, 200);
                 linkBtn.animate({
                     marginRight: "100px"
                 }, 200);
-                imageBtn.show();
-                linkBtn.show();
+
             }
+
+            open = !open;
+        });
+
+        submitBtn.on('click', function(){
+            imageBtn.animate({
+                marginBottom: "0px"
+            }, 200);
+            linkBtn.animate({
+                marginRight: "0px"
+            }, 200);
+            imageBtn.hide(0);
+            linkBtn.hide(0);
 
             open = !open;
         });

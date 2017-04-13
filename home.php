@@ -104,7 +104,6 @@ try {
 }
 
 if (isset($_POST['linkSubmit'])) {
-    echo"kloekloe";
     $topicsId = $_POST['linkTopic'];
     $description = $_POST['linkDescription'];
     $link = $_POST['link'];
