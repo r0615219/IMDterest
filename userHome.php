@@ -81,7 +81,7 @@ if(isset( $_SESSION['posts'])){?>
                     </div>
                     <div class="modal-body">
 
-                        <form action="" method="post" name="imgPost" enctype="multipart/form-data">
+                        <form action="" method="post" enctype="multipart/form-data">
                             <input type="file" name="img" />
 
                             <textarea rows="3" name="imgDescription" id="imgDescription" placeholder="Geef een beschrijving van je post"></textarea>
@@ -117,7 +117,7 @@ if(isset( $_SESSION['posts'])){?>
                     </div>
                     <div class="modal-body">
 
-                        <form action="" method="post" name="linkPost" enctype="multipart/form-data">
+                        <form action="" method="post" enctype="multipart/form-data">
 
                             <input type="url" name="link" placeholder="http://"/>
 
@@ -130,12 +130,13 @@ if(isset( $_SESSION['posts'])){?>
                                     <option value="<?php echo $t->id; ?>"><?php echo $t->name; ?></option>
                                 <?php endforeach; ?>
                             </select>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-default submitBtn" name="linkSubmit" data-dismiss="modal">Save</button>
+                            </div>
                         </form>
 
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-default submitBtn" data-dismiss="modal">Save</button>
-                    </div>
+
                 </div>
 
             </div>
@@ -148,15 +149,21 @@ if(isset( $_SESSION['posts'])){?>
         var imageBtn = $('#imageBtn');
         var linkBtn = $('#linkBtn');
         var open = false;
+        imageBtn.hide();
+        linkBtn.hide();
+
 
         addBtn.on('click', function(){
             if (open) {
+
                 imageBtn.animate({
                     marginBottom: "0px"
                 }, 200);
                 linkBtn.animate({
                     marginRight: "0px"
-                }, 200)
+                }, 200);
+                imageBtn.hide();
+                linkBtn.hide();
             }
             else {
                 imageBtn.animate({
@@ -165,6 +172,8 @@ if(isset( $_SESSION['posts'])){?>
                 linkBtn.animate({
                     marginRight: "100px"
                 }, 200);
+                imageBtn.show();
+                linkBtn.show();
             }
 
             open = !open;

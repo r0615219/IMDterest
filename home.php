@@ -97,10 +97,30 @@ try {
         $user->getUserPosts();
 
     }
+
+
 } catch (Exception $e) {
         $error = $e->getMessage();
 }
 
+if (isset($_POST['linkSubmit'])) {
+    echo"kloekloe";
+    $topicsId = $_POST['linkTopic'];
+    $description = $_POST['linkDescription'];
+    $link = $_POST['link'];
+    $post = new Post;
+    $post->description = $description;
+    $post->topics_ID = (int)$topicsId;
+    $post->link = $link;
+
+    $post->image = "profile_placeholder.png";
+
+    $post ->savePost();
+    $user = new User;
+    $user->Email = $_SESSION['user'];
+    $user->getUserPosts();
+
+}
 
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
