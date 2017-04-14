@@ -11,7 +11,7 @@ spl_autoload_register(function($class){
         header('Location: signin.php');
     }
 
-
+include_once('simple_html_dom.php');
 //TOPICS
 try {
     //1. kijken of gebruiker nog geen topics heeft
@@ -97,9 +97,32 @@ try {
         $user->getUserPosts();
 
     }
+
+
 } catch (Exception $e) {
         $error = $e->getMessage();
 }
+
+if (isset($_POST['linkSubmit'])) {
+    $topicsId = $_POST['linkTopic'];
+    $description = $_POST['linkDescription'];
+    $link = $_POST['link'];
+
+
+
+    $post = new Post;
+    $post->description = $description;
+    $post->topics_ID = (int)$topicsId;
+    $post->link = $link;
+    $post->image = $link;
+    $post ->savePost();
+
+    $user = new User;
+    $user->Email = $_SESSION['user'];
+    $user->getUserPosts();
+
+}
+
 
 
 ?>

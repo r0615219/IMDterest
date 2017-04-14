@@ -81,7 +81,7 @@ if(isset( $_SESSION['posts'])){?>
                     </div>
                     <div class="modal-body">
 
-                        <form action="" method="post" name="imgPost" enctype="multipart/form-data">
+                        <form action="" method="post" enctype="multipart/form-data">
                             <input type="file" name="img" />
 
                             <textarea rows="3" name="imgDescription" id="imgDescription" placeholder="Geef een beschrijving van je post"></textarea>
@@ -117,7 +117,7 @@ if(isset( $_SESSION['posts'])){?>
                     </div>
                     <div class="modal-body">
 
-                        <form action="" method="post" name="linkPost" enctype="multipart/form-data">
+                        <form action="" method="post" enctype="multipart/form-data">
 
                             <input type="url" name="link" placeholder="http://"/>
 
@@ -130,12 +130,13 @@ if(isset( $_SESSION['posts'])){?>
                                     <option value="<?php echo $t->id; ?>"><?php echo $t->name; ?></option>
                                 <?php endforeach; ?>
                             </select>
+                            <div class="modal-footer">
+                                <input type="submit" name="linkSubmit" class="btn btn-default submitBtn" value="Opslaan" />
+                            </div>
                         </form>
 
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-default submitBtn" data-dismiss="modal">Save</button>
-                    </div>
+
                 </div>
 
             </div>
@@ -148,24 +149,47 @@ if(isset( $_SESSION['posts'])){?>
         var imageBtn = $('#imageBtn');
         var linkBtn = $('#linkBtn');
         var open = false;
+        var submitBtn = $(".submitBtn");
+        imageBtn.hide();
+        linkBtn.hide();
+
 
         addBtn.on('click', function(){
             if (open) {
+
                 imageBtn.animate({
                     marginBottom: "0px"
                 }, 200);
                 linkBtn.animate({
                     marginRight: "0px"
-                }, 200)
+                }, 200);
+                imageBtn.hide(0);
+                linkBtn.hide(0);
             }
             else {
+                imageBtn.show(0);
+                linkBtn.show(0);
                 imageBtn.animate({
                     marginBottom: "100px"
                 }, 200);
                 linkBtn.animate({
                     marginRight: "100px"
                 }, 200);
+
             }
+
+            open = !open;
+        });
+
+        submitBtn.on('click', function(){
+            imageBtn.animate({
+                marginBottom: "0px"
+            }, 200);
+            linkBtn.animate({
+                marginRight: "0px"
+            }, 200);
+            imageBtn.hide(0);
+            linkBtn.hide(0);
 
             open = !open;
         });
