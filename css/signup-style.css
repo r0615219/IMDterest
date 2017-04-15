@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 body {
     padding-top: 50px;
     padding-bottom: 20px;
@@ -49,55 +48,3 @@ body {
         justify-content: space-around;
     }
 }
-=======
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
-.white {
-    color: white;
-}
-
-.profile-pic{
-    display: block;
-    width: 20px;
-    height: 20px;
-    /*-webkit-border-radius:50%;
-    -moz-border-radius:50%;
-    border-radius:50%;*/
-}
-
-.error{
-  margin-bottom: 5px;
-  color:red;
-}
-
-#container{
-    display: block;
-}
-
-#container img{
-    display: none;
-}
-
-@media screen and (min-width: 1015px) {
-    #container .input-group input.form-control{
-        display: block;
-        width: 80%;
-    }
-
-    #container img{
-        display: block;
-        width: 20%;
-        height: 20%;
-        /*border-radius: 50%;*/
-    }
-
-    #container{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-    }
-}
->>>>>>> 3586aba3db2f61bb830649441f7e3e38f3479017
