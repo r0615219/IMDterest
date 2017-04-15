@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{box-sizing: border-box;}
 
 .container{
@@ -42,4 +43,50 @@ label.active{
 
 .topic-div.focus{
     color: white;
+=======
+body{box-sizing: border-box;}
+
+.container{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+body{
+    background-color: #F0F0F0;
+}
+
+.h1{
+    width: 100%;
+}
+.topic-div, .userTopic{
+    display: flex;
+    flex-grow: 1;
+    align-self: center;
+    flex-wrap: wrap;
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    font-size: 2em;
+    transition: opacity 0.5s;
+}
+
+label.active{
+    opacity: 0.5;
+}
+
+.topic-div:hover{
+    color: white;
+    opacity: 0.5;
+}
+
+.topic-div.focus{
+    color: white;
+>>>>>>> 3586aba3db2f61bb830649441f7e3e38f3479017
 }

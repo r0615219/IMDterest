@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .add{
     position: fixed;
     bottom: 5%;
@@ -39,4 +40,47 @@ textarea{
     width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
+=======
+.add{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+}
+
+.addBtn{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 3px 3px 5px #888888;
+    font-size: 2em;
+    bottom: 5%;
+    right: 5%;
+    z-index: 30;
+}
+
+#imageBtn{
+    width: 80px;
+    height: 80px;
+    z-index: 20;
+}
+
+#linkBtn{
+    width: 80px;
+    height: 80px;
+    z-index: 10;
+
+}
+
+#imageBtn img, #linkBtn img{
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+
+textarea{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+>>>>>>> 3586aba3db2f61bb830649441f7e3e38f3479017
 }
