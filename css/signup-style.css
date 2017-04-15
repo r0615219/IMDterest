@@ -20,3 +20,31 @@ body {
   margin-bottom: 5px;
   color:red;
 }
+
+#container{
+    display: block;
+}
+
+#container img{
+    display: none;
+}
+
+@media screen and (min-width: 1015px) {
+    #container .input-group input.form-control{
+        display: block;
+        width: 80%;
+    }
+
+    #container img{
+        display: block;
+        width: 20%;
+        height: 20%;
+        /*border-radius: 50%;*/
+    }
+
+    #container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
