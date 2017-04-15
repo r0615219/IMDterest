@@ -12,27 +12,51 @@ if (isset($_SESSION['user'])) {
 if(!empty($_POST)){
     try {
         $user = new User;
+        
         if (!empty($_POST['firstname'])) {
             $user->Firstname = $_POST['firstname'];
         }
+        
         if (!empty($_POST['lastname'])) {
             $user->Lastname = $_POST['lastname'];
         }
-
+        
         if (!empty($_POST['email'])) {
             $user->Email = $_POST['email'];
         }
-
-        if (!empty($_FILES['image'])) {
-            move_uploaded_file($_FILES["image"]["tmp_name"],
-                "images/users/" . $_FILES["image"]["name"]);
+        
+        //oud passwoord
+        if (!empty($_POST['password'])) {
+            $user->Password = $_POST['password'];
         }
+    
+        if (!empty($_FILES['image']['name'])) {
+
+            $bestandsnaam = $_FILES['image']['name'];
+            
+            if (strpos($bestandsnaam, ".png")){
+                        move_uploaded_file($_FILES["image"]["tmp_name"],
+                "images/uploads/userImages/" . $_SESSION['userid'] . ".png");
+                        $user->Image = $_SESSION['userid'] . ".png";
+                    } else if(strpos($bestandsnaam, ".jpg")){
+                        move_uploaded_file($_FILES["image"]["tmp_name"],
+                "images/uploads/userImages/" . $_SESSION['userid'] . ".jpg");
+                        $user->Image = $_SESSION['userid'] . ".jpg";
+                    } else if(strpos($bestandsnaam, ".gif")){
+                        move_uploaded_file($_FILES["image"]["tmp_name"],
+                "images/uploads/userImages/" . $_SESSION['userid'] . ".gif");
+                        $user->Image = $_SESSION['userid'] . ".gif";
+                    } else {
+                throw new exception("Unable to change profile picture. The uploaded file must be a JPEG, PNG or GIF.");
+            }
+        }
+        
         $user->updateDatabase();
+        
     } catch (Exception $e) {
         $error = $e->getMessage();
     }
 
-    //TODO: afbeelding in databank steken -> kan niet lezen
 
 }
 ?>
@@ -70,20 +94,21 @@ if(!empty($_POST)){
     <h1 class="media-heading">Account settings</h1>
     <div class="media-body">
         <form enctype="multipart/form-data" action="" method="post">
-            <label for="firstname">Firstname</label>
+           
+            <label for="firstname">First name</label>
             <input type="text" value="<?php echo $_SESSION['firstname']; ?>" id="firstname" name="firstname"
                    class="form-control">
-
-            <label for="lastname" style="margin-top:30px;">Lastname</label>
+            
+            <label for="lastname">Last name</label>
             <input type="text" value="<?php echo $_SESSION['lastname']; ?>" id="lastname" name="lastname"
                    class="form-control">
-
+            
             <label for="email" style="margin-top:30px;">Email</label>
-            <input type="text" value="<?php echo $_SESSION['email']; ?>" id="email" name="email"
+            <input type="text" value="<?php echo $_SESSION['user']; ?>" id="email" name="email"
                    class="form-control">
 
             <div class="media" style="margin-top:30px;">
-                <img src="<?php echo $_SESSION['image']; ?>" alt="profile picture">
+                <img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt="profile picture" style="max-width:150px;">
                 <button type="button" class="btn media" data-toggle="modal" data-target="#uploadImage">Change profile picture</button>
 
 

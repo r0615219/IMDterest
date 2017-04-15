@@ -5,7 +5,7 @@ spl_autoload_register(function($class){
         include_once("classes/" . $class . ".php");
     });
 
-$required = array('email', 'firstname', 'username', 'password');
+$required = array('email', 'firstname', 'lastname', 'password');
 try{
 if(!empty($_POST)){
     $user = new User();
@@ -25,20 +25,17 @@ if(!empty($_POST)){
   foreach($required as $field) {
   if (empty($_POST[$field])) {
     echo '<style type="text/css">
-          #'.$field.'{border:4px solid red;
-          background-color: #FFA3A3;}
+          #'.$field.'{border:1px solid red;}
           </style>';
       $missingfields = 1;}}
   if (strlen($_POST['password'])<6) {
     echo '<style type="text/css">
-          #password{border:4px solid red;
-          background-color: #FFA3A3;}
+          #password{border:1px solid red;}
           </style>';
       $shortpassword = 1;}
   if ($error=="email already registered") {
     echo '<style type="text/css">
-          #email{border:4px solid red;
-          background-color: #FFA3A3;}
+          #email{border:1px solid red;}
           </style>';
     $duplicatemail = 1;
   }
@@ -86,43 +83,48 @@ if(!empty($_POST)){
         <h1>A creative way to share ideas!</h1>
         <p>Join our community!</p>
 
-        <form method="post">
-        <?php
-          if (isset($missingfields)) {
-            echo "<div class='error'> You didn't fill in all the fields!</div>";
-          }
-          if(!empty($_POST['password']) && strlen($_POST['password'])<6){
-            echo "<div class='error'> This password is too short!</div>";
-          }
-          if (isset($duplicatemail)) {
-            echo "<div class='error'> This email is already in use!</div>";
-          }
+        <div id="container">
+            <form method="post">
+            <?php
+              if (isset($missingfields)) {
+                echo "<div class='error alert alert-danger'> You didn't fill in all the fields!</div>";
+              }
+              if(!empty($_POST['password']) && strlen($_POST['password'])<6){
+                echo "<div class='error alert alert-danger'> This password is too short!</div>";
+              }
+              if (isset($duplicatemail)) {
+                echo "<div class='error alert alert-danger'> This email is already in use!</div>";
+              }
 
-          ?>
+              ?>
 
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-                <input type="text" class="form-control" placeholder="Firstname" name="firstname" id="firstname" aria-describedby="basic-addon1">
-            </div>
-            <br>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-                <input type="text" class="form-control" placeholder="Lastname" name="lastname" id="lastname" aria-describedby="basic-addon1">
-            </div>
-            <br>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
-                <input type="email" class="form-control" placeholder="E-mail" name="email" id="email" aria-describedby="basic-addon1">
-            </div>
-            <br>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></span>
-                <input type="password" class="form-control" placeholder="Password" name="password" id="password" aria-describedby="basic-addon1">
-            </div>
-            <br>
-            <button type="submit" class="btn btn-primary btn-lg" role="button">Sign up</button>
-        </form>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                    <input type="text" class="form-control" placeholder="First Name" name="firstname" id="firstname firstname-signup" aria-describedby="basic-addon1">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                    <input type="text" class="form-control" placeholder="Last Name" name="lastname" id="lastname lastname-signup" aria-describedby="basic-addon1">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+                    <input type="email" class="form-control" placeholder="E-mail" name="email" id="email email-signup" aria-describedby="basic-addon1">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></span>
+                    <input type="password" class="form-control" placeholder="Password" name="password" id="password password-signup" aria-describedby="basic-addon1">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary btn-lg" role="button">Sign up</button>
+            </form>
 
+            <!--<img src="https://image.freepik.com/free-vector/laptop-with-rocket_23-2147503371.jpg" alt="IMDterest">-->
+            <!--<img src="https://image.freepik.com/free-vector/the-launch-of-a-website_1212-24.jpg" alt="IMDterest">-->
+            <img src="http://www.webadore.co.uk/images/bussines-man.png" alt="IMDterest">
+        </div>
     </div>
 </div>
 

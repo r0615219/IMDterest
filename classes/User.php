@@ -1,6 +1,7 @@
 <?php
 
     class User {
+        private $m_iId;
         private $m_sEmail;
         private $m_sFirstname;
         private $m_sLastname;
@@ -9,9 +10,13 @@
         private $m_aTopics=[];
 
         public function __set($p_sProperty, $p_vValue){
-          if(empty($p_vValue)){
-                  throw new Exception ('There are empty fields.');}
+          /*if(empty($p_vValue)){
+                  throw new Exception ('There are empty fields.');}*/
+        //dit stukje code is in comments gezet door Roel omdat het optionele tekstvelden onmogelijk maakt, wat absoluut nodig blijkt te zijn voor updateDatabase(). Er wordt al op andere plaatsen voor gezorgd dat alle velden in signin.php en singup.php zijn ingevuld.
             switch ( $p_sProperty ){
+                case "id":
+                    $this->m_iId = $p_vValue;
+                    break;
                 case "Email":
                     $this->m_sEmail = $p_vValue;
                     break;
@@ -36,6 +41,9 @@
 
         public function __get($p_sProperty){
             switch($p_sProperty){
+                case "id":
+                    return $this->m_iId;
+                    break;
                 case "Email":
                     return $this->m_sEmail;
                     break;
@@ -57,7 +65,7 @@
         }
 
         public function Register(){
-
+            if(!empty($this->m_sFirstname) && !empty($this->m_sLastname) && !empty($this->m_sEmail) && !empty($this->m_sPassword)){
             $options = [
                 'cost' => 12,
             ];
@@ -76,11 +84,14 @@
                 echo"oh no";
                 throw new Exception("email already registered");}
             $statement->bindValue(":firstname", $this->m_sFirstname);
-            $statement->bindValue(":lastname", $this->m_sLastname);
+              $statement->bindValue(":lastname", $this->m_sLastname);
             $statement->bindValue(":password", $this->m_sPassword);
-            $statement->bindValue(":image", $this->m_sImage);
+            $statement->bindValue(":image", "profile_placeholder.png");
             $result = $statement->execute();
             return $result;
+            } else {
+                throw new Exception ('There are empty fields.');
+            }
         }
 
         public function CanLogin(){ //checken of we mogen inloggen
@@ -94,7 +105,7 @@
             if(password_verify($this->m_sPassword, $password)){
                 return true;
             } else {
-                throw new exception("Failed to sign in. Wrong password or email.");
+                throw new exception("Failed to sign in. Wrong password or username.");
             }
         }
 
@@ -109,14 +120,16 @@
                 $lastname = $res["lastname"];
                 $email = $res["email"];
                 $image = $res["image"];
+                $id = $res["id"];
                 session_start();
                 $_SESSION['user'] = $this->m_sEmail;
                 $_SESSION['firstname'] = $firstname;
                 $_SESSION['lastname'] = $lastname;
-                $_SESSION['email'] = $email;
                 $_SESSION['image'] = $image;
+                $_SESSION['userid'] = $id;
 
                 $this->getUserTopics();
+                $this->getUserPosts();
 
                 header('Location: home.php');
             } catch (Exception $e) {
@@ -127,9 +140,10 @@
         //kijken of de gebruiker topics heeft
         //aparte functie want nieuwe query nodig
         public function getUserTopics(){
+            unset ($_SESSION['topics']);
             $conn = Db::getInstance();
-            $statement = $conn->prepare("SELECT name, image FROM topics where id in (SELECT topics_ID FROM `users_topics` WHERE users_ID in (SELECT id from users where email = :email))");
-            $statement->bindValue(":email", $this->m_sEmail);
+            $statement = $conn->prepare("SELECT * FROM topics where id in (SELECT topics_ID FROM `users_topics` WHERE users_ID in (SELECT id from users where email = :email))");
+            $statement->bindValue(":email", $_SESSION['user']);
             $statement->execute();
             $rows = $statement->rowCount();
             //als de gebruiker topics heeft deze als Topics object aanmaken -> afbeelding en naam van topic ophalen
@@ -140,7 +154,25 @@
             }
         }
 
+        //kijken of de gebruiker posts heeft
+        //aparte functie want nieuwe query nodig
+        public function getUserPosts(){
+            unset ($_SESSION['posts']);
+            $conn = Db::getInstance();
+            $statement = $conn->prepare("SELECT * FROM posts where user_ID in (SELECT id FROM `users` WHERE email = :email)");
+            $statement->bindValue(":email", $_SESSION['user']);
+            $statement->execute();
 
+            $rows = $statement->rowCount();
+            //als de gebruiker topics heeft deze als Topics object aanmaken -> afbeelding en naam van topic ophalen
+            if($rows > 0){
+                while($post = $statement->fetch(PDO::FETCH_OBJ)){
+                    $_SESSION['posts'][] = $post;
+                }
+            }
+            $arr = $statement->errorInfo();
+            print_r($arr);
+        }
 
         public function updateDatabase(){
 
@@ -148,26 +180,26 @@
                 //alles dat in de velden staat wordt heringesteld in de database
                 $conn = Db::getInstance();
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $statement = $conn->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, password = :password where email = :oldEmail");
+                $statement = $conn->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, password = :password, image = :image where email = :oldemail");
                 $statement->bindValue(":firstname", $this->m_sFirstname);
                 $statement->bindValue(":lastname", $this->m_sLastname);
                 $statement->bindValue(":email", $this->m_sEmail);
                 
                 //PASSWORD:
-                if (!empty($_POST['newPassword'])) {
+                if (!empty($this->m_sPassword) && !empty($_POST['newPassword']) && !empty($_POST['controlPassword']) ) {
                     // hier zetten we de input als een nieuw gehast wachtwoord in de database
-                    if ($_POST['newPassword'] == $_POST['password']) {
+                    if ($_POST['newPassword'] == $this->m_sPassword) {
                         throw new exception("Unable to change the password. Your new password can't be the same as your current one.");
                     } else if ($_POST['newPassword'] != $_POST['controlPassword']) {
                         throw new exception("Unable to change the password. Your passwords don't match.");
                     } else {
                         //checken of het oude paswoord overeen komt met het huidige
                     $stmt1 = $conn->prepare("SELECT * FROM `users` WHERE (email = :oldemail)");
-                    $stmt1->bindValue(":oldemail", $_SESSION['email']);
+                    $stmt1->bindValue(":oldemail", $_SESSION['user']);
                     $stmt1->execute();
                     $res = $stmt1->fetch(PDO::FETCH_ASSOC);
                     $controleerpassword = $res["password"];
-                    if(password_verify($_POST['password'], $controleerpassword)){
+                    if(password_verify($this->m_sPassword, $controleerpassword)){
                     //nieuw passwoord in database zetten
                         $options = [
                             'cost' => 12,
@@ -183,22 +215,36 @@
 
                     //hier wordt het huidige wachtwoord opnieuw in de database geset als de gebruiker geen nieuw wachtwoord heeft ingesteld
                     $stmt2 = $conn->prepare("SELECT * FROM `users` WHERE (email = :oldemail)");
-                    $stmt2->bindValue(":oldemail", $_SESSION['email']);
+                    $stmt2->bindValue(":oldemail", $_SESSION['user']);
                     $stmt2->execute();
                     $res = $stmt2->fetch(PDO::FETCH_ASSOC);
                     $password = $res["password"];
                     $statement->bindValue(":password", $password);
+                    
+                    //als de gebruiker het onvolledig heeft ingevuld -> een foutmelding
+                    if(!empty($this->m_sPassword) || !empty($_POST['newPassword']) || !empty($_POST['controlPassword']) ){
+                    throw new exception("Unable to change the password. You didn't fill in all required fields.");
+                    }
                 }
                 
+                //IMAGE:
+                if(empty($this->m_sImage)){
+                    //pad naar afbeelding behouden als de gebruiker het veld leeg laat.
+                    $this->m_sImage = $_SESSION['image'];
+                } else if(($_SESSION["image"] != "profile_placeholder.png") && ($_SESSION["image"] != $this->m_sImage)){
+                    unlink("images/uploads/userImages/" . $_SESSION["image"] . "");
+                }
+                $statement->bindValue(":image", $this->m_sImage);
                 
+                //EXECUTE en sessions
                 $statement->bindValue(":oldemail", $_SESSION['user']);
                 $statement->execute();
-                $_SESSION['user']=$this->m_sFirstname;
+                $_SESSION['user']=$this->m_sEmail;
                 $_SESSION['firstname']=$this->m_sFirstname;
                 $_SESSION['lastname']=$this->m_sLastname;
-                $_SESSION['email']=$this->m_sEmail;
                 $_SESSION['image']=$this->m_sImage;
-                echo $statement->rowCount() . " records UPDATED successfully";
+                //echo $statement->rowCount() . " records UPDATED successfully";
+                
             }
             catch(PDOException $e)
             {
@@ -208,5 +254,14 @@
             $conn = null;
         }
 
-        public function addTopic(){}
+        public function getUserInfo(){
+            $conn = Db::getInstance();
+            $statement = $conn->prepare("SELECT firstname, lastname, image FROM users where id = :user_ID ");
+            $statement->bindValue(":user_ID", $this->m_iId);
+            $statement->execute();
+            $res = $statement->fetch(PDO::FETCH_ASSOC);
+            $this->Firstname = $res["firstname"];
+            $this->Lastname = $res["lastname"];
+            $this->Image = $res["image"];
+        }
     }
