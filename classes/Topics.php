@@ -57,4 +57,5 @@ class Topics{
         $statement->execute();
 
     }
+
 }
