@@ -9,7 +9,7 @@
             $search = new Search();
             $search->Zoekterm = $_GET['search'];
             $search->ZoekSelect = $_GET['search-select'];
-            $search->Zoeken();
+            $search->zoeken();
         }catch(exception $e){}
     }
 ?>
@@ -51,9 +51,9 @@
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search" id="search" name="search">
                     <select class="form-control" name="search-select">
-                        <option value="person">Person</option>
-                        <option value="post">Post</option>
-                        <option value="topic">Topic</option>
+                        <option value="posts">Posts</option>
+                        <option value="users">Users</option>
+                        <option value="topics">Topics</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-default">

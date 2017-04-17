@@ -29,34 +29,101 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/signup-style.css">
-    <!--<link rel="stylesheet" href="css/topics.css">-->
+    <link rel="stylesheet" href="css/topics.css">
     <link rel="stylesheet" href="css/add-button.css">
     <link rel="stylesheet" href="css/posts.css">
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 
     <title>IMDterest | Search</title>
+
+    <style>
+        .bold{
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+
 </head>
 <body>
 
-<?php include_once('header.inc.php'); ?>
+    <?php include_once('header.inc.php'); ?>
 
     <?php if(isset($error)){
             echo $error;
         }
     ?>
 
-    <div class="container">
+    <div class="container-search">
 
         <h1>Search Results</h1>
 
-        <p> ... results for <?php $_SESSION['zoekterm']; ?> in <?php $_SESSION['zoekselect']; ?></p>
-
-        <p><?php var_dump( $_SESSION['search']); ?></p>
-
-
+        <p><span class="bold"><?php echo $_SESSION['aantalResults']; ?></span> results for <span class="bold"><?php echo $_SESSION['zoekterm']; ?></span> in <span class="bold"><?php echo $_SESSION['zoekselect']; ?></span></p>
 
     </div>
+
+    <?php if($_SESSION['zoekselect'] == 'posts'): ?>
+
+        <div class="container">
+
+        <?php foreach ($_SESSION['search'] as $searchItem): ?>
+
+            <div class="userPost">
+                <div class="userPostImg" style="background-image: url(images/uploads/postImages/<?php echo $searchItem['image']; ?>);"></div>
+                <div class="userPostTopic">
+                    <h3>
+                        <a href="#">
+                            <?php echo $searchItem['topics_ID']; ?>
+                        </a>
+                    </h3>
+                </div>
+                <div class="userPostDescription"><h4><?php echo $searchItem['description']; ?></h4></div>
+                <hr>
+                <div class="userPostInfo">
+
+                    <div class="userInfo">
+                        <a href="#">
+                            <img class="media-object profile-pic" src="images/uploads/userImages/<?php echo $searchItem['user_ID']; ?>" alt="<?php echo $searchItem['user_ID']; ?>">
+                        </a>
+                        <a href="#">
+                            <?php echo $searchItem['user_ID'] . " " . $searchItem['user_ID']; ?>
+                        </a>
+                    </div>
+
+                    <div class="likeBtn">
+                        <a href="#">
+                            <img class="media-object" src="images/icons/heart.svg" alt="heart">
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
+        </div>
+
+    <?php endif; ?>
+
+    <?php if($_SESSION['zoekselect'] == 'users'): ?>
+
+        <div class="container">
+
+        <p>Je zoekt een persoon</p>
+
+        </div>
+
+    <?php endif; ?>
+
+    <?php if($_SESSION['zoekselect'] == 'topics'): ?>
+
+        <div class="container">
+
+            <p>Je zoekt een persoon</p>
+
+        </div>
+
+    <?php endif; ?>
 
 </body>
 </html>
