@@ -14,4 +14,11 @@ $likecheckstatement->bindValue(":postid", (int)$postid);
 $likecheckstatement->execute();
 $likes = $likecheckstatement->fetch(PDO::FETCH_OBJ);
 
+  if (empty($likes)) {
+
+    $addlike = $conn->prepare("INSERT INTO `likes`(`UserId`, `PostId`) VALUES(:userid,:postid)");
+    $addlike->bindValue(":userid", (int)$userid);
+    $addlike->bindValue(":postid", (int)$postid);
+    $addlike->execute();
+  }
 ?>
