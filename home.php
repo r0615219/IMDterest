@@ -11,15 +11,6 @@
         header('Location: signin.php');
     }
 
-<<<<<<< HEAD
-
-
-
-//include_once('simple_html_dom.php');
-
-=======
-//include_once('simple_html_dom.php');
->>>>>>> 7f2477beb74c2ceb12e28642f40e4f044ba5c177
 //TOPICS
 try {
     //1. kijken of gebruiker nog geen topics heeft
