@@ -29,6 +29,11 @@ body {
     display: none;
 }
 
+/*.bold{
+    font-weight: bold;
+    text-transform: uppercase;
+}*/
+
 @media screen and (min-width: 1015px) {
     #container .input-group input.form-control{
         display: block;
@@ -46,5 +51,27 @@ body {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+    }
+}
+
+.container-search {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+@media (min-width: 768px) {
+    .container-search {
+        width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .container-search {
+        width: 970px;
+    }
+}
+@media (min-width: 1200px) {
+    .container-search {
+        width: 1170px;
     }
 }

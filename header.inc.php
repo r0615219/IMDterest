@@ -1,16 +1,20 @@
 <?php
 
-    include_once 'classes/Search.php';
+    spl_autoload_register(function($class){
+        include_once("classes/" . $class . ".php");
+    });
 
-    if(!empty($_GET)){
-        try{
+    try {
+        if (!empty($_GET)) {
             $search = new Search();
             $search->Zoekterm = $_GET['search'];
             $search->ZoekSelect = $_GET['search-select'];
-            //echo "<script type='text/javascript'>alert('$search->Zoekterm');</script>";
-            $search->Zoeken();
-        }catch(exception $e){}
+            $search->zoeken();
+        }
+    } catch(Exception $e){
+        $error = $e->getMessage();
     }
+
 ?>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -50,12 +54,14 @@
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search" id="search" name="search">
                     <select class="form-control" name="search-select">
-                        <option value="person">Person</option>
-                        <option value="post">Post</option>
-                        <option value="topic">Topic</option>
+                        <option value="posts">Posts</option>
+                        <option value="users">Users</option>
+                        <option value="topics">Topics</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;
+                </button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <!--<li><a href="#">Link</a></li>-->
@@ -63,8 +69,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['firstname']; ?> <?php echo $_SESSION['lastname']; ?> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="settings.php">Settings</a></li>
+                        <li><a href="profileSettings.php">Profile</a></li>
+                        <li><a href="#">Settings</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="logout.php">Log out</a></li>
                     </ul>
