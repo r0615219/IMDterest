@@ -75,13 +75,19 @@ class Post{
 
     }
 
-    public function checkLiked(){
+    public function checkLiked($PostId){
       $conn = Db::getInstance();
       $likecheckstatement = $conn->prepare("SELECT * FROM `likes` WHERE UserId = :userid AND PostId = :postid");
-      $likecheckstatement->bindValue(":userid", $userid=$_SESSION['userid'];);
-      $likecheckstatement->bindValue(":postid", $this->m_iID;);
-      $likecheckstatement->execute();
-      $liked = $likecheckstatement->fetch(PDO::FETCH_OBJ);
+      $likecheckstatement->bindValue(":userid", $_SESSION['userid']);
+      $likecheckstatement->bindValue(":postid", $PostId);
+      $a=$likecheckstatement->execute();
+      $likes = $likecheckstatement->fetch(PDO::FETCH_ASSOC);
+      if (empty($likes)) {
+        return false;
+      }
+      else {
+        return true;
+      }
     }
 
 }

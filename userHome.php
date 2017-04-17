@@ -57,13 +57,19 @@ if(isset( $_SESSION['posts'])){?>
                   <div class="likeBtn">
                     <a href="#">
                       <?php
-                          $p->checkLiked();
-                       if (in_array($p->id,$liked)) {
-                        echo '<img class="media-object" src="images/icons/heart_filled.svg" alt="heart">';
-                      }
-                      else {
-                        echo '<img class="media-object" src="images/icons/heart.svg" alt="heart">';
-                      };
+                      $post = new Post;
+                      $postid = $p->id;
+                      $liked=$post->checkLiked($postid);
+                      if ($liked==false) {
+                      echo '<img class="media-object" src="images/icons/heart.svg" alt="heart">';
+                    }
+                    else {
+                      echo '<img class="media-object" src="images/icons/heart_filled.svg" alt="heart">';
+                    }
+
+
+
+
 ?>
                     </a>
                   </div>

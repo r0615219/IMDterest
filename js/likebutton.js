@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var liked;
+  //var liked;
 
 
 //check for clicking like button
@@ -21,12 +21,12 @@ $(document).ready(function(){
        liked = true;
 
   });
-
+/*
     if (liked == true) {
       $("img", this).attr("src", "./images/icons/heart_filled.svg");
 
     }
-
+*/
   });
 
 

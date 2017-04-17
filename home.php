@@ -12,6 +12,10 @@ spl_autoload_register(function($class){
     }
 
 
+
+
+//include_once('simple_html_dom.php');
+
 //TOPICS
 try {
     //1. kijken of gebruiker nog geen topics heeft
