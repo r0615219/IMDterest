@@ -10,22 +10,18 @@ $(document).ready(function(){
     type:"POST",
     url:"./ajax/like.php",
     data:{"id" : id},
-    datatype:"json"
+    datatype:"html"
 
-  })
+})
     .done(function(response) {
+      console.log("hi")
       console.log(response)
-       liked = true;
-
-  });
-/*
-    if (liked == true) {
+      console.log("So confused")
+      if (response == true) {
       $("img", this).attr("src", "./images/icons/heart_filled.svg");
-
     }
-*/
+
+    })
   });
-
-
 //End document.ready
 });

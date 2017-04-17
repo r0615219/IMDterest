@@ -4,6 +4,7 @@ include_once("../classes/Db.php");
 
 $userid=$_SESSION['userid'];
 $postid=$_POST['id'];
+$liked;
 
 $conn = Db::getInstance();
 $likecheckstatement = $conn->prepare("SELECT * FROM `likes` WHERE UserId = :userid AND PostId = :postid");
@@ -17,14 +18,14 @@ $likes = $likecheckstatement->fetch(PDO::FETCH_OBJ);
     $addlike->bindValue(":userid", (int)$userid);
     $addlike->bindValue(":postid", (int)$postid);
     $addlike->execute();
-    return;
+    $liked = true;
   };
   if (!empty($likes)) {
-    $removelikes = $conn->prepare("DELETE FROM `likes` WHERE UserId = 27 AND PostId = 23");
-    $removelikes->bindValue(":userid", 27);
-    $removelikes->bindValue(":postid", 23);
+    $removelikes = $conn->prepare("DELETE FROM `likes` WHERE UserId = :userid AND PostId = :postid");
+    $removelikes->bindValue(":userid", (int)$userid);
+    $removelikes->bindValue(":postid", (int)$postid);
     $removelikes->execute();
-    return;
+    $liked = false;
   };
-
+  echo $liked;
 ?>
