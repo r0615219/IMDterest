@@ -68,7 +68,7 @@ try {
         $post->topics_ID = (int)$topicsId;
 
         if (isset($_FILES['img'])) {
-            $bestandsnaam = $_FILES['img']['name'];
+            $bestandsnaam = strtolower($_FILES['img']['name']);
 
             if (strpos($bestandsnaam, ".png")) {
                 move_uploaded_file($_FILES["img"]["tmp_name"],
