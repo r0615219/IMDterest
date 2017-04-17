@@ -11,7 +11,6 @@
         header('Location: signin.php');
     }
 
-//include_once('simple_html_dom.php');
 //TOPICS
 try {
     //1. kijken of gebruiker nog geen topics heeft
@@ -129,6 +128,7 @@ if (isset($_POST['linkSubmit'])) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/npm.js"></script>
+<script src="js/likebutton.js"></script>
 
 <!doctype html>
 <html lang="en">
@@ -173,6 +173,5 @@ if (isset($_POST['linkSubmit'])) {
     ?>
 
 </div>
-
 </body>
 </html>
