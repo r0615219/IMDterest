@@ -4,14 +4,17 @@
         include_once("classes/" . $class . ".php");
     });
 
-    if(!empty($_GET)){
-        try{
+    try {
+        if (!empty($_GET)) {
             $search = new Search();
             $search->Zoekterm = $_GET['search'];
             $search->ZoekSelect = $_GET['search-select'];
             $search->zoeken();
-        }catch(exception $e){}
+        }
+    } catch(Exception $e){
+        $error = $e->getMessage();
     }
+
 ?>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">

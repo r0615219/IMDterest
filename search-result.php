@@ -109,7 +109,25 @@
 
         <div class="container">
 
-        <p>Je zoekt een persoon</p>
+            <?php foreach ($_SESSION['search'] as $searchItem): ?>
+
+                <div class="userPost">
+                    <div class="userPostImg"
+                         <?php if(substr( $searchItem['image'], 0, 4 ) === "http"): ?>
+                            style="background-image: url(<?php echo $searchItem['image']; ?>);"
+                         <?php else: ?>
+                            style="background-image: url(images/uploads/userImages/<?php echo $searchItem['image']; ?>);"
+                        <?php endif; ?>></div>
+                    <div class="userPostTopic">
+                        <h3>
+                            <a href="#">
+                                <?php echo $searchItem['firstname'] . " " . $searchItem['lastname']; ?>
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+
+            <?php endforeach; ?>
 
         </div>
 
@@ -119,7 +137,20 @@
 
         <div class="container">
 
-            <p>Je zoekt een persoon</p>
+            <?php foreach ($_SESSION['search'] as $searchItem): ?>
+
+                <div class="userPost">
+                    <div class="userPostImg" style="background-image: url(<?php echo $searchItem['image']; ?>);"></div>
+                    <div class="userPostTopic">
+                        <h3>
+                            <a href="#">
+                                <?php echo $searchItem['name']; ?>
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+
+            <?php endforeach; ?>
 
         </div>
 
