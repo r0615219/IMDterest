@@ -160,11 +160,7 @@ if (isset($_POST['linkSubmit'])) {
     <?php
 
     if(isset($_SESSION['topics'])){
-        if(isset($_GET['searchForm'])){
-            echo 'You searched something';
-        }else{
-            include_once('userHome.php');
-        }
+        include_once('userHome.php');
     }
     else{
         include_once('chooseTopics.php');

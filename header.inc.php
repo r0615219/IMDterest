@@ -1,15 +1,19 @@
 <?php
 
-    include_once 'classes/Search.php';
+    spl_autoload_register(function($class){
+        include_once("classes/" . $class . ".php");
+    });
 
-    if(!empty($_GET)){
-        try{
+    try{
+        if(!empty($_GET)){
             $search = new Search();
             $search->Zoekterm = $_GET['search'];
             $search->ZoekSelect = $_GET['search-select'];
-            //echo "<script type='text/javascript'>alert('$search->Zoekterm');</script>";
             $search->Zoeken();
-        }catch(exception $e){}
+        }
+    }
+    catch(exception $e){
+        $error = $e->getMessage();
     }
 ?>
 
@@ -55,7 +59,9 @@
                         <option value="topic">Topic</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;
+                </button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <!--<li><a href="#">Link</a></li>-->
