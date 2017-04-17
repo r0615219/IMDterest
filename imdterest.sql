@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 12 apr 2017 om 16:18
+-- Gegenereerd op: 17 apr 2017 om 13:06
 -- Serverversie: 10.1.21-MariaDB
--- PHP-versie: 7.1.1
+-- PHP-versie: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `imdterest`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `likes`
+--
+
+CREATE TABLE `likes` (
+  `likeId` int(11) NOT NULL,
+  `UserId` int(11) NOT NULL,
+  `PostId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `likes`
+--
+
+INSERT INTO `likes` (`likeId`, `UserId`, `PostId`) VALUES
+(1, 27, 23),
+(2, 27, 25),
+(3, 28, 23),
+(4, 28, 24);
 
 -- --------------------------------------------------------
 
@@ -42,7 +64,12 @@ CREATE TABLE `posts` (
 INSERT INTO `posts` (`id`, `user_ID`, `image`, `description`, `link`, `topics_ID`) VALUES
 (20, 21, '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe zei de koe!', '', 3),
 (21, 21, 'sXjhX44-cow-backgrounds.jpg', 'Boeien, zeiden de koeien', '', 3),
-(22, 21, '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe, zei weer de koe', '', 4);
+(22, 21, '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe, zei weer de koe', '', 4),
+(23, 27, 'rage.png', 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '', 7),
+(24, 27, 'https://www.facebook.com/', 'Want facebook is toch wel kunst hoor', 'https://www.facebook.com/', 7),
+(25, 27, 'Herc.jpg', 'I DID IT', '', 7),
+(26, 27, 'Herc.jpg', 'I DID IT', '', 7),
+(27, 27, 'Herc.jpg', 'I DID IT', '', 7);
 
 -- --------------------------------------------------------
 
@@ -97,7 +124,8 @@ INSERT INTO `users` (`id`, `email`, `firstname`, `lastname`, `password`, `image`
 (23, 'aiaiai@aiai.com', 'aiaiai', 'aiaiai', '$2y$12$IwLL5Lhy7ZBbU/eiIbNOc.XbjIruEGdtZrgYWwFCo35sDMUzLW766', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
 (24, 'blie@blaa.com', 'blieblaa', 'blieblaa', '$2y$12$B7RVu4kY6/7a3ywEiVi59uxlq5Hb..6rld5qLOPo7bl9yXs.fh/pq', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
 (25, 'nog@eentest.be', 'nog een test', 'nog een test', '$2y$12$NsIpUTkhjiNcCWtpYJv08uJ35hPJAauFYb9UD/qm15qvGpOKbeXPW', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
-(26, 'idk@idk.be', 'idk', 'idk', '$2y$12$zY.Xufqh5OmADOf41S7uve0UvZmn4ImCfNhEmWB5r7sDwykr009Ly', '26.jpg');
+(26, 'idk@idk.be', 'idk', 'idk', '$2y$12$zY.Xufqh5OmADOf41S7uve0UvZmn4ImCfNhEmWB5r7sDwykr009Ly', '26.jpg'),
+(27, 'jkeirsmaekers@gmail.com', 'joris', 'keirsmaekers', '$2y$12$J0mPYT/n8a8PqRZ0ySWpfO2Kswga5Igp4EbRZSP3NhRkNmTmQ/kNG', 'profile_placeholder.png');
 
 -- --------------------------------------------------------
 
@@ -136,11 +164,22 @@ INSERT INTO `users_topics` (`id`, `users_ID`, `topics_ID`) VALUES
 (23, 26, 4),
 (25, 26, 5),
 (26, 26, 6),
-(27, 26, 7);
+(27, 26, 7),
+(29, 27, 3),
+(28, 27, 4),
+(30, 27, 5),
+(31, 27, 6),
+(32, 27, 7);
 
 --
 -- Indexen voor geëxporteerde tabellen
 --
+
+--
+-- Indexen voor tabel `likes`
+--
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`likeId`);
 
 --
 -- Indexen voor tabel `posts`
@@ -174,10 +213,15 @@ ALTER TABLE `users_topics`
 --
 
 --
+-- AUTO_INCREMENT voor een tabel `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `likeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT voor een tabel `topics`
 --
@@ -187,12 +231,12 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT voor een tabel `users_topics`
 --
 ALTER TABLE `users_topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
