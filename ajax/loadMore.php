@@ -17,7 +17,7 @@ $position = (($page_number-1) * 20);
 $limit = 20;
 //fetch records using page position and item per page.
 $conn = Db::getInstance();
-$statement = $conn->prepare("SELECT * FROM posts where user_ID in (SELECT id FROM `users` WHERE email = :email) LIMIT :position, :limit");
+$statement = $conn->prepare("SELECT * FROM posts where user_ID in (SELECT id FROM `users` WHERE email = :email) ORDER BY id DESC LIMIT :position, :limit");
 
 //bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
 //for more info https://www.sanwebe.com/2013/03/basic-php-mysqli-usage
