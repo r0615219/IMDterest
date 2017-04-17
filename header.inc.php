@@ -69,8 +69,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['firstname']; ?> <?php echo $_SESSION['lastname']; ?> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="settings.php">Settings</a></li>
+                        <li><a href="profileSettings.php">Profile</a></li>
+                        <li><a href="#">Settings</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="logout.php">Log out</a></li>
                     </ul>
