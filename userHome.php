@@ -47,14 +47,30 @@ if(isset( $_SESSION['posts'])){?>
                         echo $user->Firstname . " " . $user->Lastname;
                         ?>
                     </a>
+
+                    <div class="postId"><?php
+                     echo "#".$p->id;
+                     ?></div>
                 </div>
 
-                <div class="likeBtn">
+                <div class="likes">
+                  <div class="likeBtn">
                     <a href="#">
-                        <img class="media-object" src="images/icons/heart.svg" alt="heart">
+                      <?php
+                          $p->checkLiked();
+                       if (in_array($p->id,$liked)) {
+                        echo '<img class="media-object" src="images/icons/heart_filled.svg" alt="heart">';
+                      }
+                      else {
+                        echo '<img class="media-object" src="images/icons/heart.svg" alt="heart">';
+                      };
+?>
                     </a>
+                  </div>
+                  <div class="likeAmount">
+                    <p>0</p>
+                  </div>
                 </div>
-
             </div>
         </div>
     <?php endforeach; }?>
