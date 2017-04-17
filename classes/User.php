@@ -172,8 +172,6 @@
                     $i++;
                 }
             }
-            $arr = $statement->errorInfo();
-            print_r($arr);
         }
 
         public function updateDatabase(){
