@@ -28,18 +28,27 @@ class Search{
 
     public function Zoeken(){
         $conn = Db::getInstance();
-        if($this->m_sZoekSelect = 'post'){
+        $statement = $conn->prepare("SELECT * FROM `posts` WHERE `description` LIKE '%(:zoekterm)%'");
+        $statement->bindValue(":zoekterm", $this->m_sZoekterm);
+        $statement->execute();
+        $searchResult = $statement->fetch(PDO::FETCH_ASSOC);
+        $_SESSION['search'] = $searchResult;
+        $_SESSION['zoekterm'] = $this->m_sZoekterm;
+        $_SESSION['zoekselect'] = $this->m_sZoekSelect;
+
+
+        /*if($this->m_sZoekSelect = 'post'){
             $statement = $conn->prepare("SELECT * FROM `posts` WHERE `description` LIKE '%(:zoekterm)%'");
             $statement->bindValue(':zoekterm', $this->m_sZoekterm);
             $statement->execute();
             $searchResult = $statement->fetch(PDO::FETCH_ASSOC);
-            //header('Location: search-result.php');
-            return $searchResult;
+            $_SESSION['search'] = $searchResult;
+            $_SESSION['zoekterm'] = $this->m_sZoekterm;
         } else if($this->m_sZoekSelect = 'person'){
             echo "You selected Person";
         } else if($this->m_sZoekSelect = 'topic'){
             echo "You selected Topic";
-        }
+        }*/
     }
 
 }
