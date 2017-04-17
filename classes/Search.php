@@ -28,14 +28,16 @@ class Search{
 
     public function Zoeken(){
         $conn = Db::getInstance();
-        $statement = $conn->prepare("SELECT * FROM `posts` WHERE `description` LIKE '%(:zoekterm)%'");
+        $statement = $conn->prepare("SELECT * FROM `posts` WHERE `description` LIKE CONCAT('%', :zoekterm ,'%')");
         $statement->bindValue(":zoekterm", $this->m_sZoekterm);
         $statement->execute();
         $searchResult = $statement->fetch(PDO::FETCH_ASSOC);
-        $_SESSION['search'] = $searchResult;
+        $_SESSION['search'] = $searchResult['description'];
         $_SESSION['zoekterm'] = $this->m_sZoekterm;
         $_SESSION['zoekselect'] = $this->m_sZoekSelect;
-
+        $arr = $statement->errorInfo();
+        print_r($arr);
+        print_r($searchResult);
 
         /*if($this->m_sZoekSelect = 'post'){
             $statement = $conn->prepare("SELECT * FROM `posts` WHERE `description` LIKE '%(:zoekterm)%'");

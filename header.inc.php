@@ -4,13 +4,16 @@
         include_once("classes/" . $class . ".php");
     });
 
-    if(!empty($_GET)){
-        try{
+    try{
+        if(!empty($_GET)){
             $search = new Search();
             $search->Zoekterm = $_GET['search'];
             $search->ZoekSelect = $_GET['search-select'];
             $search->Zoeken();
-        }catch(exception $e){}
+        }
+    }
+    catch(exception $e){
+        $error = $e->getMessage();
     }
 ?>
 
