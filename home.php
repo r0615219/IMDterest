@@ -1,9 +1,9 @@
 <?php
 
     session_start();
-spl_autoload_register(function($class){
-    include_once("classes/" . $class . ".php");
-});
+    spl_autoload_register(function($class){
+        include_once("classes/" . $class . ".php");
+    });
     //stuur de gebruiker weg als ze niet zijn ingelogd
     if( isset( $_SESSION['user'] ) ){
     }
@@ -11,11 +11,15 @@ spl_autoload_register(function($class){
         header('Location: signin.php');
     }
 
+<<<<<<< HEAD
 
 
 
 //include_once('simple_html_dom.php');
 
+=======
+//include_once('simple_html_dom.php');
+>>>>>>> 7f2477beb74c2ceb12e28642f40e4f044ba5c177
 //TOPICS
 try {
     //1. kijken of gebruiker nog geen topics heeft
@@ -165,7 +169,11 @@ if (isset($_POST['linkSubmit'])) {
     <?php
 
     if(isset($_SESSION['topics'])){
-        include_once('userHome.php');
+        if(isset($_GET['searchForm'])){
+            echo 'You searched something';
+        }else{
+            include_once('userHome.php');
+        }
     }
     else{
         include_once('chooseTopics.php');

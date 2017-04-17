@@ -1,39 +1,19 @@
-<!--<header>
-    <h1>IMDterest</h1>
+<?php
 
-    <div class="profile">
-        <a href="settings.php" class="profile_link"><img src="http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png" alt="Profile Picture" class="profilepicture"></a>
-        <a href="logout.php" class="logout">Log out</a>
-    </div>
-</header>-->
+    include_once 'classes/Search.php';
 
-<!--<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">IMDterest</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right" method="post">
-                <div class="form-group">
-                    <input type="text" placeholder="Username" name="username" id="username" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" name="password" id="password" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-success">Sign in</button>
-            </form>
-        </div>
-    </div>
-</nav>-->
+    if(!empty($_GET)){
+        try{
+            $search = new Search();
+            $search->Zoekterm = $_GET['search'];
+            $search->ZoekSelect = $_GET['search-select'];
+            //echo "<script type='text/javascript'>alert('$search->Zoekterm');</script>";
+            $search->Zoeken();
+        }catch(exception $e){}
+    }
+?>
 
-
-<nav class="navbar navbar-inverse navbar-fixed-top"> //navbar-default
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -66,9 +46,14 @@
                     </ul>
                 </li>
             </ul>
-            <form class="navbar-form navbar-left">
+            <form class="navbar-form navbar-left" method="get" name="searchForm" id="searchForm" action="search-result.php">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Search" id="search" name="search">
+                    <select class="form-control" name="search-select">
+                        <option value="person">Person</option>
+                        <option value="post">Post</option>
+                        <option value="topic">Topic</option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>

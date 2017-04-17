@@ -20,12 +20,12 @@ if(isset( $_SESSION['posts'])){?>
             <div class="userPostTopic">
                 <h3>
                     <a href="#">
-                    <?php
-                    $topic = new Topics();
-                    $topic->id = $p->topics_ID;
-                    $topic->getTopic();
-                    echo $topic->name;
-                    ?>
+                        <?php
+                        $topic = new Topics();
+                        $topic->id = $p->topics_ID;
+                        $topic->getTopic();
+                        echo $topic->name;
+                        ?>
                     </a>
                 </h3>
             </div>
@@ -106,17 +106,17 @@ if(isset( $_SESSION['posts'])){?>
                         <form action="" method="post" enctype="multipart/form-data">
                             <input type="file" name="img" />
 
-                            <textarea rows="3" name="imgDescription" id="imgDescription" placeholder="Geef een beschrijving van je post"></textarea>
+                            <textarea rows="3" name="imgDescription" id="imgDescription" placeholder="Add a description..."></textarea>
 
                             <label for="imgTopic">Topic</label>
                             <select name="imgTopic" id="imgTopic">
-                                <option value="none">Kies een topic</option>
+                                <option value="none">Choose a topic</option>
                                 <?php foreach ($_SESSION['topics'] as $t):?>
                                     <option value="<?php echo $t->id; ?>"><?php echo $t->name; ?></option>
                                 <?php endforeach; ?>
                             </select>
 
-                            <input type="submit" name="imgSubmit" class="btn btn-default submitBtn" value="Opslaan" />
+                            <input type="submit" name="imgSubmit" class="btn btn-default submitBtn" value="Save" />
 
 
                         </form>
@@ -143,17 +143,17 @@ if(isset( $_SESSION['posts'])){?>
 
                             <input type="url" name="link" placeholder="http://"/>
 
-                            <textarea rows="3" name="linkDescription" placeholder="Geef een beschrijving van je post"></textarea>
+                            <textarea rows="3" name="linkDescription" placeholder="Add a description"></textarea>
 
                             <label for="linkTopic">Topic</label>
                             <select name="linkTopic" id="linkTopic">
-                                <option value="none">Kies een topic</option>
+                                <option value="none">Choose a topic</option>
                                 <?php foreach ($_SESSION['topics'] as $t):?>
                                     <option value="<?php echo $t->id; ?>"><?php echo $t->name; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div class="modal-footer">
-                                <input type="submit" name="linkSubmit" class="btn btn-default submitBtn" value="Opslaan" />
+                                <input type="submit" name="linkSubmit" class="btn btn-default submitBtn" value="Save" />
                             </div>
                         </form>
 
