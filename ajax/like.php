@@ -18,14 +18,14 @@ $likes = $likecheckstatement->fetch(PDO::FETCH_OBJ);
     $addlike->bindValue(":userid", (int)$userid);
     $addlike->bindValue(":postid", (int)$postid);
     $addlike->execute();
-    $liked = true;
+    $liked = 1;
   };
   if (!empty($likes)) {
     $removelikes = $conn->prepare("DELETE FROM `likes` WHERE UserId = :userid AND PostId = :postid");
     $removelikes->bindValue(":userid", (int)$userid);
     $removelikes->bindValue(":postid", (int)$postid);
     $removelikes->execute();
-    $liked = false;
+    $liked = 0;
   };
   echo $liked;
 ?>

@@ -12,16 +12,14 @@ $(document).ready(function(){
     data:{"id" : id},
     datatype:"html"
 
-})
-    .done(function(response) {
-      console.log("hi")
-      console.log(response)
-      console.log("So confused")
-      if (response == true) {
-      $("img", this).attr("src", "./images/icons/heart_filled.svg");
-    }
-
     })
+    .done(function(liked) {
+      console.log("hi")
+      console.log(liked)
+      console.log("So confused")
   });
+  });
+
+  // $("img", this).attr("src", "./images/icons/heart_filled.svg");
 //End document.ready
 });
