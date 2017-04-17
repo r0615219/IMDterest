@@ -61,3 +61,27 @@
     width: 30px;
     height: 30px;
 }
+
+
+.postId{
+
+}
+
+
+.likeAmount p{
+  text-align: center;
+}
+
+.loadMore{
+    padding: 0 25%;
+    margin-top: 20px;
+}
+
+.loadMore button{
+    background: none;
+    border: 2px solid #419641;
+    height: 40px;
+    color: #419641;
+    min-width: 120px;
+    width: 10%;
+}
