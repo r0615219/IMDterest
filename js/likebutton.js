@@ -6,9 +6,6 @@ $(document).ready(function(){
   $(".likeBtn").click(function(){
     //checking if already liked or not -> 1) need userID 2) need postID = PHP check
     var id = $(this).parents(".likes").siblings(".userInfo").children(".postId").html().substring(1);
-    console.log(id)
-    console.log("hi")
-
   $.ajax({
     type:"POST",
     url:"./ajax/like.php",
