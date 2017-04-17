@@ -1,89 +1,15 @@
 <!-- HIER KOMEN ALLE POSTS DAT TE MAKEN HEBBEN MET DE TOPICS GEKOZEN DOOR DE USER -->
 
-        <!--<h1 class="h1">Your topics</h1>
-        <div style="width: 100%; display: flex;">
-            <?php
-            //7. session uitlezen in doc = voorlopige test of het werkt
-            foreach ($_SESSION['topics'] as $t):?>
-                <div class="userTopic" style="background-image: url(<?php echo $t->image; ?>);">
-                    <h2><?php echo $t->name; ?></h2>
-                </div>
-            <?php endforeach; ?>
-        </div>
-        -->
 
-<?php
-if(isset( $_SESSION['posts'])){?>
-<?php foreach ($_SESSION['posts'] as $p):?>
-        <div class="userPost">
-            <div class="userPostImg" style="background-image: url(images/uploads/postImages/<?php echo $p->image; ?>);"></div>
-            <div class="userPostTopic">
-                <h3>
-                    <a href="#">
-                        <?php
-                        $topic = new Topics();
-                        $topic->id = $p->topics_ID;
-                        $topic->getTopic();
-                        echo $topic->name;
-                        ?>
-                    </a>
-                </h3>
-            </div>
-            <div class="userPostDescription"><h4><?php echo $p->description; ?></h4></div>
-            <hr>
-            <div class="userPostInfo">
-
-                <div class="userInfo">
-                    <a href="#">
-                        <img class="media-object profile-pic" src="images/uploads/userImages/<?php
-                        $user = new User;
-                        $user->id = $p->user_ID;
-                        $user->getUserInfo();
-                        echo $user->Image;
-                        ?>" alt="post">
-                    </a>
-                    <a href="#">
-                        <?php
-                        echo $user->Firstname . " " . $user->Lastname;
-                        ?>
-                    </a>
-
-                    <div class="postId"><?php
-                     echo "#".$p->id;
-                     ?></div>
-                </div>
-
-                <div class="likes">
-                  <div class="likeBtn">
-                    <a href="#">
-                      <?php
-                      $post = new Post;
-                      $postid = $p->id;
-                      $liked=$post->checkLiked($postid);
-                      if ($liked==false) {
-                      echo '<img class="media-object" src="images/icons/heart.svg" alt="heart">';
-                    }
-                    else {
-                      echo '<img class="media-object" src="images/icons/heart_filled.svg" alt="heart">';
-                    }
+<div id="results"></div>
 
 
 
 
-?>
-                    </a>
-                  </div>
-                  <div class="likeAmount">
-                    <?php
-                    $postid = $p->id;
-                    $post->countlikes($postid);
-                    ?>
-                  </div>
-                </div>
-            </div>
-        </div>
-    <?php endforeach; }?>
 
+<div class="loadMore">
+    <button class="loadMoreBtn">Load 20 more</button>
+</div>
 
         <div class="add">
             <button type="button" class="btn btn-success addBtn" id="addBtn">+</button>
@@ -169,55 +95,5 @@ if(isset( $_SESSION['posts'])){?>
 
 
 <script>
-    $(document).ready(function(){
-        var addBtn = $('#addBtn');
-        var imageBtn = $('#imageBtn');
-        var linkBtn = $('#linkBtn');
-        var open = false;
-        var submitBtn = $(".submitBtn");
-        imageBtn.hide();
-        linkBtn.hide();
 
-
-        addBtn.on('click', function(){
-            if (open) {
-
-                imageBtn.animate({
-                    marginBottom: "0px"
-                }, 200);
-                linkBtn.animate({
-                    marginRight: "0px"
-                }, 200);
-                imageBtn.hide(0);
-                linkBtn.hide(0);
-            }
-            else {
-                imageBtn.show(0);
-                linkBtn.show(0);
-                imageBtn.animate({
-                    marginBottom: "100px"
-                }, 200);
-                linkBtn.animate({
-                    marginRight: "100px"
-                }, 200);
-
-            }
-
-            open = !open;
-        });
-
-        submitBtn.on('click', function(){
-            imageBtn.animate({
-                marginBottom: "0px"
-            }, 200);
-            linkBtn.animate({
-                marginRight: "0px"
-            }, 200);
-            imageBtn.hide(0);
-            linkBtn.hide(0);
-
-            open = !open;
-        });
-
-    });
 </script>
