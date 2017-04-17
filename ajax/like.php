@@ -13,5 +13,5 @@ $likecheckstatement->bindValue(":userid", (int)$userid);
 $likecheckstatement->bindValue(":postid", (int)$postid);
 $likecheckstatement->execute();
 $likes = $likecheckstatement->fetch(PDO::FETCH_OBJ);
-var_dump($likes)
+
 ?>

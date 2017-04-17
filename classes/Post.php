@@ -80,7 +80,7 @@ class Post{
       $likecheckstatement = $conn->prepare("SELECT * FROM `likes` WHERE UserId = :userid AND PostId = :postid");
       $likecheckstatement->bindValue(":userid", $_SESSION['userid']);
       $likecheckstatement->bindValue(":postid", $PostId);
-      $a=$likecheckstatement->execute();
+      $likecheckstatement->execute();
       $likes = $likecheckstatement->fetch(PDO::FETCH_ASSOC);
       if (empty($likes)) {
         return false;
@@ -88,6 +88,15 @@ class Post{
       else {
         return true;
       }
+    }
+
+    public function countlikes($PostId){
+      $conn = Db::getInstance();
+      $likecheckstatement = $conn->prepare("SELECT * FROM `likes` WHERE PostId = :postid");
+      $likecheckstatement->bindValue(":postid", $PostId);
+      $likecheckstatement->execute();
+      $rows = $likecheckstatement->rowCount();
+      echo $rows;
     }
 
 }

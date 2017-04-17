@@ -74,7 +74,10 @@ if(isset( $_SESSION['posts'])){?>
                     </a>
                   </div>
                   <div class="likeAmount">
-                    <p>0</p>
+                    <?php
+                    $postid = $p->id;
+                    $post->countlikes($postid);
+                    ?>
                   </div>
                 </div>
             </div>
