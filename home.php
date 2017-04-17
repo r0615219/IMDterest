@@ -68,7 +68,7 @@ try {
         $post->topics_ID = (int)$topicsId;
 
         if (isset($_FILES['img'])) {
-            $bestandsnaam = $_FILES['img']['name'];
+            $bestandsnaam = strtolower($_FILES['img']['name']);
 
             if (strpos($bestandsnaam, ".png")) {
                 move_uploaded_file($_FILES["img"]["tmp_name"],
@@ -126,6 +126,7 @@ if (isset($_POST['linkSubmit'])) {
 
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/add-btn.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/npm.js"></script>
 <script src="js/likebutton.js"></script>
