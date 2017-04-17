@@ -35,9 +35,6 @@ class Search{
         $_SESSION['search'] = $searchResult['description'];
         $_SESSION['zoekterm'] = $this->m_sZoekterm;
         $_SESSION['zoekselect'] = $this->m_sZoekSelect;
-        $arr = $statement->errorInfo();
-        print_r($arr);
-        print_r($searchResult);
 
         /*if($this->m_sZoekSelect = 'post'){
             $statement = $conn->prepare("SELECT * FROM `posts` WHERE `description` LIKE '%(:zoekterm)%'");
