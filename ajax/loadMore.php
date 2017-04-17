@@ -3,6 +3,7 @@ session_start();
 spl_autoload_register(function($class){
     include_once("../classes/" . $class . ".php");
 });
+include_once('../emptyStates.php');
 //sanitize post value
 $page_number = filter_var($_POST["page"], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH);
 
@@ -27,71 +28,83 @@ $statement->bindValue(":email", $_SESSION['user']);
 $statement->execute(); //Execute prepared Query
 
 //output results from database
-
-while($res = $statement->fetch(PDO::FETCH_OBJ)) { //fetch values
-ob_start(); ?>
-<div class="userPost">
-    <div class="userPostImg" style="background-image: url(images/uploads/postImages/<?php echo $res->image; ?>);"></div>
-    <div class="userPostTopic">
-        <h3>
-            <a href="#">
-                <?php
-                $topic = new Topics();
-                $topic->id = $res->topics_ID;
-                $topic->getTopic();
-                echo $topic->name;
-                ?>
-            </a>
-        </h3>
-    </div>
-    <div class="userPostDescription"><h4><?php echo $res->description; ?></h4></div>
-    <hr>
-    <div class="userPostInfo">
-
-        <div class="userInfo">
-            <a href="#">
-                <img class="media-object profile-pic" src="images/uploads/userImages/<?php
-                $user = new User;
-                $user->id = $res->user_ID;
-                $user->getUserInfo();
-                echo $user->Image;
-                ?>" alt="post">
-            </a>
-            <a href="#">
-                <?php
-                echo $user->Firstname . " " . $user->Lastname;
-                ?>
-            </a>
-
-            <div class="postId"><?php
-                echo "#".$res->id;
-                ?></div>
-        </div>
-
-        <div class="likes">
-            <div class="likeBtn">
-                <a href="#">
-                    <?php
-                    $post = new Post;
-                    $postid = $res->id;
-                    $liked=$post->checkLiked($postid);
-                    if ($liked==false) {
-                        echo '<img class="media-object" src="images/icons/heart.svg" alt="heart">';
-                    }
-                    else {
-                        echo '<img class="media-object" src="images/icons/heart_filled.svg" alt="heart">';
-                    }
-                    ?>
-                </a>
+$rows = $statement->rowCount();
+if($rows > 0){
+    $_SESSION['posts'] = true;
+    while($res = $statement->fetch(PDO::FETCH_OBJ)) { //fetch values
+        ob_start(); ?>
+        <div class="userPost">
+            <div class="userPostImg" style="background-image: url(images/uploads/postImages/<?php echo $res->image; ?>);"></div>
+            <div class="userPostTopic">
+                <h3>
+                    <a href="#">
+                        <?php
+                        $topic = new Topics();
+                        $topic->id = $res->topics_ID;
+                        $topic->getTopic();
+                        echo $topic->name;
+                        ?>
+                    </a>
+                </h3>
             </div>
-            <div class="likeAmount">
-                <?php
-                $postid = $res->id;
-                $post->countlikes($postid);
-                ?>
+            <div class="userPostDescription"><h4><?php echo $res->description; ?></h4></div>
+            <hr>
+            <div class="userPostInfo">
+
+                <div class="userInfo">
+                    <a href="#">
+                        <img class="media-object profile-pic" src="images/uploads/userImages/<?php
+                        $user = new User;
+                        $user->id = $res->user_ID;
+                        $user->getUserInfo();
+                        echo $user->Image;
+                        ?>" alt="post">
+                    </a>
+                    <a href="#">
+                        <?php
+                        echo $user->Firstname . " " . $user->Lastname;
+                        ?>
+                    </a>
+
+                    <div class="postId"><?php
+                        echo "#".$res->id;
+                        ?></div>
+                </div>
+
+                <div class="likes">
+                    <div class="likeBtn">
+                        <a href="#">
+                            <?php
+                            $post = new Post;
+                            $postid = $res->id;
+                            $liked=$post->checkLiked($postid);
+                            if ($liked==false) {
+                                echo '<img class="media-object" src="images/icons/heart.svg" alt="heart">';
+                            }
+                            else {
+                                echo '<img class="media-object" src="images/icons/heart_filled.svg" alt="heart">';
+                            }
+                            ?>
+                        </a>
+                    </div>
+                    <div class="likeAmount">
+                        <?php
+                        $postid = $res->id;
+                        $post->countlikes($postid);
+                        ?>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<?php echo ob_get_clean();
-} ?>
+        <?php echo ob_get_clean();
+    }
+}
+
+else{
+    $_SESSION['posts'] = false;
+    shuffle($emptyStates);
+    echo '<h1 class="emptyState">' . $emptyStates[0] . '</h1>'."\n".'<h1 class="emptyStateTxt">Oops, no posts found!</h1>';
+}
+
+
+ ?>

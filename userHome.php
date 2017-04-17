@@ -1,15 +1,15 @@
-<!-- HIER KOMEN ALLE POSTS DAT TE MAKEN HEBBEN MET DE TOPICS GEKOZEN DOOR DE USER -->
-
-
 <div id="results"></div>
 
+<?php
+if($_SESSION['posts']){
+    ob_start(); ?>
 
-
-
-
-<div class="loadMore">
-    <button class="loadMoreBtn">Load 20 more</button>
-</div>
+    <div class="loadMore">
+        <button class="loadMoreBtn">Load 20 more</button>
+    </div>
+    <?php echo ob_get_clean();
+}
+?>
 
         <div class="add">
             <button type="button" class="btn btn-success addBtn" id="addBtn">+</button>
