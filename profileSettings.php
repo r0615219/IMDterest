@@ -32,7 +32,7 @@ if(!empty($_POST)){
     
         if (!empty($_FILES['image']['name'])) {
 
-            $bestandsnaam = $_FILES['image']['name'];
+            $bestandsnaam = strtolower($_FILES['image']['name']);
             
             if (strpos($bestandsnaam, ".png")){
                         move_uploaded_file($_FILES["image"]["tmp_name"],
