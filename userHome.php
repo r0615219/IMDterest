@@ -1,15 +1,11 @@
 <div id="results"></div>
 
-<?php
-if($_SESSION['posts']){
-    ob_start(); ?>
+<?php if($_SESSION['posts']){ ob_start(); ?>
 
     <div class="loadMore">
-        <button class="loadMoreBtn">Load 20 more</button>
+        <button class="loadMoreBtn btn btn-primary">Load 20 more</button>
     </div>
-    <?php echo ob_get_clean();
-}
-?>
+<?php echo ob_get_clean(); } ?>
 
         <div class="add">
             <button type="button" class="btn btn-success addBtn" id="addBtn">+</button>
@@ -33,9 +29,14 @@ if($_SESSION['posts']){
                     <div class="modal-body">
 
                         <form action="" method="post" enctype="multipart/form-data">
+
                             <input type="file" name="img" />
 
-                            <textarea rows="3" name="imgDescription" id="imgDescription" placeholder="Add a description..."></textarea>
+                            <hr>
+
+                            <input type="text" id="title" name="title" placeholder=" Title" />
+
+                            <textarea rows="3" name="imgDescription" id="imgDescription" placeholder=" Add a description..."></textarea>
 
                             <label for="imgTopic">Topic</label>
                             <select name="imgTopic" id="imgTopic">
@@ -45,7 +46,9 @@ if($_SESSION['posts']){
                                 <?php endforeach; ?>
                             </select>
 
-                            <input type="submit" name="imgSubmit" class="btn btn-default submitBtn" value="Save" />
+                            <div class="modal-footer">
+                                <input type="submit" name="imgSubmit" class="btn btn-default submitBtn" value="Save" />
+                            </div>
 
 
                         </form>
@@ -72,7 +75,11 @@ if($_SESSION['posts']){
 
                             <input type="url" name="link" placeholder="http://"/>
 
-                            <textarea rows="3" name="linkDescription" placeholder="Add a description"></textarea>
+                            <hr>
+
+                            <input type="text" name="title" id="title" placeholder=" Title">
+
+                            <textarea rows="3" name="linkDescription" placeholder=" Add a description"></textarea>
 
                             <label for="linkTopic">Topic</label>
                             <select name="linkTopic" id="linkTopic">
@@ -81,6 +88,7 @@ if($_SESSION['posts']){
                                     <option value="<?php echo $t->id; ?>"><?php echo $t->name; ?></option>
                                 <?php endforeach; ?>
                             </select>
+
                             <div class="modal-footer">
                                 <input type="submit" name="linkSubmit" class="btn btn-default submitBtn" value="Save" />
                             </div>
