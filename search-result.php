@@ -69,17 +69,17 @@
         <?php foreach ($_SESSION['search'] as $searchItem): ?>
 
             <div class="userPost">
-                <div class="userPostImg" style="background-image: url(images/uploads/postImages/<?php echo $searchItem['image']; ?>);"></div>
+                <div class="userPostImg" style="background-image: url(images/uploads/postImages/<?php echo $searchItem['image']; ?>);">
+                    <button class="btn btn-link btn-topic-img"><?php
+                        $topic = new Topics();
+                        $topic->id = $searchItem['topics_ID'];
+                        $topic->getTopic();
+                        echo $topic->name;
+                        ?></button>
+                </div>
                 <div class="userPostTopic">
                     <h3>
-                        <a href="#">
-                            <?php
-                            $topic = new Topics();
-                            $topic->id = $searchItem['topics_ID'];
-                            $topic->getTopic();
-                            echo $topic->name;
-                            ?>
-                        </a>
+                        <a href="#"><?php echo $searchItem['title'] ?></a>
                     </h3>
                 </div>
                 <div class="userPostDescription"><h4><?php echo $searchItem['description']; ?></h4></div>

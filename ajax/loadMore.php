@@ -34,17 +34,17 @@ if($rows > 0){
     while($res = $statement->fetch(PDO::FETCH_OBJ)) { //fetch values
         ob_start(); ?>
         <div class="userPost">
-            <div class="userPostImg" style="background-image: url(images/uploads/postImages/<?php echo $res->image; ?>);"></div>
+            <div class="userPostImg" style="background-image: url(images/uploads/postImages/<?php echo $res->image; ?>);">
+                <button class="btn btn-link btn-topic-img"><?php
+                    $topic = new Topics();
+                    $topic->id = $res->topics_ID;
+                    $topic->getTopic();
+                    echo $topic->name;
+                    ?></button>
+            </div>
             <div class="userPostTopic">
                 <h3>
-                    <a href="#">
-                        <?php
-                        $topic = new Topics();
-                        $topic->id = $res->topics_ID;
-                        $topic->getTopic();
-                        echo $topic->name;
-                        ?>
-                    </a>
+                    <a href="#"><?php echo $res->title; ?></a>
                 </h3>
             </div>
             <div class="userPostDescription"><h4><?php echo $res->description; ?></h4></div>
@@ -61,14 +61,10 @@ if($rows > 0){
                         ?>" alt="post">
                     </a>
                     <a href="#">
-                        <?php
-                        echo $user->Firstname . " " . $user->Lastname;
-                        ?>
+                        <?php echo $user->Firstname . " " . $user->Lastname; ?>
                     </a>
 
-                    <div class="postId"><?php
-                        echo "#".$res->id;
-                        ?></div>
+                    <div class="postId"><?php //echo " #".$res->id; ?></div>
                 </div>
 
                 <div class="likes">

@@ -70,6 +70,12 @@
     margin-right: 10px;
 }
 
+.likes{
+    display: flex;
+    flex-direction: row;
+    width: 50px;
+}
+
 .likeBtn{
     display: flex;
     width: 30px;
@@ -86,8 +92,9 @@
 }
 
 
-.likeAmount p{
-  text-align: center;
+.likeAmount {
+    text-align: center;
+    padding: 5px;
 }
 
 .loadMore{
@@ -95,11 +102,26 @@
     margin-top: 20px;
 }
 
-.loadMore button{
+.btn-topic-img, .btn-topic-img:visited{
+    background-color: rgba( 0, 0, 0, 0.6);
+    border-radius: 15px;
+}
+
+.btn-topic-img:hover{
+    background-color: rgba( 0, 0, 0, 0.9);
+    border-radius: 15px;
+}
+
+.btn-topic-img:active{
+    background-color: rgba( 0, 0, 0, 1);
+    border-radius: 15px;
+}
+
+/*.loadMore button{
     background: none;
     border: 2px solid #419641;
     height: 40px;
     color: #419641;
     min-width: 120px;
     width: 10%;
-}
+}*/
