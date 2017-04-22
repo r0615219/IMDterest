@@ -1,11 +1,16 @@
+<?php include_once('emptyStates.php'); ?>
 <div id="results"></div>
 
-<?php if($_SESSION['posts']){ ob_start(); ?>
+<?php if(isset($_SESSION['posts']) && $_SESSION['posts'] == true){ ob_start(); ?>
 
     <div class="loadMore">
         <button class="loadMoreBtn btn btn-primary">Load 20 more</button>
     </div>
-<?php echo ob_get_clean(); } ?>
+<?php echo ob_get_clean(); }
+else{
+    shuffle($emptyStates);
+    echo '<h1 class="emptyState">' . $emptyStates[0] . '</h1>'."\n".'<h1 class="emptyStateTxt">Oops, no posts found!</h1>';
+}?>
 
         <div class="add">
             <button type="button" class="btn btn-success addBtn" id="addBtn">+</button>
