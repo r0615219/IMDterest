@@ -67,6 +67,7 @@ try {
         $post = new Post;
         $post->title = $title;
         $post->description = $description;
+        $post->uploadtime = time(); //timestamp
         $post->topics_ID = (int)$topicsId;
 
         if (isset($_FILES['img'])) {
