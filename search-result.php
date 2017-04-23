@@ -76,7 +76,6 @@
                         $topic->getTopic();
                         echo $topic->name;
                         ?></button>
-<<<<<<< HEAD
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <span class="caret"></span>
@@ -85,11 +84,13 @@
                             <li><a href="#">Report post</a></li>
                             <li><a href="#">Unfollow</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Delete</a></li> <!--via ajax post verwijderen + kijken of post van user is-->
+                            <?php if($searchItem['user_ID'] == $_SESSION['userid']): ?>
+
+                                <li><a href="#">Delete</a></li> <!--via ajax post verwijderen + kijken of post van user is-->
+
+                            <?php endif; ?>
                         </ul>
                     </div>
-=======
->>>>>>> efad35ae682671ee9c36edddfc6a0ed11eff934a
                 </div>
                 <div class="userPostTopic">
                     <h3>
