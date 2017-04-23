@@ -50,6 +50,16 @@
     margin-top: 180px;
     display: flex;
 }
+.userPostImg{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.userPostImg .dropdown .dropdown-menu{
+    top: 15px;
+    left: -125px;
+}
 
 .userPostInfo{
     display: flex;
@@ -87,11 +97,6 @@
     height: 30px;
 }
 
-.postId{
-
-}
-
-
 .likeAmount {
     text-align: center;
     padding: 5px;
@@ -103,25 +108,20 @@
 }
 
 .btn-topic-img, .btn-topic-img:visited{
-    background-color: rgba( 0, 0, 0, 0.6);
-    border-radius: 15px;
+    background-color: rgba( 255, 255, 255, 0.5);
+    border-radius: 5px;
+    height: 35px;
+    text-decoration: none;
 }
 
 .btn-topic-img:hover{
-    background-color: rgba( 0, 0, 0, 0.9);
-    border-radius: 15px;
+    background-color: rgba( 255, 255, 255, 0.7);
+    border-radius: 5px;
+    text-decoration: none;
 }
 
 .btn-topic-img:active{
-    background-color: rgba( 0, 0, 0, 1);
-    border-radius: 15px;
+    background-color: rgba( 255, 255, 255, 0.5);
+    border-radius: 5px;
+    text-decoration: none;
 }
-
-/*.loadMore button{
-    background: none;
-    border: 2px solid #419641;
-    height: 40px;
-    color: #419641;
-    min-width: 120px;
-    width: 10%;
-}*/
