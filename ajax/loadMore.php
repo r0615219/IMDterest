@@ -49,7 +49,11 @@ if($rows > 0){
                         <li><a href="#">Report post</a></li>
                         <li><a href="#">Unfollow</a></li>
                         <li role="separator" class="divider"></li>
+                        <?php if($res->user_ID == $_SESSION['id']): ?>
+
                         <li><a href="#">Delete</a></li> <!--via ajax post verwijderen + kijken of post van user is-->
+
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
