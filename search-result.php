@@ -76,6 +76,17 @@
                         $topic->getTopic();
                         echo $topic->name;
                         ?></button>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">Report post</a></li>
+                            <li><a href="#">Unfollow</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Delete</a></li> <!--via ajax post verwijderen + kijken of post van user is-->
+                        </ul>
+                    </div>
                 </div>
                 <div class="userPostTopic">
                     <h3>
