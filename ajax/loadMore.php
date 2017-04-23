@@ -134,7 +134,7 @@ echo '<script src="js/likebutton.js"></script>'
 
                 <form action="" method="post" enctype="multipart/form-data">
 
-                    <h2><?php echo $res->title; ?></h2>
+                    <h2><?php echo $postid; ?></h2>
 
                     <button class="btn btn-default btn-danger" >Delete</button>
                     <button class="btn btn-default" data-dismiss="modal" >Cancel</button>
