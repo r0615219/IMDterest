@@ -76,6 +76,7 @@
                         $topic->getTopic();
                         echo $topic->name;
                         ?></button>
+<<<<<<< HEAD
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <span class="caret"></span>
@@ -87,6 +88,8 @@
                             <li><a href="#">Delete</a></li> <!--via ajax post verwijderen + kijken of post van user is-->
                         </ul>
                     </div>
+=======
+>>>>>>> efad35ae682671ee9c36edddfc6a0ed11eff934a
                 </div>
                 <div class="userPostTopic">
                     <h3>
