@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
+-- Gegenereerd op: 19 apr 2017 om 16:13
+=======
 -- Gegenereerd op: 23 apr 2017 om 11:25
+>>>>>>> efad35ae682671ee9c36edddfc6a0ed11eff934a
 -- Serverversie: 10.1.21-MariaDB
 -- PHP-versie: 5.6.30
 
@@ -63,6 +67,24 @@ CREATE TABLE `posts` (
 -- Gegevens worden geëxporteerd voor tabel `posts`
 --
 
+<<<<<<< HEAD
+INSERT INTO `posts` (`id`, `user_ID`, `title`, `image`, `description`, `link`, `topics_ID`) VALUES
+(20, 21, 'Koe', '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe zei de koe!', '', 3),
+(21, 21, 'Koe', 'sXjhX44-cow-backgrounds.jpg', 'Boeien, zeiden de koeien', '', 3),
+(22, 21, 'Koe', '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe, zei weer de koe', '', 4),
+(23, 27, 'aaa', 'rage.png', 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '', 7),
+(24, 27, 'facebook', 'https://www.facebook.com/', 'Want facebook is toch wel kunst hoor', 'https://www.facebook.com/', 7),
+(25, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7),
+(26, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7),
+(27, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7),
+(28, 28, 'selfie', 'Selfie_Robbe-01.png', 'Selfie robbe', '', 7),
+(29, 28, 'magazine', 'magazine_graph.png', 'Magazine opdracht design', '', 4),
+(30, 28, 'foto', 'tunnel.jpg', 'tunnel', '', 5),
+(31, 28, 'Sparkles', 'openVLD.png', 'vuurtje op een stokje', '', 3),
+(34, 28, '3D', '3d.png', 'zakmes 3d object challenge design', '', 5),
+(35, 28, 'Drawing', 'Room2.0.JPG', 'room perspective challenge design atelier', '', 6),
+(36, 28, 'Variatio', 'variatio.jpg', 'fotografie variatio', '', 7);
+=======
 INSERT INTO `posts` (`id`, `user_ID`, `title`, `image`, `description`, `link`, `topics_ID`, `time`) VALUES
 (20, 21, 'Koe', '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe zei de koe!', '', 3, 0),
 (21, 21, 'Koe', 'sXjhX44-cow-backgrounds.jpg', 'Boeien, zeiden de koeien', '', 3, 0),
@@ -83,6 +105,7 @@ INSERT INTO `posts` (`id`, `user_ID`, `title`, `image`, `description`, `link`, `
 (38, 19, 'Fladder', 'lolz engel.jpg', 'lolz hihi', '', 4, 1492939048),
 (39, 19, 'Upload plz', 'Otter space.jpg', 'pls', '', 3, 1492939116),
 (40, 19, 'PLZ', 'trash.png', 'pls pretty pls', '', 4, 1492939138);
+>>>>>>> efad35ae682671ee9c36edddfc6a0ed11eff934a
 
 -- --------------------------------------------------------
 
@@ -243,7 +266,11 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
+<<<<<<< HEAD
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+=======
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+>>>>>>> efad35ae682671ee9c36edddfc6a0ed11eff934a
 --
 -- AUTO_INCREMENT voor een tabel `topics`
 --
@@ -258,7 +285,11 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `users_topics`
 --
 ALTER TABLE `users_topics`
+<<<<<<< HEAD
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+=======
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+>>>>>>> efad35ae682671ee9c36edddfc6a0ed11eff934a
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
