@@ -66,7 +66,6 @@ if($rows > 0){
             <div class="userPostDescription"><h4><?php echo $res->description; ?></h4></div>
             <hr>
             <div class="userPostInfo">
-
                 <div class="userInfo">
                     <a href="#">
                         <img class="media-object profile-pic" src="images/uploads/userImages/<?php
