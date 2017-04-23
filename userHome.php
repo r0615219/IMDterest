@@ -105,8 +105,3 @@ else{
 
             </div>
         </div>
-
-
-<script>
-
-</script>

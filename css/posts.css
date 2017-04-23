@@ -97,6 +97,7 @@
     height: 30px;
 }
 
+
 .likeAmount {
     text-align: center;
     padding: 5px;
@@ -106,6 +107,7 @@
     padding: 0 25%;
     margin-top: 20px;
 }
+
 
 .btn-topic-img, .btn-topic-img:visited{
     background-color: rgba( 255, 255, 255, 0.5);

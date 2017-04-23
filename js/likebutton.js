@@ -1,33 +1,43 @@
 $(document).ready(function(){
-  //var liked;
-
 
 //check for clicking like button
   $(".likeBtn").click(function(){
+    event.preventDefault();
     //checking if already liked or not -> 1) need userID 2) need postID = PHP check
     var id = $(this).parents(".likes").siblings(".userInfo").children(".postId").html().substring(1);
-    console.log(id)
-    console.log("hi")
-
+    var liked
+    var heart =$(this).find("img");
+    var counter=$(this).parents(".likes").find(".likeAmount");
   $.ajax({
     type:"POST",
     url:"./ajax/like.php",
-    data:{"id" : id},
-    datatype:"json"
+    data:{"id" : id,"action":"toggle"},
+    datatype:"html"
+    })
 
-  })
-    .done(function(response) {
-      console.log(response)
-       liked = true;
+  .done(function(res) {
+      if (res=="1") {
+        console.log(res)
+        $(heart).attr("src", "./images/icons/heart_filled.svg");
+      }
+      else {
+        console.log(res)
+        $(heart).attr("src", "./images/icons/heart.svg");
+      }
+
+      $.post({
+        url:"./ajax/like.php",
+        data:{"id" : id,
+              "action":"count"
+      },
+        datatype:"text",
+      })
+      .done(function(count){
+        $(counter).html(count)
+      });
 
   });
-/*
-    if (liked == true) {
-      $("img", this).attr("src", "./images/icons/heart_filled.svg");
-
-    }
-*/
-  });
+});
 
 
 //End document.ready
