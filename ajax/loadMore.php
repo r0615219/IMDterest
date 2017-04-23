@@ -46,10 +46,10 @@ if($rows > 0){
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Rapport</a></li>
-                        <li><a href="#">Delete</a></li>
+                        <li><a href="#">Report post</a></li>
+                        <li><a href="#">Unfollow</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">x x x</a></li>
+                        <li><a href="#">Delete</a></li>
                     </ul>
                 </div>
             </div>
