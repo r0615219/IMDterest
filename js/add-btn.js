@@ -61,10 +61,10 @@ $(document).ready(function(){
     function load_contents(track_page){
         $.post( 'ajax/loadMore.php', {'page': track_page}, function(data){
 
-            if(data.trim().length == 0){
+            /*if(data.trim().length == 0){
                 //display text and disable load button if nothing to load
                 $(".LoadMoreBtn").text("No more records!").prop("disabled", true);
-            }
+            }*/
 
             $("#results").append(data); //append data into #results element
 

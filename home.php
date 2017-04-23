@@ -61,10 +61,13 @@ catch (Exception $e) {
 try {
     if (isset($_POST['imgSubmit'])) {
 
+        $title = $_POST['title'];
         $topicsId = $_POST['imgTopic'];
         $description = $_POST['imgDescription'];
         $post = new Post;
+        $post->title = $title;
         $post->description = $description;
+        $post->uploadtime = time(); //timestamp
         $post->topics_ID = (int)$topicsId;
 
         if (isset($_FILES['img'])) {
@@ -114,6 +117,7 @@ if (isset($_POST['linkSubmit'])) {
     $post->topics_ID = (int)$topicsId;
     $post->link = $link;
     $post->image = $link;
+    $post->title = $title;
     $post ->savePost();
 
     $user = new User;

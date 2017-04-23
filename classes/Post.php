@@ -2,15 +2,21 @@
 
 class Post{
     private $m_iID;
+    private $m_sTitle;
     private $m_sImage;
     private $m_sDescription;
     private $m_sLink;
     private $m_iTopicsId;
+    private $m_iUploadtime;
 
     public function __set($p_sProperty, $p_vValue){
         switch ( $p_sProperty ){
             case 'id':
                 $this->m_iID = $p_vValue;
+                break;
+
+            case 'title':
+                $this->m_sTitle = $p_vValue;
                 break;
 
             case 'image':
@@ -28,6 +34,10 @@ class Post{
             case 'topics_ID':
                 $this->m_iTopicsId = $p_vValue;
                 break;
+            
+            case 'uploadtime':
+                $this->m_iUploadtime = $p_vValue;
+                break;
         }
     }
 
@@ -35,6 +45,10 @@ class Post{
         switch ( $p_sProperty ){
             case 'id':
                 return $this->m_iID;
+                break;
+
+            case 'title':
+                return $this->m_sTitle;
                 break;
 
             case 'image':
@@ -52,20 +66,25 @@ class Post{
             case 'topics_ID':
                 return $this->m_iTopicsId;
                 break;
+                
+            case 'uploadtime':
+                return $this->m_iUploadtime;
+                break;
         }
     }
 
     public function savePost(){
         try {
             $conn = Db::getInstance();
-            $statement = $conn->prepare("INSERT INTO `posts` (`user_ID`, `image`, `description`, `link`, `topics_ID`) VALUES (:user_ID, :image, :description, :link, :topics_ID);");
+            $statement = $conn->prepare("INSERT INTO `posts`(`user_ID`, `title`, `image`, `description`, `link`, `topics_ID`, `time`) VALUES (:user_ID, :title, :image, :description, :link, :topics_ID, :time);");
             $statement->bindValue(":user_ID", $_SESSION['userid']);
+            $statement->bindValue(":title", $this->m_sTitle);
             $statement->bindValue(":image", $this->m_sImage);
             $statement->bindValue(":description", $this->m_sDescription);
             $statement->bindValue(":link", $this->m_sLink);
             $statement->bindValue(":topics_ID", $this->m_iTopicsId);
+            $statement->bindValue(":time", $this->m_iUploadtime);
             $statement->execute();
-
         }
         catch (PDOException $e) {
            $error = $e->getMessage();

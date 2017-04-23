@@ -69,17 +69,32 @@
         <?php foreach ($_SESSION['search'] as $searchItem): ?>
 
             <div class="userPost">
-                <div class="userPostImg" style="background-image: url(images/uploads/postImages/<?php echo $searchItem['image']; ?>);"></div>
+                <div class="userPostImg" style="background-image: url(images/uploads/postImages/<?php echo $searchItem['image']; ?>);">
+                    <button class="btn btn-link btn-topic-img"><?php
+                        $topic = new Topics();
+                        $topic->id = $searchItem['topics_ID'];
+                        $topic->getTopic();
+                        echo $topic->name;
+                        ?></button>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">Report post</a></li>
+                            <li><a href="#">Unfollow</a></li>
+                            <li role="separator" class="divider"></li>
+                            <?php if($searchItem['user_ID'] == $_SESSION['userid']): ?>
+
+                                <li><a href="#">Delete</a></li> <!--via ajax post verwijderen + kijken of post van user is-->
+
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                </div>
                 <div class="userPostTopic">
                     <h3>
-                        <a href="#">
-                            <?php
-                            $topic = new Topics();
-                            $topic->id = $searchItem['topics_ID'];
-                            $topic->getTopic();
-                            echo $topic->name;
-                            ?>
-                        </a>
+                        <a href="#"><?php echo $searchItem['title'] ?></a>
                     </h3>
                 </div>
                 <div class="userPostDescription"><h4><?php echo $searchItem['description']; ?></h4></div>
