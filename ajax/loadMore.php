@@ -46,17 +46,10 @@ if($rows > 0){
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-<<<<<<< HEAD
                         <li><a href="#">Report post</a></li>
                         <li><a href="#">Unfollow</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Delete</a></li> <!--via ajax post verwijderen + kijken of post van user is-->
-=======
-                        <li><a href="#">Rapport</a></li>
-                        <li><a href="#">Delete</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">x x x</a></li>
->>>>>>> efad35ae682671ee9c36edddfc6a0ed11eff934a
                     </ul>
                 </div>
             </div>

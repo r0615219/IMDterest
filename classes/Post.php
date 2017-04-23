@@ -76,11 +76,7 @@ class Post{
     public function savePost(){
         try {
             $conn = Db::getInstance();
-<<<<<<< HEAD
-            $statement = $conn->prepare("INSERT INTO `posts`(`user_ID`, `title`, `image`, `description`, `link`, `topics_ID`) VALUES (:user_ID, :title, :image, :description, :link, :topics_ID);");
-=======
             $statement = $conn->prepare("INSERT INTO `posts`(`user_ID`, `title`, `image`, `description`, `link`, `topics_ID`, `time`) VALUES (:user_ID, :title, :image, :description, :link, :topics_ID, :time);");
->>>>>>> efad35ae682671ee9c36edddfc6a0ed11eff934a
             $statement->bindValue(":user_ID", $_SESSION['userid']);
             $statement->bindValue(":title", $this->m_sTitle);
             $statement->bindValue(":image", $this->m_sImage);
