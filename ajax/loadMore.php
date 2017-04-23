@@ -41,6 +41,17 @@ if($rows > 0){
                     $topic->getTopic();
                     echo $topic->name;
                     ?></button>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Rapport</a></li>
+                        <li><a href="#">Delete</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">x x x</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="userPostTopic">
                 <h3>
@@ -99,7 +110,8 @@ if($rows > 0){
 else{
     $_SESSION['posts'] = false;
     shuffle($emptyStates);
-    echo '<h1 class="emptyState">' . $emptyStates[0] . '</h1>'."\n".'<h1 class="emptyStateTxt">Oops, no posts found!</h1>';
+    //echo '<h1 class="emptyState">' . $emptyStates[0] . '</h1>'."\n".'<h1 class="emptyStateTxt">Oops, no posts found!</h1>';
+    echo '<h1 class="emptyStateTxt">Oops, no posts found!</h1>';
 }
 
 
