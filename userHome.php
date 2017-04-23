@@ -92,8 +92,3 @@ if($_SESSION['posts']){
 
             </div>
         </div>
-
-
-<script>
-
-</script>

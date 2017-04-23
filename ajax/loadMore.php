@@ -104,7 +104,6 @@ else{
     $_SESSION['posts'] = false;
     shuffle($emptyStates);
     echo '<h1 class="emptyState">' . $emptyStates[0] . '</h1>'."\n".'<h1 class="emptyStateTxt">Oops, no posts found!</h1>';
-}
-
-
+};
+echo '<script src="js/likebutton.js"></script>'
  ?>
