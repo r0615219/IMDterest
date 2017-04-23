@@ -120,11 +120,6 @@ else{
 echo '<script src="js/likebutton.js"></script>'
  ?>
 
-<<<<<<< HEAD
-=======
- ?>
-
-
 
 <!-- DELETE post -->
 <div class="modal fade" id="deletePost" role="dialog">
@@ -152,4 +147,3 @@ echo '<script src="js/likebutton.js"></script>'
 
     </div>
 </div>
->>>>>>> 4f6d263c4e02cf46441db1e6d5e142563984a35f
