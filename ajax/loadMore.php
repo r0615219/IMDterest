@@ -60,7 +60,7 @@ if($rows > 0){
 
             <div class="userPostTopic">
                 <h3>
-                    <a href="#"><?php echo $res->title; ?></a>
+                    <a href="#" data-toggle="modal" data-target="#postModal"><?php echo $res->title; ?></a>
                 </h3>
             </div>
             <div class="userPostDescription"><h4><?php echo $res->description; ?></h4></div>
@@ -135,6 +135,43 @@ if($rows > 0){
 
             </div>
         </div>
+        
+        <!-- Post Modal -->
+        <div id="postModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><?php echo $res->title; ?></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="flex-modal">
+                            <div class="post">
+                                <img src="images/uploads/postImages/<?php echo $res->image; ?>" alt="post-image">
+                                <p><?php echo $res->description; ?></p>
+                            </div>
+                            <div class="comments">
+                                <form action="post">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <p>Hier komen de comments van users</p>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon profile-comment" id="basic-addon1"><img src="images/uploads/userImages/<?php echo $_SESSION['image'];?>" alt=""></span>
+                                            <input type="text" class="form-control" placeholder="Leave a comment..." name="comment" id="comment" aria-describedby="basic-addon1">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-arrow-right" type="submit"></span></span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
         <?php echo ob_get_clean();
     }
@@ -148,6 +185,3 @@ else{
 };
 echo '<script src="js/likebutton.js"></script>'
  ?>
-
-
-
