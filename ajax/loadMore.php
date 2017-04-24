@@ -51,7 +51,7 @@ if($rows > 0){
                         <li role="separator" class="divider"></li>
                         <?php if($res->user_ID == $_SESSION['userid']): ?>
 
-                        <li><a href="#">Delete</a></li> <!--via ajax post verwijderen + kijken of post van user is-->
+                            <li><a href="#" data-toggle="modal" data-target="#deletePost" type="submit">Delete</a></li>
 
                         <?php endif; ?>
                     </ul>
@@ -120,3 +120,36 @@ else{
 echo '<script src="js/likebutton.js"></script>'
  ?>
 
+<<<<<<< HEAD
+=======
+ ?>
+
+
+
+<!-- DELETE post -->
+<div class="modal fade" id="deletePost" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Are you sure you want to delete this post?</h4>
+            </div>
+            <div class="modal-body">
+
+                <form action="" method="post" enctype="multipart/form-data">
+
+                    <h2><?php echo $res->title; ?></h2>
+
+                    <button class="btn btn-default btn-danger" >Delete</button>
+                    <button class="btn btn-default" data-dismiss="modal" >Cancel</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+>>>>>>> delete tab
