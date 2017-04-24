@@ -136,6 +136,7 @@ if($rows > 0){
             </div>
         </div>
 
+<<<<<<< HEAD
         <!-- Post Modal -->
         <div id="postModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -173,6 +174,8 @@ if($rows > 0){
             </div>
         </div>
 
+=======
+>>>>>>> 1d7d5d3998b42d6c89e8f43d10764731cae0931d
         <?php echo ob_get_clean();
     }
 }
@@ -187,3 +190,7 @@ echo '<script src="js/likebutton.js"></script>'
  ?>
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1d7d5d3998b42d6c89e8f43d10764731cae0931d
