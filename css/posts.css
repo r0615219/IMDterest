@@ -127,3 +127,16 @@
     border-radius: 10px 0px 10px 0px;
     text-decoration: none;
 }
+
+.input-group .profile-comment img{
+    display: block;
+    width:20px;
+    height:20px;
+    border-radius: 50%;
+}
+
+
+
+
+
+
