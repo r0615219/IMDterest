@@ -1,11 +1,13 @@
 <?php
 
-    class Search{
+    class Search
+    {
         private $m_sZoekterm;
         private $m_sZoekSelect;
 
-        public function __set($p_sProperty, $p_vValue){
-            switch ( $p_sProperty ){
+        public function __set($p_sProperty, $p_vValue)
+        {
+            switch ($p_sProperty) {
                 case 'Zoekterm':
                     $this->m_sZoekterm = $p_vValue;
                     break;
@@ -15,8 +17,9 @@
             }
         }
 
-        public function __get($p_sProperty){
-            switch ( $p_sProperty ){
+        public function __get($p_sProperty)
+        {
+            switch ($p_sProperty) {
                 case 'Zoekterm':
                     return $this->m_sZoekterm;
                     break;
@@ -26,13 +29,14 @@
             }
         }
 
-        public function zoeken(){
+        public function zoeken()
+        {
             $conn = Db::getInstance();
-            if($this->m_sZoekSelect == 'posts'){
+            if ($this->m_sZoekSelect == 'posts') {
                 $statement = $conn->prepare("SELECT * FROM `posts` WHERE `description` LIKE CONCAT('%', :zoekterm ,'%')");
-            } elseif ($this->m_sZoekSelect == 'users'){
+            } elseif ($this->m_sZoekSelect == 'users') {
                 $statement = $conn->prepare("SELECT * FROM `users` WHERE `firstname` LIKE CONCAT('%', :zoekterm ,'%') OR `lastname` LIKE CONCAT('%', :zoekterm ,'%') OR `email` LIKE CONCAT('%', :zoekterm ,'%')");
-            } elseif ($this->m_sZoekSelect == 'topics'){
+            } elseif ($this->m_sZoekSelect == 'topics') {
                 $statement = $conn->prepare("SELECT * FROM `topics` WHERE `name` LIKE CONCAT('%', :zoekterm ,'%')");
             }
             $statement->bindValue(":zoekterm", $this->m_sZoekterm);
@@ -42,8 +46,5 @@
             $_SESSION['search'] = $searchResult;
             $_SESSION['zoekterm'] = $this->m_sZoekterm;
             $_SESSION['zoekselect'] = $this->m_sZoekSelect;
-
-
         }
-
     }

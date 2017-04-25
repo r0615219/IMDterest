@@ -1,12 +1,14 @@
 <?php
 
-class Topics{
+class Topics
+{
     private $m_iID;
     private $m_sName;
     private $m_sImage;
 
-    public function __set($p_sProperty, $p_vValue){
-        switch ( $p_sProperty ){
+    public function __set($p_sProperty, $p_vValue)
+    {
+        switch ($p_sProperty) {
             case 'id':
                 $this->m_iID = $p_vValue;
                 break;
@@ -20,8 +22,9 @@ class Topics{
         }
     }
 
-    public function __get($p_sProperty){
-        switch ( $p_sProperty ){
+    public function __get($p_sProperty)
+    {
+        switch ($p_sProperty) {
             case 'id':
                 return $this->m_iID;
                 break;
@@ -35,7 +38,8 @@ class Topics{
         }
     }
 
-    public function getTopic(){
+    public function getTopic()
+    {
         $conn = Db::getInstance();
         $statement = $conn->prepare("SELECT * FROM `topics` WHERE id = :id");
         $statement->bindValue(":id", $this->m_iID);
@@ -46,16 +50,17 @@ class Topics{
     }
 
     //functie om een nieuw aangemaakte topic op te slaan
-    public function saveTopic(){}
+    public function saveTopic()
+    {
+    }
 
     //functie om topic aan user te koppelen
-    public function saveUserTopic(){
+    public function saveUserTopic()
+    {
         $conn = Db::getInstance();
         $statement = $conn->prepare("INSERT INTO `users_topics` (`users_ID`, `topics_ID`) VALUES (:userID, :topicsID);");
         $statement->bindValue(":userID", $_SESSION['userid']);
         $statement->bindValue(":topicsID", $this->m_iID);
         $statement->execute();
-
     }
-
 }
