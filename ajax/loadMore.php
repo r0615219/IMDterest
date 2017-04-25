@@ -60,12 +60,6 @@ if($rows > 0){
                     </div>
                 </div>
 
-
-                <div class="userPostTopic">
-                    <h3>
-                        <a href="#" data-toggle="modal" data-target="#postModal"><?php echo $res->title; ?></a>
-                    </h3>
-
             <div class="userPostTopic">
                 <h3>
                     <a href="#" data-toggle="modal" data-target="#postModal"><?php echo $res->title; ?></a>
@@ -74,25 +68,6 @@ if($rows > 0){
             <?php $post = new Post; ?>
             <div class="userPostDescription"><h4><?php echo $res->description; ?> <small> <?php echo $post->uploadedWhen($res->time); ?></small></h4></div>
             <hr>
-            <div class="userPostInfo">
-                <div class="userInfo">
-                    <a href="#">
-                        <img class="media-object profile-pic" src="images/uploads/userImages/<?php
-                        $user = new User;
-                        $user->id = $res->user_ID;
-                        $user->getUserInfo();
-                        echo $user->Image;
-                        ?>" alt="post">
-                    </a>
-                    <a href="#">
-                        <?php echo $user->Firstname . " " . $user->Lastname; ?>
-                    </a>
-
-                    <div class="postId"><?php echo " #".$res->id; ?></div>
-
-                </div>
-                <div class="userPostDescription"><h4><?php echo $res->description; ?></h4></div>
-                <hr>
                 <div class="userPostInfo">
 
                     <div class="userInfo">
@@ -227,6 +202,7 @@ if($rows > 0){
 
                 </div>
             </div>
+        </div>
             <?php echo ob_get_clean();
         }
     }
