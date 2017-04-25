@@ -62,7 +62,7 @@ if($rows > 0){
 
             <div class="userPostTopic">
                 <h3>
-                    <a href="#" data-toggle="modal" data-target="#postModal"><?php echo $res->title; ?></a>
+                    <a href="#" data-toggle="modal" data-target="#postModal<?php echo $res->id ?>"><?php echo $res->title; ?></a>
                 </h3>
             </div>
             <?php $post = new Post; ?>
@@ -167,7 +167,7 @@ if($rows > 0){
             </div>
 
             <!-- Post Modal -->
-            <div id="postModal" class="modal fade" role="dialog">
+            <div id="postModal<?php echo $res->id ?>" class="modal fade" role="dialog">
                 <div class="modal-dialog">
 
                     <!-- Modal content-->
