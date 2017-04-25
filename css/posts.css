@@ -139,6 +139,17 @@ div.modal-body div.post img{
     width: 100%;
 }
 
+.modal-topic{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-bottom:10px;
+}
+
+.modal-topic label, .modal-topic select, .modal-topic input, .modal-topic p{
+    margin-right: 15px;
+}
+
 
 
 
