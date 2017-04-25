@@ -63,7 +63,7 @@ if($rows > 0){
                     <a href="#" data-toggle="modal" data-target="#postModal"><?php echo $res->title; ?></a>
                 </h3>
             </div>
-            <div class="userPostDescription"><h4><?php echo $res->description; ?></h4></div>
+            <div class="userPostDescription"><h4><?php echo $res->description; ?> <small> moment of uploading </small></h4></div>
             <hr>
             <div class="userPostInfo">
                 <div class="userInfo">
