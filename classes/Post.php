@@ -140,4 +140,11 @@ class Post{
         $statement->bindValue(":id", $this->m_iID);
         $statement->execute();
     }
+
+    public function deletePost(){
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("DELETE from posts WHERE id = :id");
+        $statement->bindValue(":id", $this->m_iID);
+        $statement->execute();
+    }
 }

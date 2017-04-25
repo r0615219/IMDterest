@@ -153,7 +153,7 @@ if($rows > 0){
 
                                 <h2><?php echo $res->title; ?></h2>
 
-                                <button class="btn btn-default btn-danger" type="submit">Delete</button>
+                                <button class="btn btn-default btn-danger" type="submit" name="delete" id="delete" value="<?php echo $res->id; ?>">Delete</button>
                                 <button class="btn btn-default" data-dismiss="modal" >Cancel</button>
 
                             </form>

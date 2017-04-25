@@ -132,6 +132,12 @@ if(isset($_POST['report'])){
     $post->reportPost();
 }
 
+if(isset($_POST['delete'])){
+    $post = new Post;
+    $post->id = $_POST['delete'];
+    $post->deletePost();
+}
+
 
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
