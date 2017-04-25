@@ -118,7 +118,27 @@ class Post{
     
     public function uploadedWhen($timestamp){
         $verschil = time() - $timestamp;
-        return $verschil;
+        if ($verschil > 0 && $verschil < 60) {
+            $return = "Uploaded less than a minute ago";
+        } else if ($verschil > 60 && $verschil < 120){
+            $return = "Uploaded 1 minute ago";
+        } else if ($verschil > 60 && $verschil < 60*60){
+            $x = floor($verschil/60);
+            $return = "Uploaded ". $x ." minutes ago";
+        } else if ($verschil > 60*60 && $verschil < 2*60*60){
+            $return = "Uploaded 1 hour ago";
+        } else if ($verschil > 2*60*60 && $verschil < 24*60*60){
+            $x = floor($verschil/360);
+            $return = "Uploaded ". $x ." hours ago";
+        } else if ($verschil > 24*60*60 && $verschil < 2*24*60*60){
+            $return = "Uploaded a day ago";
+        } else if ($verschil > 24*60*60 && $verschil < 7*24*60*60){
+            $x = floor($verschil/(24*60*60));
+            $return = "Uploaded ". $x ." days ago";
+        } else {
+            $return = "Uploaded just now";
+        }
+    return $return;
         
     }
 
