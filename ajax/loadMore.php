@@ -48,12 +48,12 @@ if($rows > 0){
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#" data-toggle="modal" data-target="#reportPost" type="submit">Report post</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#report<?php echo $res->id ?>" type="submit">Report post</a></li>
                             <li><a href="#">Unfollow</a></li>
                             <li role="separator" class="divider"></li>
                             <?php if($res->user_ID == $_SESSION['userid']): ?>
 
-                                <li><a href="#" data-toggle="modal" data-target="#deletePost" type="submit">Delete</a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#delete<?php echo $res->id ?>" type="submit">Delete</a></li>
 
                             <?php endif; ?>
                         </ul>
@@ -112,7 +112,7 @@ if($rows > 0){
             </div>
 
             <!-- REPORT post -->
-            <div class="modal fade" id="reportPost" role="dialog">
+            <div class="modal fade" id="report<?php echo $res->id ?>" role="dialog">
                 <div class="modal-dialog">
 
                     <div class="modal-content">
@@ -126,7 +126,7 @@ if($rows > 0){
 
                                 <h2><?php echo $res->title; ?></h2>
 
-                                <button class="btn btn-default btn-danger" type="submit" name="report" id="report" value="<?php echo $res->id; ?>">Report</button>
+                                <button class="btn btn-default btn-danger" type="submit" name="report" value="<?php echo $res->id; ?>">Report</button>
                                 <button class="btn btn-default" data-dismiss="modal" >Cancel</button>
 
                             </form>
@@ -139,7 +139,7 @@ if($rows > 0){
             </div>
 
             <!-- DELETE post -->
-            <div class="modal fade" id="deletePost" role="dialog">
+            <div class="modal fade" id="delete<?php echo $res->id ?>" role="dialog">
                 <div class="modal-dialog">
 
                     <div class="modal-content">
@@ -153,7 +153,7 @@ if($rows > 0){
 
                                 <h2><?php echo $res->title; ?></h2>
 
-                                <button class="btn btn-default btn-danger" type="submit" name="delete" id="delete" value="<?php echo $res->id; ?>">Delete</button>
+                                <button class="btn btn-default btn-danger" type="submit" name="delete" value="<?php echo $res->id; ?>">Delete</button>
                                 <button class="btn btn-default" data-dismiss="modal" >Cancel</button>
 
                             </form>
