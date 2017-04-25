@@ -133,6 +133,51 @@ class Post{
       $rows = $likecheckstatement->rowCount();
       echo $rows;
     }
+    
+    public function uploadedWhen($timestamp){
+        $verschil = time() - $timestamp;
+        if ($verschil > 0 && $verschil < 60) {
+            $return = "Posted less than a minute ago";
+        } else if ($verschil > 60 && $verschil < 120){
+            $return = "Posted 1 minute ago";
+        } else if ($verschil > 60 && $verschil < 60*60){
+            $x = floor($verschil/60);
+            $return = "Posted ". $x ." minutes ago";
+        } else if ($verschil > 60*60 && $verschil < 2*60*60){
+            $return = "Posted 1 hour ago";
+        } else if ($verschil > 2*60*60 && $verschil < 24*60*60){
+            $x = floor($verschil/360);
+            $return = "Posted ". $x ." hours ago";
+        } else if ($verschil > 24*60*60 && $verschil < 2*24*60*60){
+            $return = "Posted a day ago";
+        } else if ($verschil > 24*60*60 && $verschil < 7*24*60*60){
+            $x = floor($verschil/(24*60*60));
+            $return = "Posted ". $x ." days ago";
+        } else if ($verschil > 7*24*60*60 && $verschil < 2*7*24*60*60){
+            $return = "Posted a week ago";
+        } else if ($verschil > 2*7*24*60*60 && $verschil < 30*24*60*60){
+            $x = floor($verschil/(7*24*60*60));
+            $return = "Posted ". $x ." weeks ago";
+        } else if ($verschil > 30*24*60*60 && $verschil < 2*30*24*60*60){
+            $return = "Posted a month ago";
+        } else if ($verschil > 2*30*24*60*60 && $verschil < 12*30*24*60*60){
+            $x = floor($verschil/(30*24*60*60));
+            $return = "Posted ". $x ." months ago";
+        } else if ($verschil > 365*24*60*60 && $verschil < 372*24*60*60){
+            $return = "Posted a year ago ago";
+        } else if ($verschil > 372*24*60*60){
+            $date = date('d/m/Y', $timestamp);
+            if ($date == "01/01/1970"){
+                $return = "Posted before the dawn of time";
+            } else {
+            $return = "Posted on ". $date ." ";
+            }
+        } else {
+            $return = "Posted just now";
+        }
+    return $return;
+        
+    }
 
     public function reportPost(){
         $conn = Db::getInstance();
