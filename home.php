@@ -32,6 +32,7 @@ try {
         }
 
     }
+
 //4. ZIE chooseTopics.php !!
 
 //5. indien topics gekozen -> topics in databank steken
@@ -62,7 +63,13 @@ try {
     if (isset($_POST['imgSubmit'])) {
 
         $title = $_POST['title'];
-        $topicsId = $_POST['imgTopic'];
+        //$topicsId = $_POST['imgTopic'];   // if imgTopic == 0 -> kijken naar addTopic
+        if ($_POST['imgTopic'] == 'none'){
+            $topicsId = $_POST['addTopic'];
+            //in class nieuwe query om nieuwe topic aan  te maken
+        } else {
+            $topicsId = $_POST['imgTopic']; //value = topicID
+        }
         $description = $_POST['imgDescription'];
         $post = new Post;
         $post->title = $title;
