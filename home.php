@@ -30,6 +30,7 @@ try {
             $topicArray[] = $topic;
         }
     }
+
 //4. ZIE chooseTopics.php !!
 
 //5. indien topics gekozen -> topics in databank steken
@@ -59,6 +60,7 @@ try {
     if (isset($_POST['imgSubmit'])) {
 
         $title = $_POST['title'];
+<<<<<<< HEAD
 
         if($_POST['imgTopic'] == 'none'){ //indien select niet geselecteerd is
             //nieuwe topic opslaan
@@ -78,6 +80,15 @@ try {
             $topicId = $_POST['imgTopic'];
         }
 
+=======
+        //$topicsId = $_POST['imgTopic'];   // if imgTopic == 0 -> kijken naar addTopic
+        if ($_POST['imgTopic'] == 'none'){
+            $topicsId = $_POST['addTopic'];
+            //in class nieuwe query om nieuwe topic aan  te maken
+        } else {
+            $topicsId = $_POST['imgTopic']; //value = topicID
+        }
+>>>>>>> 747253cfec4b2043e0aa3bf1f6b813b350cc91b4
         $description = $_POST['imgDescription'];
         $post = new Post;
         $post->title = $title;
@@ -180,8 +191,13 @@ if (isset($_POST['delete'])) {
 
 <?php include_once('header.inc.php'); ?>
 <div class="container">
+<<<<<<< HEAD
 <?php if (isset($error)) {
     echo $error;
+=======
+<?php if(isset($error)){
+    echo "<p class='alert alert-danger'>$error</p>";
+>>>>>>> 747253cfec4b2043e0aa3bf1f6b813b350cc91b4
 }?>
     <?php
 
