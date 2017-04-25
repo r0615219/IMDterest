@@ -20,14 +20,9 @@ include_once('emptyStates.php');
     <div class="loadMore">
         <button class="loadMoreBtn btn btn-primary">Load 20 more</button>
     </div>
-<<<<<<< HEAD
+
 <?php echo ob_get_clean();
 } else {
-=======
-
-<?php echo ob_get_clean(); }
-else{
->>>>>>> 747253cfec4b2043e0aa3bf1f6b813b350cc91b4
     shuffle($emptyStates);
     echo '<h1 class="emptyState">' . $emptyStates[0] . '</h1>'."\n".'<h1 class="emptyStateTxt">Oops, no posts found!</h1>';
 }?>
@@ -63,28 +58,16 @@ else{
 
                             <textarea rows="3" name="imgDescription" id="imgDescription" placeholder=" Add a description..."></textarea>
 
-<<<<<<< HEAD
                             <div class="modal-topics">
-                                <label for="imgTopic">Topic</label>
-                                <select name="imgTopic" id="imgTopic">
-                                    <option value="none">Choose a topic</option>
-=======
-                            <div class="modal-topic">
                                 <label for="imgTopic">Topic :</label>
                                 <select name="imgTopic" id="imgTopic">
-                                    <option value="none">Choose a topic </option>
->>>>>>> 747253cfec4b2043e0aa3bf1f6b813b350cc91b4
+                                    <option value="none">Choose a topic</option>
                                     <?php foreach ($_SESSION['topics'] as $t):?>
                                         <option value="<?php echo $t->id; ?>"><?php echo $t->name; ?></option>
                                     <?php endforeach; ?>
                                 </select>
-<<<<<<< HEAD
                                 <p>or</p>
                                 <label for="addTopic">add a new topic</label>
-=======
-                                <p> or </p>
-                                <label for="addTopic"> add a new topic </label>
->>>>>>> 747253cfec4b2043e0aa3bf1f6b813b350cc91b4
                                 <input type="text" name="addTopic" id="addTopic">
                             </div>
 

@@ -40,22 +40,9 @@
                     <ul class="dropdown-menu">
                         <?php foreach ($_SESSION['topics'] as $t):?>
                             <li><a href="#"><?php echo $t->name; ?></a></li>
-<<<<<<< HEAD
                             <li role="separator" class="divider"></li>
                             <li><a href="#">More</a></li>
                         <?php endforeach; ?>
-=======
-                        <?php endforeach; ?>
-                        <!--<li><a href="#">Design</a></li>
-                        <li><a href="#">Development</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Photography</a></li>
-                        <li><a href="#">Art</a></li>
-                        <li><a href="#">UX</a></li>
-                        <li><a href="#">Sketches</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">More</a></li>-->
->>>>>>> 747253cfec4b2043e0aa3bf1f6b813b350cc91b4
                     </ul>
                 </li>
             </ul>
