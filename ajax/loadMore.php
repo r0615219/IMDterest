@@ -83,7 +83,7 @@ if($rows > 0){
                             <?php echo $user->Firstname . " " . $user->Lastname; ?>
                         </a>
 
-                        <div class="postId"><?php echo " #".$res->id; ?></div>
+                        <div class="postId"><?php echo $res->id; ?></div>
                     </div>
 
                     <div class="likes">
