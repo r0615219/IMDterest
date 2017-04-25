@@ -1,6 +1,6 @@
 <?php
 session_start();
-spl_autoload_register(function($class){
+spl_autoload_register(function ($class) {
     include_once("../classes/" . $class . ".php");
 });
 include_once('../emptyStates.php');
@@ -8,7 +8,7 @@ include_once('../emptyStates.php');
 $page_number = filter_var($_POST["page"], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH);
 
 //throw HTTP error if page number is not valid
-if(!is_numeric($page_number)){
+if (!is_numeric($page_number)) {
     header('HTTP/1.1 500 Invalid page number!');
     exit();
 }
@@ -29,20 +29,19 @@ $statement->execute(); //Execute prepared Query
 
 //output results from database
 $rows = $statement->rowCount();
-if($rows > 0){
+if ($rows > 0) {
     $_SESSION['posts'] = true;
-    while($res = $statement->fetchObject("Post")) {
-        if($res->reports < 3){
+    while ($res = $statement->fetchObject("Post")) {
+        if ($res->reports < 3) {
             //fetch values
             ob_start(); ?>
             <div class="userPost">
                 <div class="userPostImg" style="background-image: url(images/uploads/postImages/<?php echo $res->image; ?>);">
                     <button class="btn btn-link btn-topic-img"><?php
                         $topic = new Topics();
-                        $topic->id = $res->topics_ID;
-                        $topic->getTopic();
-                        echo $topic->name;
-                        ?></button>
+            $topic->id = $res->topics_ID;
+            $topic->getTopic();
+            echo $topic->name; ?></button>
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <span class="caret"></span>
@@ -51,7 +50,7 @@ if($rows > 0){
                             <li><a href="#" data-toggle="modal" data-target="#report<?php echo $res->id ?>" type="submit">Report post</a></li>
                             <li><a href="#">Unfollow</a></li>
                             <li role="separator" class="divider"></li>
-                            <?php if($res->user_ID == $_SESSION['userid']): ?>
+                            <?php if ($res->user_ID == $_SESSION['userid']): ?>
 
                                 <li><a href="#" data-toggle="modal" data-target="#delete<?php echo $res->id ?>" type="submit">Delete</a></li>
 
@@ -74,10 +73,9 @@ if($rows > 0){
                         <a href="#">
                             <img class="media-object profile-pic" src="images/uploads/userImages/<?php
                             $user = new User;
-                            $user->id = $res->user_ID;
-                            $user->getUserInfo();
-                            echo $user->Image;
-                            ?>" alt="post">
+            $user->id = $res->user_ID;
+            $user->getUserInfo();
+            echo $user->Image; ?>" alt="post">
                         </a>
                         <a href="#">
                             <?php echo $user->Firstname . " " . $user->Lastname; ?>
@@ -91,22 +89,19 @@ if($rows > 0){
                             <a href="#">
                                 <?php
                                 $post = new Post;
-                                $postid = $res->id;
-                                $liked=$post->checkLiked($postid);
-                                if ($liked==false) {
-                                    echo '<img class="media-object" src="images/icons/heart.svg" alt="heart">';
-                                }
-                                else {
-                                    echo '<img class="media-object" src="images/icons/heart_filled.svg" alt="heart">';
-                                }
-                                ?>
+            $postid = $res->id;
+            $liked=$post->checkLiked($postid);
+            if ($liked==false) {
+                echo '<img class="media-object" src="images/icons/heart.svg" alt="heart">';
+            } else {
+                echo '<img class="media-object" src="images/icons/heart_filled.svg" alt="heart">';
+            } ?>
                             </a>
                         </div>
                         <div class="likeAmount">
                             <?php
                             $postid = $res->id;
-                            $post->countlikes($postid);
-                            ?>
+            $post->countlikes($postid); ?>
                         </div>
                     </div>
                 </div>
@@ -189,7 +184,7 @@ if($rows > 0){
                                                 <p>Hier komen de comments van users</p>
                                             </div>
                                             <div class="input-group">
-                                                <span class="input-group-addon profile-comment" id="basic-addon1"><img src="images/uploads/userImages/<?php echo $_SESSION['image'];?>" alt=""></span>
+                                                <span class="input-group-addon profile-comment" id="basic-addon1"><img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt=""></span>
                                                 <input type="text" class="form-control" placeholder="Leave a comment..." name="comment" id="comment" aria-describedby="basic-addon1">
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-arrow-right" type="submit"></span></span>
                                             </div>
@@ -206,13 +201,10 @@ if($rows > 0){
             <?php echo ob_get_clean();
         }
     }
-}
-
-else{
+} else {
     $_SESSION['posts'] = false;
     shuffle($emptyStates);
     echo '<h1 class="emptyState">' . $emptyStates[0] . '</h1>'."\n".'<h1 class="emptyStateTxt">Oops, no posts found!</h1><script>$(".LoadMoreBtn").text("No more records!").prop("disabled", true);</script>';
-
 };
 echo '<script src="js/likebutton.js"></script>'
  ?>
