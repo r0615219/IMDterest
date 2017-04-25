@@ -1,12 +1,12 @@
 <?php
     session_start();
 
-    spl_autoload_register(function($class){
+    spl_autoload_register(function ($class) {
         include_once("classes/" . $class . ".php");
     });
 
     //stuur de gebruiker weg als ze niet zijn ingelogd
-    if( isset( $_SESSION['user'] ) ){
+    if (isset($_SESSION['user'])) {
     } else {
         header('Location: signin.php');
     }
@@ -49,9 +49,9 @@
 
     <?php include_once('header.inc.php'); ?>
 
-    <?php if(isset($error)){
-            echo $error;
-        }
+    <?php if (isset($error)) {
+    echo $error;
+}
     ?>
 
     <div class="container-search">
@@ -62,7 +62,7 @@
 
     </div>
 
-    <?php if($_SESSION['zoekselect'] == 'posts'): ?>
+    <?php if ($_SESSION['zoekselect'] == 'posts'): ?>
 
         <div class="container">
 
@@ -84,7 +84,7 @@
                             <li><a href="#">Report post</a></li>
                             <li><a href="#">Unfollow</a></li>
                             <li role="separator" class="divider"></li>
-                            <?php if($searchItem['user_ID'] == $_SESSION['userid']): ?>
+                            <?php if ($searchItem['user_ID'] == $_SESSION['userid']): ?>
 
                                 <li><a href="#" data-toggle="modal" data-target="#deletePost" type="submit">Delete</a></li>
 
@@ -159,7 +159,7 @@
 
     <?php endif; ?>
 
-    <?php if($_SESSION['zoekselect'] == 'users'): ?>
+    <?php if ($_SESSION['zoekselect'] == 'users'): ?>
 
         <div class="container">
 
@@ -167,7 +167,7 @@
 
                 <div class="userPost">
                     <div class="userPostImg"
-                         <?php if(substr( $searchItem['image'], 0, 4 ) === "http"): ?>
+                         <?php if (substr($searchItem['image'], 0, 4) === "http"): ?>
                             style="background-image: url(<?php echo $searchItem['image']; ?>);"
                          <?php else: ?>
                             style="background-image: url(images/uploads/userImages/<?php echo $searchItem['image']; ?>);"
@@ -187,7 +187,7 @@
 
     <?php endif; ?>
 
-    <?php if($_SESSION['zoekselect'] == 'topics'): ?>
+    <?php if ($_SESSION['zoekselect'] == 'topics'): ?>
 
         <div class="container">
 
