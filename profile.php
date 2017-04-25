@@ -1,6 +1,6 @@
 <?php
 session_start();
-spl_autoload_register(function($class){
+spl_autoload_register(function ($class) {
     include_once("classes/" . $class . ".php");
 });
 //stuur de gebruiker weg als ze niet zijn ingelogd
@@ -37,9 +37,9 @@ if (isset($_SESSION['user'])) {
 
 
 <div class="container" style="margin-top:50px;">
-    <?php if(isset($error)){
-        echo "<p>$error</p>";
-    } ?>
+    <?php if (isset($error)) {
+    echo "<p>$error</p>";
+} ?>
 
     <div class="head-profile">
         <div class="head-profile-name">
