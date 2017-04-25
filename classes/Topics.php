@@ -59,6 +59,8 @@ class Topics
         $this->m_iID = $res['id'];
         $this->m_sImage = $res['image'];
         $this->m_sName = $res['name'];
+        $arr = $statement->errorInfo();
+        print_r($arr);
     }
 
     //functie om een nieuw aangemaakte topic op te slaan
@@ -69,6 +71,9 @@ class Topics
         $statement->bindValue(":name", $this->m_sName);
         $statement->bindValue(":image", $this->m_sImage);
         $statement->execute();
+        $arr = $statement->errorInfo();
+        print_r('save topic errors:');
+        print_r($arr);
     }
 
     //functie om topic aan user te koppelen
