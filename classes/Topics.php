@@ -65,8 +65,8 @@ class Topics
     public function saveTopic()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("INSERT INTO `topics`(`name`, `image`) VALUES (:name, :image);");
-        $statement->bindValue(":name", $this->m_sName);
+        $statement = $conn->prepare("INSERT INTO `topics`(`name`, `image`) VALUES (:nametopic, :image);");
+        $statement->bindValue(":nametopic", $this->m_sName);
         $statement->bindValue(":image", $this->m_sImage);
         $statement->execute();
     }

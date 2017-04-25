@@ -61,22 +61,22 @@ try {
 
         $title = $_POST['title'];
 
-        if($_POST['imgTopic'] == 'none'){ //indien select niet geselecteerd is
+        if($_POST['imgTopic'] == "none"){ //indien select niet geselecteerd is
             //nieuwe topic opslaan
             $newTopic = new Topics;
             $newTopic->name = $_POST['addTopic'];
             $newTopic->image = strtolower($_FILES['img']['name']);
             $newTopic->getTopicViaName();
-            if($newTopic->name = $_POST['addTopic']){ //kijken of de topic al bestaat
+            if($newTopic->name == $_POST['addTopic']){ //kijken of de topic al bestaat
                 $topicsId = $newTopic->id;
-            }else{
+            } else {
                 $newTopic->saveTopic();
                 //topicId van nieuwe topic ophalen
                 $newTopic->getTopicViaName();
                 $topicsId = $newTopic->id;
             }
         } else {
-            $topicId = $_POST['imgTopic'];
+            $topicsId = $_POST['imgTopic'];
         }
 
         $description = $_POST['imgDescription'];

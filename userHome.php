@@ -59,7 +59,7 @@ include_once('emptyStates.php');
                             <textarea rows="3" name="imgDescription" id="imgDescription" placeholder=" Add a description..."></textarea>
 
                             <div class="modal-topics">
-                                <label for="imgTopic">Topic :</label>
+                                <label for="imgTopic">Topic</label>
                                 <select name="imgTopic" id="imgTopic">
                                     <option value="none">Choose a topic</option>
                                     <?php foreach ($_SESSION['topics'] as $t):?>
