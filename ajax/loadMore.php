@@ -180,7 +180,7 @@ if($rows > 0){
 else{
     $_SESSION['posts'] = false;
     shuffle($emptyStates);
-    echo '<h1 class="emptyState">' . $emptyStates[0] . '</h1>'."\n".'<h1 class="emptyStateTxt">Oops, no posts found!</h1>';
+    echo '<h1 class="emptyState">' . $emptyStates[0] . '</h1>'."\n".'<h1 class="emptyStateTxt">Oops, no posts found!</h1><script>$(".LoadMoreBtn").text("No more records!").prop("disabled", true);</script>';
 
 };
 echo '<script src="js/likebutton.js"></script>'

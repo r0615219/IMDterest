@@ -1,4 +1,18 @@
-<?php include_once('emptyStates.php'); ?>
+<?php
+
+spl_autoload_register(function($class){
+    include_once("classes/" . $class . ".php");
+});
+//stuur de gebruiker weg als ze niet zijn ingelogd
+if( isset( $_SESSION['user'] ) ){
+}
+else {
+    header('Location: signin.php');
+}
+
+include_once('emptyStates.php');
+?>
+
 <div id="results"></div>
 
 <?php if(isset($_SESSION['posts']) && $_SESSION['posts'] == true){ ob_start(); ?>
