@@ -1,6 +1,6 @@
 <?php
 
-    spl_autoload_register(function($class){
+    spl_autoload_register(function ($class) {
         include_once("classes/" . $class . ".php");
     });
 
@@ -11,7 +11,7 @@
             $search->ZoekSelect = $_GET['search-select'];
             $search->zoeken();
         }
-    } catch(Exception $e){
+    } catch (Exception $e) {
         $error = $e->getMessage();
     }
 

@@ -1,13 +1,12 @@
 <?php
 
     session_start();
-    spl_autoload_register(function($class){
+    spl_autoload_register(function ($class) {
         include_once("classes/" . $class . ".php");
     });
     //stuur de gebruiker weg als ze niet zijn ingelogd
-    if( isset( $_SESSION['user'] ) ){
-    }
-    else {
+    if (isset($_SESSION['user'])) {
+    } else {
         header('Location: signin.php');
     }
 
@@ -21,7 +20,7 @@ try {
         //normaal in 1 statement maar dit wordt niet ondersteund -> in 2 gesplitst
         $statement1 = $conn->prepare("SELECT topics_ID FROM `users_topics` GROUP BY topics_ID ORDER BY count(*) DESC LIMIT 5");
         $statement1->execute();
-        while($res = $statement1->fetch(PDO::FETCH_ASSOC)){
+        while ($res = $statement1->fetch(PDO::FETCH_ASSOC)) {
             $id = $res['topics_ID'];
             $statement2 = $conn->prepare("SELECT * from `topics` where id = :id");
             $statement2->bindValue(":id", (int)$id);
@@ -30,7 +29,6 @@ try {
             //3. topics in array steken
             $topicArray[] = $topic;
         }
-
     }
 //4. ZIE chooseTopics.php !!
 
@@ -50,8 +48,7 @@ try {
 
 
 //7. ZIE userHome.php !!
-}
-catch (Exception $e) {
+} catch (Exception $e) {
     $error= $e->getMessage();
 }
 
@@ -60,7 +57,6 @@ catch (Exception $e) {
 
 try {
     if (isset($_POST['imgSubmit'])) {
-
         $title = $_POST['title'];
         $topicsId = $_POST['imgTopic'];
         $description = $_POST['imgDescription'];
@@ -77,11 +73,11 @@ try {
                 move_uploaded_file($_FILES["img"]["tmp_name"],
                     "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".png");
                 $post->image = $post->title . $_SESSION['userid'] . $post->uploadtime . ".png";
-            } else if (strpos($bestandsnaam, ".jpg")) {
+            } elseif (strpos($bestandsnaam, ".jpg")) {
                 move_uploaded_file($_FILES["img"]["tmp_name"],
                     "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg");
                 $post->image = $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg";
-            } else if (strpos($bestandsnaam, ".gif")) {
+            } elseif (strpos($bestandsnaam, ".gif")) {
                 move_uploaded_file($_FILES["img"]["tmp_name"],
                     "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif");
                 $post->image = $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif";
@@ -97,12 +93,9 @@ try {
         $user = new User;
         $user->Email = $_SESSION['user'];
         $user->getUserPosts();
-
     }
-
-
 } catch (Exception $e) {
-        $error = $e->getMessage();
+    $error = $e->getMessage();
 }
 
 if (isset($_POST['linkSubmit'])) {
@@ -123,16 +116,15 @@ if (isset($_POST['linkSubmit'])) {
     $user = new User;
     $user->Email = $_SESSION['user'];
     $user->getUserPosts();
-
 }
 
-if(isset($_POST['report'])){
+if (isset($_POST['report'])) {
     $post = new Post;
     $post->id = $_POST['report'];
     $post->reportPost();
 }
 
-if(isset($_POST['delete'])){
+if (isset($_POST['delete'])) {
     $post = new Post;
     $post->id = $_POST['delete'];
     $post->deletePost();
@@ -169,16 +161,14 @@ if(isset($_POST['delete'])){
 
 <?php include_once('header.inc.php'); ?>
 <div class="container">
-<?php if(isset($error)){
+<?php if (isset($error)) {
     echo $error;
-
 }?>
     <?php
 
-    if(isset($_SESSION['topics'])){
+    if (isset($_SESSION['topics'])) {
         include_once('userHome.php');
-    }
-    else{
+    } else {
         include_once('chooseTopics.php');
     }
 
