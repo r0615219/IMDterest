@@ -38,15 +38,11 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Topics <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Design</a></li>
-                        <li><a href="#">Development</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Photography</a></li>
-                        <li><a href="#">Art</a></li>
-                        <li><a href="#">UX</a></li>
-                        <li><a href="#">Sketches</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">More</a></li>
+                        <?php foreach ($_SESSION['topics'] as $t):?>
+                            <li><a href="#"><?php echo $t->name; ?></a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">More</a></li>
+                        <?php endforeach; ?>
                     </ul>
                 </li>
             </ul>
