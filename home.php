@@ -170,8 +170,7 @@ if(isset($_POST['delete'])){
 <?php include_once('header.inc.php'); ?>
 <div class="container">
 <?php if(isset($error)){
-    echo $error;
-
+    echo "<p class='alert alert-danger'>$error</p>";
 }?>
     <?php
 

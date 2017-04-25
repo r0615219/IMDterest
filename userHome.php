@@ -20,6 +20,7 @@ include_once('emptyStates.php');
     <div class="loadMore">
         <button class="loadMoreBtn btn btn-primary">Load 20 more</button>
     </div>
+
 <?php echo ob_get_clean(); }
 else{
     shuffle($emptyStates);
