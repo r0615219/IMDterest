@@ -193,7 +193,7 @@
                 $statement->bindValue(":firstname", $this->m_sFirstname);
                 $statement->bindValue(":lastname", $this->m_sLastname);
                 $statement->bindValue(":email", $this->m_sEmail);
-                
+
                 //PASSWORD:
                 if (!empty($this->m_sPassword) && !empty($_POST['newPassword']) && !empty($_POST['controlPassword'])) {
                     // hier zetten we de input als een nieuw gehast wachtwoord in de database
@@ -228,13 +228,13 @@
                     $res = $stmt2->fetch(PDO::FETCH_ASSOC);
                     $password = $res["password"];
                     $statement->bindValue(":password", $password);
-                    
+
                     //als de gebruiker het onvolledig heeft ingevuld -> een foutmelding
                     if (!empty($this->m_sPassword) || !empty($_POST['newPassword']) || !empty($_POST['controlPassword'])) {
                         throw new exception("Unable to change the password. You didn't fill in all required fields.");
                     }
                 }
-                
+
                 //IMAGE:
                 if (empty($this->m_sImage)) {
                     //pad naar afbeelding behouden als de gebruiker het veld leeg laat.
@@ -243,7 +243,7 @@
                     unlink("images/uploads/userImages/" . $_SESSION["image"] . "");
                 }
                 $statement->bindValue(":image", $this->m_sImage);
-                
+
                 //EXECUTE en sessions
                 $statement->bindValue(":oldemail", $_SESSION['user']);
                 $statement->execute();
