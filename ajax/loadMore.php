@@ -63,7 +63,8 @@ if($rows > 0){
                     <a href="#" data-toggle="modal" data-target="#postModal"><?php echo $res->title; ?></a>
                 </h3>
             </div>
-            <div class="userPostDescription"><h4><?php echo $res->description; ?> <small> moment of uploading </small></h4></div>
+            <?php $post = new Post; ?>
+            <div class="userPostDescription"><h4><?php echo $res->description; ?> <small> <?php echo $post->uploadedWhen($res->time); ?></small></h4></div>
             <hr>
             <div class="userPostInfo">
                 <div class="userInfo">
@@ -86,7 +87,6 @@ if($rows > 0){
                     <div class="likeBtn">
                         <a href="#">
                             <?php
-                            $post = new Post;
                             $postid = $res->id;
                             $liked=$post->checkLiked($postid);
                             if ($liked==false) {

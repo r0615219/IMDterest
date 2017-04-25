@@ -115,5 +115,11 @@ class Post{
       $rows = $likecheckstatement->rowCount();
       echo $rows;
     }
+    
+    public function uploadedWhen($timestamp){
+        $verschil = time() - $timestamp;
+        return $verschil;
+        
+    }
 
 }
