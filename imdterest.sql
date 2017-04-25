@@ -3,10 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-
--- Gegenereerd op: 23 apr 2017 om 11:25
+-- Gegenereerd op: 25 apr 2017 om 10:52
 -- Serverversie: 10.1.21-MariaDB
--- PHP-versie: 5.6.30
+-- PHP-versie: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -57,33 +56,39 @@ CREATE TABLE `posts` (
   `description` text NOT NULL,
   `link` varchar(200) NOT NULL,
   `topics_ID` int(11) NOT NULL,
-  `time` int(11) NOT NULL
+  `time` int(11) NOT NULL,
+  `reports` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `posts`
 --
 
-INSERT INTO `posts` (`id`, `user_ID`, `title`, `image`, `description`, `link`, `topics_ID`, `time`) VALUES
-(20, 21, 'Koe', '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe zei de koe!', '', 3, 0),
-(21, 21, 'Koe', 'sXjhX44-cow-backgrounds.jpg', 'Boeien, zeiden de koeien', '', 3, 0),
-(22, 21, 'Koe', '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe, zei weer de koe', '', 4, 0),
-(23, 27, 'aaa', 'rage.png', 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '', 7, 0),
-(24, 27, 'facebook', 'https://www.facebook.com/', 'Want facebook is toch wel kunst hoor', 'https://www.facebook.com/', 7, 0),
-(25, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0),
-(26, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0),
-(27, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0),
-(28, 28, 'selfie', 'Selfie_Robbe-01.png', 'Selfie robbe', '', 7, 0),
-(29, 28, 'magazine', 'magazine_graph.png', 'Magazine opdracht design', '', 4, 0),
-(30, 28, 'foto', 'tunnel.jpg', 'tunnel', '', 5, 0),
-(31, 28, 'Sparkles', 'openVLD.png', 'vuurtje op een stokje', '', 3, 0),
-(34, 28, '3D', '3d.png', 'zakmes 3d object challenge design', '', 5, 0),
-(35, 28, 'Drawing', 'Room2.0.JPG', 'room perspective challenge design atelier', '', 6, 0),
-(36, 28, 'Variatio', 'variatio.jpg', 'fotografie variatio', '', 7, 0),
-(37, 19, 'Schildpad', 'a_dream.png', 'zefrgergzetztthg', '', 3, 0),
-(38, 19, 'Fladder', 'lolz engel.jpg', 'lolz hihi', '', 4, 1492939048),
-(39, 19, 'Upload plz', 'Otter space.jpg', 'pls', '', 3, 1492939116),
-(40, 19, 'PLZ', 'trash.png', 'pls pretty pls', '', 4, 1492939138);
+INSERT INTO `posts` (`id`, `user_ID`, `title`, `image`, `description`, `link`, `topics_ID`, `time`, `reports`) VALUES
+(20, 21, 'Koe', '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe zei de koe!', '', 3, 0, 0),
+(21, 21, 'Koe', 'sXjhX44-cow-backgrounds.jpg', 'Boeien, zeiden de koeien', '', 3, 0, 0),
+(22, 21, 'Koe', '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe, zei weer de koe', '', 4, 0, 0),
+(23, 27, 'aaa', 'rage.png', 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '', 7, 0, 0),
+(24, 27, 'facebook', 'https://www.facebook.com/', 'Want facebook is toch wel kunst hoor', 'https://www.facebook.com/', 7, 0, 0),
+(25, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0, 0),
+(26, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0, 0),
+(27, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0, 0),
+(28, 28, 'selfie', 'Selfie_Robbe-01.png', 'Selfie robbe', '', 7, 0, 0),
+(29, 28, 'magazine', 'magazine_graph.png', 'Magazine opdracht design', '', 4, 0, 0),
+(30, 28, 'foto', 'tunnel.jpg', 'tunnel', '', 5, 0, 0),
+(31, 28, 'Sparkles', 'openVLD.png', 'vuurtje op een stokje', '', 3, 0, 0),
+(34, 28, '3D', '3d.png', 'zakmes 3d object challenge design', '', 5, 0, 0),
+(35, 28, 'Drawing', 'Room2.0.JPG', 'room perspective challenge design atelier', '', 6, 0, 0),
+(36, 28, 'Variatio', 'variatio.jpg', 'fotografie variatio', '', 7, 0, 0),
+(37, 19, 'Schildpad', 'a_dream.png', 'zefrgergzetztthg', '', 3, 0, 0),
+(38, 19, 'Fladder', 'lolz engel.jpg', 'lolz hihi', '', 4, 1492939048, 0),
+(39, 19, 'Upload plz', 'Otter space.jpg', 'pls', '', 3, 1492939116, 0),
+(40, 19, 'PLZ', 'trash.png', 'pls pretty pls', '', 4, 1492939138, 0),
+(41, 21, 'Kalf', '20160709_151510.jpg', 'Kalfje', '', 3, 1493040708, 0),
+(42, 21, 'Penelope', 'Penelope8.jpg', 'Penelope', '', 3, 1493104129, 0),
+(43, 21, 'Penelope', 'Penelope8.jpg', 'Penelope', '', 3, 1493104186, 0),
+(44, 21, 'piggy and ice cream', 'tumblr_static_tumblr_static_3rhyuytz2q04g0c0s8k4ccgoo_640.jpg', 'piggy eating ice cream', '', 4, 1493104308, 3),
+(45, 21, 'piggy and ice cream', 'tumblr_static_tumblr_static_3rhyuytz2q04g0c0s8k4ccgoo_640.jpg', 'piggy eating ice cream', '', 4, 1493106150, 5);
 
 -- --------------------------------------------------------
 
@@ -239,12 +244,12 @@ ALTER TABLE `users_topics`
 -- AUTO_INCREMENT voor een tabel `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `likeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT voor een tabel `topics`
 --
