@@ -87,6 +87,7 @@ if($rows > 0){
                     <div class="likeBtn">
                         <a href="#">
                             <?php
+                            $post = new Post;
                             $postid = $res->id;
                             $liked=$post->checkLiked($postid);
                             if ($liked==false) {
