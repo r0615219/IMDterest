@@ -57,13 +57,18 @@ include_once('emptyStates.php');
 
                             <textarea rows="3" name="imgDescription" id="imgDescription" placeholder=" Add a description..."></textarea>
 
-                            <label for="imgTopic">Topic</label>
-                            <select name="imgTopic" id="imgTopic">
-                                <option value="none">Choose a topic</option>
-                                <?php foreach ($_SESSION['topics'] as $t):?>
-                                    <option value="<?php echo $t->id; ?>"><?php echo $t->name; ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                            <div class="modal-topics">
+                                <label for="imgTopic">Topic</label>
+                                <select name="imgTopic" id="imgTopic">
+                                    <option value="none">Choose a topic</option>
+                                    <?php foreach ($_SESSION['topics'] as $t):?>
+                                        <option value="<?php echo $t->id; ?>"><?php echo $t->name; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <p>or</p>
+                                <label for="addTopic">add a new topic</label>
+                                <input type="text" name="addTopic" id="addTopic">
+                            </div>
 
                             <div class="modal-footer">
                                 <input type="submit" name="imgSubmit" class="btn btn-default submitBtn" value="Save" />

@@ -49,9 +49,26 @@ class Topics
         $this->m_sImage = $res['image'];
     }
 
+    public function getTopicViaName()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * FROM `topics` WHERE name = :name");
+        $statement->bindValue(":name", $this->m_sName);
+        $statement->execute();
+        $res = $statement->fetch(PDO::FETCH_ASSOC);
+        $this->m_iID = $res['id'];
+        $this->m_sImage = $res['image'];
+        $this->m_sName = $res['name'];
+    }
+
     //functie om een nieuw aangemaakte topic op te slaan
     public function saveTopic()
     {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("INSERT INTO `topics`(`name`, `image`) VALUES (:name, :image);");
+        $statement->bindValue(":name", $this->m_sName);
+        $statement->bindValue(":image", $this->m_sImage);
+        $statement->execute();
     }
 
     //functie om topic aan user te koppelen
