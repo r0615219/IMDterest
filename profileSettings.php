@@ -1,6 +1,6 @@
 <?php
 session_start();
-spl_autoload_register(function($class){
+spl_autoload_register(function ($class) {
     include_once("classes/" . $class . ".php");
 });
 //stuur de gebruiker weg als ze niet zijn ingelogd
@@ -9,7 +9,7 @@ if (isset($_SESSION['user'])) {
     header('Location: signin.php');
 }
 
-if(!empty($_POST)){
+if (!empty($_POST)) {
     try {
         $user = new User;
         
@@ -31,33 +31,29 @@ if(!empty($_POST)){
         }
     
         if (!empty($_FILES['image']['name'])) {
-
             $bestandsnaam = strtolower($_FILES['image']['name']);
             
-            if (strpos($bestandsnaam, ".png")){
-                        move_uploaded_file($_FILES["image"]["tmp_name"],
+            if (strpos($bestandsnaam, ".png")) {
+                move_uploaded_file($_FILES["image"]["tmp_name"],
                 "images/uploads/userImages/" . $_SESSION['userid'] . ".png");
-                        $user->Image = $_SESSION['userid'] . ".png";
-                    } else if(strpos($bestandsnaam, ".jpg")){
-                        move_uploaded_file($_FILES["image"]["tmp_name"],
+                $user->Image = $_SESSION['userid'] . ".png";
+            } elseif (strpos($bestandsnaam, ".jpg")) {
+                move_uploaded_file($_FILES["image"]["tmp_name"],
                 "images/uploads/userImages/" . $_SESSION['userid'] . ".jpg");
-                        $user->Image = $_SESSION['userid'] . ".jpg";
-                    } else if(strpos($bestandsnaam, ".gif")){
-                        move_uploaded_file($_FILES["image"]["tmp_name"],
+                $user->Image = $_SESSION['userid'] . ".jpg";
+            } elseif (strpos($bestandsnaam, ".gif")) {
+                move_uploaded_file($_FILES["image"]["tmp_name"],
                 "images/uploads/userImages/" . $_SESSION['userid'] . ".gif");
-                        $user->Image = $_SESSION['userid'] . ".gif";
-                    } else {
+                $user->Image = $_SESSION['userid'] . ".gif";
+            } else {
                 throw new exception("Unable to change profile picture. The uploaded file must be a JPEG, PNG or GIF.");
             }
         }
         
         $user->updateDatabase();
-        
     } catch (Exception $e) {
         $error = $e->getMessage();
     }
-
-
 }
 ?>
 
@@ -88,9 +84,9 @@ if(!empty($_POST)){
 
 
 <div class="container" style="margin-top:50px;">
-    <?php if(isset($error)){
-        echo "<p>$error</p>";
-    } ?>
+    <?php if (isset($error)) {
+    echo "<p>$error</p>";
+} ?>
     <h1 class="media-heading">Account settings</h1>
     <div class="media-body">
         <form enctype="multipart/form-data" action="" method="post">
