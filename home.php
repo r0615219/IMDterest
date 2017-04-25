@@ -75,16 +75,16 @@ try {
 
             if (strpos($bestandsnaam, ".png")) {
                 move_uploaded_file($_FILES["img"]["tmp_name"],
-                    "images/uploads/postImages/" . $_FILES["img"]["name"]);
-                $post->image = $_FILES['img']['name'];
+                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".png");
+                $post->image = $post->title . $_SESSION['userid'] . $post->uploadtime . ".png";
             } else if (strpos($bestandsnaam, ".jpg")) {
                 move_uploaded_file($_FILES["img"]["tmp_name"],
-                    "images/uploads/postImages/" . $_FILES["img"]["name"]);
-                $post->image = $_FILES['img']['name'];
+                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg");
+                $post->image = $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg";
             } else if (strpos($bestandsnaam, ".gif")) {
                 move_uploaded_file($_FILES["img"]["tmp_name"],
-                    "images/uploads/postImages/" . $_FILES["img"]["name"]);
-                $post->image = $_FILES['img']['name'];
+                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif");
+                $post->image = $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif";
             } else {
                 throw new exception("Unable to create post. The uploaded image must be a JPEG, PNG or GIF.");
             }
