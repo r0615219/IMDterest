@@ -30,7 +30,6 @@ try {
             $topicArray[] = $topic;
         }
     }
-
 //4. ZIE chooseTopics.php !!
 
 //5. indien topics gekozen -> topics in databank steken
@@ -58,7 +57,6 @@ try {
 
 try {
     if (isset($_POST['imgSubmit'])) {
-
         $title = $_POST['title'];
 
         if($_POST['imgTopic'] == 'none'){ //indien select niet geselecteerd is
