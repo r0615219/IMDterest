@@ -66,7 +66,7 @@
             }
         }
 
-        public function Register()
+        public function register()
         {
             if (!empty($this->m_sFirstname) && !empty($this->m_sLastname) && !empty($this->m_sEmail) && !empty($this->m_sPassword)) {
                 $options = [
@@ -99,7 +99,7 @@
             }
         }
 
-        public function CanLogin()
+        public function canLogin()
         { //checken of we mogen inloggen
 
             $conn = Db::getInstance();
@@ -115,7 +115,7 @@
             }
         }
 
-        public function HandleLogin()
+        public function handleLogin()
         { //inloggen
             try {
                 $conn = Db::getInstance();

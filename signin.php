@@ -8,9 +8,9 @@ if (!empty($_POST)) {
             $user = new User();
             $user->Email = $_POST['email'];
             $user->Password = $_POST['password'];
-            if ($user->CanLogin()) {
+            if ($user->canLogin()) {
                 echo'canlogin';
-                $user->HandleLogin();
+                $user->handleLogin();
             } else {
                 $error = "<p class='alert alert-danger'> Failed to sign in. </p>";
             }

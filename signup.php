@@ -15,8 +15,8 @@ try {
         $user->Password = $_POST['password'];
         $user->Image = "http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png";
 
-        if ($user->Register()) {
-            $user->HandleLogin();
+        if ($user->register()) {
+            $user->handleLogin();
         }
     }
 } catch (Exception $e) {
