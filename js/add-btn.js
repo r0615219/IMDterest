@@ -52,7 +52,7 @@ $(document).ready(function(){
     var track_page = 1; //track user click as page number, right now page number is 1
     load_contents(track_page); //load content
 
-    $(".LoadMoreBtn").click(function (e) { //user clicks on button
+    $(".LoadMoreBtn").on('click', function (e) { //user clicks on button
         track_page++; //page number increment everytime user clicks load button
         load_contents(track_page); //load content
     });
@@ -61,16 +61,9 @@ $(document).ready(function(){
     function load_contents(track_page){
         $.post( 'ajax/loadMore.php', {'page': track_page}, function(data){
 
-            /*if(data.trim().length == 0){
-                //display text and disable load button if nothing to load
-                $(".LoadMoreBtn").text("No more records!").prop("disabled", true);
-            }*/
-
             $("#results").append(data); //append data into #results element
-
 
         });
     }
-
 
 });

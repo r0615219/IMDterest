@@ -126,6 +126,17 @@ if (isset($_POST['linkSubmit'])) {
 
 }
 
+if(isset($_POST['report'])){
+    $post = new Post;
+    $post->id = $_POST['report'];
+    $post->reportPost();
+}
+
+if(isset($_POST['delete'])){
+    $post = new Post;
+    $post->id = $_POST['delete'];
+    $post->deletePost();
+}
 
 
 ?>
