@@ -34,15 +34,15 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="home.php">Home <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Messages</a></li>
+                <li><a href="#">Explore</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Topics <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <?php foreach ($_SESSION['topics'] as $t):?>
                             <li><a href="#"><?php echo $t->name; ?></a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">More</a></li>
                         <?php endforeach; ?>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">More</a></li>
                     </ul>
                 </li>
             </ul>

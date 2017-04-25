@@ -59,8 +59,6 @@ class Topics
         $this->m_iID = $res['id'];
         $this->m_sImage = $res['image'];
         $this->m_sName = $res['name'];
-        $arr = $statement->errorInfo();
-        print_r($arr);
     }
 
     //functie om een nieuw aangemaakte topic op te slaan
