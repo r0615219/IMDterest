@@ -1,44 +1,46 @@
 <?php
 
 session_start();
-spl_autoload_register(function($class){
-        include_once("classes/" . $class . ".php");
-    });
+spl_autoload_register(function ($class) {
+    include_once("classes/" . $class . ".php");
+});
 
 $required = array('email', 'firstname', 'lastname', 'password');
-try{
-if(!empty($_POST)){
-    $user = new User();
-    $user->Email = $_POST['email'];
-    $user->Firstname = $_POST['firstname'];
-    $user->Lastname = $_POST['lastname'];
-    $user->Password = $_POST['password'];
-    $user->Image = "http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png";
+try {
+    if (!empty($_POST)) {
+        $user = new User();
+        $user->Email = $_POST['email'];
+        $user->Firstname = $_POST['firstname'];
+        $user->Lastname = $_POST['lastname'];
+        $user->Password = $_POST['password'];
+        $user->Image = "http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png";
 
-      if( $user->Register()){
-          $user->HandleLogin();
-      }
-  }
-
-}catch (Exception $e) {
-  $error = $e->getMessage();
-  foreach($required as $field) {
-  if (empty($_POST[$field])) {
-    echo '<style type="text/css">
+        if ($user->Register()) {
+            $user->HandleLogin();
+        }
+    }
+} catch (Exception $e) {
+    $error = $e->getMessage();
+    foreach ($required as $field) {
+        if (empty($_POST[$field])) {
+            echo '<style type="text/css">
           #'.$field.'{border:1px solid red;}
           </style>';
-      $missingfields = 1;}}
-  if (strlen($_POST['password'])<6) {
-    echo '<style type="text/css">
+            $missingfields = 1;
+        }
+    }
+    if (strlen($_POST['password'])<6) {
+        echo '<style type="text/css">
           #password{border:1px solid red;}
           </style>';
-      $shortpassword = 1;}
-  if ($error=="email already registered") {
-    echo '<style type="text/css">
+        $shortpassword = 1;
+    }
+    if ($error=="email already registered") {
+        echo '<style type="text/css">
           #email{border:1px solid red;}
           </style>';
-    $duplicatemail = 1;
-  }
+        $duplicatemail = 1;
+    }
 };?>
 
 <!doctype html>
@@ -87,13 +89,13 @@ if(!empty($_POST)){
             <form method="post">
             <?php
               if (isset($missingfields)) {
-                echo "<div class='error alert alert-danger'> You didn't fill in all the fields!</div>";
+                  echo "<div class='error alert alert-danger'> You didn't fill in all the fields!</div>";
               }
-              if(!empty($_POST['password']) && strlen($_POST['password'])<6){
-                echo "<div class='error alert alert-danger'> This password is too short!</div>";
+              if (!empty($_POST['password']) && strlen($_POST['password'])<6) {
+                  echo "<div class='error alert alert-danger'> This password is too short!</div>";
               }
               if (isset($duplicatemail)) {
-                echo "<div class='error alert alert-danger'> This email is already in use!</div>";
+                  echo "<div class='error alert alert-danger'> This email is already in use!</div>";
               }
 
               ?>
