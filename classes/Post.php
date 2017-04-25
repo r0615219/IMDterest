@@ -7,7 +7,9 @@ class Post{
     private $m_sDescription;
     private $m_sLink;
     private $m_iTopicsId;
+    private $m_iUserId;
     private $m_iUploadtime;
+    private $m_iReports;
 
     public function __set($p_sProperty, $p_vValue){
         switch ( $p_sProperty ){
@@ -34,9 +36,17 @@ class Post{
             case 'topics_ID':
                 $this->m_iTopicsId = $p_vValue;
                 break;
+
+            case 'user_ID':
+                $this->m_iUserId = $p_vValue;
+                break;
             
             case 'uploadtime':
                 $this->m_iUploadtime = $p_vValue;
+                break;
+
+            case 'reports':
+                $this->m_iReports = $p_vValue;
                 break;
         }
     }
@@ -66,9 +76,17 @@ class Post{
             case 'topics_ID':
                 return $this->m_iTopicsId;
                 break;
+
+            case 'user_ID':
+                return $this->m_iUserId;
+                break;
                 
             case 'uploadtime':
                 return $this->m_iUploadtime;
+                break;
+
+            case 'reports':
+                return $this->m_iReports;
                 break;
         }
     }
@@ -116,4 +134,10 @@ class Post{
       echo $rows;
     }
 
+    public function reportPost(){
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("UPDATE posts SET reports = reports + 1 WHERE id = :id");
+        $statement->bindValue(":id", $this->m_iID);
+        $statement->execute();
+    }
 }

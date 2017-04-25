@@ -5,7 +5,7 @@ $(document).ready(function(){
     event.preventDefault();
     //checking if already liked or not -> 1) need userID 2) need postID = PHP check
     var id = $(this).parents(".likes").siblings(".userInfo").children(".postId").html().substring(1);
-    var liked
+    var liked;
     var heart =$(this).find("img");
     var counter=$(this).parents(".likes").find(".likeAmount");
   $.ajax({
