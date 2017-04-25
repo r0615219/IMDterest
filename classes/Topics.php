@@ -52,7 +52,7 @@ class Topics
     public function getTopicViaName()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("SELECT * FROM `topics` WHERE name = :name");
+        $statement = $conn->prepare("SELECT * FROM `topics` WHERE name = :name;");
         $statement->bindValue(":name", $this->m_sName);
         $statement->execute();
         $res = $statement->fetch(PDO::FETCH_ASSOC);
@@ -65,10 +65,10 @@ class Topics
     public function saveTopic()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("INSERT INTO `topics`(`name`, `image`) VALUES (:nametopic, :image);");
-        $statement->bindValue(":nametopic", $this->m_sName);
+        $statement = $conn->prepare("INSERT INTO `topics`(`name`, `image`) VALUES (:name, :image);");
+        $statement->bindValue(":name", $this->m_sName);
         $statement->bindValue(":image", $this->m_sImage);
-        $statement->execute();
+        return $statement->execute();
     }
 
     //functie om topic aan user te koppelen

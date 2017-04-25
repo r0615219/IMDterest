@@ -71,6 +71,11 @@ try {
                 $topicsId = $newTopic->id;
             } else {
                 $newTopic->saveTopic();
+                if($newTopic->saveTopic()){
+                    echo 'ok';
+                } else {
+                    echo 'nope';
+                }
                 //topicId van nieuwe topic ophalen
                 $newTopic->getTopicViaName();
                 $topicsId = $newTopic->id;
