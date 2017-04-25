@@ -135,6 +135,25 @@ class Post{
         } else if ($verschil > 24*60*60 && $verschil < 7*24*60*60){
             $x = floor($verschil/(24*60*60));
             $return = "Uploaded ". $x ." days ago";
+        } else if ($verschil > 7*24*60*60 && $verschil < 2*7*24*60*60){
+            $return = "Uploaded a week ago";
+        } else if ($verschil > 2*7*24*60*60 && $verschil < 30*24*60*60){
+            $x = floor($verschil/(7*24*60*60));
+            $return = "Uploaded ". $x ." weeks ago";
+        } else if ($verschil > 30*24*60*60 && $verschil < 2*30*24*60*60){
+            $return = "Uploaded a month ago";
+        } else if ($verschil > 2*30*24*60*60 && $verschil < 12*30*24*60*60){
+            $x = floor($verschil/(30*24*60*60));
+            $return = "Uploaded ". $x ." months ago";
+        } else if ($verschil > 365*24*60*60 && $verschil < 372*24*60*60){
+            $return = "Uploaded a year ago ago";
+        } else if ($verschil > 372*24*60*60){
+            $date = date('d/m/Y', $timestamp);
+            if ($date == "01/01/1970"){
+                $return = "Uploaded before the dawn of time";
+            } else {
+            $return = "Uploaded on ". $date ." ";
+            }
         } else {
             $return = "Uploaded just now";
         }
