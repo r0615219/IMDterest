@@ -10,7 +10,6 @@ if (isset($_SESSION['user'])) {
 }
 
 $userId = $_GET['userId'];
-
 $user = new User;
 $user->getUserDetails($userId);
 
