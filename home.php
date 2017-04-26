@@ -30,7 +30,6 @@ try {
             $topicArray[] = $topic;
         }
     }
-
 //4. ZIE chooseTopics.php !!
 
 //5. indien topics gekozen -> topics in databank steken
@@ -58,49 +57,31 @@ try {
 
 try {
     if (isset($_POST['imgSubmit'])) {
-
         $title = $_POST['title'];
 
-        if($_POST['imgTopic'] == 'none'){ //indien select niet geselecteerd is
-            //nieuwe topic opslaan
-            $newTopic = new Topics;
-            $newTopic->name = $_POST['addTopic'];
-            $newTopic->image = strtolower($_FILES['img']['name']);
-            $newTopic->getTopicViaName();
-            if($newTopic->name = $_POST['addTopic']){ //kijken of de topic al bestaat
-                $topicsId = $newTopic->id;
-            }else{
-                $newTopic->saveTopic();
-                //topicId van nieuwe topic ophalen
-                $newTopic->getTopicViaName();
-                $topicsId = $newTopic->id;
-            }
-        } else {
-            $topicId = $_POST['imgTopic'];
-        }
 
         $description = $_POST['imgDescription'];
         $post = new Post;
         $post->title = $title;
         $post->description = $description;
         $post->uploadtime = time(); //timestamp
-        $post->topics_ID = (int)$topicsId;
+
 
         if (isset($_FILES['img'])) {
             $bestandsnaam = strtolower($_FILES['img']['name']);
 
             if (strpos($bestandsnaam, ".png")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"],
-                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".png");
-                $post->image = $post->title . $_SESSION['userid'] . $post->uploadtime . ".png";
+                move_uploaded_file($_FILES["img"]["tmp_name"],str_replace(' ', '%20',
+                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".png"));
+                $post->image = str_replace(' ', '%20',$post->title . $_SESSION['userid'] . $post->uploadtime . ".png");
             } elseif (strpos($bestandsnaam, ".jpg")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"],
-                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg");
-                $post->image = $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg";
+                move_uploaded_file($_FILES["img"]["tmp_name"],str_replace(' ', '%20',
+                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg"));
+                $post->image = str_replace(' ', '%20',$post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg");
             } elseif (strpos($bestandsnaam, ".gif")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"],
-                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif");
-                $post->image = $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif";
+                move_uploaded_file($_FILES["img"]["tmp_name"],str_replace(' ', '%20',
+                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif"));
+                $post->image = str_replace(' ', '%20',$post->title . $_SESSION['userid'] . $post->uploadtime . ".gif");
             } else {
                 throw new exception("Unable to create post. The uploaded image must be a JPEG, PNG or GIF.");
             }
@@ -108,11 +89,35 @@ try {
             $post->image = "profile_placeholder.png";
         }
 
+        if($_POST['imgTopic'] == 'none'){ //indien select niet geselecteerd is
+            //nieuwe topic opslaan
+            $newTopic = new Topics;
+            $newTopic->name = $_POST['addTopic'];
+            $newTopic->image = str_replace(' ', '%20', strtolower($_FILES['img']['name']));
+
+            if($newTopic->checkAvailability() == 'match') {
+                $topicsId = $newTopic->id;
+            } else{
+                $newTopic->image = $post->image;
+                $newTopic->saveTopic();
+                //topicId van nieuwe topic ophalen
+                $newTopic->getTopicViaName();
+                $topicsId = $newTopic->id;
+            }
+
+            $newTopic->saveUserTopic();
+            array_push($_SESSION['topics'], $newTopic);
+        } else {
+            $topicsId = $_POST['imgTopic'];
+        }
+
+        $post->topics_ID = (int)$topicsId;
         $post->link = "";
         $post ->savePost();
         $user = new User;
         $user->Email = $_SESSION['user'];
         $user->getUserPosts();
+
     }
 } catch (Exception $e) {
     $error = $e->getMessage();

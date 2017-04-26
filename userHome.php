@@ -20,7 +20,6 @@ include_once('emptyStates.php');
     <div class="loadMore">
         <button class="loadMoreBtn btn btn-primary">Load 20 more</button>
     </div>
-
 <?php echo ob_get_clean();
 } else {
     shuffle($emptyStates);
@@ -59,7 +58,7 @@ include_once('emptyStates.php');
                             <textarea rows="3" name="imgDescription" id="imgDescription" placeholder=" Add a description..."></textarea>
 
                             <div class="modal-topics">
-                                <label for="imgTopic">Topic :</label>
+                                <label for="imgTopic">Topic</label>
                                 <select name="imgTopic" id="imgTopic">
                                     <option value="none">Choose a topic</option>
                                     <?php foreach ($_SESSION['topics'] as $t):?>

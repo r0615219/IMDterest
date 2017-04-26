@@ -69,6 +69,9 @@ class Topics
         $statement->bindValue(":name", $this->m_sName);
         $statement->bindValue(":image", $this->m_sImage);
         $statement->execute();
+        $arr = $statement->errorInfo();
+        print_r('SAVE_TOPIC ERRORS:');
+        print_r($arr);
     }
 
     //functie om topic aan user te koppelen
@@ -79,5 +82,22 @@ class Topics
         $statement->bindValue(":userID", $_SESSION['userid']);
         $statement->bindValue(":topicsID", $this->m_iID);
         $statement->execute();
+        $arr = $statement->errorInfo();
+        print_r('SAVE_USER_TOPIC ERRORS:');
+        print_r($arr);
+    }
+
+    public function checkAvailability()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * FROM `topics`");
+        $statement->execute();
+        while($res = $statement->fetch(PDO::FETCH_OBJ)){
+            if($res->name == $this->name) {
+                $this->id = $res->id;
+                return 'match';
+            }
+        }
+        return 'no match';
     }
 }
