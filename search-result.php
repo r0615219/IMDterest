@@ -17,6 +17,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/npm.js"></script>
+<script src="js/likebutton.js"></script>>
+
+</script>
 
 <!doctype html>
 <html lang="en">
@@ -115,12 +118,28 @@
                             echo $user->Firstname . " " . $user->Lastname;
                             ?>
                         </a>
+                          <div class="postId"><?php echo $searchItem['id']; ?></div>
                     </div>
 
-                    <div class="likeBtn">
-                        <a href="#">
-                            <img class="media-object" src="images/icons/heart.svg" alt="heart">
-                        </a>
+                    <div class="likes">
+                        <div class="likeBtn">
+                            <a href="#">
+                                <?php
+                                $post = new Post;
+            $postid = $searchItem['id'];
+            $liked=$post->checkLiked($postid);
+            if ($liked==false) {
+                echo '<img class="media-object" src="images/icons/heart.svg" alt="heart">';
+            } else {
+                echo '<img class="media-object" src="images/icons/heart_filled.svg" alt="heart">';
+            } ?>
+                            </a>
+                        </div>
+                        <div class="likeAmount">
+                            <?php
+                            $postid = $searchItem['id'];
+                            $post->countlikes($postid); ?>
+                        </div>
                     </div>
 
                 </div>
