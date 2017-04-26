@@ -32,19 +32,20 @@ if (!empty($_POST)) {
     
         if (!empty($_FILES['image']['name'])) {
             $bestandsnaam = strtolower($_FILES['image']['name']);
+            $timestamp = time();
             
             if (strpos($bestandsnaam, ".png")) {
                 move_uploaded_file($_FILES["image"]["tmp_name"],
-                "images/uploads/userImages/" . $_SESSION['userid'] . ".png");
-                $user->Image = $_SESSION['userid'] . ".png";
+                "images/uploads/userImages/" . $_SESSION['userid'] . $timestamp . ".png");
+                $user->Image = $_SESSION['userid'] . $timestamp . ".png";
             } elseif (strpos($bestandsnaam, ".jpg")) {
                 move_uploaded_file($_FILES["image"]["tmp_name"],
-                "images/uploads/userImages/" . $_SESSION['userid'] . ".jpg");
-                $user->Image = $_SESSION['userid'] . ".jpg";
+                "images/uploads/userImages/" . $_SESSION['userid'] . $timestamp . ".jpg");
+                $user->Image = $_SESSION['userid'] . $timestamp . ".jpg";
             } elseif (strpos($bestandsnaam, ".gif")) {
                 move_uploaded_file($_FILES["image"]["tmp_name"],
-                "images/uploads/userImages/" . $_SESSION['userid'] . ".gif");
-                $user->Image = $_SESSION['userid'] . ".gif";
+                "images/uploads/userImages/" . $_SESSION['userid'] . $timestamp . ".gif");
+                $user->Image = $_SESSION['userid'] . $timestamp . ".gif";
             } else {
                 throw new exception("Unable to change profile picture. The uploaded file must be a JPEG, PNG or GIF.");
             }
