@@ -107,6 +107,9 @@
                 $statement->bindValue(":topics_ID", $this->m_iTopicsId);
                 $statement->bindValue(":time", $this->m_iUploadtime);
                 $statement->execute();
+                $arr = $statement->errorInfo();
+                print_r('SAVE_POST ERRORS:');
+                print_r($arr);
             } catch (PDOException $e) {
                 $error = $e->getMessage();
             }
