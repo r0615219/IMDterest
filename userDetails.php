@@ -10,6 +10,11 @@ if (isset($_SESSION['user'])) {
 }
 
 $userId = $_GET['userId'];
+
+if($userId == $_SESSION['userid']){
+    header('Location: profile.php');
+}
+
 $user = new User;
 $user->getUserDetails($userId);
 
@@ -33,7 +38,7 @@ $user->getUserDetails($userId);
     <script src="js/bootstrap.min.js"></script>
     <script src="js/npm.js"></script>
 
-    <title>IMDterest | Profile</title>
+    <title>IMDterest | <?php echo $user->Firstname . " " .$user->Lastname; ?></title>
 </head>
 <body>
 
@@ -48,18 +53,9 @@ $user->getUserDetails($userId);
 
     <div class="head-profile">
         <div class="head-profile-name">
-            <img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt="profile picture">
+            <img src="images/uploads/userImages/<?php echo $user->Image; ?>" alt="profile picture">
 
-            <h1 class="media-heading"><?php echo $_SESSION['firstname']; ?> <?php echo $_SESSION['lastname']; ?></h1>
-        </div>
-
-        <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="profileSettings.php">Edit profile</a></li>
-            </ul>
+            <h1 class="media-heading"><?php echo $user->Firstname; ?> <?php echo $user->Lastname; ?></h1>
         </div>
     </div>
 
