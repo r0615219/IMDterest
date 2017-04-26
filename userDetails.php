@@ -8,6 +8,12 @@ if (isset($_SESSION['user'])) {
 } else {
     header('Location: signin.php');
 }
+
+$userId = $_GET['userId'];
+
+$user = new User;
+$user->getUserDetails($userId);
+
 ?>
 <!doctype html>
 <html lang="en">

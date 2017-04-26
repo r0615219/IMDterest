@@ -5,7 +5,7 @@
     });
 
     try {
-        if (!empty($_GET)) {
+        if (!empty($_GET['search']) && !empty($_GET['search-select'])) {
             $search = new Search();
             $search->Zoekterm = $_GET['search'];
             $search->ZoekSelect = $_GET['search-select'];

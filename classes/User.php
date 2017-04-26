@@ -270,4 +270,16 @@
             $this->Lastname = $res["lastname"];
             $this->Image = $res["image"];
         }
+        
+        public function getUserDetails($user)
+        {
+            $conn = Db::getInstance();
+            $statement = $conn->prepare("SELECT firstname, lastname, image FROM users where id = :user_ID ");
+            $statement->bindValue(":user_ID", $user);
+            $statement->execute();
+            $res = $statement->fetch(PDO::FETCH_ASSOC);
+            $this->Firstname = $res["firstname"];
+            $this->Lastname = $res["lastname"];
+            $this->Image = $res["image"];
+        }
     }
