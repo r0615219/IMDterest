@@ -209,7 +209,13 @@
             <?php foreach ($_SESSION['search'] as $searchItem): ?>
 
                 <div class="userPost">
-                    <div class="userPostImg" style="background-image: url(<?php echo $searchItem['image']; ?>);"></div>
+                    <div class="userPostImg"
+                        <?php if (substr($searchItem['image'], 0, 4) === "http"): ?>
+                            style="background-image: url(<?php echo $searchItem['image']; ?>);"
+                        <?php else: ?>
+                            style="background-image: url('images/uploads/postImages/<?php echo $searchItem['image']; ?>');"
+                        <?php endif; ?>></div>
+
                     <div class="userPostTopic">
                         <h3>
                             <a href="#">
