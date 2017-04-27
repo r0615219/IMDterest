@@ -153,10 +153,10 @@ if (isset($_POST['delete'])) {
 ////COMMENTS/////
 
 if (!empty($_POST['comment'])) {
-  $comment = new Comment;
-  $comment->comment =$_POST['comment'];
-  $comment->user_id = 1;
-  $comment->post_id = $post.post_id;
+  $comment = new comment;
+  $comment->comment = $_POST['comment'];
+  $comment->post_id = $_POST['post_id'];
+  $comment->saveComment();
 }
 
 ?>
@@ -165,6 +165,7 @@ if (!empty($_POST['comment'])) {
 <script src="js/bootstrap.min.js"></script>
 <script src="js/npm.js"></script>
 <script src="js/likebutton.js"></script>
+<script src="js/comment-btn.js"></script>
 
 <!doctype html>
 <html lang="en">

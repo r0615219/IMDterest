@@ -186,8 +186,8 @@ if ($rows > 0) {
                                                 <span class="input-group-addon profile-comment" id="basic-addon1"><img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt=""></span>
 
                                                 <input type="text" class="form-control" placeholder="Leave a comment..." name="comment" id="comment" aria-describedby="basic-addon1">
-
-                                                <span id="comment-btn"class="input-group-addon"><span class="glyphicon glyphicon-arrow-right" type="submit"></span></span>
+                                                <input type="hidden" name="post_id" id="post_id" value="<?php echo $res->id; ?>">                                              
+                                                <button type="submit" name="button" id="comment-btn"><span class="input-group-addon"><span class="glyphicon glyphicon-arrow-right" type="submit"></span></span></button>
                                             </div>
                                         </div>
                                     </form>
@@ -207,5 +207,6 @@ if ($rows > 0) {
     shuffle($emptyStates);
     echo '<h1 class="emptyState">' . $emptyStates[0] . '</h1>'."\n".'<h1 class="emptyStateTxt">Oops, no posts found!</h1><script>$(".LoadMoreBtn").text("No more records!").prop("disabled", true);</script>';
 };
-echo '<script src="js/likebutton.js"></script>'
+echo '<script src="js/likebutton.js"></script>';
+echo '<script src="js/comment-btn.js"></script>';
  ?>
