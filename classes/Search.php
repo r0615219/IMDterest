@@ -33,7 +33,7 @@
         {
             $conn = Db::getInstance();
             if ($this->m_sZoekSelect == 'posts') {
-                $statement = $conn->prepare("SELECT * FROM `posts` WHERE `description` LIKE CONCAT('%', :zoekterm ,'%')");
+                $statement = $conn->prepare("SELECT * FROM `posts` WHERE `description` LIKE CONCAT('%', :zoekterm ,'%') OR `title` LIKE CONCAT('%', :zoekterm ,'%')");
             } elseif ($this->m_sZoekSelect == 'users') {
                 $statement = $conn->prepare("SELECT * FROM `users` WHERE `firstname` LIKE CONCAT('%', :zoekterm ,'%') OR `lastname` LIKE CONCAT('%', :zoekterm ,'%') OR `email` LIKE CONCAT('%', :zoekterm ,'%')");
             } elseif ($this->m_sZoekSelect == 'topics') {
