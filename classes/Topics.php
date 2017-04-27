@@ -49,6 +49,16 @@ class Topics
         $this->m_sImage = $res['image'];
     }
 
+    public function getAllTopics()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * FROM `topics`;");
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['alltopics'] = $result;
+
+    }
+
     public function getTopicViaName()
     {
         $conn = Db::getInstance();

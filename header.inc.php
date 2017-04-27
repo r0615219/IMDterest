@@ -45,7 +45,7 @@
                             <li><a href="topics.php?topicsid=<?php echo $goToTopic->id; ?>"><?php echo $t->name; ?></a></li>
                         <?php endforeach; ?>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">More</a></li>
+                        <li><a <a href="topics.php?topicsid=0">More</a></li>
                     </ul>
                 </li>
             </ul>

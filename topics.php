@@ -10,15 +10,18 @@
         header('Location: signin.php');
     }
 
-    $topicInfo = new Topics();
-    $topicInfo->id = $_GET['topicsid'];
-    $topicInfo->getTopic();
+    if($_GET['topicsid'] != 0){
+        $topicInfo = new Topics();
+        $topicInfo->id = $_GET['topicsid'];
+        $topicInfo->getTopic();
 
-    $topicPost = new Post();
-    $topicPost->topics_ID = $_GET['topicsid'];
-    $topicPost->getPostsViaTopic();
-
-
+        $topicPost = new Post();
+        $topicPost->topics_ID = $_GET['topicsid'];
+        $topicPost->getPostsViaTopic();
+    } else {
+        $allTopics = new Topics();
+        $allTopics->getAllTopics();
+    }
 
 ?>
 
@@ -50,6 +53,8 @@
 <body>
 
 <?php include_once('header.inc.php'); ?>
+
+<?php if($_GET['topicsid'] != 0): ?>
 
     <div class="container-search">
 
@@ -231,6 +236,43 @@
     <?php endforeach; ?>
 
     </div>
+
+<?php endif; ?>
+
+<?php if($_GET['topicsid'] == 0): ?>
+
+    <div class="container-search">
+
+        <h1>Topics</h1>
+
+    </div>
+
+    <div class="container">
+
+        <?php foreach ($_SESSION['alltopics'] as $t): ?>
+
+            <div class="userPost">
+                <div class="userPostImg"
+                    <?php if (substr($t['image'], 0, 4) === "http"): ?>
+                        style="background-image: url(<?php echo $t['image']; ?>);"
+                    <?php else: ?>
+                        style="background-image: url('images/uploads/postImages/<?php echo $t['image']; ?>');"
+                    <?php endif; ?>></div>
+
+                <div class="userPostTopic">
+                    <h3>
+                        <a href="topics.php?topicsid=<?php echo $t['id']; ?>">
+                            <?php echo $t['name']; ?>
+                        </a>
+                    </h3>
+                </div>
+            </div>
+
+        <?php endforeach; ?>
+
+    </div>
+
+<?php endif; ?>
 
 </body>
 </html>
