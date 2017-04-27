@@ -150,6 +150,14 @@ if (isset($_POST['delete'])) {
     $post->deletePost();
 }
 
+////COMMENTS/////
+
+if (!empty($_POST['comment'])) {
+  $comment = new Comment;
+  $comment->comment =$_POST['comment'];
+  $comment->user_id = 1;
+  $comment->post_id = $post.post_id;
+}
 
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

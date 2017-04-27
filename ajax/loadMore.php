@@ -177,15 +177,17 @@ if ($rows > 0) {
                                     <p><?php echo $res->description; ?></p>
                                 </div>
                                 <div class="comments">
-                                    <form action="post">
+                                    <form method="post">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <p>Hier komen de comments van users</p>
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon profile-comment" id="basic-addon1"><img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt=""></span>
+
                                                 <input type="text" class="form-control" placeholder="Leave a comment..." name="comment" id="comment" aria-describedby="basic-addon1">
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-arrow-right" type="submit"></span></span>
+
+                                                <span id="comment-btn"class="input-group-addon"><span class="glyphicon glyphicon-arrow-right" type="submit"></span></span>
                                             </div>
                                         </div>
                                     </form>
