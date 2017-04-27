@@ -39,7 +39,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Topics <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <?php foreach ($_SESSION['topics'] as $t):?>
-                            <li><a href="#"><?php echo $t->name; ?></a></li>
+                            <?php $goToTopic = new Topics();
+                            $goToTopic->name = $t->name;
+                            $goToTopic->getTopicViaName(); ?>
+                            <li><a href="topics.php?topicsid=<?php echo $goToTopic->id; ?>"><?php echo $t->name; ?></a></li>
                         <?php endforeach; ?>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">More</a></li>

@@ -200,4 +200,16 @@
             $statement->bindValue(":id", $this->m_iID);
             $statement->execute();
         }
+
+
+        public function getPostsViaTopic()
+        {
+            $conn = Db::getInstance();
+            $statement = $conn->prepare("SELECT * FROM `posts` WHERE `topics_ID` = (:topicsid)");
+            $statement->bindValue(":topicsid", $this->m_iTopicsId);
+            $statement->execute();
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $_SESSION['posts-topic'] = $result;
+        }
+
     }
