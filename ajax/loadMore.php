@@ -196,7 +196,6 @@ if ($rows > 0) {
 
                 </div>
             </div>
-        </div>
             <?php echo ob_get_clean();
         }
     }
