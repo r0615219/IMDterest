@@ -69,7 +69,7 @@
         <?php foreach ($_SESSION['search'] as $searchItem): ?>
 
             <div class="userPost">
-                <div class="userPostImg" style="background-image: url(images/uploads/postImages/<?php echo $searchItem['image']; ?>);">
+                <div class="userPostImg" style="background-image: url('images/uploads/postImages/<?php echo $searchItem['image']; ?>');">
                     <button class="btn btn-link btn-topic-img"><?php
                         $topic = new Topics();
                         $topic->id = $searchItem['topics_ID'];
@@ -117,10 +117,25 @@
                         </a>
                     </div>
 
-                    <div class="likeBtn">
-                        <a href="#">
-                            <img class="media-object" src="images/icons/heart.svg" alt="heart">
-                        </a>
+                    <div class="likes">
+                        <div class="likeBtn">
+                            <a href="#">
+                                <?php
+                                $post = new Post;
+                                $postid = $searchItem['id'];
+                                $liked=$post->checkLiked($postid);
+                                if ($liked==false) {
+                                    echo '<img class="media-object" src="images/icons/heart.svg" alt="heart">';
+                                } else {
+                                    echo '<img class="media-object" src="images/icons/heart_filled.svg" alt="heart">';
+                                } ?>
+                            </a>
+                        </div>
+                        <div class="likeAmount">
+                            <?php
+                            $postid = $searchItem['id'];
+                            $post->countlikes($postid); ?>
+                        </div>
                     </div>
 
                 </div>
@@ -170,7 +185,7 @@
                          <?php if (substr($searchItem['image'], 0, 4) === "http"): ?>
                             style="background-image: url(<?php echo $searchItem['image']; ?>);"
                          <?php else: ?>
-                            style="background-image: url(images/uploads/userImages/<?php echo $searchItem['image']; ?>);"
+                            style="background-image: url('images/uploads/userImages/<?php echo $searchItem['image']; ?>');"
                         <?php endif; ?>></div>
                     <div class="userPostTopic">
                         <h3>
@@ -194,7 +209,13 @@
             <?php foreach ($_SESSION['search'] as $searchItem): ?>
 
                 <div class="userPost">
-                    <div class="userPostImg" style="background-image: url(<?php echo $searchItem['image']; ?>);"></div>
+                    <div class="userPostImg"
+                        <?php if (substr($searchItem['image'], 0, 4) === "http"): ?>
+                            style="background-image: url(<?php echo $searchItem['image']; ?>);"
+                        <?php else: ?>
+                            style="background-image: url('images/uploads/postImages/<?php echo $searchItem['image']; ?>');"
+                        <?php endif; ?>></div>
+
                     <div class="userPostTopic">
                         <h3>
                             <a href="#">
