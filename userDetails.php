@@ -59,7 +59,7 @@ $user->getUserDetails($userId);
             <h1 class="media-heading"><?php echo $user->Firstname; ?> <?php echo $user->Lastname; ?></h1>
         </div>
         
-        <button type="button" class="btn btn" id="follow"> Follow </button>
+        <button type="button" class="btn" id="follow"> Follow </button>
     </div>
 
     <div class="media-body">
