@@ -9,6 +9,8 @@
     font-size: 7em;
     margin-top: 50px;
     margin-bottom: 50px;
+    width: 100%;
+    text-align: center;
 }
 
 .emptyStateTxt{
@@ -19,7 +21,7 @@
 
 .userPost{
     min-width: 200px;
-    max-width: 600px;
+    max-width: 400px;
     border-radius: 10px;
     background-color: white;
     border-bottom: 1px solid #ccc;

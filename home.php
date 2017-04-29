@@ -123,7 +123,7 @@ try {
     $error = $e->getMessage();
 }
 
-if (isset($_POST['linkSubmit'])) {
+/*if (isset($_POST['linkSubmit'])) {
     $topicsId = $_POST['linkTopic'];
     $link = $_POST['link'];
     $title = '';
@@ -148,7 +148,7 @@ if (isset($_POST['linkSubmit'])) {
 
         //get site's first image
         $nodeImage = $doc->getElementsByTagName('img');
-        $image = str_replace(' ', '%20', $link.$nodeImage[0]->getAttribute('src'));
+        $image = str_replace(' ', '%20', $link . $nodeImage[0]->getAttribute('src'));
 
         $description = get_meta_tags($link)['description'];
     }
@@ -160,12 +160,12 @@ if (isset($_POST['linkSubmit'])) {
     $post->link = $link;
     $post->image = $image;
     $post->title = $title;
-    $post ->savePost();
+    $post->savePost();
 
     $user = new User;
     $user->Email = $_SESSION['user'];
     $user->getUserPosts();
-}
+}*/
 
 if (isset($_POST['report'])) {
     $post = new Post;
