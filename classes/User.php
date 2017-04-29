@@ -9,6 +9,7 @@
         private $m_sPassword;
         private $m_sImage;
         private $m_aTopics=[];
+        private $m_bFollow;
 
         public function __set($p_sProperty, $p_vValue)
         {
@@ -37,6 +38,9 @@
                 case "Topics":
                     array_push($this->m_aTopics, $p_vValue);
                     break;
+                case "Follow":
+                    $this->m_bFollow = $p_vValue;
+                    break;
             }
         }
 
@@ -63,6 +67,8 @@
                     break;
                 case "Topics":
                     return $this->m_aTopics;
+                case "Follow":
+                    return $this->m_bFollow;
             }
         }
 
@@ -281,5 +287,13 @@
             $this->Firstname = $res["firstname"];
             $this->Lastname = $res["lastname"];
             $this->Image = $res["image"];
+            
+            $statment2 = $conn->prepare("SELECT * FROM follows where follower = :usersession ");
+            $statement2->bindValue(":user_ID", $user);
+            if($statement2->execute()){
+                $this->Follow = true;
+            } else {
+                $this->Follow = false;
+            }
         }
     }

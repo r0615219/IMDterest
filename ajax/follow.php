@@ -5,12 +5,15 @@
 	include_once('../classes/User.php');
 
 if(!empty($_POST) ){
+    $user = new User();
     
-    //check of follow == true was of niet
+    if ($user->Follow==true) {
+        //if follow == true, verwijder follow record uit tabel follows
+    }
     
-    //if follow == true, verwijder follow record uit tabel follows
-    
-    //if follow == false, voeg follow record toe aan tabel follows 
+    if ($user->Follow==false) {
+        //if follow == false, voeg follow record toe aan tabel follows 
+    }
     
     //echo json_encode($feedback);
 }
