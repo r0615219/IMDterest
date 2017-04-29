@@ -1,14 +1,14 @@
 <?php
 
-    session_start();
-    spl_autoload_register(function ($class) {
-        include_once("classes/" . $class . ".php");
-    });
-    //stuur de gebruiker weg als ze niet zijn ingelogd
-    if (isset($_SESSION['user'])) {
-    } else {
-        header('Location: signin.php');
-    }
+session_start();
+spl_autoload_register(function ($class) {
+    include_once("classes/" . $class . ".php");
+});
+//stuur de gebruiker weg als ze niet zijn ingelogd
+if (isset($_SESSION['user'])) {
+} else {
+    header('Location: signin.php');
+}
 
 //TOPICS
 try {
@@ -22,7 +22,7 @@ try {
         $statement1->execute();
         while ($res = $statement1->fetch(PDO::FETCH_ASSOC)) {
             $id = $res['topics_ID'];
-            $statement2 = $conn->prepare("SELECT * from `topics` where id = :id");
+            $statement2 = $conn->prepare("SELECT * FROM `topics` WHERE id = :id");
             $statement2->bindValue(":id", (int)$id);
             $statement2->execute();
             $topic = $statement2->fetch(PDO::FETCH_OBJ);
@@ -49,7 +49,7 @@ try {
 
 //7. ZIE userHome.php !!
 } catch (Exception $e) {
-    $error= $e->getMessage();
+    $error = $e->getMessage();
 }
 
 
@@ -71,17 +71,17 @@ try {
             $bestandsnaam = strtolower($_FILES['img']['name']);
 
             if (strpos($bestandsnaam, ".png")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"],str_replace(' ', '%20',
+                move_uploaded_file($_FILES["img"]["tmp_name"], str_replace(' ', '%20',
                     "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".png"));
-                $post->image = str_replace(' ', '%20',$post->title . $_SESSION['userid'] . $post->uploadtime . ".png");
+                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->uploadtime . ".png");
             } elseif (strpos($bestandsnaam, ".jpg")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"],str_replace(' ', '%20',
+                move_uploaded_file($_FILES["img"]["tmp_name"], str_replace(' ', '%20',
                     "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg"));
-                $post->image = str_replace(' ', '%20',$post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg");
+                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg");
             } elseif (strpos($bestandsnaam, ".gif")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"],str_replace(' ', '%20',
+                move_uploaded_file($_FILES["img"]["tmp_name"], str_replace(' ', '%20',
                     "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif"));
-                $post->image = str_replace(' ', '%20',$post->title . $_SESSION['userid'] . $post->uploadtime . ".gif");
+                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif");
             } else {
                 throw new exception("Unable to create post. The uploaded image must be a JPEG, PNG or GIF.");
             }
@@ -89,15 +89,15 @@ try {
             $post->image = "profile_placeholder.png";
         }
 
-        if($_POST['imgTopic'] == 'none'){ //indien select niet geselecteerd is
+        if ($_POST['imgTopic'] == 'none') { //indien select niet geselecteerd is
             //nieuwe topic opslaan
             $newTopic = new Topics;
             $newTopic->name = $_POST['addTopic'];
             $newTopic->image = str_replace(' ', '%20', strtolower($_FILES['img']['name']));
 
-            if($newTopic->checkAvailability() == 'match') {
+            if ($newTopic->checkAvailability() == 'match') {
                 $topicsId = $newTopic->id;
-            } else{
+            } else {
                 $newTopic->image = $post->image;
                 $newTopic->saveTopic();
                 //topicId van nieuwe topic ophalen
@@ -113,7 +113,7 @@ try {
 
         $post->topics_ID = (int)$topicsId;
         $post->link = "";
-        $post ->savePost();
+        $post->savePost();
         $user = new User;
         $user->Email = $_SESSION['user'];
         $user->getUserPosts();
@@ -127,16 +127,16 @@ if (isset($_POST['linkSubmit'])) {
     $topicsId = $_POST['linkTopic'];
     $description = $_POST['linkDescription'];
     $link = $_POST['link'];
+    $title = '';
+    $image = '';
 
-
-
-    $html = file_get_contents('https://www.masterani.me/'); //get the html returned from the following url
+    $html = file_get_contents($link); //get the html returned from the following url
 
     $doc = new DOMDocument();
 
     libxml_use_internal_errors(TRUE); //disable libxml errors
 
-    if(!empty($html)){ //if any html is actually returned
+    if (!empty($html)) { //if any html is actually returned
 
         $doc->loadHTML($html);
         libxml_clear_errors(); //remove errors for yucky html
@@ -144,22 +144,21 @@ if (isset($_POST['linkSubmit'])) {
         $xpath = new DOMXPath($doc);
 
         //get site's title
-        $post->title = $xpath->query('//title');
+        $nodeTitle = $xpath->query('//title');
 
-        if($title->length > 0){
-            foreach($title as $row){
-                echo $row->nodeValue . "<br/>";
-            }
-        }
+        $title = $nodeTitle[0]->nodeValue;
+
+        //get site's first image
+        $nodeImage = $doc->getElementsByTagName('img');
+        $image = str_replace(' ', '%20', $link.$nodeImage[0]->getAttribute('src'));
     }
 
-
-
     $post = new Post;
+    $post->uploadtime = time(); //timestamp
     $post->description = $description;
     $post->topics_ID = (int)$topicsId;
     $post->link = $link;
-    $post->image = $link;
+    $post->image = $image;
     $post->title = $title;
     $post ->savePost();
 
@@ -211,9 +210,9 @@ if (isset($_POST['delete'])) {
 
 <?php include_once('header.inc.php'); ?>
 <div class="container">
-<?php if(isset($error)){
-    echo "<p class='alert alert-danger'>$error</p>";
-}?>
+    <?php if (isset($error)) {
+        echo "<p class='alert alert-danger'>$error</p>";
+    } ?>
     <?php
 
     if (isset($_SESSION['topics'])) {

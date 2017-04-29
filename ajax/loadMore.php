@@ -14,7 +14,7 @@ if (!is_numeric($page_number)) {
 }
 
 //get current starting point of records
-$position = (($page_number-1) * 20);
+$position = (($page_number - 1) * 20);
 $limit = 20;
 //fetch records using page position and item per page.
 $conn = Db::getInstance();
@@ -35,46 +35,56 @@ if ($rows > 0) {
             //fetch values
             ob_start(); ?>
             <div class="userPost">
-                <div class="userPostImg" style="background-image: url('images/uploads/postImages/<?php echo $res->image; ?>');">
-                    <a href="topics.php?topicsid=<?php echo $res->topics_ID; ?>" class="btn btn-link btn-topic-img"><?php
+                <div class="userPostImg"
+                     style="background-image: url('<?php if ($res->link == '') {echo './images/uploads/postImages/';} echo $res->image; ?>');">
+                    <a href="topics.php?topicsid=<?php echo $res->topics_ID; ?>"
+                       class="btn btn-link btn-topic-img"><?php
                         $topic = new Topics();
                         $topic->id = $res->topics_ID;
                         $topic->getTopic();
                         echo $topic->name; ?></a>
                     <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#" data-toggle="modal" data-target="#report<?php echo $res->id ?>" type="submit">Report post</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#report<?php echo $res->id ?>"
+                                   type="submit">Report post</a></li>
                             <li><a href="#">Unfollow</a></li>
                             <li role="separator" class="divider"></li>
                             <?php if ($res->user_ID == $_SESSION['userid']): ?>
 
-                                <li><a href="#" data-toggle="modal" data-target="#delete<?php echo $res->id ?>" type="submit">Delete</a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#delete<?php echo $res->id ?>"
+                                       type="submit">Delete</a></li>
 
                             <?php endif; ?>
                         </ul>
                     </div>
                 </div>
 
-            <div class="userPostTopic">
-                <h3>
-                    <a href="#" data-toggle="modal" data-target="#postModal<?php echo $res->id ?>"><?php echo $res->title; ?></a>
-                </h3>
-            </div>
-            <?php $post = new Post; ?>
-            <div class="userPostDescription"><h4><?php echo $res->description; ?> <small> <?php echo $post->uploadedWhen($res->time); ?></small></h4></div>
-            <hr>
+                <div class="userPostTopic">
+                    <h3>
+                        <a href="#" data-toggle="modal"
+                           data-target="#postModal<?php echo $res->id ?>"><?php echo $res->title; ?></a>
+                    </h3>
+                </div>
+                <?php $post = new Post; ?>
+                <div class="userPostDescription">
+                    <h4><?php echo $res->description; ?>
+                        <small> <?php echo $post->uploadedWhen($res->time); ?></small>
+                    </h4>
+                </div>
+                <hr>
                 <div class="userPostInfo">
 
                     <div class="userInfo">
                         <a href="#">
                             <img class="media-object profile-pic" src="images/uploads/userImages/<?php
                             $user = new User;
-            $user->id = $res->user_ID;
-            $user->getUserInfo();
-            echo $user->Image; ?>" alt="post">
+                            $user->id = $res->user_ID;
+                            $user->getUserInfo();
+                            echo $user->Image; ?>" alt="post">
                         </a>
                         <a href="userDetails.php?userId=<?php echo $user->id ?>">
                             <?php echo $user->Firstname . " " . $user->Lastname; ?>
@@ -88,19 +98,19 @@ if ($rows > 0) {
                             <a href="#">
                                 <?php
                                 $post = new Post;
-            $postid = $res->id;
-            $liked=$post->checkLiked($postid);
-            if ($liked==false) {
-                echo '<img class="media-object" src="images/icons/heart.svg" alt="heart">';
-            } else {
-                echo '<img class="media-object" src="images/icons/heart_filled.svg" alt="heart">';
-            } ?>
+                                $postid = $res->id;
+                                $liked = $post->checkLiked($postid);
+                                if ($liked == false) {
+                                    echo '<img class="media-object" src="images/icons/heart.svg" alt="heart">';
+                                } else {
+                                    echo '<img class="media-object" src="images/icons/heart_filled.svg" alt="heart">';
+                                } ?>
                             </a>
                         </div>
                         <div class="likeAmount">
                             <?php
                             $postid = $res->id;
-            $post->countlikes($postid); ?>
+                            $post->countlikes($postid); ?>
                         </div>
                     </div>
                 </div>
@@ -121,8 +131,10 @@ if ($rows > 0) {
 
                                 <h2><?php echo $res->title; ?></h2>
 
-                                <button class="btn btn-default btn-danger" type="submit" name="report" value="<?php echo $res->id; ?>">Report</button>
-                                <button class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                <button class="btn btn-default btn-danger" type="submit" name="report"
+                                        value="<?php echo $res->id; ?>">Report
+                                </button>
+                                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
 
                             </form>
 
@@ -148,8 +160,10 @@ if ($rows > 0) {
 
                                 <h2><?php echo $res->title; ?></h2>
 
-                                <button class="btn btn-default btn-danger" type="submit" name="delete" value="<?php echo $res->id; ?>">Delete</button>
-                                <button class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                                <button class="btn btn-default btn-danger" type="submit" name="delete"
+                                        value="<?php echo $res->id; ?>">Delete
+                                </button>
+                                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
 
                             </form>
 
@@ -183,9 +197,14 @@ if ($rows > 0) {
                                                 <p>Hier komen de comments van users</p>
                                             </div>
                                             <div class="input-group">
-                                                <span class="input-group-addon profile-comment" id="basic-addon1"><img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt=""></span>
-                                                <input type="text" class="form-control" placeholder="Leave a comment..." name="comment" id="comment" aria-describedby="basic-addon1">
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-arrow-right" type="submit"></span></span>
+                                                <span class="input-group-addon profile-comment" id="basic-addon1"><img
+                                                            src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>"
+                                                            alt=""></span>
+                                                <input type="text" class="form-control" placeholder="Leave a comment..."
+                                                       name="comment" id="comment" aria-describedby="basic-addon1">
+                                                <span class="input-group-addon"><span
+                                                            class="glyphicon glyphicon-arrow-right"
+                                                            type="submit"></span></span>
                                             </div>
                                         </div>
                                     </form>
@@ -202,7 +221,7 @@ if ($rows > 0) {
 } else {
     $_SESSION['posts'] = false;
     shuffle($emptyStates);
-    echo '<h1 class="emptyState">' . $emptyStates[0] . '</h1>'."\n".'<h1 class="emptyStateTxt">Oops, no posts found!</h1><script>$(".LoadMoreBtn").text("No more records!").prop("disabled", true);</script>';
+    echo '<h1 class="emptyState">' . $emptyStates[0] . '</h1>' . "\n" . '<h1 class="emptyStateTxt">Oops, no posts found!</h1><script>$(".LoadMoreBtn").text("No more records!").prop("disabled", true);</script>';
 };
 echo '<script src="js/likebutton.js"></script>'
- ?>
+?>
