@@ -75,7 +75,6 @@ if ($rows > 0) {
                         <small> <?php echo $post->uploadedWhen($res->time); ?></small>
                     </h4>
                 </div>
-                <hr>
                 <div class="userPostInfo">
 
                     <div class="userInfo">
