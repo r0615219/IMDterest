@@ -8,9 +8,9 @@ if(!empty($_POST) ){
     $user = new User();
     
     if ($user->Follow==FALSE) { //if follow == false, voeg follow record toe aan tabel follows
-        $statement = $conn->prepare("INSERT INTO `follows`(`follower`, `user`) VALUES(:usersession,:postid)");
+        $statement = $conn->prepare("INSERT INTO `follows`(`follower`, `user`) VALUES(:usersession,:user_ID)");
         $statement->bindValue(":usersession", $_SESSION['userid']);
-        $statement->bindValue(":postid", $postid);
+        $statement->bindValue(":user_ID", $_POST['user_ID']);
         $statement->execute();
         $user->Follow=TRUE;
     }
