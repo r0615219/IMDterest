@@ -13,9 +13,6 @@
 
         public function __set($p_sProperty, $p_vValue)
         {
-            /*if(empty($p_vValue)){
-                  throw new Exception ('There are empty fields.');}*/
-        //dit stukje code is in comments gezet door Roel omdat het optionele tekstvelden onmogelijk maakt, wat absoluut nodig blijkt te zijn voor updateDatabase(). Er wordt al op andere plaatsen voor gezorgd dat alle velden in signin.php en singup.php zijn ingevuld.
             switch ($p_sProperty) {
                 case "id":
                     $this->m_iId = $p_vValue;
@@ -288,12 +285,17 @@
             $this->Lastname = $res["lastname"];
             $this->Image = $res["image"];
             
-            $statment2 = $conn->prepare("SELECT * FROM follows where follower = :usersession ");
+            $statement2 = $conn->prepare("SELECT * FROM follows WHERE follower = :usersession AND user = :user_ID");
+            $statement2->bindValue(":usersession", $_SESSION['userid']);
             $statement2->bindValue(":user_ID", $user);
-            if($statement2->execute()){
-                $this->Follow = true;
+            $statement2->execute();
+            $res2 = $statement2->fetchAll(PDO::FETCH_ASSOC);
+            $rows = count($res2);
+            var_dump($rows);
+            if($rows > 0){
+                $this->Follow = TRUE;
             } else {
-                $this->Follow = false;
+                $this->Follow = FALSE;
             }
         }
     }
