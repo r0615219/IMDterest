@@ -153,6 +153,31 @@ if (isset($_POST['linkSubmit'])) {
         $image = str_replace(' ', '%20', $link.$nodeImage[0]->getAttribute('src'));
     }
 
+    $html = file_get_contents('https://www.masterani.me/'); //get the html returned from the following url
+
+    $doc = new DOMDocument();
+
+    libxml_use_internal_errors(TRUE); //disable libxml errors
+
+    if(!empty($html)){ //if any html is actually returned
+
+        $doc->loadHTML($html);
+        libxml_clear_errors(); //remove errors for yucky html
+
+        $xpath = new DOMXPath($doc);
+
+        //get site's title
+        $post->title = $xpath->query('//title');
+
+        if($title->length > 0){
+            foreach($title as $row){
+                echo $row->nodeValue . "<br/>";
+            }
+        }
+    }
+
+
+
     $post = new Post;
     $post->uploadtime = time(); //timestamp
     $post->description = $description;
