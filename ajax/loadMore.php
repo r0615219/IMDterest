@@ -187,7 +187,7 @@ if ($rows > 0) {
                         <div class="modal-body">
                             <div class="flex-modal">
                                 <div class="post">
-                                    <img src="images/uploads/postImages/<?php echo $res->image; ?>" alt="post-image">
+                                    <img src="<?php if ($res->link == '') {echo './images/uploads/postImages/';} echo $res->image; ?>" alt="post-image">
                                     <p><?php echo $res->description; ?></p>
                                 </div>
                                 <div class="comments">

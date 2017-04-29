@@ -102,8 +102,6 @@ include_once('emptyStates.php');
 
                     <hr>
 
-                    <textarea rows="3" name="linkDescription" placeholder=" Add a description"></textarea>
-
                     <label for="linkTopic">Topic</label>
                     <select name="linkTopic" id="linkTopic">
                         <option value="none">Choose a topic</option>
