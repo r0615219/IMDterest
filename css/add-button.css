@@ -1,10 +1,10 @@
-.add{
+.add {
     position: fixed;
     bottom: 5%;
     right: 5%;
 }
 
-.addBtn{
+.addBtn {
     position: absolute;
     width: 80px;
     height: 80px;
@@ -16,26 +16,26 @@
     z-index: 30;
 }
 
-#imageBtn{
+#imageBtn {
     width: 80px;
     height: 80px;
     z-index: 20;
 }
 
-#linkBtn{
+#linkBtn {
     width: 80px;
     height: 80px;
     z-index: 10;
 
 }
 
-#imageBtn img, #linkBtn img{
+#imageBtn img, #linkBtn img {
     width: 40px;
     height: 40px;
     color: white;
 }
 
-textarea{
+textarea {
     width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
