@@ -58,9 +58,8 @@ try {
 try {
     if (isset($_POST['imgSubmit'])) {
         $title = $_POST['title'];
-
-
         $description = $_POST['imgDescription'];
+
         $post = new Post;
         $post->title = $title;
         $post->description = $description;
@@ -122,50 +121,6 @@ try {
 } catch (Exception $e) {
     $error = $e->getMessage();
 }
-
-/*if (isset($_POST['linkSubmit'])) {
-    $topicsId = $_POST['linkTopic'];
-    $link = $_POST['link'];
-    $title = '';
-    $image = '';
-    $description = '';
-
-    $html = file_get_contents($link); //get the html returned from the following url
-
-    $doc = new DOMDocument();
-
-    libxml_use_internal_errors(TRUE); //disable libxml errors
-
-    if (!empty($html)) { //if any html is actually returned
-
-        $doc->loadHTML($html);
-        libxml_clear_errors(); //remove errors for yucky html
-        $xpath = new DOMXPath($doc);
-
-        //get site's title
-        $nodeTitle = $xpath->query('//title');
-        $title = $nodeTitle[0]->nodeValue;
-
-        //get site's first image
-        $nodeImage = $doc->getElementsByTagName('img');
-        $image = str_replace(' ', '%20', $link . $nodeImage[0]->getAttribute('src'));
-
-        $description = get_meta_tags($link)['description'];
-    }
-
-    $post = new Post;
-    $post->uploadtime = time(); //timestamp
-    $post->description = $description;
-    $post->topics_ID = (int)$topicsId;
-    $post->link = $link;
-    $post->image = $image;
-    $post->title = $title;
-    $post->savePost();
-
-    $user = new User;
-    $user->Email = $_SESSION['user'];
-    $user->getUserPosts();
-}*/
 
 if (isset($_POST['report'])) {
     $post = new Post;

@@ -8,14 +8,14 @@ if (isset($_SESSION['user'])) {
 } else {
     header('Location: signin.php');
 }
+$post = new Post;
 
-$topicsId = $_GET['linkTopic'];
 $link = $_GET['url'];
 $title = '';
 $image = '';
 $description = '';
-if(strpos($link, 'https://') === false || strpos($link, 'http://') === false){
-    $link = 'http://'.$link;
+if (strpos($link, 'https://') === false || strpos($link, 'http://') === false) {
+    $link = 'http://' . $link;
 }
 $html = file_get_contents($link); //get the html returned from the following url
 
@@ -32,20 +32,43 @@ if (!empty($html)) { //if any html is actually returned
     //get site's title
     $nodeTitle = $xpath->query('//title');
     $title = $nodeTitle[0]->nodeValue;
+    //get description
+    if (array_key_exists('description', get_meta_tags($link))) {
+        $description = get_meta_tags($link)['description'];
+    } else {
+        $description = $title;
+    }
 
-    //get site's first image
-    /*$nodeImage = $doc->getElementsByTagName('img');
-    $image = str_replace(' ', '%20', $link . $nodeImage[0]->getAttribute('src'));
-*/
-    $description = get_meta_tags($link)['description'];
+    //get all found images
     $nodeImage = $doc->getElementsByTagName('img');
+
 }
 
 
 if (isset($_POST['img'])) {
     $image = str_replace(' ', '%20', $_POST['img']);
 
-    $post = new Post;
+    if ($_POST['linkTopic'] == 'none') { //indien select niet geselecteerd is
+        //nieuwe topic opslaan
+        $newTopic = new Topics;
+        $newTopic->name = $_POST['addTopic'];
+        $newTopic->image = $image;
+
+        if ($newTopic->checkAvailability() == 'match') {
+            $topicsId = $newTopic->id;
+        } else {
+            $newTopic->saveTopic();
+            //topicId van nieuwe topic ophalen
+            $newTopic->getTopicViaName();
+            $topicsId = $newTopic->id;
+        }
+
+        $newTopic->saveUserTopic();
+        array_push($_SESSION['topics'], $newTopic);
+    } else {
+        $topicsId = $_POST['linkTopic'];
+    }
+
     $post->uploadtime = time(); //timestamp
     $post->description = $description;
     $post->topics_ID = (int)$topicsId;
@@ -62,17 +85,45 @@ if (isset($_POST['img'])) {
 }
 
 ?>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/signup-style.css">
 <link rel="stylesheet" href="css/topics.css">
-<h1>Choose which image you want to save</h1>
-<form action="" method="post">
-    <div class="btn-group btn-block" data-toggle="buttons">
-        <?php
+<link rel="stylesheet" href="css/add-button.css">
+<link rel="stylesheet" href="css/posts.css">
 
-        foreach ($nodeImage as $node):?>
-            <label class="btn topic-div" style="background-image: url(<?php if(strpos($node->getAttribute('src'), 'http') === false){echo $link;} echo $node->getAttribute('src'); ?>);">
-                <input type="radio" name="img" value="<?php echo $node->getAttribute('src'); ?>">
-            </label>
-        <?php endforeach; ?>
+<link href="https://fonts.googleapis.com/css?familhy=Nova+Oval" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/choosePostImage.js"></script>
+
+<div class="btn-group btn-block block" data-toggle="buttons">
+
+
+    <?php include_once('header.inc.php'); ?>
+    <div class="container">
+        <h1 class="h1">Which image do you want to save</h1>
+        <?php foreach ($nodeImage as $node): ?>
+            <?php if ($node->getAttribute('src') !== ''): ?>
+                <a class="btn topic-div choosePostImage"
+                        style="background-image: url(<?php if (strpos($node->getAttribute('src'), '../') === true) {
+                            echo str_replace("../", "/", $node->getAttribute('src'));
+                        }
+                        if (strpos($node->getAttribute('src'), 'http') === false) {
+                            echo $link;
+                        }
+                        echo $node->getAttribute('src'); ?>);"
+                        value="<?php if (strpos($node->getAttribute('src'), '../') === true) {
+                            echo str_replace("../", "/", $node->getAttribute('src'));
+                        }
+                        if (strpos($node->getAttribute('src'), 'http') === false) {
+                            echo $link;
+                        }
+                        echo $node->getAttribute('src'); ?>);"
+                >
+                </a>
+            <?php endif; endforeach; ?>
     </div>
-    <button class="btn btn-success save" type="submit">Save this image</button>
-</form>
+</div>
