@@ -96,7 +96,7 @@ include_once('emptyStates.php');
             </div>
             <div class="modal-body">
 
-                <form action="choosePostImage.php" method="get" enctype="multipart/form-data">
+                <form action="" method="post" enctype="multipart/form-data">
 
                     <input type="text" name="url" placeholder="https://"/>
 
