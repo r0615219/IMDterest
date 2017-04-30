@@ -182,16 +182,29 @@ if ($rows > 0) {
                                     <div>
                                         <?php
                                         $comment = new Comment;
-                                        $comment->loadComment();
-                                        //print_r($comment);
-                                      //  echo "<br>";
-                                        foreach ($comment as $c):?>
+                                        $comment->loadComment($res->id);
+                                        //print_r($_SESSION['comments']);
+                                        $comment=$_SESSION['comments'];
+                                        foreach ($comment as $c) {
+
+                                         /*$comment->loadComment();
+                                         echo $comment;*/
+
+                                        //echo $c["comment"];
+                                        echo "<br>";
+                                        //echo"test";
+                                        print_r($c['comment']);
+                                        echo "<br>";
 
 
-                                        <?php echo $c->comment; ?>
 
 
-                                      <?php endforeach; ?>
+                                        //echo $c->comment;
+                                        }
+                                        ; ?>
+
+
+
 
 
                                     </div>
