@@ -19,7 +19,7 @@ $(document).ready(function(){
 
         $.ajax({
             method: "POST",
-            url: "./ajax/location.php",
+            url: 'ajax/location.php',
             data: { 'varLocation' : location }
         })
             .done(function() {
