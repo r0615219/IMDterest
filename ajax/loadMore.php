@@ -176,17 +176,31 @@ if ($rows > 0) {
                                     <img src="images/uploads/postImages/<?php echo $res->image; ?>" alt="post-image">
                                     <p><?php echo $res->description; ?></p>
                                 </div>
-                                <div class="comments">
+                        <div class="comments-form">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div>
+                                        <?php
+                                        $comment = new Comment;
+                                        $comment->loadComment();
+                                        //print_r($comment);
+                                      //  echo "<br>";
+                                        foreach ($comment as $c):?>
+
+
+                                        <?php echo $c->comment; ?>
+
+
+                                      <?php endforeach; ?>
+
+
+                                    </div>
+                                  </div>
                                     <form method="post">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <p>Hier komen de comments van users</p>
-                                            </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon profile-comment" id="basic-addon1"><img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt=""></span>
-
                                                 <input type="text" class="form-control" placeholder="Leave a comment..." name="comment" id="comment" aria-describedby="basic-addon1">
-                                                <input type="hidden" name="post_id" id="post_id" value="<?php echo $res->id; ?>">                                              
+                                                <input type="hidden" name="post_id" id="post_id" value="<?php echo $res->id; ?>">
                                                 <button type="submit" name="button" id="comment-btn"><span class="input-group-addon"><span class="glyphicon glyphicon-arrow-right" type="submit"></span></span></button>
                                             </div>
                                         </div>
