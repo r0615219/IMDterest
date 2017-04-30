@@ -10,6 +10,8 @@
         header('Location: signin.php');
     }
 
+    include_once("ajax/location.php");
+
 //TOPICS
 try {
     //1. kijken of gebruiker nog geen topics heeft
@@ -162,6 +164,7 @@ if (isset($_POST['delete'])) {
 <script src="js/bootstrap.min.js"></script>
 <script src="js/npm.js"></script>
 <script src="js/likebutton.js"></script>
+<script src="js/location.js"></script>
 
 <!doctype html>
 <html lang="en">
@@ -189,6 +192,7 @@ if (isset($_POST['delete'])) {
 <?php if(isset($error)){
     echo "<p class='alert alert-danger'>$error</p>";
 }?>
+
     <?php
 
     if (isset($_SESSION['topics'])) {

@@ -11,6 +11,7 @@
         private $m_iUserId;
         private $m_iUploadtime;
         private $m_iReports;
+        private $m_sLocation;
 
         public function __set($p_sProperty, $p_vValue)
         {
@@ -49,6 +50,10 @@
 
             case 'reports':
                 $this->m_iReports = $p_vValue;
+                break;
+
+            case 'location':
+                $this->m_sLocation = $p_vValue;
                 break;
         }
         }
@@ -91,6 +96,10 @@
             case 'reports':
                 return $this->m_iReports;
                 break;
+
+            case 'location':
+                return $this->m_sLocation;
+                break;
         }
         }
 
@@ -98,7 +107,7 @@
         {
             try {
                 $conn = Db::getInstance();
-                $statement = $conn->prepare("INSERT INTO `posts`(`user_ID`, `title`, `image`, `description`, `link`, `topics_ID`, `time`) VALUES (:user_ID, :title, :image, :description, :link, :topics_ID, :time);");
+                $statement = $conn->prepare("INSERT INTO `posts`(`user_ID`, `title`, `image`, `description`, `link`, `topics_ID`, `time`, `location`) VALUES (:user_ID, :title, :image, :description, :link, :topics_ID, :time, :location);");
                 $statement->bindValue(":user_ID", $_SESSION['userid']);
                 $statement->bindValue(":title", $this->m_sTitle);
                 $statement->bindValue(":image", $this->m_sImage);
@@ -106,6 +115,7 @@
                 $statement->bindValue(":link", $this->m_sLink);
                 $statement->bindValue(":topics_ID", $this->m_iTopicsId);
                 $statement->bindValue(":time", $this->m_iUploadtime);
+                $statement->bindValue(":location", $this->m_sLocation);
                 $statement->execute();
                 $arr = $statement->errorInfo();
                 print_r('SAVE_POST ERRORS:');
