@@ -291,7 +291,6 @@
             $statement2->execute();
             $res2 = $statement2->fetchAll(PDO::FETCH_ASSOC);
             $rows = count($res2);
-            var_dump($rows);
             if($rows > 0){
                 $this->Follow = TRUE;
             } else {

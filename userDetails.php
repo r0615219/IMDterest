@@ -18,10 +18,6 @@ if($userId == $_SESSION['userid']){
 $user = new User;
 $user->getUserDetails($userId);
 
-echo $user->Follow;
-var_dump($user->Follow);
-echo $_SESSION['userid'];
-
 ?>
 <!doctype html>
 <html lang="en">
