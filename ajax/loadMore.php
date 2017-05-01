@@ -179,47 +179,36 @@ if ($rows > 0) {
                         <div class="comments-form">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <div>
+                                    <div class="comment-list">
                                         <?php
                                         $comment = new Comment;
                                         $comment->loadComment($res->id);
                                         //print_r($_SESSION['comments']);
                                         $comment=$_SESSION['comments'];
                                         foreach ($comment as $c) {
-
                                          /*$comment->loadComment();
                                          echo $comment;*/
-
                                         //echo $c["comment"];
-                                        echo "<br>";
+                                        echo "<div>";
                                         //echo"test";
                                         print_r($c['comment']);
-                                        echo "<br>";
-
-
-
-
+                                        echo "</div>";
                                         //echo $c->comment;
-                                        }
-                                        ; ?>
-
-
-
-
-
+                                        }; ?>
                                     </div>
-                                  </div>
-                                    <form method="post">
-                                            <div class="input-group">
-                                                <span class="input-group-addon profile-comment" id="basic-addon1"><img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt=""></span>
-                                                <input type="text" class="form-control" placeholder="Leave a comment..." name="comment" id="comment" aria-describedby="basic-addon1">
-                                                <input type="hidden" name="post_id" id="post_id" value="<?php echo $res->id; ?>">
-                                                <button type="submit" name="button" id="comment-btn"><span class="input-group-addon"><span class="glyphicon glyphicon-arrow-right" type="submit"></span></span></button>
-                                            </div>
-                                        </div>
-                                    </form>
                                 </div>
-                            </div>
+                                <form id="comment-form" method="post">
+                                    <div class="input-group">
+                                        <span class="input-group-addon profile-comment" id="basic-addon1"><img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt=""></span>
+                                        <input type="text" class="form-control" placeholder="Leave a comment..." name="comment" id="comment-text" aria-describedby="basic-addon1">
+                                        <input type="hidden" name="post_id" id="post_id" value="<?php echo $res->id; ?>">
+                                        <button type="submit" name="button" id="comment-btn"><span class="input-group-addon"><span class="glyphicon glyphicon-arrow-right" type="submit"></span></span></button>
+                                    </div>
+                                </form>
+                              </div>
+
+                          </div>
+                        </div>
                         </div>
                     </div>
 
