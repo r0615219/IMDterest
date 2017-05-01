@@ -1,68 +1,72 @@
 <?php
 
-class User
-{
-    private $m_iId;
-    private $m_sEmail;
-    private $m_sFirstname;
-    private $m_sLastname;
-    private $m_sPassword;
-    private $m_sImage;
-    private $m_aTopics = [];
-
-    public function __set($p_sProperty, $p_vValue)
+    class User
     {
-        /*if(empty($p_vValue)){
-              throw new Exception ('There are empty fields.');}*/
-        //dit stukje code is in comments gezet door Roel omdat het optionele tekstvelden onmogelijk maakt, wat absoluut nodig blijkt te zijn voor updateDatabase(). Er wordt al op andere plaatsen voor gezorgd dat alle velden in signin.php en singup.php zijn ingevuld.
-        switch ($p_sProperty) {
-            case "id":
-                $this->m_iId = $p_vValue;
-                break;
-            case "Email":
-                $this->m_sEmail = $p_vValue;
-                break;
-            case "Firstname":
-                $this->m_sFirstname = $p_vValue;
-                break;
-            case "Lastname":
-                $this->m_sLastname = $p_vValue;
-                break;
-            case "Password":
-                $this->m_sPassword = $p_vValue;
-                break;
-            case "Image":
-                $this->m_sImage = $p_vValue;
-                break;
-            case "Topics":
-                array_push($this->m_aTopics, $p_vValue);
-                break;
+        private $m_iId;
+        private $m_sEmail;
+        private $m_sFirstname;
+        private $m_sLastname;
+        private $m_sPassword;
+        private $m_sImage;
+        private $m_aTopics=[];
+        private $m_bFollow;
+
+        public function __set($p_sProperty, $p_vValue)
+        {
+            switch ($p_sProperty) {
+                case "id":
+                    $this->m_iId = $p_vValue;
+                    break;
+                case "Email":
+                    $this->m_sEmail = $p_vValue;
+                    break;
+                case "Firstname":
+                    $this->m_sFirstname = $p_vValue;
+                    break;
+                case "Lastname":
+                    $this->m_sLastname = $p_vValue;
+                    break;
+                case "Password":
+                    $this->m_sPassword = $p_vValue;
+                    break;
+                case "Image":
+                    $this->m_sImage = $p_vValue;
+                    break;
+                case "Topics":
+                    array_push($this->m_aTopics, $p_vValue);
+                    break;
+                case "Follow":
+                    $this->m_bFollow = $p_vValue;
+                    break;
+            }
         }
     }
-
-    public function __get($p_sProperty)
-    {
-        switch ($p_sProperty) {
-            case "id":
-                return $this->m_iId;
-                break;
-            case "Email":
-                return $this->m_sEmail;
-                break;
-            case "Firstname":
-                return $this->m_sFirstname;
-                break;
-            case "Lastname":
-                return $this->m_sLastname;
-                break;
-            case "Password":
-                return $this->m_sPassword;
-                break;
-            case "Image":
-                return $this->m_sImage;
-                break;
-            case "Topics":
-                return $this->m_aTopics;
+        public function __get($p_sProperty)
+        {
+            switch ($p_sProperty) {
+                case "id":
+                    return $this->m_iId;
+                    break;
+                case "Email":
+                    return $this->m_sEmail;
+                    break;
+                case "Firstname":
+                    return $this->m_sFirstname;
+                    break;
+                case "Lastname":
+                    return $this->m_sLastname;
+                    break;
+                case "Password":
+                    return $this->m_sPassword;
+                    break;
+                case "Image":
+                    return $this->m_sImage;
+                    break;
+                case "Topics":
+                    return $this->m_aTopics;
+                case "Follow":
+                    return $this->m_bFollow;
+            }
         }
     }
 
@@ -247,6 +251,7 @@ class User
             //EXECUTE en sessions
             $statement->bindValue(":oldemail", $_SESSION['user']);
             $statement->execute();
+<<<<<<< HEAD
             $_SESSION['user'] = $this->m_sEmail;
             $_SESSION['firstname'] = $this->m_sFirstname;
             $_SESSION['lastname'] = $this->m_sLastname;
@@ -281,5 +286,17 @@ class User
         $this->Firstname = $res["firstname"];
         $this->Lastname = $res["lastname"];
         $this->Image = $res["image"];
+            
+        $statement2 = $conn->prepare("SELECT * FROM follows WHERE follower = :usersession AND user = :user_ID");
+        $statement2->bindValue(":usersession", $_SESSION['userid']);
+        $statement2->bindValue(":user_ID", $user);
+        $statement2->execute();
+        $res2 = $statement2->fetchAll(PDO::FETCH_ASSOC);
+        $rows = count($res2);
+        if($rows > 0){
+            $this->Follow = TRUE;
+        } else {
+            $this->Follow = FALSE;
+        }
     }
 }

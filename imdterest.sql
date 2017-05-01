@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 25 apr 2017 om 10:52
+-- Gegenereerd op: 29 apr 2017 om 16:17
 -- Serverversie: 10.1.21-MariaDB
--- PHP-versie: 7.1.1
+-- PHP-versie: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `imdterest`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `follows`
+--
+
+CREATE TABLE `follows` (
+  `followId` int(11) NOT NULL,
+  `follower` int(11) NOT NULL,
+  `user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -88,7 +100,10 @@ INSERT INTO `posts` (`id`, `user_ID`, `title`, `image`, `description`, `link`, `
 (42, 21, 'Penelope', 'Penelope8.jpg', 'Penelope', '', 3, 1493104129, 0),
 (43, 21, 'Penelope', 'Penelope8.jpg', 'Penelope', '', 3, 1493104186, 0),
 (44, 21, 'piggy and ice cream', 'tumblr_static_tumblr_static_3rhyuytz2q04g0c0s8k4ccgoo_640.jpg', 'piggy eating ice cream', '', 4, 1493104308, 3),
-(45, 21, 'piggy and ice cream', 'tumblr_static_tumblr_static_3rhyuytz2q04g0c0s8k4ccgoo_640.jpg', 'piggy eating ice cream', '', 4, 1493106150, 5);
+(45, 21, 'piggy and ice cream', 'tumblr_static_tumblr_static_3rhyuytz2q04g0c0s8k4ccgoo_640.jpg', 'piggy eating ice cream', '', 4, 1493106150, 5),
+(49, 29, 'Blubblub', 'Blubblub291493237976.png', 'hihihihihihi', '', 3, 1493237976, 0),
+(50, 29, 'test', 'test291493283126.jpg', 'zefedgrer', '', 3, 1493283126, 0),
+(51, 29, 'test test', 'test%20test291493283206.jpg', 'ererberrgtfrvgtfr', '', 3, 1493283206, 0);
 
 -- --------------------------------------------------------
 
@@ -145,7 +160,8 @@ INSERT INTO `users` (`id`, `email`, `firstname`, `lastname`, `password`, `image`
 (25, 'nog@eentest.be', 'nog een test', 'nog een test', '$2y$12$NsIpUTkhjiNcCWtpYJv08uJ35hPJAauFYb9UD/qm15qvGpOKbeXPW', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
 (26, 'idk@idk.be', 'idk', 'idk', '$2y$12$zY.Xufqh5OmADOf41S7uve0UvZmn4ImCfNhEmWB5r7sDwykr009Ly', '26.jpg'),
 (27, 'jkeirsmaekers@gmail.com', 'joris', 'keirsmaekers', '$2y$12$J0mPYT/n8a8PqRZ0ySWpfO2Kswga5Igp4EbRZSP3NhRkNmTmQ/kNG', 'profile_placeholder.png'),
-(28, 'lola@mail.be', 'Lola', 'The Kinks', '$2y$12$EqdcukRQ.ZNhIty4spJVN.HDn5mYTQeNVdBiMH7xp/pf3NoiY9/kK', '28.jpg');
+(28, 'lola@mail.be', 'Lola', 'The Kinks', '$2y$12$EqdcukRQ.ZNhIty4spJVN.HDn5mYTQeNVdBiMH7xp/pf3NoiY9/kK', '28.jpg'),
+(29, 'Bert@bertmail.bert', 'Bert', 'Bertmans', '$2y$12$WJuRgD8fRti9/f.hnyRSr.6Mg/mG0zG38DDFHJ8A0biqTr0sfr3Qa', '291493234536.png');
 
 -- --------------------------------------------------------
 
@@ -197,11 +213,20 @@ INSERT INTO `users_topics` (`id`, `users_ID`, `topics_ID`) VALUES
 (33, 28, 4),
 (35, 28, 5),
 (36, 28, 6),
-(37, 28, 7);
+(37, 28, 7),
+(42, 29, 3),
+(41, 29, 4),
+(43, 29, 7);
 
 --
 -- Indexen voor geëxporteerde tabellen
 --
+
+--
+-- Indexen voor tabel `follows`
+--
+ALTER TABLE `follows`
+  ADD PRIMARY KEY (`followId`);
 
 --
 -- Indexen voor tabel `likes`
@@ -241,6 +266,11 @@ ALTER TABLE `users_topics`
 --
 
 --
+-- AUTO_INCREMENT voor een tabel `follows`
+--
+ALTER TABLE `follows`
+  MODIFY `followId` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT voor een tabel `likes`
 --
 ALTER TABLE `likes`
@@ -249,7 +279,7 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT voor een tabel `topics`
 --
@@ -259,12 +289,12 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT voor een tabel `users_topics`
 --
 ALTER TABLE `users_topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- Beperkingen voor geëxporteerde tabellen
 --

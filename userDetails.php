@@ -37,7 +37,7 @@ $user->getUserDetails($userId);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/npm.js"></script>
-    <script src="js/userDetails.js"></script>
+    <script src="js/followbutton.js"></script>
 
     <title>IMDterest | <?php echo $user->Firstname . " " .$user->Lastname; ?></title>
 </head>
@@ -59,7 +59,7 @@ $user->getUserDetails($userId);
             <h1 class="media-heading"><?php echo $user->Firstname; ?> <?php echo $user->Lastname; ?></h1>
         </div>
         
-        <button type="button" class="btn btn" id="follow"> Follow </button>
+        <button type="button" class="btn" id="follow"> Follow </button>
     </div>
 
     <div class="media-body">
