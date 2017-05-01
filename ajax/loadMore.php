@@ -189,26 +189,34 @@ if ($rows > 0) {
                                     <img src="<?php if ($res->link == '') {echo './images/uploads/postImages/';} echo $res->image; ?>" alt="post-image">
                                     <p><?php echo $res->description; ?></p>
                                 </div>
-                                <div class="comments">
-                                    <form action="post">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <p>Hier komen de comments van users</p>
-                                            </div>
-                                            <div class="input-group">
-                                                <span class="input-group-addon profile-comment" id="basic-addon1"><img
-                                                            src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>"
-                                                            alt=""></span>
-                                                <input type="text" class="form-control" placeholder="Leave a comment..."
-                                                       name="comment" id="comment" aria-describedby="basic-addon1">
-                                                <span class="input-group-addon"><span
-                                                            class="glyphicon glyphicon-arrow-right"
-                                                            type="submit"></span></span>
-                                            </div>
-                                        </div>
-                                    </form>
+
+                        <div class="comments-form">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="comment-list">
+                                        <?php
+                                        $comment = new Comment;
+                                        $comment->loadComment($res->id);
+                                        $comment=$_SESSION['comments'];
+                                        foreach ($comment as $c) {
+                                        echo "<div>";
+                                        print_r($c['comment']);
+                                        echo "</div>";
+                                        }; ?>
+                                  </div>
                                 </div>
-                            </div>
+                                <form id="comment-form" method="post">
+                                    <div class="input-group">
+                                        <span class="input-group-addon profile-comment" id="basic-addon1"><img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt=""></span>
+                                        <input type="text" class="form-control" placeholder="Leave a comment..." name="comment" id="comment-text" aria-describedby="basic-addon1">
+                                        <input type="hidden" name="post_id" id="post_id" value="<?php echo $res->id; ?>">
+                                        <button type="submit" name="button" id="comment-btn"><span class="input-group-addon"><span class="glyphicon glyphicon-arrow-right" type="submit"></span></span></button>
+                                    </div>
+                                </form>
+                              </div>
+
+                          </div>
+                        </div>
                         </div>
                     </div>
 
@@ -222,5 +230,9 @@ if ($rows > 0) {
     shuffle($emptyStates);
     echo '<h1 class="emptyState">' . $emptyStates[0] . '</h1>' . "\n" . '<h1 class="emptyStateTxt">Oops, no posts found!</h1><script>$(".LoadMoreBtn").text("No more records!").prop("disabled", true);</script>';
 };
+
+echo '<script src="js/likebutton.js"></script>';
+echo '<script src="js/comment-btn.js"></script>';
 echo '<script src="js/likebutton.js"></script>'
 ?>
+

@@ -217,6 +217,14 @@ if (isset($_POST['delete'])) {
     $post->deletePost();
 }
 
+////COMMENTS/////
+
+if (!empty($_POST['comment'])) {
+  $comment = new comment;
+  $comment->comment = $_POST['comment'];
+  $comment->post_id = $_POST['post_id'];
+  $comment->saveComment();
+}
 
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -224,6 +232,7 @@ if (isset($_POST['delete'])) {
 <script src="js/bootstrap.min.js"></script>
 <script src="js/npm.js"></script>
 <script src="js/likebutton.js"></script>
+<script src="js/comment-btn.js"></script>
 
 <!doctype html>
 <html lang="en">
