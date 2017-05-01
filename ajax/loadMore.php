@@ -192,8 +192,8 @@ if ($rows > 0) {
 
                         <div class="comments-form">
                             <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <div class="comment-list">
+                                <div class="panel-heading comment-list">
+
                                         <?php
                                         $comment = new Comment;
                                         $comment->loadComment($res->id);
@@ -203,9 +203,9 @@ if ($rows > 0) {
                                         print_r($c['comment']);
                                         echo "</div>";
                                         }; ?>
-                                  </div>
+
                                 </div>
-                                <form id="comment-form" method="post">
+                                <form class="comment-form" method="post">
                                     <div class="input-group">
                                         <span class="input-group-addon profile-comment" id="basic-addon1"><img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt=""></span>
                                         <input type="text" class="form-control" placeholder="Leave a comment..." name="comment" id="comment-text" aria-describedby="basic-addon1">
@@ -214,7 +214,6 @@ if ($rows > 0) {
                                     </div>
                                 </form>
                               </div>
-
                           </div>
                         </div>
                         </div>
@@ -235,4 +234,3 @@ echo '<script src="js/likebutton.js"></script>';
 echo '<script src="js/comment-btn.js"></script>';
 echo '<script src="js/likebutton.js"></script>'
 ?>
-
