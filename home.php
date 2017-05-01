@@ -232,6 +232,7 @@ if (!empty($_POST['comment'])) {
 <script src="js/bootstrap.min.js"></script>
 <script src="js/npm.js"></script>
 <script src="js/likebutton.js"></script>
+<script src="js/loadMore.js"></script>
 <script src="js/comment-btn.js"></script>
 
 <!doctype html>
@@ -255,7 +256,9 @@ if (!empty($_POST['comment'])) {
 </head>
 <body>
 
-<?php include_once('header.inc.php'); ?>
+<?php
+$page = 'home';
+include_once('header.inc.php'); ?>
 <div class="container">
     <?php if (isset($error)) {
         echo "<p class='alert alert-danger'>$error</p>";

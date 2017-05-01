@@ -33,9 +33,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="home.php">Home <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Explore</a></li>
-                <li class="dropdown">
+                <li <?php echo ($page == 'home') ? "class='active'" : ""; ?>><a href="home.php">Home <span class="sr-only">(current)</span></a></li>
+                <li <?php echo ($page == 'explore') ? "class='active'" : ""; ?>><a href="explore.php">Explore</a></li>
+                <li <?php echo ($page == 'topics') ? "class='active'" : ""; ?>class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Topics <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <?php foreach ($_SESSION['topics'] as $t):?>
