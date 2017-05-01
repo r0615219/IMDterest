@@ -7,7 +7,7 @@ spl_autoload_register(function ($class) {
 
 //sanitize post value
 $page_number = filter_var($_POST["page"], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH);
-
+$query = $_POST["query"];
 //throw HTTP error if page number is not valid
 if (!is_numeric($page_number)) {
     header('HTTP/1.1 500 Invalid page number!');
@@ -19,12 +19,12 @@ $position = (($page_number - 1) * 20);
 $limit = 20;
 //fetch records using page position and item per page.
 $conn = Db::getInstance();
-$statement = $conn->prepare("SELECT * FROM posts ORDER BY id DESC LIMIT :position, :limit");
+//$query = "SELECT * FROM posts ORDER BY id DESC LIMIT :position, :limit";
+$statement = $conn->prepare($query);
 
-//bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
-//for more info https://www.sanwebe.com/2013/03/basic-php-mysqli-usage
 $statement->bindValue(":position", $position, PDO::PARAM_INT);
 $statement->bindValue(":limit", $limit, PDO::PARAM_INT);
+$statement->bindValue(":email", $_SESSION['user']);
 $statement->execute(); //Execute prepared Query
 
 //output results from database

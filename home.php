@@ -232,6 +232,7 @@ if (!empty($_POST['comment'])) {
 <script src="js/bootstrap.min.js"></script>
 <script src="js/npm.js"></script>
 <script src="js/likebutton.js"></script>
+<script src="js/loadMore.js"></script>
 <script src="js/comment-btn.js"></script>
 
 <!doctype html>

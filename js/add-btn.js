@@ -47,23 +47,4 @@ $(document).ready(function(){
 
         open = !open;
     });
-
-
-    var track_page = 1; //track user click as page number, right now page number is 1
-    load_contents(track_page); //load content
-
-    $(".LoadMoreBtn").on('click', function (e) { //user clicks on button
-        track_page++; //page number increment everytime user clicks load button
-        load_contents(track_page); //load content
-    });
-
-//Ajax load function
-    function load_contents(track_page){
-        $.post( 'ajax/loadMore.php', {'page': track_page}, function(data){
-
-            $("#results").append(data); //append data into #results element
-
-        });
-    }
-
 });

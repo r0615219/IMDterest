@@ -17,7 +17,7 @@ include_once('emptyStates.php');
 <?php ob_start(); ?>
 
 <div class="loadMore">
-    <button class="loadMoreBtn btn btn-primary">Load 20 more</button>
+    <button class="loadMoreBtn loadMoreBtnHome btn btn-primary">Load 20 more</button>
 </div>
 <?php echo ob_get_clean(); ?>
 
