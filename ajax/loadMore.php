@@ -24,7 +24,7 @@ $statement = $conn->prepare($query);
 
 $statement->bindValue(":position", $position, PDO::PARAM_INT);
 $statement->bindValue(":limit", $limit, PDO::PARAM_INT);
-$statement->bindValue(":email", $_SESSION['user']);
+$statement->bindValue(":usersession", $_SESSION['userid']);
 $statement->execute(); //Execute prepared Query
 
 //output results from database

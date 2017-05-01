@@ -3,10 +3,10 @@ $(document).ready(function(){
     var query;
     switch (window.location.href){
         case 'http://localhost/IMDterest/home.php':
-            query = "SELECT * FROM posts WHERE topics_ID in (SELECT topics_ID FROM users_topics WHERE users_ID IN (SELECT id FROM users WHERE email = :email)) ORDER BY id DESC LIMIT :position, :limit";
+            query = "SELECT * FROM posts p INNER JOIN follows f ON p.user_ID = f.user WHERE f.follower = :usersession ORDER BY id DESC LIMIT :position, :limit";
             break;
         case 'http://localhost/IMDterest/home.php#':
-            query = "SELECT * FROM posts WHERE topics_ID in (SELECT topics_ID FROM users_topics WHERE users_ID IN (SELECT id FROM users WHERE email = :email)) ORDER BY id DESC LIMIT :position, :limit";
+            query = "SELECT * FROM posts p INNER JOIN follows f ON p.user_ID = f.user WHERE f.follower = :usersession ORDER BY id DESC LIMIT :position, :limit";
             break;
 
         case 'http://localhost/IMDterest/explore.php':
