@@ -209,4 +209,21 @@ class Post
         $_SESSION['posts-topic'] = $result;
     }
 
+    public function saveToBoard($board_id)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("INSERT INTO `boardpost`(`post_id`, 'board_id') VALUES (:post_id,:board_id)");
+        $statement = $bindvalue(":post_id",$this->m_iID);
+        $statement = $bindvalue§(":board_id",$board_id);
+        $res=$statement->execute();
+
+    }
+
+    public function loadToBoard($board_id){
+        $conn = Db::getInstance();
+        $statement =$conn->prepare("SELECT * FROM `boardpost` WHER E`board_id` = (:board_id)");
+      }
+
+
+
 }

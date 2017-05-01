@@ -63,10 +63,11 @@
   public function loadBoard()
   {
     $conn = Db::getInstance();
-    $loadboard = $conn->prepare("SELECT * FROM boards WHERE 'user_id' = :user_id");
+    $loadboard = $conn->prepare("SELECT * FROM boards WHERE `user_id` = :user_id");
     $loadboard->bindValue(":user_id", $_SESSION['userid']);
-    $res = $loadboard->execute();
-    return $res;
+    $loadboard->execute();
+    $res = $loadboard->fetchall(PDO::FETCH_ASSOC);
+    $_SESSION['boards'] = $res;
 
   }
 

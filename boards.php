@@ -17,6 +17,7 @@ spl_autoload_register(function ($class) {
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/signup-style.css">
     <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/boards.css">
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 
@@ -28,17 +29,37 @@ spl_autoload_register(function ($class) {
     <title>IMDterest | Boards</title>
     </head>
     <body>
-      <div class="Boards">
-        <?php
-        if (!empty($_POST['board_name'])){
+      <div class="boards">
+        <?php //Board binnenhalen
           $board = new board;
-          $board->subject = $_POST['board_name'];
-          $board->saveBoard();
+          $board->loadBoard();
+          $boards=$_SESSION['boards'];
+          //print_r($_SESSION['boards']);
+      foreach ($boards as $b):?>
+
+          <div class="board userPost">
+            <div class="board-title">
+              <?php print_r($b['subject']); ?>
+            </div>
+            <div class="board-pins">
+              <?php $boardpins = new post ?>
+            </div>
+          </div>
+
+      <?php endforeach; ?>
+    </div>
 
 
-     }?>
 
-      </div>
+      <?php
+      //Board aanmaken
+      if (!empty($_POST['board_name'])){
+        $board = new board;
+        $board->subject = $_POST['board_name'];
+        $board->saveBoard();
+      }?>
+
+
       <form id="createboard" class="create-board add" method="post">
         <label for="subject">Subject of your board?</label>
         <input type="text" name="board_name" id="board_name">
