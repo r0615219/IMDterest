@@ -49,6 +49,16 @@ class Topics
         $this->m_sImage = $res['image'];
     }
 
+    public function getAllTopics()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * FROM `topics`;");
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['alltopics'] = $result;
+
+    }
+
     public function getTopicViaName()
     {
         $conn = Db::getInstance();
@@ -61,6 +71,16 @@ class Topics
         $this->m_sName = $res['name'];
     }
 
+    /*public function getPostsViaTopic()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * FROM `posts` WHERE `topics_ID` = (:topicsid)");
+        $statement->bindValue(":topicsid", $this->m_iID);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['posts-topic'] = $result;
+    }*/
+
     //functie om een nieuw aangemaakte topic op te slaan
     public function saveTopic()
     {
@@ -69,6 +89,9 @@ class Topics
         $statement->bindValue(":name", $this->m_sName);
         $statement->bindValue(":image", $this->m_sImage);
         $statement->execute();
+        $arr = $statement->errorInfo();
+        print_r('SAVE_TOPIC ERRORS:');
+        print_r($arr);
     }
 
     //functie om topic aan user te koppelen
@@ -79,5 +102,22 @@ class Topics
         $statement->bindValue(":userID", $_SESSION['userid']);
         $statement->bindValue(":topicsID", $this->m_iID);
         $statement->execute();
+        $arr = $statement->errorInfo();
+        print_r('SAVE_USER_TOPIC ERRORS:');
+        print_r($arr);
+    }
+
+    public function checkAvailability()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * FROM `topics`");
+        $statement->execute();
+        while ($res = $statement->fetch(PDO::FETCH_OBJ)) {
+            if ($res->name == $this->name) {
+                $this->id = $res->id;
+                return 'match';
+            }
+        }
+        return 'no match';
     }
 }

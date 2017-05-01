@@ -1,4 +1,4 @@
-<h1 class="h1">Choose 5 topics to follow</h1>
+<h1 class="h1">Choose up to 5 topics to follow</h1>
 <form action="" method="post">
     <div class="btn-group btn-block" data-toggle="buttons">
         <?php

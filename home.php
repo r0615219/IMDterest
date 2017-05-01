@@ -1,14 +1,14 @@
 <?php
 
-    session_start();
-    spl_autoload_register(function ($class) {
-        include_once("classes/" . $class . ".php");
-    });
-    //stuur de gebruiker weg als ze niet zijn ingelogd
-    if (isset($_SESSION['user'])) {
-    } else {
-        header('Location: signin.php');
-    }
+session_start();
+spl_autoload_register(function ($class) {
+    include_once("classes/" . $class . ".php");
+});
+//stuur de gebruiker weg als ze niet zijn ingelogd
+if (isset($_SESSION['user'])) {
+} else {
+    header('Location: signin.php');
+}
 
 //TOPICS
 try {
@@ -22,7 +22,7 @@ try {
         $statement1->execute();
         while ($res = $statement1->fetch(PDO::FETCH_ASSOC)) {
             $id = $res['topics_ID'];
-            $statement2 = $conn->prepare("SELECT * from `topics` where id = :id");
+            $statement2 = $conn->prepare("SELECT * FROM `topics` WHERE id = :id");
             $statement2->bindValue(":id", (int)$id);
             $statement2->execute();
             $topic = $statement2->fetch(PDO::FETCH_OBJ);
@@ -30,7 +30,6 @@ try {
             $topicArray[] = $topic;
         }
     }
-
 //4. ZIE chooseTopics.php !!
 
 //5. indien topics gekozen -> topics in databank steken
@@ -50,7 +49,7 @@ try {
 
 //7. ZIE userHome.php !!
 } catch (Exception $e) {
-    $error= $e->getMessage();
+    $error = $e->getMessage();
 }
 
 
@@ -58,49 +57,30 @@ try {
 
 try {
     if (isset($_POST['imgSubmit'])) {
-
         $title = $_POST['title'];
-
-        if($_POST['imgTopic'] == 'none'){ //indien select niet geselecteerd is
-            //nieuwe topic opslaan
-            $newTopic = new Topics;
-            $newTopic->name = $_POST['addTopic'];
-            $newTopic->image = strtolower($_FILES['img']['name']);
-            $newTopic->getTopicViaName();
-            if($newTopic->name = $_POST['addTopic']){ //kijken of de topic al bestaat
-                $topicsId = $newTopic->id;
-            }else{
-                $newTopic->saveTopic();
-                //topicId van nieuwe topic ophalen
-                $newTopic->getTopicViaName();
-                $topicsId = $newTopic->id;
-            }
-        } else {
-            $topicId = $_POST['imgTopic'];
-        }
-
         $description = $_POST['imgDescription'];
+
         $post = new Post;
         $post->title = $title;
         $post->description = $description;
         $post->uploadtime = time(); //timestamp
-        $post->topics_ID = (int)$topicsId;
+
 
         if (isset($_FILES['img'])) {
             $bestandsnaam = strtolower($_FILES['img']['name']);
 
             if (strpos($bestandsnaam, ".png")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"],
-                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".png");
-                $post->image = $post->title . $_SESSION['userid'] . $post->uploadtime . ".png";
+                move_uploaded_file($_FILES["img"]["tmp_name"], str_replace(' ', '%20',
+                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".png"));
+                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->uploadtime . ".png");
             } elseif (strpos($bestandsnaam, ".jpg")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"],
-                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg");
-                $post->image = $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg";
+                move_uploaded_file($_FILES["img"]["tmp_name"], str_replace(' ', '%20',
+                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg"));
+                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg");
             } elseif (strpos($bestandsnaam, ".gif")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"],
-                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif");
-                $post->image = $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif";
+                move_uploaded_file($_FILES["img"]["tmp_name"], str_replace(' ', '%20',
+                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif"));
+                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif");
             } else {
                 throw new exception("Unable to create post. The uploaded image must be a JPEG, PNG or GIF.");
             }
@@ -108,34 +88,121 @@ try {
             $post->image = "profile_placeholder.png";
         }
 
+        if ($_POST['imgTopic'] == 'none') { //indien select niet geselecteerd is
+            //nieuwe topic opslaan
+            $newTopic = new Topics;
+            $newTopic->name = $_POST['addTopic'];
+            $newTopic->image = str_replace(' ', '%20', strtolower($_FILES['img']['name']));
+
+            if ($newTopic->checkAvailability() == 'match') {
+                $topicsId = $newTopic->id;
+            } else {
+                $newTopic->image = $post->image;
+                $newTopic->saveTopic();
+                //topicId van nieuwe topic ophalen
+                $newTopic->getTopicViaName();
+                $topicsId = $newTopic->id;
+            }
+
+            $newTopic->saveUserTopic();
+            array_push($_SESSION['topics'], $newTopic);
+        } else {
+            $topicsId = $_POST['imgTopic'];
+        }
+
+        $post->topics_ID = (int)$topicsId;
         $post->link = "";
-        $post ->savePost();
+        $post->savePost();
         $user = new User;
         $user->Email = $_SESSION['user'];
         $user->getUserPosts();
+
     }
 } catch (Exception $e) {
     $error = $e->getMessage();
 }
 
 if (isset($_POST['linkSubmit'])) {
-    $topicsId = $_POST['linkTopic'];
-    $description = $_POST['linkDescription'];
-    $link = $_POST['link'];
-
-
-
     $post = new Post;
-    $post->description = $description;
-    $post->topics_ID = (int)$topicsId;
-    $post->link = $link;
-    $post->image = $link;
-    $post->title = $title;
-    $post ->savePost();
 
-    $user = new User;
-    $user->Email = $_SESSION['user'];
-    $user->getUserPosts();
+    $link = $_POST['url'];
+    $title = '';
+    $image = '';
+    $description = '';
+    if (strpos($link, 'https://') === false || strpos($link, 'http://') === false) {
+        $link = 'http://' . $link;
+    }
+
+    $html = file_get_contents($link); //get the html returned from the following url
+    $doc = new DOMDocument();
+    libxml_use_internal_errors(TRUE); //disable libxml errors
+
+    if (!empty($html)) { //if any html is actually returned
+        $doc->loadHTML($html);
+        libxml_clear_errors(); //remove errors for yucky html
+        $xpath = new DOMXPath($doc);
+
+//get site's title
+        $nodeTitle = $xpath->query('//title');
+        $title = $nodeTitle[0]->nodeValue;
+
+//get description
+        if (array_key_exists('description', get_meta_tags($link))) {
+            $description = get_meta_tags($link)['description'];
+        } else {
+            $description = $title;
+        }
+
+//get all found images
+        $nodeImage = $doc->getElementsByTagName('img');
+        for ($i = 0; $i <= count($nodeImage); $i++) {
+            if ($nodeImage[$i]->getAttribute('src') != '') {
+                $image = $nodeImage[$i]->getAttribute('src');
+                if (strpos($nodeImage[$i]->getAttribute('src'), '../') === true) {
+                    $image = str_replace("../", "/", $nodeImage[$i]->getAttribute('src'));
+                }
+                if (strpos($nodeImage[$i]->getAttribute('src'), 'http') === false) {
+                    $image = $link.$image;
+                }
+                $image = str_replace(' ', '%20', $image);
+                break;
+
+            }
+        }
+
+        if ($_POST['linkTopic'] == 'none') { //indien select niet geselecteerd is
+//nieuwe topic opslaan
+            $newTopic = new Topics;
+            $newTopic->name = $_POST['addTopic'];
+            $newTopic->image = $image;
+
+            if ($newTopic->checkAvailability() == 'match') {
+                $topicsId = $newTopic->id;
+            } else {
+                $newTopic->saveTopic();
+//topicId van nieuwe topic ophalen
+                $newTopic->getTopicViaName();
+                $topicsId = $newTopic->id;
+            }
+
+            $newTopic->saveUserTopic();
+            array_push($_SESSION['topics'], $newTopic);
+        } else {
+            $topicsId = $_POST['linkTopic'];
+        }
+
+        $post->uploadtime = time(); //timestamp
+        $post->description = $description;
+        $post->topics_ID = (int)$topicsId;
+        $post->link = $link;
+        $post->image = $image;
+        $post->title = $title;
+        $post->savePost();
+
+        $user = new User;
+        $user->Email = $_SESSION['user'];
+        $user->getUserPosts();
+    }
 }
 
 if (isset($_POST['report'])) {
@@ -190,9 +257,9 @@ if (!empty($_POST['comment'])) {
 
 <?php include_once('header.inc.php'); ?>
 <div class="container">
-<?php if(isset($error)){
-    echo "<p class='alert alert-danger'>$error</p>";
-}?>
+    <?php if (isset($error)) {
+        echo "<p class='alert alert-danger'>$error</p>";
+    } ?>
     <?php
 
     if (isset($_SESSION['topics'])) {
