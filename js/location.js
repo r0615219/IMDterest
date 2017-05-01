@@ -6,6 +6,7 @@ $(document).ready(function(){
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(savePosition);
+
         } else {
             error = "Geolocation is not supported by this browser.";
         }
@@ -15,17 +16,20 @@ $(document).ready(function(){
         location = "Latitude: " + position.coords.latitude +
             "Longitude: " + position.coords.longitude;
 
-        //$('p.alert.alert-success').html(location);
+        alert(location);
 
         $.ajax({
-            method: "POST",
-            url: 'ajax/location.php',
-            data: { 'varLocation' : location }
+            type:"POST",
+            url:"./ajax/location.php",
+            data: {varLocation : location}
+        }).done(function(response){
+            if( response.code == 500){
+                console.log("Boo");
+            }
+            if( response.code == 200){
+                console.log("Check!");
+            }
         })
-            .done(function() {
-                //alert( "Data Saved" );
-                console.log("Ajax done");
-            })
     }
 
     getLocation();

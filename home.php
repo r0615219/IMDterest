@@ -10,8 +10,6 @@ if (isset($_SESSION['user'])) {
     header('Location: signin.php');
 }
 
-    include_once("ajax/location.php");
-
 //TOPICS
 try {
     //1. kijken of gebruiker nog geen topics heeft

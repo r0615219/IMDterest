@@ -11,6 +11,7 @@ class Post
     private $m_iUserId;
     private $m_iUploadtime;
     private $m_iReports;
+    private $m_sLocation;
 
     public function __set($p_sProperty, $p_vValue)
     {
@@ -238,6 +239,11 @@ class Post
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         $_SESSION['posts-topic'] = $result;
+    }
+
+
+    public function printLocation($location){
+        echo $location;
     }
 
 }
