@@ -42,6 +42,9 @@ spl_autoload_register(function ($class) {
       <form id="createboard" class="create-board add" method="post">
         <label for="subject">Subject of your board?</label>
         <input type="text" name="board_name" id="board_name">
+        <label for="visibility">Do you want this board to be visible for others?</label>
+        <input type="radio" name="visibility" value="yes" checked> Yes
+        <input type="radio" name="visibility" value="no"> No
         <button type="submit" class="btn btn-success addBtn" name="boardsubmit">Create a board!</button>
       </form>
     </body>

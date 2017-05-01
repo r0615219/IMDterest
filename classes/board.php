@@ -51,23 +51,22 @@
 
   public function saveBoard()
   {
-    echo"ey";
     $conn = Db::getInstance();
     $addboard = $conn->prepare("INSERT INTO boards (`subject`, `user_id`, `visibility`) VALUES (:subject,:user_id,:visibility)");
-    var_dump($addboard);
     $addboard->bindValue(":subject", $_POST['board_name']);
     $addboard->bindValue(":user_id", $_SESSION['userid']);
-    //VISIBILITY IS VOOR MOGELIJKE DEEL FEATURE, WERKT NU NOG NIET
-    $addboard->bindValue(":visibility", "yes");
-    //
+    $addboard->bindValue(":visibility", $_POST['visibility']);
+
     $addboard->execute();
   }
 
   public function loadBoard()
   {
     $conn = Db::getInstance();
-    $loadboard = $conn->prepare("SELECT * FROM boards WHERE 'user_id' = :user_id);
-    $loadboard->bindValue("user_id")
+    $loadboard = $conn->prepare("SELECT * FROM boards WHERE 'user_id' = :user_id");
+    $loadboard->bindValue(":user_id", $_SESSION['userid']);
+    $res = $loadboard->execute();
+    return $res;
 
   }
 
