@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 spl_autoload_register(function ($class) {
     include_once("classes/" . $class . ".php");
@@ -8,18 +9,7 @@ if (isset($_SESSION['user'])) {
 } else {
     header('Location: signin.php');
 }
-
-$userId = $_GET['userId'];
-
-if($userId == $_SESSION['userid']){
-    header('Location: profile.php');
-}
-
-$user = new User;
-$user->getUserDetails($userId);
-
-?>
-<!doctype html>
+?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,47 +20,38 @@ $user->getUserDetails($userId);
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/signup-style.css">
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/topics.css">
+    <link rel="stylesheet" href="css/add-button.css">
+    <link rel="stylesheet" href="css/posts.css">
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/add-btn.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/npm.js"></script>
-    <script src="js/followbutton.js"></script>
+    <script src="js/likebutton.js"></script>
+    <script src="js/loadMore.js"></script>
+    <script src="js/comment-btn.js"></script>
 
-    <title>IMDterest | <?php echo $user->Firstname . " " .$user->Lastname; ?></title>
+    <title>IMDterest | Home</title>
 </head>
 <body>
+    <?php
+    $page = 'explore';
+    include_once('header.inc.php');
+    include_once('emptyStates.php'); ?>
+    <div class="container">
+        <div id="results"></div>
 
-<?php include_once('header.inc.php'); ?>
+        <?php ob_start(); ?>
 
-
-
-<div class="container" style="margin-top:50px;">
-    <?php if (isset($error)) {
-    echo "<p>$error</p>";
-} ?>
-
-    <div class="head-profile">
-        <div class="head-profile-name">
-            <img src="images/uploads/userImages/<?php echo $user->Image; ?>" alt="profile picture">
-
-            <h1 class="media-heading"><?php echo $user->Firstname; ?> <?php echo $user->Lastname; ?></h1>
+        <div class="loadMore">
+            <button class="loadMoreBtn loadMoreBtnExplore btn btn-primary">Load 20 more</button>
         </div>
-        
-        <button type="button" class="btn" id="follow"> Follow </button>
+        <?php echo ob_get_clean(); ?>
+
+        <?php include_once('addBtn.php'); ?>
     </div>
-
-    <div class="media-body">
-
-        <!-- Hier komen de posts van de user -->
-
-    </div>
-</div>
-
-
-
-
 </body>
 </html>
