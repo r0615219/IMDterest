@@ -14,24 +14,8 @@ class Post
 
     public function __set($p_sProperty, $p_vValue)
     {
-<<<<<<< HEAD
         switch ($p_sProperty) {
-=======
-        private $m_iID;
-        private $m_sTitle;
-        private $m_sImage;
-        private $m_sDescription;
-        private $m_sLink;
-        private $m_iTopicsId;
-        private $m_iUserId;
-        private $m_iUploadtime;
-        private $m_iReports;
-        private $m_sLocation;
 
-        public function __set($p_sProperty, $p_vValue)
-        {
-            switch ($p_sProperty) {
->>>>>>> 62855787b342dc5c17038cb673ed2538f1fa9d42
             case 'id':
                 $this->m_iID = $p_vValue;
                 break;
@@ -116,13 +100,10 @@ class Post
             case 'location':
                 return $this->m_sLocation;
                 break;
-        }
-<<<<<<< HEAD
-    }
-=======
+            }
         }
 
-        public function savePost()
+        /*public function savePost()
         {
             try {
                 $conn = Db::getInstance();
@@ -142,8 +123,7 @@ class Post
             } catch (PDOException $e) {
                 $error = $e->getMessage();
             }
-        }
->>>>>>> 62855787b342dc5c17038cb673ed2538f1fa9d42
+        }*/
 
     public function savePost()
     {

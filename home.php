@@ -234,11 +234,8 @@ if (!empty($_POST['comment'])) {
 <script src="js/bootstrap.min.js"></script>
 <script src="js/npm.js"></script>
 <script src="js/likebutton.js"></script>
-<<<<<<< HEAD
 <script src="js/comment-btn.js"></script>
-=======
 <script src="js/location.js"></script>
->>>>>>> 62855787b342dc5c17038cb673ed2538f1fa9d42
 
 <!doctype html>
 <html lang="en">
@@ -263,16 +260,11 @@ if (!empty($_POST['comment'])) {
 
 <?php include_once('header.inc.php'); ?>
 <div class="container">
-<<<<<<< HEAD
+
     <?php if (isset($error)) {
         echo "<p class='alert alert-danger'>$error</p>";
     } ?>
-=======
-<?php if(isset($error)){
-    echo "<p class='alert alert-danger'>$error</p>";
-}?>
 
->>>>>>> 62855787b342dc5c17038cb673ed2538f1fa9d42
     <?php
 
     if (isset($_SESSION['topics'])) {
