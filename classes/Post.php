@@ -44,7 +44,7 @@ class Post
                 $this->m_iUserId = $p_vValue;
                 break;
 
-            case 'uploadtime':
+            case 'time':
                 $this->m_iUploadtime = $p_vValue;
                 break;
 
@@ -85,7 +85,7 @@ class Post
                 return $this->m_iUserId;
                 break;
 
-            case 'uploadtime':
+            case 'time':
                 return $this->m_iUploadtime;
                 break;
 
@@ -143,34 +143,34 @@ class Post
         $verschil = time() - $timestamp;
         if ($verschil > 0 && $verschil < 60) {
             $return = "Posted less than a minute ago";
-        } elseif ($verschil > 60 && $verschil < 120) {
+        } else if ($verschil > 60 && $verschil < 120) {
             $return = "Posted 1 minute ago";
-        } elseif ($verschil > 60 && $verschil < 60 * 60) {
+        } else if ($verschil > 60 && $verschil < 60 * 60) {
             $x = floor($verschil / 60);
             $return = "Posted " . $x . " minutes ago";
-        } elseif ($verschil > 60 * 60 && $verschil < 2 * 60 * 60) {
+        } else if ($verschil > 60 * 60 && $verschil < 2 * 60 * 60) {
             $return = "Posted 1 hour ago";
-        } elseif ($verschil > 2 * 60 * 60 && $verschil < 24 * 60 * 60) {
+        } else if ($verschil > 2 * 60 * 60 && $verschil < 24 * 60 * 60) {
             $x = floor($verschil / 360);
             $return = "Posted " . $x . " hours ago";
-        } elseif ($verschil > 24 * 60 * 60 && $verschil < 2 * 24 * 60 * 60) {
+        } else if ($verschil > 24 * 60 * 60 && $verschil < 2 * 24 * 60 * 60) {
             $return = "Posted a day ago";
-        } elseif ($verschil > 24 * 60 * 60 && $verschil < 7 * 24 * 60 * 60) {
+        } else if ($verschil > 24 * 60 * 60 && $verschil < 7 * 24 * 60 * 60) {
             $x = floor($verschil / (24 * 60 * 60));
             $return = "Posted " . $x . " days ago";
-        } elseif ($verschil > 7 * 24 * 60 * 60 && $verschil < 2 * 7 * 24 * 60 * 60) {
+        } else if ($verschil > 7 * 24 * 60 * 60 && $verschil < 2 * 7 * 24 * 60 * 60) {
             $return = "Posted a week ago";
-        } elseif ($verschil > 2 * 7 * 24 * 60 * 60 && $verschil < 30 * 24 * 60 * 60) {
+        } else if ($verschil > 2 * 7 * 24 * 60 * 60 && $verschil < 30 * 24 * 60 * 60) {
             $x = floor($verschil / (7 * 24 * 60 * 60));
             $return = "Posted " . $x . " weeks ago";
-        } elseif ($verschil > 30 * 24 * 60 * 60 && $verschil < 2 * 30 * 24 * 60 * 60) {
+        } else if ($verschil > 30 * 24 * 60 * 60 && $verschil < 2 * 30 * 24 * 60 * 60) {
             $return = "Posted a month ago";
-        } elseif ($verschil > 2 * 30 * 24 * 60 * 60 && $verschil < 12 * 30 * 24 * 60 * 60) {
+        } else if ($verschil > 2 * 30 * 24 * 60 * 60 && $verschil < 12 * 30 * 24 * 60 * 60) {
             $x = floor($verschil / (30 * 24 * 60 * 60));
             $return = "Posted " . $x . " months ago";
-        } elseif ($verschil > 365 * 24 * 60 * 60 && $verschil < 372 * 24 * 60 * 60) {
+        } else if ($verschil > 365 * 24 * 60 * 60 && $verschil < 372 * 24 * 60 * 60) {
             $return = "Posted a year ago ago";
-        } elseif ($verschil > 372 * 24 * 60 * 60) {
+        } else if ($verschil > 372 * 24 * 60 * 60) {
             $date = date('d/m/Y', $timestamp);
             if ($date == "01/01/1970") {
                 $return = "Posted before the dawn of time";
@@ -218,6 +218,7 @@ class Post
                 if ($res->reports < 3) {
                     //fetch values
                     ob_start(); ?>
+
                     <div class="userPost">
                         <div class="userPostImg"
                              style="background-image: url('<?php if ($res->link == '') {echo './images/uploads/postImages/';} echo $res->image; ?>');">

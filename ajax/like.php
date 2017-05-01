@@ -1,4 +1,4 @@
-<?php
+olg<?php
 session_start();
 include_once("../classes/Db.php");
 
