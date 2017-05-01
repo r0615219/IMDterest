@@ -8,6 +8,7 @@ if(!empty($_POST) ){
     $user = new User();
     
     if ($user->Follow==FALSE) { //if follow == false, voeg follow record toe aan tabel follows
+        $conn = Db::getInstance();
         $statement = $conn->prepare("INSERT INTO `follows`(`follower`, `user`) VALUES(:usersession,:user_ID)");
         $statement->bindValue(":usersession", $_SESSION['userid']);
         $statement->bindValue(":user_ID", $_POST['user_ID']);
