@@ -26,12 +26,28 @@ if (isset($_SESSION['user'])) {
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/add-btn.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/npm.js"></script>
+    <script src="js/likebutton.js"></script>
+    <script src="js/loadMore.js"></script>
+    <script src="js/comment-btn.js"></script>
+
     <title>IMDterest | Home</title>
 </head>
 <body>
 
 <?php include_once('header.inc.php'); ?>
 <div class="container">
+    <div id="results"></div>
+
+    <?php ob_start(); ?>
+
+    <div class="loadMore">
+        <button class="loadMoreBtn loadMoreBtnHome btn btn-primary">Load 20 more</button>
+    </div>
+    <?php echo ob_get_clean(); ?>
 </div>
 </body>
 </html>
