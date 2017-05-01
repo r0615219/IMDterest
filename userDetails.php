@@ -8,23 +8,18 @@ if (isset($_SESSION['user'])) {
 } else {
     header('Location: signin.php');
 }
-
 $userId = $_GET['userId'];
-
 if($userId == $_SESSION['userid']){
     header('Location: profile.php');
 }
-
 $user = new User;
 $user->getUserDetails($userId);
-
 if($user->Follow==TRUE){
     $follow = "following";
 }
 if($user->Follow==FALSE){
     $follow = "follow";
 }
-
 ?>
 <!doctype html>
 <html lang="en">
