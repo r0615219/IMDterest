@@ -18,6 +18,13 @@ if($userId == $_SESSION['userid']){
 $user = new User;
 $user->getUserDetails($userId);
 
+if($user->Follow==TRUE){
+    $follow = "following";
+}
+if($user->Follow==FALSE){
+    $follow = "follow";
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -59,7 +66,7 @@ $user->getUserDetails($userId);
             <h1 class="media-heading"><?php echo $user->Firstname; ?> <?php echo $user->Lastname; ?></h1>
         </div>
         
-        <button type="button" class="btn" id="follow"> Follow </button>
+        <button type="button" id="follow" class="btn <?php echo $follow ?>"> Follow </button>
     </div>
 
     <div class="media-body">
