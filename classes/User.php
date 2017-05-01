@@ -40,7 +40,6 @@
                     break;
             }
         }
-    }
         public function __get($p_sProperty)
         {
             switch ($p_sProperty) {
@@ -68,7 +67,6 @@
                     return $this->m_bFollow;
             }
         }
-    }
 
     public function register()
     {
@@ -251,7 +249,6 @@
             //EXECUTE en sessions
             $statement->bindValue(":oldemail", $_SESSION['user']);
             $statement->execute();
-<<<<<<< HEAD
             $_SESSION['user'] = $this->m_sEmail;
             $_SESSION['firstname'] = $this->m_sFirstname;
             $_SESSION['lastname'] = $this->m_sLastname;
