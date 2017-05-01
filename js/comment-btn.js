@@ -1,14 +1,18 @@
 $(document).ready(function(){
-  var commentBtn = $('#comment-form');
-  var post_id = $('#post_id').val();
+  var commentBtn = $(this).find('.comment-form');
+
 
   //console.log(comment);
 
   commentBtn.submit(function(){
-    var comment = $('#comment-text').val();
+    var post_id = $(this).find('#post_id').val();
+    var comment = $(this).find('#comment-text').val();
+    var c = $(this).find('#comment-text');
+    var lijst = $(this).siblings('.comment-list')
     event.preventDefault();
     console.log('before Ajax');
     console.log(comment);
+    console.log(post_id);
     $.ajax({
       type:"POST",
       url:"./ajax/comments.php",
@@ -17,9 +21,9 @@ $(document).ready(function(){
     })
     .done(function(res){
       console.log("ajax done");
-      console.log(res);
-      $('#comment-text').val(null);
-      $('.comment-list').append("<div>"+res+"</div>");
+      //console.log(res);
+      $(c).val(null);
+      $(lijst).append("<div>"+res+"</div>");
     })
 
   })
