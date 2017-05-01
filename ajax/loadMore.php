@@ -36,5 +36,4 @@ foreach($res as $r){
 
 echo '<script src="js/likebutton.js"></script>';
 echo '<script src="js/comment-btn.js"></script>';
-echo '<script src="js/likebutton.js"></script>'
 ?>

@@ -256,7 +256,9 @@ if (!empty($_POST['comment'])) {
 </head>
 <body>
 
-<?php include_once('header.inc.php'); ?>
+<?php
+$page = 'home';
+include_once('header.inc.php'); ?>
 <div class="container">
     <?php if (isset($error)) {
         echo "<p class='alert alert-danger'>$error</p>";

@@ -52,7 +52,9 @@
 </head>
 <body>
 
-<?php include_once('header.inc.php'); ?>
+<?php
+$page = 'topics';
+include_once('header.inc.php'); ?>
 
 <?php if($_GET['topicsid'] != 0): ?>
 

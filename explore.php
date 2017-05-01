@@ -37,17 +37,21 @@ if (isset($_SESSION['user'])) {
     <title>IMDterest | Home</title>
 </head>
 <body>
+    <?php
+    $page = 'explore';
+    include_once('header.inc.php');
+    include_once('emptyStates.php'); ?>
+    <div class="container">
+        <div id="results"></div>
 
-<?php include_once('header.inc.php'); ?>
-<div class="container">
-    <div id="results"></div>
+        <?php ob_start(); ?>
 
-    <?php ob_start(); ?>
+        <div class="loadMore">
+            <button class="loadMoreBtn loadMoreBtnExplore btn btn-primary">Load 20 more</button>
+        </div>
+        <?php echo ob_get_clean(); ?>
 
-    <div class="loadMore">
-        <button class="loadMoreBtn loadMoreBtnHome btn btn-primary">Load 20 more</button>
+        <?php include_once('addBtn.php'); ?>
     </div>
-    <?php echo ob_get_clean(); ?>
-</div>
 </body>
 </html>
