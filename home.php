@@ -63,7 +63,7 @@ try {
         $post = new Post;
         $post->title = $title;
         $post->description = $description;
-        $post->uploadtime = time(); //timestamp
+        $post->time = time(); //timestamp
 
 
         if (isset($_FILES['img'])) {
@@ -191,7 +191,7 @@ if (isset($_POST['linkSubmit'])) {
             $topicsId = $_POST['linkTopic'];
         }
 
-        $post->uploadtime = time(); //timestamp
+        $post->time = time(); //timestamp
         $post->description = $description;
         $post->topics_ID = (int)$topicsId;
         $post->link = $link;

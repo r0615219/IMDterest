@@ -173,6 +173,8 @@
         $statement = $conn->prepare("SELECT * FROM posts WHERE user_ID IN (SELECT id FROM `users` WHERE email = :email) LIMIT 20");
         $statement->bindValue(":email", $_SESSION['user']);
         $statement->execute();
+        echo "\nPDO::errorInfo():\n";
+        print_r($conn->errorInfo());
 
         $rows = $statement->rowCount();
         //als de gebruiker topics heeft deze als Topics object aanmaken -> afbeelding en naam van topic ophalen
