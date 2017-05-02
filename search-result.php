@@ -47,7 +47,9 @@
 </head>
 <body>
 
-    <?php include_once('header.inc.php'); ?>
+    <?php
+    $page = 'search';
+    include_once('header.inc.php'); ?>
 
     <?php if (isset($error)) {
     echo $error;
