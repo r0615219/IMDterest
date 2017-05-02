@@ -8,16 +8,18 @@ if (isset($_SESSION['user'])) {
 } else {
     header('Location: signin.php');
 }
-
 $userId = $_GET['userId'];
-
 if($userId == $_SESSION['userid']){
     header('Location: profile.php');
 }
-
 $user = new User;
 $user->getUserDetails($userId);
-
+if($user->Follow==TRUE){
+    $follow = "following";
+}
+if($user->Follow==FALSE){
+    $follow = "follow";
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -61,7 +63,7 @@ include_once('header.inc.php'); ?>
             <h1 class="media-heading"><?php echo $user->Firstname; ?> <?php echo $user->Lastname; ?></h1>
         </div>
         
-        <button type="button" class="btn" id="follow"> Follow </button>
+        <button type="button" id="follow" class="btn <?php echo $follow ?>"> Follow </button>
     </div>
 
     <div class="media-body">

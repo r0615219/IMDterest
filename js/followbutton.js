@@ -1,6 +1,16 @@
 $(document).ready(function(){
     
     $("#follow").click(function(){
+        
+        $("#follow").hasClass("follow", function() {
+            $(".follow").addClass("following");
+            $(".follow").removeClass("follow");
+        });
+        $("#follow").hasClass("following", function() {
+            $(".following").addClass("follow");
+            $(".following").removeClass("following");
+        });
+        
         //javascript functie die de url leest en variabelen er uit haalt
         function leesUrl(parameter)
         {
@@ -30,5 +40,6 @@ $(document).ready(function(){
                 console.log("update!");
             }
         });
+        
     });
 });
