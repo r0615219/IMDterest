@@ -3,7 +3,10 @@ session_start();
 spl_autoload_register(function ($class) {
     include_once("classes/" . $class . ".php");
 });?>
-<?php include_once('header.inc.php'); ?>
+<?php
+$page='boards';
+ include_once('header.inc.php');
+ ?>
 
 <!doctype html>
 <html lang="en">
@@ -29,12 +32,13 @@ spl_autoload_register(function ($class) {
     <title>IMDterest | Boards</title>
     </head>
     <body>
+
       <div class="boards">
         <?php //Board binnenhalen
           $board = new board;
           $board->loadBoard();
           $boards=$_SESSION['boards'];
-          //print_r($_SESSION['boards']);
+          print_r($_SESSION['boards']);
       foreach ($boards as $b):?>
 
           <div class="board userPost">
@@ -42,7 +46,27 @@ spl_autoload_register(function ($class) {
               <?php print_r($b['subject']); ?>
             </div>
             <div class="board-pins">
-              <?php $boardpins = new post ?>
+              <?php
+              $boardpins = new post;
+              $board_id = $b['id'];
+              $boardpins->loadToBoard($board_id);
+              $boardpins=$_SESSION['boardposts_id'];
+              foreach ($boardpins as $p) {
+                $post = new post;
+                $post_id=$p['post_id'];
+                //echo $post_id;
+                $post->loadPost($post_id);
+                $posts=$_SESSION['boardposts'];
+                //print_r($posts);
+                foreach ($posts as $p) {
+                //print_r($p);
+                echo"<p>".$p['title']."<p/>";
+                echo "<br>";
+                echo "<img class='board-image' src=./images/uploads/postImages/".$p['image'].">";
+              }
+            }
+
+               ?>
             </div>
           </div>
 

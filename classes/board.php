@@ -56,7 +56,6 @@
     $addboard->bindValue(":subject", $_POST['board_name']);
     $addboard->bindValue(":user_id", $_SESSION['userid']);
     $addboard->bindValue(":visibility", $_POST['visibility']);
-
     $addboard->execute();
   }
 
@@ -68,7 +67,6 @@
     $loadboard->execute();
     $res = $loadboard->fetchall(PDO::FETCH_ASSOC);
     $_SESSION['boards'] = $res;
-
   }
 
 }
