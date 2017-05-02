@@ -1,0 +1,29 @@
+.board{
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  max-width: 400px;
+  min-height: 200px;
+  border-radius: 10px;
+  background-color: lightgrey;
+  border-bottom: 1px solid #ccc;
+  margin-top: 50px;
+  padding:4px;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  align-self: center;
+}
+
+.create-board{
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding:10px;
+  max-width: 50%;
+  margin:0 auto;
+
+}
+
+.board-image{
+  max-height: 150px;
+  flex-wrap: nowrap;
+}
