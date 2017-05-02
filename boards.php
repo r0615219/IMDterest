@@ -38,7 +38,7 @@ $page='boards';
           $board = new board;
           $board->loadBoard();
           $boards=$_SESSION['boards'];
-          print_r($_SESSION['boards']);
+          //print_r($_SESSION['boards']);
       foreach ($boards as $b):?>
 
           <div class="board userPost">
@@ -60,9 +60,10 @@ $page='boards';
                 //print_r($posts);
                 foreach ($posts as $p) {
                 //print_r($p);
+                echo "<div class='boardPost'>";
                 echo"<p>".$p['title']."<p/>";
-                echo "<br>";
                 echo "<img class='board-image' src=./images/uploads/postImages/".$p['image'].">";
+                echo "</div>";
               }
             }
 
