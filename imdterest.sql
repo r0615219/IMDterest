@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 02 mei 2017 om 13:49
+-- Gegenereerd op: 29 apr 2017 om 16:17
 -- Serverversie: 10.1.21-MariaDB
 -- PHP-versie: 5.6.30
 
@@ -23,157 +23,14 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `boardposts`
+-- Tabelstructuur voor tabel `follows`
 --
 
-CREATE TABLE `boardposts` (
-  `id` int(11) NOT NULL,
-  `board_id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
-
---
--- Gegevens worden geëxporteerd voor tabel `boardposts`
---
-
-INSERT INTO `boardposts` (`id`, `board_id`, `post_id`) VALUES
-(59, 23, 37),
-(65, 26, 37),
-(66, 25, 37),
-(68, 26, 31),
-(69, 26, 26),
-(70, 27, 22),
-(71, 27, 21),
-(72, 25, 38);
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `boards`
---
-
-CREATE TABLE `boards` (
-  `id` int(11) NOT NULL,
-  `subject` varchar(255) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `visibility` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `boards`
---
-
-INSERT INTO `boards` (`id`, `subject`, `user_id`, `visibility`) VALUES
-(23, 'Board 1', 27, 'yes'),
-(25, 'Board 2', 27, 'yes'),
-(26, 'Board  3', 27, 'no'),
-(27, 'Lisa\'s gekke koeie foto\'s', 27, 'yes');
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `comments`
---
-
-CREATE TABLE `comments` (
-  `id` int(11) NOT NULL,
-  `comment` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `comments`
---
-
-INSERT INTO `comments` (`id`, `comment`, `user_id`, `post_id`) VALUES
-(18, 'test789789aaa', 27, 37),
-(28, '123456789guhgugufuy', 27, 37),
-(29, 'Super mooi, WAAAUW', 27, 36),
-(32, 'Ik denk da het werkt', 27, 37),
-(33, 'testing', 27, 35),
-(34, 'testing', 27, 35),
-(35, 'testing', 27, 35),
-(36, 'testing', 27, 35),
-(37, 'What\'s this?', 27, 34),
-(38, 'TESTING', 27, 37),
-(39, 'TESTING', 27, 37),
-(40, 'test ajax', 27, 37),
-(48, 'test', 27, 37),
-(69, 'HONK HONK', 27, 37),
-(70, 'Testing again and again and again', 27, 37),
-(71, 'AND THE YEARS START COMING', 27, 37),
-(72, 'AND THEY DON\'T STOP COMING', 27, 37),
-(73, 'Oh dear', 27, 37),
-(74, 'Oh dear', 27, 37),
-(75, 'DEAR LORD', 27, 37),
-(76, 'I THINK THIS IS IT', 27, 37),
-(77, 'I CAN DO THIS', 27, 37),
-(78, 'TIS HALF 6 EN DE CAFFEINNE IS OP MAAR HET WEEEEEEEEEEERKT', 27, 37),
-(79, 'Now?', 27, 37),
-(80, 'YEEEEEEEES', 27, 37),
-(81, 'Ah shit', 27, 35),
-(82, 'testing', 27, 30),
-(83, 'HMM', 27, 37),
-(84, 'Dit is een probleem', 27, 36),
-(85, 'ereerere', 27, 36),
-(86, 'Oy vey', 27, 26),
-(87, 'Oy vey', 27, 26),
-(88, 'Now?', 27, 36),
-(89, 'Eeeehm', 27, 37),
-(90, 'Now?', 27, 36),
-(91, 'ayayayay', 27, 37),
-(92, 'ayayayay', 27, 37),
-(93, 'ayayayay', 27, 37),
-(94, 'Work pls', 27, 37),
-(95, 'ayayayay', 27, 37),
-(96, 'ayayayay', 27, 37),
-(97, 'ayayayay', 27, 37),
-(98, 'RIP', 27, 37),
-(99, 'ayayayay', 27, 37),
-(100, 'Tis al terug kapot, GG', 27, 37),
-(101, 'ayayayay', 27, 37),
-(102, 'Nog steeds kapot?', 27, 37),
-(103, 'Nog steeds kapot.....', 27, 37),
-(104, 'ayayayay', 27, 37),
-(105, 'How about now?', 27, 37),
-(106, 'ayayayay', 27, 37),
-(107, 'Pls work?', 27, 37),
-(108, 'IT WORKS', 27, 37),
-(109, 'PRAISE JEBUS', 27, 37),
-(110, 'Wait whaaa', 27, 36),
-(111, 'ik ben echt ni meer mee', 27, 36),
-(112, 'Ma dus', 27, 37),
-(113, '', 27, 37),
-(114, 'watwatwat', 27, 37),
-(115, 'Ok maar nu efkes serious eh', 27, 37),
-(116, 'FFS', 27, 36),
-(117, 'AAAAH', 27, 37),
-(118, 'FFS', 27, 36),
-(119, 'FFS', 27, 36),
-(120, 'Dios mios', 27, 37),
-(121, 'FFS', 27, 36),
-(122, 'FFS', 27, 37),
-(123, 'BUT THIS SHIT DON\'T WORK OFCOURSE', 27, 36),
-(124, '', 27, 37),
-(125, '', 27, 37),
-(126, '', 27, 37),
-(127, 'Now?', 27, 37),
-(128, 'Ach no', 27, 37),
-(129, 'Deze foto is van een tunnel', 27, 30),
-(130, 'Deze foto is van een boekje', 27, 29),
-(131, 'Ma echt wel een schoon boekje', 27, 29),
-(132, 'Ma echt wel een schoon boekje', 27, 29),
-(133, 'Heel schoon', 27, 29),
-(134, 'Zo mooi', 27, 31),
-(135, 'Ellaba', 27, 26),
-(136, 'Tis gemaakt boys', 27, 37),
-(137, 'En girls', 27, 37),
-(138, 'We don\'t discriminate', 27, 37),
-(139, 'En?', 27, 37),
-(140, 'En done', 27, 31),
-(141, 'top!', 27, 31),
-(142, 'Nu?', 27, 37);
+CREATE TABLE `follows` (
+  `followId` int(11) NOT NULL,
+  `follower` int(11) NOT NULL,
+  `user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -192,16 +49,10 @@ CREATE TABLE `likes` (
 --
 
 INSERT INTO `likes` (`likeId`, `UserId`, `PostId`) VALUES
+(1, 27, 23),
+(2, 27, 25),
 (3, 28, 23),
-(4, 28, 24),
-(97, 27, 5),
-(98, 27, 7),
-(130, 27, 31),
-(137, 27, 28),
-(140, 27, 23),
-(171, 27, 36),
-(174, 27, 37),
-(175, 27, 26);
+(4, 28, 24);
 
 -- --------------------------------------------------------
 
@@ -230,8 +81,10 @@ INSERT INTO `posts` (`id`, `user_ID`, `title`, `image`, `description`, `link`, `
 (21, 21, 'Koe', 'sXjhX44-cow-backgrounds.jpg', 'Boeien, zeiden de koeien', '', 3, 0, 0),
 (22, 21, 'Koe', '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe, zei weer de koe', '', 4, 0, 0),
 (23, 27, 'aaa', 'rage.png', 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '', 7, 0, 0),
+(24, 27, 'facebook', 'https://www.facebook.com/', 'Want facebook is toch wel kunst hoor', 'https://www.facebook.com/', 7, 0, 0),
 (25, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0, 0),
 (26, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0, 0),
+(27, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0, 0),
 (28, 28, 'selfie', 'Selfie_Robbe-01.png', 'Selfie robbe', '', 7, 0, 0),
 (29, 28, 'magazine', 'magazine_graph.png', 'Magazine opdracht design', '', 4, 0, 0),
 (30, 28, 'foto', 'tunnel.jpg', 'tunnel', '', 5, 0, 0),
@@ -240,7 +93,17 @@ INSERT INTO `posts` (`id`, `user_ID`, `title`, `image`, `description`, `link`, `
 (35, 28, 'Drawing', 'Room2.0.JPG', 'room perspective challenge design atelier', '', 6, 0, 0),
 (36, 28, 'Variatio', 'variatio.jpg', 'fotografie variatio', '', 7, 0, 0),
 (37, 19, 'Schildpad', 'a_dream.png', 'zefrgergzetztthg', '', 3, 0, 0),
-(38, 27, 'Disgusting', 'Disgusting271493725021.png', 'Eike bah', '', 7, 1493725021, 0);
+(38, 19, 'Fladder', 'lolz engel.jpg', 'lolz hihi', '', 4, 1492939048, 0),
+(39, 19, 'Upload plz', 'Otter space.jpg', 'pls', '', 3, 1492939116, 0),
+(40, 19, 'PLZ', 'trash.png', 'pls pretty pls', '', 4, 1492939138, 0),
+(41, 21, 'Kalf', '20160709_151510.jpg', 'Kalfje', '', 3, 1493040708, 0),
+(42, 21, 'Penelope', 'Penelope8.jpg', 'Penelope', '', 3, 1493104129, 0),
+(43, 21, 'Penelope', 'Penelope8.jpg', 'Penelope', '', 3, 1493104186, 0),
+(44, 21, 'piggy and ice cream', 'tumblr_static_tumblr_static_3rhyuytz2q04g0c0s8k4ccgoo_640.jpg', 'piggy eating ice cream', '', 4, 1493104308, 3),
+(45, 21, 'piggy and ice cream', 'tumblr_static_tumblr_static_3rhyuytz2q04g0c0s8k4ccgoo_640.jpg', 'piggy eating ice cream', '', 4, 1493106150, 5),
+(49, 29, 'Blubblub', 'Blubblub291493237976.png', 'hihihihihihi', '', 3, 1493237976, 0),
+(50, 29, 'test', 'test291493283126.jpg', 'zefedgrer', '', 3, 1493283126, 0),
+(51, 29, 'test test', 'test%20test291493283206.jpg', 'ererberrgtfrvgtfr', '', 3, 1493283206, 0);
 
 -- --------------------------------------------------------
 
@@ -297,7 +160,8 @@ INSERT INTO `users` (`id`, `email`, `firstname`, `lastname`, `password`, `image`
 (25, 'nog@eentest.be', 'nog een test', 'nog een test', '$2y$12$NsIpUTkhjiNcCWtpYJv08uJ35hPJAauFYb9UD/qm15qvGpOKbeXPW', 'http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png'),
 (26, 'idk@idk.be', 'idk', 'idk', '$2y$12$zY.Xufqh5OmADOf41S7uve0UvZmn4ImCfNhEmWB5r7sDwykr009Ly', '26.jpg'),
 (27, 'jkeirsmaekers@gmail.com', 'joris', 'keirsmaekers', '$2y$12$J0mPYT/n8a8PqRZ0ySWpfO2Kswga5Igp4EbRZSP3NhRkNmTmQ/kNG', 'profile_placeholder.png'),
-(28, 'lola@mail.be', 'Lola', 'The Kinks', '$2y$12$EqdcukRQ.ZNhIty4spJVN.HDn5mYTQeNVdBiMH7xp/pf3NoiY9/kK', '28.jpg');
+(28, 'lola@mail.be', 'Lola', 'The Kinks', '$2y$12$EqdcukRQ.ZNhIty4spJVN.HDn5mYTQeNVdBiMH7xp/pf3NoiY9/kK', '28.jpg'),
+(29, 'Bert@bertmail.bert', 'Bert', 'Bertmans', '$2y$12$WJuRgD8fRti9/f.hnyRSr.6Mg/mG0zG38DDFHJ8A0biqTr0sfr3Qa', '291493234536.png');
 
 -- --------------------------------------------------------
 
@@ -349,29 +213,20 @@ INSERT INTO `users_topics` (`id`, `users_ID`, `topics_ID`) VALUES
 (33, 28, 4),
 (35, 28, 5),
 (36, 28, 6),
-(37, 28, 7);
+(37, 28, 7),
+(42, 29, 3),
+(41, 29, 4),
+(43, 29, 7);
 
 --
 -- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexen voor tabel `boardposts`
+-- Indexen voor tabel `follows`
 --
-ALTER TABLE `boardposts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexen voor tabel `boards`
---
-ALTER TABLE `boards`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexen voor tabel `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `follows`
+  ADD PRIMARY KEY (`followId`);
 
 --
 -- Indexen voor tabel `likes`
@@ -411,30 +266,20 @@ ALTER TABLE `users_topics`
 --
 
 --
--- AUTO_INCREMENT voor een tabel `boardposts`
+-- AUTO_INCREMENT voor een tabel `follows`
 --
-ALTER TABLE `boardposts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
---
--- AUTO_INCREMENT voor een tabel `boards`
---
-ALTER TABLE `boards`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
---
--- AUTO_INCREMENT voor een tabel `comments`
---
-ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+ALTER TABLE `follows`
+  MODIFY `followId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT voor een tabel `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
+  MODIFY `likeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT voor een tabel `topics`
 --
@@ -444,12 +289,12 @@ ALTER TABLE `topics`
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT voor een tabel `users_topics`
 --
 ALTER TABLE `users_topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
