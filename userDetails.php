@@ -43,7 +43,9 @@ $user->getUserDetails($userId);
 </head>
 <body>
 
-<?php include_once('header.inc.php'); ?>
+<?php
+$page = 'userdetails';
+include_once('header.inc.php'); ?>
 
 
 
