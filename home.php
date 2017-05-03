@@ -467,14 +467,6 @@ if(isset($_POST['pinned_post'])){
 
 
 ?><!doctype html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/add-btn.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/npm.js"></script>
-<script src="js/likebutton.js"></script>
-<script src="js/loadMore.js"></script>
-<script src="js/comment-btn.js"></script>
-
 <html lang="en">
 
 <head>
@@ -508,9 +500,9 @@ if(isset($_POST['pinned_post'])){
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<script src="js/add-btn.js"></script>
-
 <script src="js/bootstrap.min.js"></script>
+
+<script src="js/add-btn.js"></script>
 
 <script src="js/npm.js"></script>
 
