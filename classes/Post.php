@@ -108,6 +108,8 @@ class Post
             $statement->bindValue(":topics_ID", $this->m_iTopicsId);
             $statement->bindValue(":time", $this->m_iUploadtime);
             $statement->execute();
+            echo "\nPDO::errorInfo() SAVEPOST:\n";
+            print_r($conn->errorInfo());
         } catch (PDOException $e) {
             $error = $e->getMessage();
         }
