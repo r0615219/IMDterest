@@ -17,7 +17,8 @@ try {
     $error = $e->getMessage();
 }
 
-?><nav class="navbar navbar-inverse navbar-fixed-top">
+?>
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -75,15 +76,15 @@ try {
                                                alt="profile"></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false"><?php echo $_SESSION['firstname']; ?> <?php echo $_SESSION['lastname']; ?>
+                       aria-expanded="false"><?php echo $_SESSION['firstname'], '', $_SESSION['lastname']; ?>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="profile.php">Profile</a></li>
-                        <li><a href="#">Settings</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="logout.php">Log out</a></li>
                     </ul>
                 </li>
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
