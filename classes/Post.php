@@ -212,6 +212,37 @@ class Post
         $_SESSION['posts-topic'] = $result;
     }
 
+
+    public function saveToBoard($board_id)
+    {
+        //console.log("hey");
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("INSERT INTO `boardposts`(`post_id`, `board_id`) VALUES (:post_id,:board_id)");
+        $statement->bindvalue(":post_id",$this->m_iID);
+        $statement->bindvalue(":board_id",$board_id);
+        $res=$statement->execute();
+
+    }
+
+    public function loadToBoard($board_id){
+        $conn = Db::getInstance();
+        $statement =$conn->prepare("SELECT * FROM `boardposts` WHERE `board_id` = (:board_id)");
+        $statement->bindvalue(":board_id",$board_id);
+        $statement->execute();
+        $res=$statement->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['boardposts_id']=$res;
+      }
+
+      public function loadPost($post_id){
+        $conn = Db::getInstance();
+        $statement =$conn->prepare("SELECT * FROM `posts` WHERE `id` = (:id)");
+        $statement->bindvalue(":id",$post_id);
+        $statement->execute();
+        $res=$statement->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['boardposts']=$res;
+      }
+
+
     public static function returnPosts($statement, $rows){
         include_once('../emptyStates.php');
         $results=[];
@@ -278,7 +309,32 @@ class Post
 
                                 <div class="postId"><?php echo $res->id; ?></div>
                             </div>
+                            <div class="boardPin">
+                              <form class="pin"  method="post" ?>
+                                <button class="btn-pin" type="submit" name="pinned_post" value=<?php echo $res->id ?>><span class="glyphicon glyphicon-pushpin"></span></button>
+                                <select name="selected_board" id=selected_board>
+                                  <<option selected>Select a board</option>
+                                  <?php $board = new board;
+                                        $board->loadBoard();
+                                        $boards=$_SESSION['boards'];
+                                        foreach ($boards as $b ) {
 
+                                          echo"<option value=".$b["id"].">".$b['subject']."</option>";
+                                                                                  }
+
+
+
+
+                                   ?>
+                                </select>
+                              </form>
+                              <?php
+
+
+
+                               ?>
+
+                            </div>
                             <div class="likes">
                                 <div class="likeBtn">
                                     <a href="#">

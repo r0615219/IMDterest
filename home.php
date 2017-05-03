@@ -451,6 +451,29 @@ if (!empty($_POST['comment'])) {
 
 }
 
+////BOARDS////
+if(isset($_POST['pinned_post'])){
+  if(!empty($_POST['selected_board'])){
+  $post = new Post;
+//  echo $_POST['selected_board'];
+  $post->id = $_POST['pinned_post'];
+  $board_id = $_POST['selected_board'];
+  $post->saveToBoard($board_id);
+
+  }
+}
+
+
+
+
+?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/add-btn.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/npm.js"></script>
+<script src="js/likebutton.js"></script>
+<script src="js/loadMore.js"></script>
+<script src="js/comment-btn.js"></script>
 
 
 ?><!doctype html>
