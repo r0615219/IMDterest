@@ -1,27 +1,28 @@
 <?php
 
-    spl_autoload_register(function ($class) {
-        include_once("classes/" . $class . ".php");
-    });
+spl_autoload_register(function ($class) {
+    include_once("classes/" . $class . ".php");
+});
 
-    try {
-        if (!empty($_GET['search']) && !empty($_GET['search-select'])) {
-            $search = new Search();
-            $search->Zoekterm = $_GET['search'];
-            $search->ZoekSelect = $_GET['search-select'];
-            $search->zoeken();
-        }
-    } catch (Exception $e) {
-        $error = $e->getMessage();
+try {
+
+    if (!empty($_GET['search']) && !empty($_GET['search-select'])) {
+        $search = new Search();
+        $search->Zoekterm = $_GET['search'];
+        $search->ZoekSelect = $_GET['search-select'];
+        $search->zoeken();
     }
 
-?>
+} catch (Exception $e) {
+    $error = $e->getMessage();
+}
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+?><nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -33,16 +34,19 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li <?php echo ($page == 'home') ? "class='active'" : ""; ?>><a href="home.php">Home <span class="sr-only">(current)</span></a></li>
+                <li <?php echo ($page == 'home') ? "class='active'" : ""; ?>><a href="home.php">Home <span
+                                class="sr-only">(current)</span></a></li>
                 <li <?php echo ($page == 'explore') ? "class='active'" : ""; ?>><a href="explore.php">Explore</a></li>
                 <li <?php echo ($page == 'topics') ? "class='active'" : ""; ?>class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Topics <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Topics <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <?php foreach ($_SESSION['topics'] as $t):?>
+                        <?php foreach ($_SESSION['topics'] as $t): ?>
                             <?php $goToTopic = new Topics();
                             $goToTopic->name = $t->name;
                             $goToTopic->getTopicViaName(); ?>
-                            <li><a href="topics.php?topicsid=<?php echo $goToTopic->id; ?>"><?php echo $t->name; ?></a></li>
+                            <li><a href="topics.php?topicsid=<?php echo $goToTopic->id; ?>"><?php echo $t->name; ?></a>
+                            </li>
                         <?php endforeach; ?>
                         <li role="separator" class="divider"></li>
                         <li><a <a href="topics.php?topicsid=0">More</a></li>
@@ -50,7 +54,8 @@
                 </li>
                 <li><a href="boards.php">Boards</a></li>
             </ul>
-            <form class="navbar-form navbar-left" method="get" name="searchForm" id="searchForm" action="search-result.php">
+            <form class="navbar-form navbar-left" method="get" name="searchForm" id="searchForm"
+                  action="search-result.php">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search" id="search" name="search">
                     <select class="form-control" name="search-select">
@@ -65,9 +70,13 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <!--<li><a href="#">Link</a></li>-->
-                <li><a href="profile.php"><img class="media-object profile-pic" src="images/uploads/userImages/<?php echo $_SESSION['image'];?>" alt="profile"></a></li>
+                <li><a href="profile.php"><img class="media-object profile-pic"
+                                               src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>"
+                                               alt="profile"></a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['firstname']; ?> <?php echo $_SESSION['lastname']; ?> <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false"><?php echo $_SESSION['firstname']; ?> <?php echo $_SESSION['lastname']; ?>
+                        <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="profile.php">Profile</a></li>
                         <li><a href="#">Settings</a></li>
@@ -79,3 +88,4 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
