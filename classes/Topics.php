@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class Topics
 {
@@ -49,14 +50,16 @@ class Topics
         $this->m_sImage = $res['image'];
     }
 
-    public function getAllTopics()
+    public static function chooseTopics()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("SELECT * FROM `topics`;");
+        $statement = $conn->prepare("select t.id, t.name, t.image from topics t inner join users_topics ut on t.id = ut.topics_ID group by ut.topics_ID ORDER BY count(ut.topics_ID) desc limit 5;");
         $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        $_SESSION['alltopics'] = $result;
-
+        while ($topic = $statement->fetch(PDO::FETCH_OBJ)) {
+            var_dump($topic->name);
+            $_SESSION['chooseTopics'][] = $topic;
+        }
+        var_dump($_SESSION['chooseTopics']);
     }
 
     public function getTopicViaName()

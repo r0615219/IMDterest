@@ -8,29 +8,9 @@ spl_autoload_register(function ($class) {
 if (!isset($_SESSION['user'])) {
     header('Location: signin.php');
 }
-
+var_dump($_SESSION['chooseTopics']);
 //TOPICS
 try {
-    //1. kijken of gebruiker nog geen topics heeft
-    if (!isset($_SESSION['topics'])) {
-        //2. indien JA: 5 topics die het meeste voorkomen in user_topics tabel uitlezen als object
-        $topicArray = [];
-        $conn = Db::getInstance();
-        //normaal in 1 statement maar dit wordt niet ondersteund -> in 2 gesplitst
-        $statement1 = $conn->prepare("SELECT topics_ID FROM `users_topics` GROUP BY topics_ID ORDER BY count(*) DESC LIMIT 5");
-        $statement1->execute();
-        while ($res = $statement1->fetch(PDO::FETCH_ASSOC)) {
-            $id = $res['topics_ID'];
-            $statement2 = $conn->prepare("SELECT * FROM `topics` WHERE id = :id");
-            $statement2->bindValue(":id", (int)$id);
-            $statement2->execute();
-            $topic = $statement2->fetch(PDO::FETCH_OBJ);
-            //3. topics in array steken
-            $topicArray[] = $topic;
-        }
-    }
-//4. ZIE chooseTopics.php !!
-//5. indien topics gekozen -> topics in databank steken
     if (isset($_POST['selectedTopics'])) {
         $selectedTopics = $_POST['selectedTopics'];
         for ($i = 0; $i < count($selectedTopics); $i++) {
@@ -154,7 +134,7 @@ if (isset($_POST['linkSubmit'])) {
                     $image = str_replace("../", "/", $nodeImage[$i]->getAttribute('src'));
                 }
                 if (strpos($nodeImage[$i]->getAttribute('src'), 'http') === false) {
-                    $image = $link.$image;
+                    $image = $link . $image;
                 }
                 $image = str_replace(' ', '%20', $image);
                 break;
@@ -210,33 +190,25 @@ if (isset($_POST['delete'])) {
 
 ////COMMENTS/////
 if (!empty($_POST['comment'])) {
-  $comment = new comment;
-  $comment->comment = $_POST['comment'];
-  $comment->post_id = $_POST['post_id'];
-  $comment->saveComment();
+    $comment = new comment;
+    $comment->comment = $_POST['comment'];
+    $comment->post_id = $_POST['post_id'];
+    $comment->saveComment();
 }
 
 ////BOARDS////
-if(isset($_POST['pinned_post'])){
-  if(!empty($_POST['selected_board'])){
-  $post = new Post;
+if (isset($_POST['pinned_post'])) {
+    if (!empty($_POST['selected_board'])) {
+        $post = new Post;
 //  echo $_POST['selected_board'];
-  $post->id = $_POST['pinned_post'];
-  $board_id = $_POST['selected_board'];
-  $post->saveToBoard($board_id);
+        $post->id = $_POST['pinned_post'];
+        $board_id = $_POST['selected_board'];
+        $post->saveToBoard($board_id);
 
-  }
+    }
 }
 
 ?><!doctype html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/add-btn.js"></script>
-<script src="js/npm.js"></script>
-<script src="js/likebutton.js"></script>
-<script src="js/loadMore.js"></script>
-<script src="js/comment-btn.js"></script>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -253,13 +225,13 @@ if(isset($_POST['pinned_post'])){
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/add-btn.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/npm.js"></script>
-<script src="js/likebutton.js"></script>
-<script src="js/loadMore.js"></script>
-<script src="js/comment-btn.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/add-btn.js"></script>
+    <script src="js/npm.js"></script>
+    <script src="js/likebutton.js"></script>
+    <script src="js/loadMore.js"></script>
+    <script src="js/comment-btn.js"></script>
 
     <title>IMDterest | Home</title>
 </head>
@@ -277,7 +249,7 @@ include_once('header.inc.php'); ?>
         include_once('userHome.php');
     } else {
         include_once('chooseTopics.php');
-    }?>
+    } ?>
 
 </div>
 </body>
