@@ -20,8 +20,7 @@ if($user->Follow==TRUE){
 if($user->Follow==FALSE){
     $follow = "follow";
 }
-?>
-<!doctype html>
+?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

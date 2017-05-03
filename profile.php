@@ -8,8 +8,7 @@ if (isset($_SESSION['user'])) {
 } else {
     header('Location: signin.php');
 }
-?>
-<!doctype html>
+?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -32,7 +31,10 @@ if (isset($_SESSION['user'])) {
 </head>
 <body>
 
-<?php include_once('header.inc.php'); ?>
+<?php
+    $page = 'profile';
+    include_once('header.inc.php');
+    ?>
 
 
 

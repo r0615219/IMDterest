@@ -56,9 +56,7 @@ if (!empty($_POST)) {
         $error = $e->getMessage();
     }
 }
-?>
-
-<!doctype html>
+?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -80,7 +78,10 @@ if (!empty($_POST)) {
 </head>
 <body>
 
-<?php include_once('header.inc.php'); ?>
+<?php
+    $page = 'profileSettings';
+    include_once('header.inc.php');
+    ?>
 
 
 

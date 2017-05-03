@@ -7,5 +7,3 @@ spl_autoload_register(function ($class) {
 if (!empty($_POST['comment'])) {
   echo "SHIT";
 }
-
-?>

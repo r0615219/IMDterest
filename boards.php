@@ -6,9 +6,7 @@ spl_autoload_register(function ($class) {
 <?php
 $page='boards';
  include_once('header.inc.php');
- ?>
-
-<!doctype html>
+ ?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

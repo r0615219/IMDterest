@@ -3,3 +3,4 @@
     session_unset();
 
     header('Location: signin.php');
+?>
