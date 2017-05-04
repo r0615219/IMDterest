@@ -40,6 +40,7 @@
                     break;
             }
         }
+
         public function __get($p_sProperty)
         {
             switch ($p_sProperty) {
@@ -63,9 +64,12 @@
                     break;
                 case "Topics":
                     return $this->m_aTopics;
+                    break;
                 case "Follow":
                     return $this->m_bFollow;
+                    break;
             }
+            return true;
         }
 
     public function register()
@@ -103,7 +107,6 @@
 
     public function canLogin()
     { //checken of we mogen inloggen
-
         $conn = Db::getInstance();
         $statement = $conn->prepare("SELECT * FROM `users` WHERE (email = :email)");
         $statement->bindValue(":email", $this->m_sEmail);
@@ -127,10 +130,9 @@
             $res = $statement->fetch(PDO::FETCH_ASSOC);
             $firstname = $res["firstname"];
             $lastname = $res["lastname"];
-            $email = $res["email"];
+            //$email = $res["email"];
             $image = $res["image"];
             $id = $res["id"];
-            session_start();
             $_SESSION['user'] = $this->m_sEmail;
             $_SESSION['firstname'] = $firstname;
             $_SESSION['lastname'] = $lastname;
