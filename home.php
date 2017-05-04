@@ -8,7 +8,6 @@ spl_autoload_register(function ($class) {
 if (!isset($_SESSION['user'])) {
     header('Location: signin.php');
 }
-var_dump($_SESSION['chooseTopics']);
 //TOPICS
 try {
     if (isset($_POST['selectedTopics'])) {

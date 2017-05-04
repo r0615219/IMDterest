@@ -53,13 +53,20 @@ class Topics
     public static function chooseTopics()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("select t.id, t.name, t.image from topics t inner join users_topics ut on t.id = ut.topics_ID group by ut.topics_ID ORDER BY count(ut.topics_ID) desc limit 5;");
+        $statement = $conn->prepare("SELECT t.id, t.name, t.image FROM topics t INNER JOIN users_topics ut ON t.id = ut.topics_ID GROUP BY ut.topics_ID ORDER BY count(ut.topics_ID) DESC LIMIT 5;");
         $statement->execute();
-        while ($topic = $statement->fetch(PDO::FETCH_OBJ)) {
-            var_dump($topic->name);
-            $_SESSION['chooseTopics'][] = $topic;
+        $rows = $statement->rowCount();
+        if ($rows > 0) {
+            while ($topic = $statement->fetch(PDO::FETCH_OBJ)) {
+                $_SESSION['chooseTopics'][] = $topic;
+            }
+        } else {
+            $statement = $conn->prepare("SELECT * FROM topics LIMIT 5");
+            $statement->execute();
+            while ($topic = $statement->fetch(PDO::FETCH_OBJ)) {
+                $_SESSION['chooseTopics'][] = $topic;
+            }
         }
-        var_dump($_SESSION['chooseTopics']);
     }
 
     public function getTopicViaName()

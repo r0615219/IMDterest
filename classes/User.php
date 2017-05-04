@@ -170,6 +170,8 @@
     public function getUserTopics()
     {
         unset($_SESSION['topics']);
+        var_dump($_SESSION['user']);
+        exit();
         $conn = Db::getInstance();
         $statement = $conn->prepare("SELECT * FROM topics WHERE id IN (SELECT topics_ID FROM `users_topics` WHERE users_ID IN (SELECT id FROM users WHERE email = :email))");
         $statement->bindValue(":email", $_SESSION['user']);
