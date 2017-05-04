@@ -1,6 +1,9 @@
 <div class="userPost">
     <div class="userPostImg"
-         style="background-image: url('<?php if ($res->link == '') {echo './images/uploads/postImages/';} echo $res->image; ?>');">
+         style="background-image: url('<?php if ($res->link == '') {
+             echo './images/uploads/postImages/';
+         }
+         echo $res->image; ?>');">
         <a href="topics.php?topicsid=<?php echo $res->topics_ID; ?>"
            class="btn btn-link btn-topic-img"><?php
             $topic = new Topics();
@@ -55,17 +58,19 @@
             <div class="postId"><?php echo $res->id; ?></div>
         </div>
         <div class="boardPin">
-            <form class="pin"  method="post">
-                <button class="btn-pin" type="submit" name="pinned_post" value=<?php echo $res->id ?>><span class="glyphicon glyphicon-pushpin"></span></button>
+            <form class="pin" method="post">
+                <button class="btn-pin" type="submit" name="pinned_post" value=<?php echo $res->id ?>><span
+                            class="glyphicon glyphicon-pushpin"></span></button>
                 <select name="selected_board" id=selected_board>
-                    <<option selected>Select a board</option>
+                    <
+                    <option selected>Select a board</option>
                     <?php $board = new board;
                     $board->loadMyBoard();
-                    $boards=$_SESSION['boards'];
-                    foreach ($boards as $b ) {
+                    $boards = $_SESSION['boards'];
+                    foreach ($boards as $b) {
 
-                        echo"<option value=".$b["id"].">".$b['subject']."</option>";
-                    }?>
+                        echo "<option value=" . $b["id"] . ">" . $b['subject'] . "</option>";
+                    } ?>
                 </select>
             </form>
 
@@ -164,7 +169,10 @@
             <div class="modal-body">
                 <div class="flex-modal">
                     <div class="post">
-                        <img src="<?php if ($res->link == '') {echo './images/uploads/postImages/';} echo $res->image; ?>" alt="post-image">
+                        <img src="<?php if ($res->link == '') {
+                            echo './images/uploads/postImages/';
+                        }
+                        echo $res->image; ?>" alt="post-image">
                         <p><?php echo $res->description; ?></p>
                     </div>
 
@@ -175,7 +183,7 @@
                                 <?php
                                 $comment = new Comment;
                                 $comment->loadComment($res->id);
-                                $comment=$_SESSION['comments'];
+                                $comment = $_SESSION['comments'];
                                 foreach ($comment as $c) {
                                     echo "<div>";
                                     print_r($c['comment']);
@@ -185,10 +193,15 @@
                             </div>
                             <form class="comment-form" method="post">
                                 <div class="input-group">
-                                    <span class="input-group-addon profile-comment" id="basic-addon1"><img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt=""></span>
-                                    <input type="text" class="form-control" placeholder="Leave a comment..." name="comment" id="comment-text" aria-describedby="basic-addon1">
+                                    <span class="input-group-addon profile-comment" id="basic-addon1"><img
+                                                src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>"
+                                                alt=""></span>
+                                    <input type="text" class="form-control" placeholder="Leave a comment..."
+                                           name="comment" id="comment-text" aria-describedby="basic-addon1">
                                     <input type="hidden" name="post_id" id="post_id" value="<?php echo $res->id; ?>">
-                                    <button type="submit" name="button" id="comment-btn"><span class="input-group-addon"><span class="glyphicon glyphicon-arrow-right" type="submit"></span></span></button>
+                                    <button type="submit" name="button" id="comment-btn"><span
+                                                class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"
+                                                                                type="submit"></span></span></button>
                                 </div>
                             </form>
                         </div>

@@ -241,12 +241,4 @@ class Post
         $res=$statement->fetchAll(PDO::FETCH_ASSOC);
         $_SESSION['boardposts']=$res;
       }
-
-
-    public static function returnPosts($res){
-        if ($res->reports < 3) {
-            //fetch values
-            include("../postTemplate.php");
-        }
-    }
 }

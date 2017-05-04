@@ -176,6 +176,7 @@ if (isset($_POST['linkSubmit'])) {
 }
 
 if (isset($_POST['report'])) {
+    var_dump($_POST['report']);
     $post = new Post;
     $post->id = $_POST['report'];
     $post->reportPost();
