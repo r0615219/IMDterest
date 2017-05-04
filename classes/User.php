@@ -21,6 +21,8 @@
         private $m_aTopics=[];
 
         private $m_bFollow;
+        
+        private $m_iFollowers;
 
 
 
@@ -77,6 +79,12 @@
                     $this->m_bFollow = $p_vValue;
 
                     break;
+                    
+                case "Followers":
+
+                    $this->m_iFollowers = $p_vValue;
+
+                    break;
 
             }
 
@@ -131,6 +139,14 @@
                 case "Follow":
 
                     return $this->m_bFollow;
+                    
+                    break;
+                    
+                case "Followers":
+
+                    return $this->m_iFollowers;
+                    
+                    break;
 
             }
 

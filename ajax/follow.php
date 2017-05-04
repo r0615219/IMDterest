@@ -31,7 +31,8 @@ try{
 
     $feedback = [
         "code" => 200,
-        "message" => $user->Follow
+        "message" => $user->Follow,
+        "followers" => 6
     ];
 
 } catch (Exception $e) {

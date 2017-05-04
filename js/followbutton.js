@@ -40,6 +40,7 @@ $(document).ready(function(){
                     $("#follow").addClass("following");
                     $("#follow").text("following");
                 }
+                console.log(response.followers);
             }
         });
         
