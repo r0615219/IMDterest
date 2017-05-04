@@ -34,7 +34,8 @@ $(document).ready(function () {
                     console.log("Hello to you out there in " + state + " !");
                     $.post( 'ajax/location.php', {'varLocation': state}, function(data){
 
-                        $("#data").append(data); //append data into #results element
+                        //$("#data").append(data); //append data into #results element
+                        $("#data").val(data);
 
                     });
                 }

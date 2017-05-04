@@ -29,12 +29,7 @@
 
                     <!--<p id="data"></p>-->
 
-                    <?php
-                        $getLocation = new Post();
-                        $printLocation = $getLocation->location;
-                    ?>
-
-                    <input type="text" id="data" value="<?php echo $printLocation; ?>" disabled/>
+                    <input type="text" id="data" value="" disabled/>
 
                     <textarea rows="3" name="imgDescription" id="imgDescription"
                               placeholder=" Add a description..."></textarea>
