@@ -2,15 +2,6 @@ $(document).ready(function(){
     
     $("#follow").click(function(){
         
-        $("#follow").hasClass("follow", function() {
-            $(".follow").addClass("following");
-            $(".follow").removeClass("follow");
-        });
-        $("#follow").hasClass("following", function() {
-            $(".following").addClass("follow");
-            $(".following").removeClass("following");
-        });
-        
         //javascript functie die de url leest en variabelen er uit haalt
         function readUrl(parameter)
         {
@@ -39,9 +30,15 @@ $(document).ready(function(){
             if( response.code == 200){
                 if(response.message == true){
                     console.log("You stopped following this user.");
+                    $("#follow").removeClass("following");
+                    $("#follow").addClass("follow");
+                    $("#follow").text("follow");
                 }
                 if(response.message == false){
                     console.log("You now follow this user.");
+                    $("#follow").removeClass("follow");
+                    $("#follow").addClass("following");
+                    $("#follow").text("following");
                 }
             }
         });
