@@ -55,7 +55,7 @@
             <div class="postId"><?php echo $res->id; ?></div>
         </div>
         <div class="boardPin">
-            <form class="pin"  method="post" ?>
+            <form class="pin"  method="post">
                 <button class="btn-pin" type="submit" name="pinned_post" value=<?php echo $res->id ?>><span class="glyphicon glyphicon-pushpin"></span></button>
                 <select name="selected_board" id=selected_board>
                     <<option selected>Select a board</option>
@@ -65,19 +65,9 @@
                     foreach ($boards as $b ) {
 
                         echo"<option value=".$b["id"].">".$b['subject']."</option>";
-                    }
-
-
-
-
-                    ?>
+                    }?>
                 </select>
             </form>
-            <?php
-
-
-
-            ?>
 
         </div>
         <div class="likes">

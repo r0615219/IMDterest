@@ -18,7 +18,7 @@ if (!is_numeric($page_number)) {
 }
 
 //get current starting point of records
-$position = (($page_number - 1) * 20);
+$position = (($page_number) * 20);
 $limit = 20;
 //fetch records using page position and item per page.
 $conn = Db::getInstance();
@@ -26,17 +26,25 @@ $conn = Db::getInstance();
 $statement = $conn->prepare($query);
 $statement->bindValue(":position", $position, PDO::PARAM_INT);
 $statement->bindValue(":limit", $limit, PDO::PARAM_INT);
-$statement->bindValue(":userid", (int)$_SESSION['userid']);
+$statement->bindValue(":userid", $_SESSION['userid']);
 $statement->execute(); //Execute prepared Query
 
 //output results from database
 $rows = $statement->rowCount();
+if ($rows > 0) {
+    while ($res = $statement->fetch(PDO::FETCH_OBJ)) {
+        if ($res->reports < 3) {
+            //fetch values
+            include("../postTemplate.php");
+        }
+    }
 
-$res = Post::returnPosts($statement, $rows);
+} else {
+    include_once('../emptyStates.php');
+    shuffle($emptyStates);
+    include_once ('../emptyStateMessage.php');
+};
 
-foreach($res as $r){
-    echo $r;
-}
 
 echo '<script src="js/likebutton.js"></script>';
 echo '<script src="js/comment-btn.js"></script>';

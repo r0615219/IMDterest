@@ -243,19 +243,10 @@ class Post
       }
 
 
-    public static function returnPosts($statement, $rows){
-        include_once('../emptyStates.php');
-        if ($rows > 0) {
-            while ($res = $statement->fetchObject("Post")) {
-                if ($res->reports < 3) {
-                    //fetch values
-                    include("../postTemplate.php");
-                }
-            }
-
-        } else {
-            shuffle($emptyStates);
-            include_once ('../emptyStateMessage.php');
-        };
+    public static function returnPosts($res){
+        if ($res->reports < 3) {
+            //fetch values
+            include("../postTemplate.php");
+        }
     }
 }

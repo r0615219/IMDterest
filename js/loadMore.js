@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var track_page = 1; //track user click as page number, right now page number is 1
+    var track_page = 0; //track user click as page number, right now page number is 1
     var query;
     switch (window.location.href){
         case 'http://imdterest.lisawouters.be/index.php':
