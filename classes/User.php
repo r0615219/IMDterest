@@ -566,9 +566,9 @@ header('Location: home.php');
     public function getUserDetails($user)
 
     {
-
         $conn = Db::getInstance();
-
+        
+        // algemene info ophalen
         $statement = $conn->prepare("SELECT firstname, lastname, image FROM users WHERE id = :user_ID ");
 
         $statement->bindValue(":user_ID", $user);
@@ -583,8 +583,8 @@ header('Location: home.php');
 
         $this->Image = $res["image"];
 
-            
-
+        
+        // Checken of deze user gevolgd wordt door de gebruiker in sessie
         $statement2 = $conn->prepare("SELECT * FROM follows WHERE follower = :usersession AND user = :user_ID");
 
         $statement2->bindValue(":usersession", $_SESSION['userid']);
@@ -606,6 +606,16 @@ header('Location: home.php');
             $this->Follow = FALSE;
 
         }
+        
+        
+        
+        //tellen hoeveel volgers deze gebruiker heeft
+        $statement3 = $conn->prepare("SELECT * FROM follows WHERE user = :user_ID");
+        $statement3->bindValue(":user_ID", $user);
+        $statement3->execute();
+        $res3 = $statement3->fetchAll(PDO::FETCH_ASSOC);
+        $rows2 = count($res3);
+        $this->Followers = $rows2;
 
     }
 

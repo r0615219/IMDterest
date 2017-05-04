@@ -55,12 +55,11 @@ include_once('header.inc.php'); ?>
     <?php if (isset($error)) {
     echo "<p>$error</p>";
 } ?>
-
     <div class="head-profile">
         <div class="head-profile-name">
             <img src="images/uploads/userImages/<?php echo $user->Image; ?>" alt="profile picture">
 
-            <h1 class="media-heading"><?php echo $user->Firstname; ?> <?php echo $user->Lastname; ?></h1>
+            <h1 class="media-heading"><?php echo $user->Firstname; ?> <?php echo $user->Lastname; ?> <small> <?php echo $user->Followers; ?> followers </small> </h1>
         </div>
         
         <button type="button" id="follow" class="btn <?php echo $follow ?>"> <?php echo $follow ?> </button>
