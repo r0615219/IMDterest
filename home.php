@@ -451,6 +451,7 @@ if (!empty($_POST['comment'])) {
 
 }
 
+<<<<<<< HEAD
 ////BOARDS////
 if(isset($_POST['pinned_post'])){
   if(!empty($_POST['selected_board'])){
@@ -462,6 +463,17 @@ if(isset($_POST['pinned_post'])){
 
   }
 }
+=======
+?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/add-btn.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/npm.js"></script>
+<script src="js/likebutton.js"></script>
+<script src="js/loadMore.js"></script>
+<script src="js/comment-btn.js"></script>
+<script src="js/location.js"></script>
+>>>>>>> a517b75b373d2f78e319cdbcfbe190f1d938e549
 
 ?><!doctype html>
 <html lang="en">
@@ -531,7 +543,11 @@ $page = 'home';
 include_once('header.inc.php'); ?>
 
 <div class="container">
+<<<<<<< HEAD
 
+=======
+    <h1 id="data"></h1>
+>>>>>>> a517b75b373d2f78e319cdbcfbe190f1d938e549
     <?php if (isset($error)) {
 
         echo "<p class='alert alert-danger'>$error</p>";
