@@ -32,6 +32,7 @@ if($user->Follow==FALSE){
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/signup-style.css">
     <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/follow.css">
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 
@@ -54,15 +55,14 @@ include_once('header.inc.php'); ?>
     <?php if (isset($error)) {
     echo "<p>$error</p>";
 } ?>
-
     <div class="head-profile">
         <div class="head-profile-name">
             <img src="images/uploads/userImages/<?php echo $user->Image; ?>" alt="profile picture">
 
-            <h1 class="media-heading"><?php echo $user->Firstname; ?> <?php echo $user->Lastname; ?></h1>
+            <h1 class="media-heading"><?php echo $user->Firstname; ?> <?php echo $user->Lastname; ?> <small id="followers"> <?php echo $user->Followers; ?> followers </small> </h1>
         </div>
         
-        <button type="button" id="follow" class="btn <?php echo $follow ?>"> Follow </button>
+        <button type="button" id="follow" class="btn <?php echo $follow ?>"> <?php echo $follow ?> </button>
     </div>
 
     <div class="media-body">
