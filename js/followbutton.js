@@ -29,16 +29,16 @@ $(document).ready(function(){
             }
             if( response.code == 200){
                 if(response.message == true){
-                    console.log("You stopped following this user.");
-                    $("#follow").removeClass("following");
-                    $("#follow").addClass("follow");
-                    $("#follow").text("follow");
-                }
-                if(response.message == false){
                     console.log("You now follow this user.");
                     $("#follow").removeClass("follow");
                     $("#follow").addClass("following");
                     $("#follow").text("following");
+                }
+                if(response.message == false){
+                    console.log("You stopped following this user.");
+                    $("#follow").removeClass("following");
+                    $("#follow").addClass("follow");
+                    $("#follow").text("follow");
                 }
                 console.log(response.followers);
                 $("#followers").text(response.followers + " followers");
