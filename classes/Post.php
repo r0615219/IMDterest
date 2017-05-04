@@ -315,7 +315,7 @@ class Post
                                 <select name="selected_board" id=selected_board>
                                   <<option selected>Select a board</option>
                                   <?php $board = new board;
-                                        $board->loadBoard();
+                                        $board->loadMyBoard();
                                         $boards=$_SESSION['boards'];
                                         foreach ($boards as $b ) {
 
