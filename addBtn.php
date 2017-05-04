@@ -27,6 +27,10 @@
 
                     <input type="text" id="title" name="title" placeholder=" Title"/>
 
+                    <!--<p id="data"></p>-->
+
+                    <input type="text" id="data" name="location" value="" readonly />
+
                     <textarea rows="3" name="imgDescription" id="imgDescription"
                               placeholder=" Add a description..."></textarea>
 
@@ -73,6 +77,8 @@
                     <input type="text" name="url" placeholder="https://"/>
 
                     <hr>
+
+                    <p id="data_link"></p>
 
                     <div class="modal-topics">
                         <label for="linkTopic">Topic</label>

@@ -115,7 +115,9 @@ try {
 
         $description = $_POST['imgDescription'];
 
-        var_dump($title);
+        $location = $_POST['location'];
+
+        //var_dump($title);
 
 
 
@@ -125,9 +127,11 @@ try {
 
         $post->description = $description;
 
+        $post->location = $location;
+
         $post->time = time(); //timestamp
 
-        var_dump($post->time);
+        //var_dump($post->time);
 
 
 
@@ -451,6 +455,7 @@ if (!empty($_POST['comment'])) {
 
 }
 
+
 ////BOARDS////
 if(isset($_POST['pinned_post'])){
   if(!empty($_POST['selected_board'])){
@@ -462,9 +467,6 @@ if(isset($_POST['pinned_post'])){
 
   }
 }
-
-
-
 
 ?><!doctype html>
 <html lang="en">
@@ -511,6 +513,10 @@ if(isset($_POST['pinned_post'])){
 <script src="js/loadMore.js"></script>
 
 <script src="js/comment-btn.js"></script>
+
+<script src="js/location.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
 
 
