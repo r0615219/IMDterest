@@ -29,13 +29,13 @@ try {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home.php">IMDterest</a>
+            <a class="navbar-brand" href="index.php">IMDterest</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li <?php echo ($page == 'home') ? "class='active'" : ""; ?>><a href="home.php">Home <span
+                <li <?php echo ($page == 'home') ? "class='active'" : ""; ?>><a href="index.php">Home <span
                                 class="sr-only">(current)</span></a></li>
                 <li <?php echo ($page == 'explore') ? "class='active'" : ""; ?>><a href="explore.php">Explore</a></li>
                 <li <?php echo ($page == 'topics') ? "class='active'" : ""; ?>class="dropdown">
@@ -76,7 +76,7 @@ try {
                                                alt="profile"></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false"><?php echo $_SESSION['firstname'], '', $_SESSION['lastname']; ?>
+                       aria-expanded="false"><?php echo $_SESSION['firstname'], ' ', $_SESSION['lastname']; ?>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="profile.php">Profile</a></li>

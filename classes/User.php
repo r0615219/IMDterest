@@ -158,7 +158,7 @@
             $this->getUserTopics();
             $this->getUserPosts();
 
-            header('Location: home.php');
+            header('Location: index.php');
 
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -170,14 +170,13 @@
     public function getUserTopics()
     {
         unset($_SESSION['topics']);
-        var_dump($_SESSION['user']);
-        exit();
         $conn = Db::getInstance();
-        $statement = $conn->prepare("SELECT * FROM topics WHERE id IN (SELECT topics_ID FROM `users_topics` WHERE users_ID IN (SELECT id FROM users WHERE email = :email))");
+        $statement = $conn->prepare("SELECT * FROM topics WHERE id IN (SELECT topics_ID FROM users_topics WHERE users_ID IN (SELECT id FROM users WHERE email = :email))");
         $statement->bindValue(":email", $_SESSION['user']);
         $statement->execute();
         $rows = $statement->rowCount();
         //als de gebruiker topics heeft deze als Topics object aanmaken -> afbeelding en naam van topic ophalen
+
         if ($rows > 0) {
             while ($topic = $statement->fetch(PDO::FETCH_OBJ)) {
                 $_SESSION['topics'][] = $topic;
