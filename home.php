@@ -463,9 +463,6 @@ if(isset($_POST['pinned_post'])){
   }
 }
 
-
-
-
 ?><!doctype html>
 <html lang="en">
 
@@ -511,6 +508,8 @@ if(isset($_POST['pinned_post'])){
 <script src="js/loadMore.js"></script>
 
 <script src="js/comment-btn.js"></script>
+
+<script src="js/location.js"></script>
 
 
 
