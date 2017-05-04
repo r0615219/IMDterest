@@ -508,4 +508,9 @@ class Post
         };
         return $results;
     }
+
+    public function getLocationToInput($location){
+        $this->m_sLocation = $location;
+    }
+
 }

@@ -1,7 +1,9 @@
 $(document).ready(function () {
 
-    var location = "ik ben een locatie";
     var error = "";
+    var url = "";
+    const api = "AIzaSyAhxQ5kJzjss1GHBr_rGwKNbD6SyxNCIAI";
+    var state = "";
 
     function getLocation() {
         if (navigator.geolocation) {
@@ -13,16 +15,36 @@ $(document).ready(function () {
 
     function savePosition(position) {
         location = "Latitude: " + position.coords.latitude +
-            "Longitude: " + position.coords.longitude;
+            " Longitude: " + position.coords.longitude;
 
-        //alert(location);
+        url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude +"," + position.coords.longitude + "&key=" + api + "";
 
-        $.post( 'ajax/location.php', {'varLocation': location}, function(data){
+        //console.log(url);
 
-            $("#data").append(data); //append data into #results element
+        $.getJSON(url, function (json) {
+            if (json.status == "OK") {
+                var result = json.results[0];
+                for (var i = 0, len = result.address_components.length; i < len; i++) {
+                    var ac = result.address_components[i];
+                    if (ac.types.indexOf("locality") >= 0) {
+                        state = ac.long_name;
+                    }
+                }
+                if (state != '') {
+                    console.log("Hello to you out there in " + state + " !");
+                    $.post( 'ajax/location.php', {'varLocation': state}, function(data){
+
+                        $("#data").append(data); //append data into #results element
+
+                    });
+                }
+            }
 
         });
+
     }
+
+    //API : AIzaSyAhxQ5kJzjss1GHBr_rGwKNbD6SyxNCIAI
 
     getLocation();
 });

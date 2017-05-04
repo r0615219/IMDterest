@@ -511,6 +511,8 @@ if(isset($_POST['pinned_post'])){
 
 <script src="js/location.js"></script>
 
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
 
 
 
