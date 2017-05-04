@@ -41,7 +41,7 @@ if ($rows > 0) {
     foreach ($result as $res) {
         if ($res->reports < 3) {
             //fetch values
-            include("../postTemplateTEST.php");
+            include("../postTemplate.php");
         }
     }
 } else {
