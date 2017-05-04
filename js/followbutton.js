@@ -5,10 +5,12 @@ $(document).ready(function(){
         $("#follow").hasClass("follow", function() {
             $(".follow").addClass("following");
             $(".follow").removeClass("follow");
+            alert("A");
         });
         $("#follow").hasClass("following", function() {
             $(".following").addClass("follow");
             $(".following").removeClass("following");
+            alert("B");
         });
         
         //javascript functie die de url leest en variabelen er uit haalt

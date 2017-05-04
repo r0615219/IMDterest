@@ -142,37 +142,37 @@ class Post
 
     public function uploadedWhen($timestamp)
     {
-        $verschil = time() - $timestamp;
-        if ($verschil > 0 && $verschil < 60) {
+        $difference = time() - $timestamp;
+        if ($difference > 0 && $difference < 60) {
             $return = "Posted less than a minute ago";
-        } else if ($verschil > 60 && $verschil < 120) {
+        } else if ($difference > 60 && $difference < 120) {
             $return = "Posted 1 minute ago";
-        } else if ($verschil > 60 && $verschil < 60 * 60) {
-            $x = floor($verschil / 60);
+        } else if ($difference > 60 && $difference < 60 * 60) {
+            $x = floor($difference / 60);
             $return = "Posted " . $x . " minutes ago";
-        } else if ($verschil > 60 * 60 && $verschil < 2 * 60 * 60) {
+        } else if ($difference > 60 * 60 && $difference < 2 * 60 * 60) {
             $return = "Posted 1 hour ago";
-        } else if ($verschil > 2 * 60 * 60 && $verschil < 24 * 60 * 60) {
-            $x = floor($verschil / 360);
+        } else if ($difference > 2 * 60 * 60 && $difference < 24 * 60 * 60) {
+            $x = floor($difference / 360);
             $return = "Posted " . $x . " hours ago";
-        } else if ($verschil > 24 * 60 * 60 && $verschil < 2 * 24 * 60 * 60) {
+        } else if ($difference > 24 * 60 * 60 && $difference < 2 * 24 * 60 * 60) {
             $return = "Posted a day ago";
-        } else if ($verschil > 24 * 60 * 60 && $verschil < 7 * 24 * 60 * 60) {
-            $x = floor($verschil / (24 * 60 * 60));
+        } else if ($difference > 24 * 60 * 60 && $difference < 7 * 24 * 60 * 60) {
+            $x = floor($difference / (24 * 60 * 60));
             $return = "Posted " . $x . " days ago";
-        } else if ($verschil > 7 * 24 * 60 * 60 && $verschil < 2 * 7 * 24 * 60 * 60) {
+        } else if ($difference > 7 * 24 * 60 * 60 && $difference < 2 * 7 * 24 * 60 * 60) {
             $return = "Posted a week ago";
-        } else if ($verschil > 2 * 7 * 24 * 60 * 60 && $verschil < 30 * 24 * 60 * 60) {
-            $x = floor($verschil / (7 * 24 * 60 * 60));
+        } else if ($difference > 2 * 7 * 24 * 60 * 60 && $difference < 30 * 24 * 60 * 60) {
+            $x = floor($difference / (7 * 24 * 60 * 60));
             $return = "Posted " . $x . " weeks ago";
-        } else if ($verschil > 30 * 24 * 60 * 60 && $verschil < 2 * 30 * 24 * 60 * 60) {
+        } else if ($difference > 30 * 24 * 60 * 60 && $difference < 2 * 30 * 24 * 60 * 60) {
             $return = "Posted a month ago";
-        } else if ($verschil > 2 * 30 * 24 * 60 * 60 && $verschil < 12 * 30 * 24 * 60 * 60) {
-            $x = floor($verschil / (30 * 24 * 60 * 60));
+        } else if ($difference > 2 * 30 * 24 * 60 * 60 && $difference < 12 * 30 * 24 * 60 * 60) {
+            $x = floor($difference / (30 * 24 * 60 * 60));
             $return = "Posted " . $x . " months ago";
-        } else if ($verschil > 365 * 24 * 60 * 60 && $verschil < 372 * 24 * 60 * 60) {
+        } else if ($difference > 365 * 24 * 60 * 60 && $difference < 372 * 24 * 60 * 60) {
             $return = "Posted a year ago ago";
-        } else if ($verschil > 372 * 24 * 60 * 60) {
+        } else if ($difference > 372 * 24 * 60 * 60) {
             $date = date('d/m/Y', $timestamp);
             if ($date == "01/01/1970") {
                 $return = "Posted before the dawn of time";
