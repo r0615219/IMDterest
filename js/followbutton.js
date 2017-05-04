@@ -14,21 +14,21 @@ $(document).ready(function(){
         });
         
         //javascript functie die de url leest en variabelen er uit haalt
-        function leesUrl(parameter)
+        function readUrl(parameter)
         {
             var URL = window.location.search.substring(1);
-            var Variabelen = URL.split('&');
-            for (var i = 0; i < Variabelen.length; i++)
+            var variables = URL.split('&');
+            for (var i = 0; i < variables.length; i++)
             {
-                var parameterNaam = Variabelen[i].split('=');
-                if (parameterNaam[0] == parameter)
+                var parameterName = variables[i].split('=');
+                if (parameterName[0] == parameter)
                 {
-                    return decodeURIComponent(parameterNaam[1]);
+                    return decodeURIComponent(parameterName[1]);
                 }
             }
         }
-
-        var user_ID = leesUrl('userId');
+        
+        var user_ID = readUrl('userId');
         
         $.ajax({
             type:"POST",
@@ -39,7 +39,7 @@ $(document).ready(function(){
                 console.log("ALLES IS VERKEERD");
             }
             if( response.code == 200){
-                console.log("update!");
+                console.log("succes!");
             }
         });
         
