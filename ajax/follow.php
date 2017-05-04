@@ -26,13 +26,15 @@ try{
             $statement->bindValue(":user_ID", $_POST['user_ID']);
             $statement->execute();
         }
+        
+        $user->getUserDetails($_POST['user_ID']);
 
     }
 
     $feedback = [
         "code" => 200,
         "message" => $user->Follow,
-        "followers" => 6
+        "followers" => $user->Followers
     ];
 
 } catch (Exception $e) {

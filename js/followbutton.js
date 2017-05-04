@@ -41,6 +41,7 @@ $(document).ready(function(){
                     $("#follow").text("following");
                 }
                 console.log(response.followers);
+                $("#followers").text(response.followers + " followers");
             }
         });
         
