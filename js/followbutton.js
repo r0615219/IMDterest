@@ -5,12 +5,10 @@ $(document).ready(function(){
         $("#follow").hasClass("follow", function() {
             $(".follow").addClass("following");
             $(".follow").removeClass("follow");
-            alert("A");
         });
         $("#follow").hasClass("following", function() {
             $(".following").addClass("follow");
             $(".following").removeClass("following");
-            alert("B");
         });
         
         //javascript functie die de url leest en variabelen er uit haalt
@@ -36,10 +34,15 @@ $(document).ready(function(){
             data: {user_ID : user_ID}
         }).done(function(response){
             if( response.code == 500){
-                console.log("ALLES IS VERKEERD");
+                console.log("something went wrong");
             }
             if( response.code == 200){
-                console.log("succes!");
+                if(response.message == true){
+                    console.log("You stopped following this user.");
+                }
+                if(response.message == false){
+                    console.log("You now follow this user.");
+                }
             }
         });
         
