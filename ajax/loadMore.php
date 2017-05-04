@@ -26,14 +26,14 @@ $conn = Db::getInstance();
 $statement = $conn->prepare($query);
 $statement->bindValue(":position", $position, PDO::PARAM_INT);
 $statement->bindValue(":limit", $limit, PDO::PARAM_INT);
-$statement->bindValue(":userid", $_SESSION['userid']);
+$statement->bindValue(":userid", (int)$_SESSION['userid']);
 $statement->execute(); //Execute prepared Query
 
 //output results from database
 $rows = $statement->rowCount();
-var_dump($rows);
-exit();
+
 $res = Post::returnPosts($statement, $rows);
+
 foreach($res as $r){
     echo $r;
 }

@@ -2,17 +2,17 @@ $(document).ready(function(){
     var track_page = 1; //track user click as page number, right now page number is 1
     var query;
     switch (window.location.href){
-        case 'imdterest.lisawouters.be/index.php':
+        case 'http://imdterest.lisawouters.be/index.php':
             query = "select * from posts p inner join users_topics ut on p.topics_ID = ut.topics_ID where ut.users_ID = :userid ORDER BY p.id DESC LIMIT :position, :limit";
             break;
-        case 'imdterest.lisawouters.be/index.php#':
+        case 'http://imdterest.lisawouters.be/index.php#':
             query = "select * from posts p inner join users_topics ut on p.topics_ID = ut.topics_ID where ut.users_ID = :userid ORDER BY p.id DESC LIMIT :position, :limit";
             break;
 
-        case 'imdterest.lisawouters.be/explore.php':
+        case 'http://imdterest.lisawouters.be/explore.php':
             query = "SELECT * FROM posts WHERE id not in (SELECT posts.id FROM posts INNER JOIN follows ON posts.user_ID = follows.user INNER JOIN users ON follows.user = users.id WHERE follows.follower = :usersession ) ORDER BY id DESC LIMIT :position, :limit";
             break;
-        case 'imdterest.lisawouters.be/explore.php#':
+        case 'http://imdterest.lisawouters.be/explore.php#':
             query = "SELECT * FROM posts WHERE id not in (SELECT posts.id FROM posts INNER JOIN follows ON posts.user_ID = follows.user INNER JOIN users ON follows.user = users.id WHERE follows.follower = :usersession ) ORDER BY id DESC LIMIT :position, :limit";
             break;
     }
