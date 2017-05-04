@@ -90,6 +90,7 @@ if (!empty($_POST)) {
     echo "<p>$error</p>";
 } ?>
     <h1 class="media-heading">Account settings</h1>
+    
     <div class="media-body">
         <form enctype="multipart/form-data" action="" method="post">
            
@@ -167,9 +168,33 @@ if (!empty($_POST)) {
 
                     </div>
                 </div>
+                
             </div>
-
+            
             <button type="submit" class="btn btn-success" style="margin-top: 50px;">Save settings</button>
+            
+            <button type="button" class="btn media" data-toggle="modal" data-target="#deleteProfile" style="margin-top: 50px; float:right;"> Delete profile </button>
+            
+            <div class="modal fade" id="deleteProfile" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"> Delete this profile </h4>
+                            </div>
+                            <div class="modal-body">
+                                <p> <strong>Are you sure you want to delete your profile? </strong> </p>
+                                <p> All data will be removed. This means your profile, posts, boards and favorites. Everything! </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-default" data-dismiss="modal">Ok</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
 
         </form>
     </div>
