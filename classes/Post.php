@@ -104,7 +104,7 @@ class Post
         }
     }
 
-    /*public function savePost()
+    public function savePost()
         {
             try {
                 $conn = Db::getInstance();
@@ -124,9 +124,9 @@ class Post
             } catch (PDOException $e) {
                 $error = $e->getMessage();
             }
-        }*/
+        }
 
-    public function savePost()
+    /*public function savePost()
     {
         try {
             $conn = Db::getInstance();
@@ -144,7 +144,7 @@ class Post
         } catch (PDOException $e) {
             $error = $e->getMessage();
         }
-    }
+    }*/
 
     public function checkLiked($PostId)
     {
@@ -320,8 +320,11 @@ class Post
                         </div>
                         <?php $post = new Post; ?>
                         <div class="userPostDescription">
-                            <h4><?php echo $res->description; ?>
+                            <h4>
                                 <small> <?php echo $post->uploadedWhen($res->time); ?></small>
+                                <small> <?php echo " ".$res->location; ?></small>
+                                <br/>
+                                <?php echo $res->description; ?>
                             </h4>
                         </div>
                         <div class="userPostInfo">
@@ -507,10 +510,6 @@ class Post
             array_push($results, $value);
         };
         return $results;
-    }
-
-    public function getLocationToInput($location){
-        $this->m_sLocation = $location;
     }
 
 }

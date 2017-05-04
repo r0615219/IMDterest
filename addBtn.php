@@ -29,7 +29,7 @@
 
                     <!--<p id="data"></p>-->
 
-                    <input type="text" id="data" value="" disabled/>
+                    <input type="text" id="data" name="location" value="" readonly />
 
                     <textarea rows="3" name="imgDescription" id="imgDescription"
                               placeholder=" Add a description..."></textarea>

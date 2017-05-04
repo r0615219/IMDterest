@@ -115,7 +115,9 @@ try {
 
         $description = $_POST['imgDescription'];
 
-        var_dump($title);
+        $location = $_POST['location'];
+
+        //var_dump($title);
 
 
 
@@ -125,9 +127,11 @@ try {
 
         $post->description = $description;
 
+        $post->location = $location;
+
         $post->time = time(); //timestamp
 
-        var_dump($post->time);
+        //var_dump($post->time);
 
 
 
