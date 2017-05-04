@@ -242,8 +242,6 @@ class Post
         $_SESSION['posts-topic'] = $result;
     }
 
-
-<<<<<<< HEAD
     public function saveToBoard($board_id)
     {
         //console.log("hey");
@@ -508,10 +506,10 @@ class Post
         };
         return $results;
     }
-=======
+
     public function printLocation($location){
         echo $location;
     }
 
->>>>>>> c92d02077fffd9268cce25278bb6901d0ca1e3b1
+
 }

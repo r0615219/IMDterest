@@ -16,7 +16,7 @@ $(document).ready(function(){
         location = "Latitude: " + position.coords.latitude +
             "Longitude: " + position.coords.longitude;
 
-        alert(location);
+        //alert(location);
 
         $.ajax({
             type:"POST",
