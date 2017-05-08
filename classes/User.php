@@ -616,8 +616,21 @@ header('Location: home.php');
     }
         
     public function deleteUser(){
+        $conn = Db::getInstance();
+        
+        //unlink images from posts from user in session
+        $statement = $conn->prepare("SELECT * FROM posts WHERE user_ID = :userid;");
+        $statement->bindValue(":userid", $_SESSION['userid']);
+        $statement->execute();
+        $res = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($res as $key => $post){
+            unlink("../images/uploads/postImages/" . $post["image"]);
+        };
         
         //remove posts from user in session
+        $statement2 = $conn->prepare("DELETE FROM posts WHERE user_ID = :userid;");
+        $statement2->bindValue(":userid", $_SESSION['userid']);
+        $statement2->execute();
         
         //remove topics from user in session that are empty
         
@@ -627,7 +640,17 @@ header('Location: home.php');
         
         //remove like relations from user in session
         
+        //unlink user picture
+        /*if ($_SESSION["image"] != "profile_placeholder.png") {
+            unlink("../images/uploads/userImages/" . $_SESSION["image"]);
+        }
+        
         //remove user in session
+        $statement7 = $conn->prepare("DELETE FROM users WHERE email = :email;");
+        $statement7->bindValue(":email", $_SESSION['user']);
+        $statement7->execute();*/
+        
+        session_unset();
         
         return "the profile was deleted";
     }

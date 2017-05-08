@@ -1,5 +1,6 @@
 <?php
 header ('Content-Type: application/json');
+session_start();
 include_once('../classes/Db.php');
 include_once('../classes/User.php');
 
