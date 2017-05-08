@@ -25,7 +25,6 @@
         private $m_iFollowers;
 
 
-
         public function __set($p_sProperty, $p_vValue)
 
         {
@@ -85,7 +84,6 @@
                     $this->m_iFollowers = $p_vValue;
 
                     break;
-
             }
 
         }
@@ -136,12 +134,14 @@
 
                     return $this->m_aTopics;
 
+                    break;
+
                 case "Follow":
 
                     return $this->m_bFollow;
                     
                     break;
-                    
+
                 case "Followers":
 
                     return $this->m_iFollowers;
@@ -149,7 +149,7 @@
                     break;
 
             }
-
+            return true;
         }
 
 
@@ -223,9 +223,6 @@
     public function canLogin()
 
     { //checken of we mogen inloggen
-
-	
-
         $conn = Db::getInstance();
 
         $statement = $conn->prepare("SELECT * FROM `users` WHERE (email = :email)");
@@ -277,7 +274,6 @@
             $image = $res["image"];
 
             $id = $res["id"];
-
 
             $_SESSION['user'] = $this->m_sEmail;
 

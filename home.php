@@ -468,7 +468,9 @@ if(isset($_POST['pinned_post'])){
   }
 }
 
-?><!doctype html>
+?>
+
+<!doctype html>
 <html lang="en">
 
 <head>

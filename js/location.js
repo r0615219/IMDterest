@@ -5,6 +5,7 @@ $(document).ready(function () {
     const api = "AIzaSyAhxQ5kJzjss1GHBr_rGwKNbD6SyxNCIAI";
     var state = "";
 
+
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(savePosition);
@@ -14,8 +15,7 @@ $(document).ready(function () {
     }
 
     function savePosition(position) {
-        location = "Latitude: " + position.coords.latitude +
-            " Longitude: " + position.coords.longitude;
+        location = "Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude;
 
         url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude +"," + position.coords.longitude + "&key=" + api + "";
 
@@ -46,4 +46,5 @@ $(document).ready(function () {
     //API : AIzaSyAhxQ5kJzjss1GHBr_rGwKNbD6SyxNCIAI
 
     getLocation();
+
 });
