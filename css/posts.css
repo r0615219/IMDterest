@@ -2,6 +2,13 @@ a:link, a:visited, a:hover, a:active, a:focus, button, button:active, button:foc
     outline: none;
 }
 
+.container{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
 #results{
     width: 100%;

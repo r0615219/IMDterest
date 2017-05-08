@@ -224,6 +224,16 @@ class Post
         $_SESSION['posts-topic'] = $result;
     }
 
+    public function getPostsViaUser()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * FROM `posts` WHERE `user_ID` = (:userid)");
+        $statement->bindValue(":userid", $this->m_iUserId);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['userPosts'] = $result;
+    }
+
     public function saveToBoard($board_id)
     {
         //console.log("hey");

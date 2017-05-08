@@ -9,7 +9,7 @@ if (isset($_SESSION['user'])) {
     header('Location: signin.php');
 }
 $userId = $_GET['userId'];
-if($userId == $_SESSION['userid']){
+if($userId == $_SESSION['user_ID']){
     header('Location: profile.php');
 }
 $user = new User;
@@ -62,12 +62,14 @@ include_once('header.inc.php'); ?>
             <h1 class="media-heading"><?php echo $user->Firstname; ?> <?php echo $user->Lastname; ?> <small id="followers"> <?php echo $user->Followers; ?> followers </small> </h1>
         </div>
         
-        <button type="button" id="follow" class="btn <?php echo $follow ?>"> <?php echo $follow ?> </button>
+        <button type="button" id="follow" class="btn <?php echo $follow; ?>"> <?php echo $follow; ?> </button>
     </div>
 
     <div class="media-body">
 
         <!-- Hier komen de posts van de user -->
+
+
 
     </div>
 </div>
