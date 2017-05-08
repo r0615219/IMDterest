@@ -635,6 +635,10 @@ header('Location: home.php');
         }
         
         //remove user in session
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("DELETE FROM users WHERE email = :email;");
+        $statement->bindValue(":email", $_SESSION['user']);
+        $statement->execute();
         
         return "the profile was deleted";
     }
