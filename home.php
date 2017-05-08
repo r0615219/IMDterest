@@ -147,25 +147,25 @@ try {
 
                 move_uploaded_file($_FILES["img"]["tmp_name"], str_replace(' ', '%20',
 
-                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".png"));
+                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->time . ".png"));
 
-                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->uploadtime . ".png");
+                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->time . ".png");
 
             } elseif (strpos($bestandsnaam, ".jpg")) {
 
                 move_uploaded_file($_FILES["img"]["tmp_name"], str_replace(' ', '%20',
 
-                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg"));
+                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->time . ".jpg"));
 
-                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg");
+                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->time . ".jpg");
 
             } elseif (strpos($bestandsnaam, ".gif")) {
 
                 move_uploaded_file($_FILES["img"]["tmp_name"], str_replace(' ', '%20',
 
-                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif"));
+                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->time . ".gif"));
 
-                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif");
+                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->time . ".gif");
 
             } else {
 
