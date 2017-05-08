@@ -628,6 +628,9 @@ header('Location: home.php');
         };
         
         //remove posts from user in session
+        $statement2 = $conn->prepare("DELETE FROM posts WHERE user_ID = :userid;");
+        $statement2->bindValue(":userid", $_SESSION['userid']);
+        $statement2->execute();
         
         //remove topics from user in session that are empty
         
@@ -643,9 +646,9 @@ header('Location: home.php');
         }
         
         //remove user in session
-        $statement = $conn->prepare("DELETE FROM users WHERE email = :email;");
-        $statement->bindValue(":email", $_SESSION['user']);
-        $statement->execute();*/
+        $statement7 = $conn->prepare("DELETE FROM users WHERE email = :email;");
+        $statement7->bindValue(":email", $_SESSION['user']);
+        $statement7->execute();*/
         
         session_unset();
         
