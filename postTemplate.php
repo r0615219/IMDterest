@@ -57,24 +57,24 @@
 
             <div class="postId"><?php echo $res->id; ?></div>
         </div>
+
         <div class="boardPin">
             <form class="pin" method="post">
                 <button class="btn-pin" type="submit" name="pinned_post" value=<?php echo $res->id ?>><span
                             class="glyphicon glyphicon-pushpin"></span></button>
                 <select name="selected_board" id=selected_board>
-                    <
                     <option selected>Select a board</option>
-                    <?php $board = new board;
+                    <?php $board = new Board;
                     $board->loadMyBoard();
                     $boards = $_SESSION['boards'];
                     foreach ($boards as $b) {
-
                         echo "<option value=" . $b["id"] . ">" . $b['subject'] . "</option>";
                     } ?>
                 </select>
             </form>
 
         </div>
+
         <div class="likes">
             <div class="likeBtn">
                 <a href="#">
