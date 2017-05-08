@@ -637,6 +637,9 @@ header('Location: home.php');
         //remove boards from user in session
         
         //remove follow relations from user in session
+        $statement5 = $conn->prepare("DELETE FROM follows WHERE follower = :userid;");
+        $statement5->bindValue(":userid", $_SESSION['userid']);
+        $statement5->execute();
         
         //remove like relations from user in session
         
