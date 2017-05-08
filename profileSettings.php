@@ -73,6 +73,7 @@ if (!empty($_POST)) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/npm.js"></script>
+    <script src="js/deleteProfile.js"></script>
 
     <title>IMDterest | Settings</title>
 </head>
@@ -90,6 +91,7 @@ if (!empty($_POST)) {
     echo "<p>$error</p>";
 } ?>
     <h1 class="media-heading">Account settings</h1>
+    
     <div class="media-body">
         <form enctype="multipart/form-data" action="" method="post">
            
@@ -167,9 +169,34 @@ if (!empty($_POST)) {
 
                     </div>
                 </div>
+                
             </div>
-
+            
             <button type="submit" class="btn btn-success" style="margin-top: 50px;">Save settings</button>
+            
+            <button type="button" class="btn media" data-toggle="modal" data-target="#deleteProfile" style="margin-top: 50px; float:right;"> Delete profile </button>
+            
+            <div class="modal fade" id="deleteProfile" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" id="delete-text"> Delete this profile </h4>
+                            </div>
+                            <div class="modal-body" id="delete-text2">
+                                <p> <strong>Are you sure you want to delete your profile? </strong> </p>
+                                <p> All data will be removed. This means your profile, posts, boards and favorites. Everything! </p>
+                                <p> Also, we would realy miss you... </p>
+                            </div>
+                            <div class="modal-footer" id="delete-text3">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
+                                <button type="button" class="btn btn-danger" id="delete"> Delete my account </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
 
         </form>
     </div>
