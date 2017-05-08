@@ -27,9 +27,7 @@
 
                     <input type="text" id="title" name="title" placeholder=" Title"/>
 
-                    <!--<p id="data"></p>-->
-
-                    <input type="text" id="data" name="location" value="" readonly />
+                    <input type="text" id="data-image" name="location" value="" readonly />
 
                     <textarea rows="3" name="imgDescription" id="imgDescription"
                               placeholder=" Add a description..."></textarea>
@@ -75,6 +73,8 @@
                 <form action="" method="post" enctype="multipart/form-data">
 
                     <input type="text" name="url" placeholder="https://"/>
+
+                    <input type="text" id="data-link" name="location" value="" readonly />
 
                     <hr>
 

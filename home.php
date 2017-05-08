@@ -496,7 +496,6 @@ if(isset($_POST['pinned_post'])){
     <link rel="stylesheet" href="css/posts.css">
 
 
-
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 
 
