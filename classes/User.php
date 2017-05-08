@@ -618,6 +618,10 @@ header('Location: home.php');
         $this->Followers = $rows2;
 
     }
+        
+    public function deleteUser(){
+        return "Deze functie heeft zijn werk gedaan";
+    }
 
 }
 

@@ -187,9 +187,10 @@ if (!empty($_POST)) {
                             <div class="modal-body">
                                 <p> <strong>Are you sure you want to delete your profile? </strong> </p>
                                 <p> All data will be removed. This means your profile, posts, boards and favorites. Everything! </p>
+                                <p> Also, we would realy miss you... </p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
                                 <button type="button" class="btn btn-danger" id="delete"> Delete my account </button>
                             </div>
                         </div>
