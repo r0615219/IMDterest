@@ -624,7 +624,7 @@ header('Location: home.php');
         $statement->execute();
         $res = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach ($res as $key => $post){
-            unlink("../images/uploads/postImages/" . $post["image"]);
+            unlink("images/uploads/postImages/" . $post["image"]);
         };
         
         //remove posts from user in session
@@ -633,6 +633,7 @@ header('Location: home.php');
         $statement2->execute();
         
         //remove topics from user in session that are empty
+        //???
         
         //remove boards from user in session
         $statement4 = $conn->prepare("DELETE FROM boards WHERE user_id = :userid;");
@@ -651,17 +652,13 @@ header('Location: home.php');
         
         //unlink user picture
         if ($_SESSION["image"] != "profile_placeholder.png") {
-            unlink("../images/uploads/userImages/" . $_SESSION["image"]);
+            unlink("images/uploads/userImages/" . $_SESSION["image"]);
         }
         
         //remove user in session
         $statement7 = $conn->prepare("DELETE FROM users WHERE email = :email;");
         $statement7->bindValue(":email", $_SESSION['user']);
         $statement7->execute();
-        
-        session_unset();
-        
-        return "the profile was deleted";
     }
 
 }

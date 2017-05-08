@@ -51,6 +51,11 @@ if (!empty($_POST)) {
             }
         }
         
+        if (!empty($_POST["delete"])) {
+            $user->deleteUser();
+            header('Location: logout.php');
+        }
+        
         $user->updateDatabase();
     } catch (Exception $e) {
         $error = $e->getMessage();
@@ -73,7 +78,7 @@ if (!empty($_POST)) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/npm.js"></script>
-    <script src="js/deleteProfile.js"></script>
+    <!--<script src="js/deleteProfile.js"></script>-->
 
     <title>IMDterest | Settings</title>
 </head>
@@ -175,6 +180,7 @@ if (!empty($_POST)) {
             <button type="submit" class="btn btn-success" style="margin-top: 50px;">Save settings</button>
             
             <button type="button" class="btn media" data-toggle="modal" data-target="#deleteProfile" style="margin-top: 50px; float:right;"> Delete profile </button>
+            </form>
             
             <div class="modal fade" id="deleteProfile" role="dialog">
                     <div class="modal-dialog">
@@ -190,15 +196,17 @@ if (!empty($_POST)) {
                                 <p> Also, we would realy miss you... </p>
                             </div>
                             <div class="modal-footer" id="delete-text3">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
-                                <button type="button" class="btn btn-danger" id="delete"> Delete my account </button>
+                               <form action="" method="post">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
+                                    <input type="hidden" name="delete" value="true">
+                                    <button type="submit" class="btn btn-danger" id="delete"> Delete my account </button>
+                                </form>
                             </div>
                         </div>
 
                     </div>
                 </div>
 
-        </form>
     </div>
 </div>
 
