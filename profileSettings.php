@@ -182,14 +182,14 @@ if (!empty($_POST)) {
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"> Delete this profile </h4>
+                                <h4 class="modal-title" id="delete-text"> Delete this profile </h4>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body" id="delete-text2">
                                 <p> <strong>Are you sure you want to delete your profile? </strong> </p>
                                 <p> All data will be removed. This means your profile, posts, boards and favorites. Everything! </p>
                                 <p> Also, we would realy miss you... </p>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer" id="delete-text3">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
                                 <button type="button" class="btn btn-danger" id="delete"> Delete my account </button>
                             </div>

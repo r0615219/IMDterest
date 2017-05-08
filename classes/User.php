@@ -620,7 +620,20 @@ header('Location: home.php');
     }
         
     public function deleteUser(){
-        return "Deze functie heeft zijn werk gedaan";
+        
+        //remove posts from user in session
+        
+        //remove topics from user in session that are empty
+        
+        //remove boards from user in session
+        
+        //remove follow relations from user in session
+        
+        //remove like relations from user in session
+        
+        //remove user in session
+        
+        return "the profile was deleted";
     }
 
 }
