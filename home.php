@@ -468,7 +468,9 @@ if(isset($_POST['pinned_post'])){
   }
 }
 
-?><!doctype html>
+?>
+
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -494,7 +496,6 @@ if(isset($_POST['pinned_post'])){
     <link rel="stylesheet" href="css/add-button.css">
 
     <link rel="stylesheet" href="css/posts.css">
-
 
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">

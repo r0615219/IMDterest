@@ -13,10 +13,10 @@ class Post
     private $m_iReports;
     private $m_sLocation;
 
-
     public function __set($p_sProperty, $p_vValue)
     {
         switch ($p_sProperty) {
+
             case 'id':
                 $this->m_iID = $p_vValue;
                 break;
@@ -101,8 +101,9 @@ class Post
             case 'location':
                 return $this->m_sLocation;
                 break;
+            }
+
         }
-    }
 
     public function savePost()
         {
@@ -125,26 +126,6 @@ class Post
                 $error = $e->getMessage();
             }
         }
-
-    /*public function savePost()
-    {
-        try {
-            $conn = Db::getInstance();
-            $statement = $conn->prepare("INSERT INTO `posts`(`user_ID`, `title`, `image`, `description`, `link`, `topics_ID`, `time`) VALUES (:user_ID, :title, :image, :description, :link, :topics_ID, :time);");
-            $statement->bindValue(":user_ID", $_SESSION['userid']);
-            $statement->bindValue(":title", $this->m_sTitle);
-            $statement->bindValue(":image", $this->m_sImage);
-            $statement->bindValue(":description", $this->m_sDescription);
-            $statement->bindValue(":link", $this->m_sLink);
-            $statement->bindValue(":topics_ID", $this->m_iTopicsId);
-            $statement->bindValue(":time", $this->m_iUploadtime);
-            $statement->execute();
-            echo "\nPDO::errorInfo() SAVEPOST:\n";
-            print_r($conn->errorInfo());
-        } catch (PDOException $e) {
-            $error = $e->getMessage();
-        }
-    }*/
 
     public function checkLiked($PostId)
     {
@@ -242,7 +223,6 @@ class Post
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         $_SESSION['posts-topic'] = $result;
     }
-
 
     public function saveToBoard($board_id)
     {

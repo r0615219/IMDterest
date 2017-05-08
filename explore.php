@@ -33,8 +33,11 @@ if (isset($_SESSION['user'])) {
     <script src="js/likebutton.js"></script>
     <script src="js/loadMore.js"></script>
     <script src="js/comment-btn.js"></script>
+    <script src="js/location.js"></script>
 
-    <title>IMDterest | Home</title>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+    <title>IMDterest | Explore</title>
 </head>
 <body>
     <?php

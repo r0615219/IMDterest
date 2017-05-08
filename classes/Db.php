@@ -6,7 +6,6 @@
 
         private static $conn = null;
 
-        
 
         public static function getInstance()
 
@@ -25,6 +24,5 @@
             }
 
         }
-
+        
     }
-
