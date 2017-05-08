@@ -73,6 +73,7 @@ if (!empty($_POST)) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/npm.js"></script>
+    <script src="js/deleteProfile.js"></script>
 
     <title>IMDterest | Settings</title>
 </head>
@@ -189,7 +190,7 @@ if (!empty($_POST)) {
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-default" data-dismiss="modal">Ok</button>
+                                <button type="button" class="btn btn-danger" id="delete"> Delete my account </button>
                             </div>
                         </div>
 
