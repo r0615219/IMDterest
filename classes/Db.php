@@ -18,6 +18,11 @@
             } else {
 
                 self::$conn = new PDO('mysql:host=localhost; dbname=imdterest', 'root', '');
+
+                return self::$conn;
+
             }
+
         }
+        
     }
