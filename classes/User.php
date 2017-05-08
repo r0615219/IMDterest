@@ -617,6 +617,8 @@ header('Location: home.php');
         
     public function deleteUser(){
         
+        //unlink images from posts from user in session
+        
         //remove posts from user in session
         
         //remove topics from user in session that are empty
@@ -626,6 +628,11 @@ header('Location: home.php');
         //remove follow relations from user in session
         
         //remove like relations from user in session
+        
+        //unlink user picture
+        if ($_SESSION["image"] != "profile_placeholder.png") {
+            unlink("../images/uploads/userImages/" . $_SESSION["image"]);
+        }
         
         //remove user in session
         
