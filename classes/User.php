@@ -642,6 +642,9 @@ header('Location: home.php');
         $statement5->execute();
         
         //remove like relations from user in session
+        $statement6 = $conn->prepare("DELETE FROM likes WHERE UserID = :userid;");
+        $statement6->bindValue(":userid", $_SESSION['userid']);
+        $statement6->execute();
         
         //unlink user picture
         /*if ($_SESSION["image"] != "profile_placeholder.png") {
