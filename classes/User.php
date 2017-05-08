@@ -635,6 +635,9 @@ header('Location: home.php');
         //remove topics from user in session that are empty
         
         //remove boards from user in session
+        $statement4 = $conn->prepare("DELETE FROM boards WHERE user_id = :userid;");
+        $statement4->bindValue(":userid", $_SESSION['userid']);
+        $statement4->execute();
         
         //remove follow relations from user in session
         $statement5 = $conn->prepare("DELETE FROM follows WHERE follower = :userid;");
@@ -647,14 +650,14 @@ header('Location: home.php');
         $statement6->execute();
         
         //unlink user picture
-        /*if ($_SESSION["image"] != "profile_placeholder.png") {
+        if ($_SESSION["image"] != "profile_placeholder.png") {
             unlink("../images/uploads/userImages/" . $_SESSION["image"]);
         }
         
         //remove user in session
         $statement7 = $conn->prepare("DELETE FROM users WHERE email = :email;");
         $statement7->bindValue(":email", $_SESSION['user']);
-        $statement7->execute();*/
+        $statement7->execute();
         
         session_unset();
         
