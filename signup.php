@@ -170,7 +170,7 @@ try {
 
         <div id="container">
 
-            <form method="post">
+            <form id="sign-up" method="post">
 
             <?php
 
@@ -222,7 +222,7 @@ try {
 
                     <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
 
-                    <input type="email" class="form-control" placeholder="E-mail" name="email" id="email email-signup" aria-describedby="basic-addon1">
+                    <input type="email" class="form-control" placeholder="E-mail" name="email" id="email-signup" aria-describedby="basic-addon1">
 
                 </div>
 
@@ -238,7 +238,7 @@ try {
 
                 <br>
 
-                <button type="submit" class="btn btn-primary btn-lg" role="button">Sign up</button>
+                <button id="sign-up-btn"type="submit" class="btn btn-primary btn-lg" role="button">Sign up</button>
 
             </form>
 
@@ -259,14 +259,10 @@ try {
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
 <script src="js/bootstrap.min.js"></script>
-
 <script src="js/npm.js"></script>
-
-
+<script src="js/emailcheck.js"></script>
 
 </body>
 
 </html>
-
