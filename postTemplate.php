@@ -39,6 +39,7 @@
     <div class="userPostDescription">
         <h4><?php echo $res->description; ?>
             <small> <?php echo $post->uploadedWhen($res->time); ?></small>
+            <small> <?php echo " ".$res->location; ?></small>
         </h4>
     </div>
     <div class="userPostInfo">

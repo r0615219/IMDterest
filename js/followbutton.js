@@ -1,45 +1,49 @@
 $(document).ready(function(){
-    
+
     $("#follow").click(function(){
-        
-        $("#follow").hasClass("follow", function() {
-            $(".follow").addClass("following");
-            $(".follow").removeClass("follow");
-        });
-        $("#follow").hasClass("following", function() {
-            $(".following").addClass("follow");
-            $(".following").removeClass("following");
-        });
-        
+
         //javascript functie die de url leest en variabelen er uit haalt
-        function leesUrl(parameter)
+        function readUrl(parameter)
         {
             var URL = window.location.search.substring(1);
-            var Variabelen = URL.split('&');
-            for (var i = 0; i < Variabelen.length; i++)
+            var variables = URL.split('&');
+            for (var i = 0; i < variables.length; i++)
             {
-                var parameterNaam = Variabelen[i].split('=');
-                if (parameterNaam[0] == parameter)
+                var parameterName = variables[i].split('=');
+                if (parameterName[0] == parameter)
                 {
-                    return decodeURIComponent(parameterNaam[1]);
+                    return decodeURIComponent(parameterName[1]);
                 }
             }
         }
 
-        var user_ID = leesUrl('userId');
-        
+        var user_ID = readUrl('userId');
+
         $.ajax({
             type:"POST",
             url:"./ajax/follow.php",
             data: {user_ID : user_ID}
         }).done(function(response){
             if( response.code == 500){
-                console.log("ALLES IS VERKEERD");
+                console.log("something went wrong");
             }
             if( response.code == 200){
-                console.log("update!");
+                if(response.message == true){
+                    console.log("You now follow this user.");
+                    $("#follow").removeClass("follow");
+                    $("#follow").addClass("following");
+                    $("#follow").text("following");
+                }
+                if(response.message == false){
+                    console.log("You stopped following this user.");
+                    $("#follow").removeClass("following");
+                    $("#follow").addClass("follow");
+                    $("#follow").text("follow");
+                }
+                console.log(response.followers);
+                $("#followers").text(response.followers + " followers");
             }
         });
-        
+
     });
 });

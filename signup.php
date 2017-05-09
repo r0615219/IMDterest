@@ -1,89 +1,43 @@
 <?php
-
-
-
 session_start();
-
 spl_autoload_register(function ($class) {
-
     include_once("classes/" . $class . ".php");
-
 });
-
-
-
 $required = array('email', 'firstname', 'lastname', 'password');
-
 try {
-
     if (!empty($_POST)) {
-
         $user = new User();
-
         $user->Email = $_POST['email'];
-
         $user->Firstname = $_POST['firstname'];
-
         $user->Lastname = $_POST['lastname'];
-
         $user->Password = $_POST['password'];
-
         $user->Image = "http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png";
-
-
-
         if ($user->register()) {
-
             $user->handleLogin();
-
         }
-
     }
-
 } catch (Exception $e) {
-
     $error = $e->getMessage();
-
     foreach ($required as $field) {
-
         if (empty($_POST[$field])) {
-
             echo '<style type="text/css">
-
-          #'.$field.'{border:1px solid red;}
-
+          #' . $field . '{border:1px solid red;}
           </style>';
-
             $missingfields = 1;
-
         }
-
     }
-
-    if (strlen($_POST['password'])<6) {
-
+    if (strlen($_POST['password']) < 6) {
         echo '<style type="text/css">
-
           #password{border:1px solid red;}
-
           </style>';
-
         $shortpassword = 1;
-
     }
-
-    if ($error=="email already registered") {
-
+    if ($error == "email already registered") {
         echo '<style type="text/css">
-
           #email{border:1px solid red;}
-
           </style>';
-
         $duplicatemail = 1;
-
     }
-
 };?><!doctype html>
 
 <html lang="en">
@@ -107,9 +61,7 @@ try {
     <link rel="stylesheet" href="css/signup-style.css">
 
 
-
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
-
 
 
     <title>IMDterest | Sign Up</title>
@@ -119,14 +71,14 @@ try {
 <body>
 
 
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
 
     <div class="container">
 
         <div class="navbar-header">
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
 
                 <span class="sr-only">Toggle navigation</span>
 
@@ -146,7 +98,8 @@ try {
 
             <form class="navbar-form navbar-right">
 
-                <p class="white">Already have an account? &nbsp; <a class="btn btn-success" href="signin.php">Sign in!</a> </p>
+                <p class="white">Already have an account? &nbsp; <a class="btn btn-success" href="signin.php">Sign
+                        in!</a></p>
 
             </form>
 
@@ -155,7 +108,6 @@ try {
     </div>
 
 </nav>
-
 
 
 <div class="jumbotron">
@@ -167,42 +119,30 @@ try {
         <p>Join our community!</p>
 
 
-
         <div id="container">
 
-            <form method="post">
+            <form id="sign-up" method="post">
 
-            <?php
-
-              if (isset($missingfields)) {
-
-                  echo "<div class='error alert alert-danger'> You didn't fill in all the fields!</div>";
-
-              }
-
-              if (!empty($_POST['password']) && strlen($_POST['password'])<6) {
-
-                  echo "<div class='error alert alert-danger'> This password is too short!</div>";
-
-              }
-
-              if (isset($duplicatemail)) {
-
-                  echo "<div class='error alert alert-danger'> This email is already in use!</div>";
-
-              }
-
-
-
-              ?>
-
+                <?php
+                if (isset($missingfields)) {
+                    echo "<div class='error alert alert-danger'> You didn't fill in all the fields!</div>";
+                }
+                if (!empty($_POST['password']) && strlen($_POST['password']) < 6) {
+                    echo "<div class='error alert alert-danger'> This password is too short!</div>";
+                }
+                if (isset($duplicatemail)) {
+                    echo "<div class='error alert alert-danger'> This email is already in use!</div>";
+                }
+                ?>
 
 
                 <div class="input-group">
 
-                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"
+                                                                            aria-hidden="true"></span></span>
 
-                    <input type="text" class="form-control" placeholder="First Name" name="firstname" id="firstname firstname-signup" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" placeholder="First Name" name="firstname"
+                           id="firstname firstname-signup" aria-describedby="basic-addon1">
 
                 </div>
 
@@ -210,19 +150,11 @@ try {
 
                 <div class="input-group">
 
-                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"
+                                                                            aria-hidden="true"></span></span>
 
-                    <input type="text" class="form-control" placeholder="Last Name" name="lastname" id="lastname lastname-signup" aria-describedby="basic-addon1">
-
-                </div>
-
-                <br>
-
-                <div class="input-group">
-
-                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
-
-                    <input type="email" class="form-control" placeholder="E-mail" name="email" id="email email-signup" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" placeholder="Last Name" name="lastname"
+                           id="lastname lastname-signup" aria-describedby="basic-addon1">
 
                 </div>
 
@@ -230,18 +162,31 @@ try {
 
                 <div class="input-group">
 
-                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></span>
+                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"
+                                                                            aria-hidden="true"></span></span>
 
-                    <input type="password" class="form-control" placeholder="Password" name="password" id="password password-signup" aria-describedby="basic-addon1">
+                    <input type="email" class="form-control" placeholder="E-mail" name="email" id="email-signup"
+                           aria-describedby="basic-addon1">
 
                 </div>
 
                 <br>
 
-                <button type="submit" class="btn btn-primary btn-lg" role="button">Sign up</button>
+                <div class="input-group">
+
+                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-align-left"
+                                                                            aria-hidden="true"></span></span>
+
+                    <input type="password" class="form-control" placeholder="Password" name="password"
+                           id="password password-signup" aria-describedby="basic-addon1">
+
+                </div>
+
+                <br>
+
+                <button id="sign-up-btn" type="submit" class="btn btn-primary btn-lg" role="button">Sign up</button>
 
             </form>
-
 
 
             <!--<img src="https://image.freepik.com/free-vector/laptop-with-rocket_23-2147503371.jpg" alt="IMDterest">-->
@@ -257,16 +202,11 @@ try {
 </div>
 
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
 <script src="js/bootstrap.min.js"></script>
-
 <script src="js/npm.js"></script>
-
-
+<script src="js/emailcheck.js"></script>
 
 </body>
 
 </html>
-

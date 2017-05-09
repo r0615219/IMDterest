@@ -18,15 +18,11 @@
                 <h4 class="modal-title">Create new post</h4>
             </div>
             <div class="modal-body">
-
                 <form action="" method="post" enctype="multipart/form-data">
-
                     <input type="file" name="img"/>
-
                     <hr>
-
                     <input type="text" id="title" name="title" placeholder=" Title"/>
-
+                    <input type="text" id="data-image" name="location" value="" readonly/>
                     <textarea rows="3" name="imgDescription" id="imgDescription"
                               placeholder=" Add a description..."></textarea>
 
@@ -46,14 +42,9 @@
                     <div class="modal-footer">
                         <input type="submit" name="imgSubmit" class="btn btn-default submitBtn" value="Save"/>
                     </div>
-
-
                 </form>
-
             </div>
-
         </div>
-
     </div>
 </div>
 
@@ -67,12 +58,11 @@
                 <h4 class="modal-title">Create new post</h4>
             </div>
             <div class="modal-body">
-
                 <form action="" method="post" enctype="multipart/form-data">
-
                     <input type="text" name="url" placeholder="https://"/>
-
+                    <input type="text" id="data-link" name="location" value="" readonly/>
                     <hr>
+                    <p id="data_link"></p>
 
                     <div class="modal-topics">
                         <label for="linkTopic">Topic</label>

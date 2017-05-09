@@ -54,6 +54,8 @@ include_once('post.inc.php');
     <script src="js/likebutton.js"></script>
     <script src="js/loadMore.js"></script>
     <script src="js/comment-btn.js"></script>
+    <script src="js/location.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
     <title>IMDterest | Home</title>
 </head>
