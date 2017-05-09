@@ -11,48 +11,57 @@ try {
         $post->time = time(); //timestamp
 
         if (isset($_FILES['img'])) {
-            $bestandsnaam = strtolower($_FILES['img']['name']);
 
-            if (strpos($bestandsnaam, ".png")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"],
-                    "images/uploads/postImages/" . str_replace(' ', '', $post->title) . $_SESSION['userid'] . $post->time . ".png");
-                $post->image = str_replace(' ', '', $post->title) . $_SESSION['userid'] . $post->time . ".png";
+            if ($_FILES['img']['size'] < 8388608) {
+                $bestandsnaam = strtolower($_FILES['img']['name']);
 
-            } elseif (strpos($bestandsnaam, ".jpg")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"],
-                    "images/uploads/postImages/" . str_replace(' ', '', $post->title) . $_SESSION['userid'] . $post->time . ".jpg");
-                $post->image = str_replace(' ', '', $post->title) . $_SESSION['userid'] . $post->time . ".jpg";
+                if (strpos($bestandsnaam, ".png")) {
+                    move_uploaded_file($_FILES["img"]["tmp_name"],
+                        "images/uploads/postImages/" . str_replace(' ', '', $post->title) . $_SESSION['userid'] . $post->time . ".png");
+                    $post->image = str_replace(' ', '', $post->title) . $_SESSION['userid'] . $post->time . ".png";
 
-            } elseif (strpos($bestandsnaam, ".gif")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"],
-                    "images/uploads/postImages/" . str_replace(' ', '', $post->title) . $_SESSION['userid'] . $post->time . ".gif");
-                $post->image = str_replace(' ', '', $post->title) . $_SESSION['userid'] . $post->time . ".gif";
+                } elseif (strpos($bestandsnaam, ".jpg")) {
+                    move_uploaded_file($_FILES["img"]["tmp_name"],
+                        "images/uploads/postImages/" . str_replace(' ', '', $post->title) . $_SESSION['userid'] . $post->time . ".jpg");
+                    $post->image = str_replace(' ', '', $post->title) . $_SESSION['userid'] . $post->time . ".jpg";
 
+                } elseif (strpos($bestandsnaam, ".gif")) {
+                    move_uploaded_file($_FILES["img"]["tmp_name"],
+                        "images/uploads/postImages/" . str_replace(' ', '', $post->title) . $_SESSION['userid'] . $post->time . ".gif");
+                    $post->image = str_replace(' ', '', $post->title) . $_SESSION['userid'] . $post->time . ".gif";
+
+                } else {
+                    throw new ErrorException("Unable to create post. The uploaded image must be a JPEG, PNG or GIF.");
+                }
             } else {
-                throw new exception("Unable to create post. The uploaded image must be a JPEG, PNG or GIF.");
+                throw new ErrorException("Your image size has to be smaller than 8MB.");
             }
         } else {
             $post->image = "profile_placeholder.png";
         }
 
         if ($_POST['imgTopic'] == 'none') { //indien select niet geselecteerd is
-            //nieuwe topic opslaan
-            $newTopic = new Topics;
-            $newTopic->name = $_POST['addTopic'];
-            $newTopic->image = str_replace(' ', '%20', strtolower($_FILES['img']['name']));
+            if ($_POST['addTopic'] != '') {//nieuwe topic opslaan
+                $newTopic = new Topics;
+                $newTopic->name = $_POST['addTopic'];
+                $newTopic->image = str_replace(' ', '', strtolower($_FILES['img']['name']));
 
-            if ($newTopic->checkAvailability() == 'match') {
-                $topicsId = $newTopic->id;
+                if ($newTopic->checkAvailability() == 'match') {
+                    $topicsId = $newTopic->id;
+                } else {
+                    $newTopic->image = $post->image;
+                    $newTopic->saveTopic();
+                    //topicId van nieuwe topic ophalen
+                    $newTopic->getTopicViaName();
+                    $topicsId = $newTopic->id;
+                }
+
+                $newTopic->saveUserTopic();
+                array_push($_SESSION['topics'], $newTopic);
+                var_dump($_SESSION['topics']);
             } else {
-                $newTopic->image = $post->image;
-                $newTopic->saveTopic();
-                //topicId van nieuwe topic ophalen
-                $newTopic->getTopicViaName();
-                $topicsId = $newTopic->id;
+                throw new ErrorException("Please select a topic.");
             }
-
-            $newTopic->saveUserTopic();
-            array_push($_SESSION['topics'], $newTopic);
         } else {
             $topicsId = $_POST['imgTopic'];
         }
