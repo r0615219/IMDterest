@@ -18,8 +18,6 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <li><a href="#" data-toggle="modal" data-target="#report<?php echo $res->id ?>"
                        type="submit">Report post</a></li>
-                <li><a href="#">Unfollow</a></li>
-                <li role="separator" class="divider"></li>
                 <?php if ($res->user_ID == $_SESSION['userid']): ?>
 
                     <li><a href="#" data-toggle="modal" data-target="#delete<?php echo $res->id ?>"
