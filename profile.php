@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="css/signup-style.css">
     <link rel="stylesheet" href="css/posts.css">
     <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/follow.css">
 
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
@@ -49,6 +50,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/npm.js"></script>
+    <script src="js/followbutton.js"></script>
 
     <title>IMDterest | Profile</title>
 </head>
