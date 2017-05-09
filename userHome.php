@@ -14,11 +14,11 @@ include_once('emptyStates.php');
 
 <div id="results"></div>
 
-<?php ob_start(); ?>
+<?php //ob_start(); ?>
 
 <div class="loadMore">
     <button class="loadMoreBtn loadMoreBtnHome btn btn-primary">Load 20 more</button>
 </div>
-<?php echo ob_get_clean();?>
+<?php //echo ob_get_clean();?>
 
 <?php include_once('addBtn.php'); ?>
