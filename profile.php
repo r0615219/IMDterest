@@ -1,17 +1,29 @@
 <?php
-session_start();
-spl_autoload_register(function ($class) {
-    include_once("classes/" . $class . ".php");
-});
-//stuur de gebruiker weg als ze niet zijn ingelogd
-if (isset($_SESSION['user'])) {
-} else {
-    header('Location: signin.php');
-}
+    session_start();
+    spl_autoload_register(function ($class) {
+        include_once("classes/" . $class . ".php");
+    });
+    //stuur de gebruiker weg als ze niet zijn ingelogd
+    if (isset($_SESSION['user'])) {
+    } else {
+        header('Location: signin.php');
+    }
+
+    $userId = $_GET['userId'];
+    $user = new User;
+    $user->getUserDetails($userId);
+    if($user->Follow==TRUE){
+        $follow = "following";
+    }
+    if($user->Follow==FALSE){
+        $follow = "follow";
+    }
 
     $userPosts = new Post();
-    $userPosts->user_ID = $_SESSION['userid'];
+    $userPosts->user_ID = $userId;
     $userPosts->getPostsViaUser();
+
+
 
 
 ?><!doctype html>
@@ -54,11 +66,12 @@ if (isset($_SESSION['user'])) {
 
     <div class="head-profile">
         <div class="head-profile-name">
-            <img src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>" alt="profile picture">
+            <img src="images/uploads/userImages/<?php echo $user->Image; ?>" alt="profile picture">
 
-            <h1 class="media-heading"><?php echo $_SESSION['firstname']; ?> <?php echo $_SESSION['lastname']; ?></h1>
+            <h1 class="media-heading"><?php echo $user->Firstname; ?> <?php echo $user->Lastname; ?> <small id="followers"> <?php echo $user->Followers; ?> followers </small> </h1>
         </div>
 
+        <?php if($userId == $_SESSION['userid']): ?>
         <div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <span class="caret"></span>
@@ -67,6 +80,12 @@ if (isset($_SESSION['user'])) {
                 <li><a href="profileSettings.php">Edit profile</a></li>
             </ul>
         </div>
+        <?php else: ?>
+
+        <button type="button" id="follow" class="btn <?php echo $follow; ?>"> <?php echo $follow; ?> </button>
+
+        <?php endif; ?>
+
     </div>
 
     <div class="media-body container">
@@ -135,7 +154,7 @@ if (isset($_SESSION['user'])) {
                                 $user->getUserInfo();
                                 echo $user->Image; ?>" alt="post">
                             </a>
-                            <a href="userDetails.php?userId=<?php echo $user->id ?>">
+                            <a href="profile.php?userId=<?php echo $user->id ?>">
                                 <?php echo $user->Firstname . " " . $user->Lastname; ?>
                             </a>
 

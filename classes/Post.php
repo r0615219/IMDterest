@@ -327,7 +327,7 @@ class Post
                                     $user->getUserInfo();
                                     echo $user->Image; ?>" alt="post">
                                 </a>
-                                <a href="userDetails.php?userId=<?php echo $user->id ?>">
+                                <a href="profile.php?userId=<?php echo $user->id ?>">
                                     <?php echo $user->Firstname . " " . $user->Lastname; ?>
                                 </a>
 
