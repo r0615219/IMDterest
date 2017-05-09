@@ -34,7 +34,7 @@ if (isset($_SESSION['user'])) {
     <script src="js/loadMore.js"></script>
     <script src="js/comment-btn.js"></script>
 
-    <title>IMDterest | Home</title>
+    <title>IMDterest | Explore</title>
 </head>
 <body>
     <?php
@@ -44,12 +44,9 @@ if (isset($_SESSION['user'])) {
     <div class="container">
         <div id="results"></div>
 
-        <?php ob_start(); ?>
-
         <div class="loadMore">
             <button class="loadMoreBtn loadMoreBtnExplore btn btn-primary">Load 20 more</button>
         </div>
-        <?php echo ob_get_clean(); ?>
 
         <?php include_once('addBtn.php'); ?>
     </div>

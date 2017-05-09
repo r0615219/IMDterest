@@ -108,8 +108,6 @@ class Post
             $statement->bindValue(":topics_ID", $this->m_iTopicsId);
             $statement->bindValue(":time", $this->m_iUploadtime);
             $statement->execute();
-            echo "\nPDO::errorInfo() SAVEPOST:\n";
-            print_r($conn->errorInfo());
         } catch (PDOException $e) {
             $error = $e->getMessage();
         }
@@ -199,6 +197,8 @@ class Post
         $statement = $conn->prepare("DELETE FROM posts WHERE id = :id");
         $statement->bindValue(":id", $this->m_iID);
         $statement->execute();
+        echo "\nPDO::errorInfo() DELETE POST:\n";
+        print_r($conn->errorInfo());
     }
 
 

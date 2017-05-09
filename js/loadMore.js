@@ -4,29 +4,18 @@ $(document).ready(function(){
 
     var query;
 
-    switch (window.location.href){
+    switch ($(document).find("title").text()){
 
-        case 'http://imdterest.lisawouters.be/index.php':
-
-            query = "select * from posts p inner join users_topics ut on p.topics_ID = ut.topics_ID where ut.users_ID = :userid ORDER BY p.id DESC LIMIT :position, :limit";
-            break;
-
-        case 'http://imdterest.lisawouters.be/index.php#':
+        case 'IMDterest | Home':
 
             query = "select * from posts p inner join users_topics ut on p.topics_ID = ut.topics_ID where ut.users_ID = :userid ORDER BY p.id DESC LIMIT :position, :limit";
             break;
 
-
-
-        case 'http://imdterest.lisawouters.be/explore.php':
+        case 'IMDterest | Explore':
 
             query = "SELECT * FROM posts where user_ID = :userid OR user_ID in (select user from follows where follower = :userid) ORDER BY id DESC LIMIT :position, :limit";
             break;
 
-        case 'http://imdterest.lisawouters.be/explore.php#':
-            query = "SELECT * FROM posts where user_ID = :userid OR user_ID in (select user from follows where follower = :userid) ORDER BY id DESC LIMIT :position, :limit";
-
-            break;
 
     }
 

@@ -43,17 +43,20 @@ try {
             $bestandsnaam = strtolower($_FILES['img']['name']);
 
             if (strpos($bestandsnaam, ".png")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"], str_replace(' ', '%20',
-                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".png"));
-                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->uploadtime . ".png");
+                move_uploaded_file($_FILES["img"]["tmp_name"],
+                    "images/uploads/postImages/" . str_replace(' ', '',$post->title) . $_SESSION['userid'] . $post->time . ".png");
+                $post->image = str_replace(' ', '',$post->title) . $_SESSION['userid'] . $post->time . ".png";
+
             } elseif (strpos($bestandsnaam, ".jpg")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"], str_replace(' ', '%20',
-                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg"));
-                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->uploadtime . ".jpg");
+                move_uploaded_file($_FILES["img"]["tmp_name"],
+                    "images/uploads/postImages/" . str_replace(' ', '',$post->title) . $_SESSION['userid'] . $post->time . ".jpg");
+                $post->image = str_replace(' ', '',$post->title) . $_SESSION['userid'] . $post->time . ".jpg";
+
             } elseif (strpos($bestandsnaam, ".gif")) {
-                move_uploaded_file($_FILES["img"]["tmp_name"], str_replace(' ', '%20',
-                    "images/uploads/postImages/" . $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif"));
-                $post->image = str_replace(' ', '%20', $post->title . $_SESSION['userid'] . $post->uploadtime . ".gif");
+                move_uploaded_file($_FILES["img"]["tmp_name"],
+                    "images/uploads/postImages/" . str_replace(' ', '',$post->title) . $_SESSION['userid'] . $post->time . ".gif");
+                $post->image = str_replace(' ', '',$post->title) . $_SESSION['userid'] . $post->time . ".gif";
+
             } else {
                 throw new exception("Unable to create post. The uploaded image must be a JPEG, PNG or GIF.");
             }
@@ -184,13 +187,13 @@ if (isset($_POST['report'])) {
 
 if (isset($_POST['delete'])) {
     $post = new Post;
-    $post->id = $_POST['delete'];
+    $post->id = (int)$_POST['delete'];
     $post->deletePost();
 }
 
 ////COMMENTS/////
 if (!empty($_POST['comment'])) {
-    $comment = new comment;
+    $comment = new Comment;
     $comment->comment = $_POST['comment'];
     $comment->post_id = $_POST['post_id'];
     $comment->saveComment();
