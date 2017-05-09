@@ -46,8 +46,7 @@ try {
                             <?php $goToTopic = new Topics();
                             $goToTopic->name = $t->name;
                             $goToTopic->getTopicViaName(); ?>
-                            <li><a href="topics.php?topicsid=<?php echo $goToTopic->id; ?>"><?php echo $t->name; ?></a>
-                            </li>
+                            <li><a href="topics.php?topicsid=<?php echo $goToTopic->id; ?>"><?php echo $t->name; ?></a></li>
                         <?php endforeach; ?>
                         <li role="separator" class="divider"></li>
                         <li><a <a href="topics.php?topicsid=0">More</a></li>
@@ -70,8 +69,7 @@ try {
                 </button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <!--<li><a href="#">Link</a></li>-->
-                <li><a href="profile.php"><img class="media-object profile-pic"
+                <li><a href="profile.php?userId=<?php echo $_SESSION['userid']; ?>"><img class="media-object profile-pic"
                                                src="images/uploads/userImages/<?php echo $_SESSION['image']; ?>"
                                                alt="profile"></a></li>
                 <li class="dropdown">
@@ -79,7 +77,7 @@ try {
                        aria-expanded="false"><?php echo $_SESSION['firstname'], ' ', $_SESSION['lastname']; ?>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="profile.php">Profile</a></li>
+                        <li><a href="profile.php?userId=<?php echo $_SESSION['userid']; ?>">Profile</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="logout.php">Log out</a></li>
                     </ul>
