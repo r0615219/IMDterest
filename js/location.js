@@ -1,10 +1,9 @@
 $(document).ready(function () {
-  
+
     var error = "";
     var url = "";
-    const api = "AIzaSyAhxQ5kJzjss1GHBr_rGwKNbD6SyxNCIAI";
+    var api = "AIzaSyAhxQ5kJzjss1GHBr_rGwKNbD6SyxNCIAI";
     var state = "";
-
 
     function getLocation() {
         if (navigator.geolocation) {
@@ -16,10 +15,7 @@ $(document).ready(function () {
 
     function savePosition(position) {
         location = "Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude;
-
         url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude +"," + position.coords.longitude + "&key=" + api + "";
-
-        //console.log(url);
 
         $.getJSON(url, function (json) {
             if (json.status == "OK") {
@@ -36,15 +32,12 @@ $(document).ready(function () {
                         $("#data-image").val(data);
                         $("#data-link").val(data);
                     });
+                } else{
+                    $("#data-image").val('Middle of nowhere');
+                    $("#data-link").val('Middle of nowhere');
                 }
             }
-
         });
-
     }
-
-    //API : AIzaSyAhxQ5kJzjss1GHBr_rGwKNbD6SyxNCIAI
-
     getLocation();
-
 });

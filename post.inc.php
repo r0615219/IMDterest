@@ -59,6 +59,7 @@ try {
 
         $post->topics_ID = (int)$topicsId;
         $post->link = "";
+        $post->location = $_POST['location'];
         $post->savePost();
         $user = new User;
         $user->Email = $_SESSION['user'];
@@ -141,6 +142,7 @@ if (isset($_POST['linkSubmit'])) {
         $post->link = $link;
         $post->image = $image;
         $post->title = $title;
+        $post->location = $_POST['location'];
         $post->savePost();
 
         $user = new User;
