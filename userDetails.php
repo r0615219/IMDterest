@@ -9,7 +9,7 @@ if (isset($_SESSION['user'])) {
     header('Location: signin.php');
 }
 $userId = $_GET['userId'];
-if($userId == $_SESSION['user_ID']){
+if($userId == $_SESSION['userid']){
     header('Location: profile.php');
 }
 $user = new User;
