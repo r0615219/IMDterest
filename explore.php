@@ -9,6 +9,7 @@ if (isset($_SESSION['user'])) {
 } else {
     header('Location: signin.php');
 }
+include_once('post.inc.php');
 ?><!doctype html>
 <html lang="en">
 <head>
