@@ -1,32 +1,25 @@
-/*follow*/
-.follow {
-    
-}
-
-
-/*following*/
 .following {
-  color: #fff;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
 }
 .following:focus,
 .following.focus {
-  color: #fff;
-  background-color: #449d44;
-  border-color: #255625;
+    color: #fff;
+    background-color: #449d44;
+    border-color: #255625;
 }
 .following:hover {
-  color: #fff;
-  background-color: #449d44;
-  border-color: #398439;
+    color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
 }
 .following:active,
 .following.active,
 .open > .dropdown-toggle.following {
-  color: #fff;
-  background-color: #449d44;
-  border-color: #398439;
+    color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
 }
 .following:active:hover,
 .following.active:hover,
@@ -37,14 +30,14 @@
 .following:active.focus,
 .following.active.focus,
 .open > .dropdown-toggle.following.focus {
-  color: #fff;
-  background-color: #398439;
-  border-color: #255625;
+    color: #fff;
+    background-color: #398439;
+    border-color: #255625;
 }
 .following:active,
 .following.active,
 .open > .dropdown-toggle.following {
-  background-image: none;
+    background-image: none;
 }
 .following.disabled:hover,
 .following[disabled]:hover,
@@ -55,10 +48,10 @@ fieldset[disabled] .following:focus,
 .following.disabled.focus,
 .following[disabled].focus,
 fieldset[disabled] .following.focus {
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
 }
 .following .badge {
-  color: #5cb85c;
-  background-color: #fff;
+    color: #5cb85c;
+    background-color: #fff;
 }

@@ -49,14 +49,23 @@ class Topics
         $this->m_sImage = $res['image'];
     }
 
-    public function getAllTopics()
+    public static function chooseTopics()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("SELECT * FROM `topics`;");
+        $statement = $conn->prepare("SELECT t.id, t.name, t.image FROM topics t INNER JOIN users_topics ut ON t.id = ut.topics_ID GROUP BY ut.topics_ID ORDER BY count(ut.topics_ID) DESC LIMIT 5;");
         $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        $_SESSION['alltopics'] = $result;
-
+        $rows = $statement->rowCount();
+        if ($rows > 0) {
+            while ($topic = $statement->fetch(PDO::FETCH_OBJ)) {
+                $_SESSION['chooseTopics'][] = $topic;
+            }
+        } else {
+            $statement = $conn->prepare("SELECT * FROM topics LIMIT 5");
+            $statement->execute();
+            while ($topic = $statement->fetch(PDO::FETCH_OBJ)) {
+                $_SESSION['chooseTopics'][] = $topic;
+            }
+        }
     }
 
     public function getTopicViaName()

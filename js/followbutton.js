@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    
+
     $("#follow").click(function(){
-        
+
         //javascript functie die de url leest en variabelen er uit haalt
         function readUrl(parameter)
         {
@@ -16,9 +16,9 @@ $(document).ready(function(){
                 }
             }
         }
-        
+
         var user_ID = readUrl('userId');
-        
+
         $.ajax({
             type:"POST",
             url:"./ajax/follow.php",
@@ -44,6 +44,6 @@ $(document).ready(function(){
                 $("#followers").text(response.followers + " followers");
             }
         });
-        
+
     });
 });

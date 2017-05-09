@@ -1,40 +1,40 @@
 $(document).ready(function(){
-    var track_page = 1; //track user click as page number, right now page number is 1
+
+    var track_page = 0; //track user click as page number, right now page number is 1
     var query;
-    switch (window.location.href){
-        case 'http://localhost/IMDterest/home.php':
-            query = "SELECT * FROM posts p INNER JOIN follows f ON p.user_ID = f.user WHERE f.follower = :usersession ORDER BY id DESC LIMIT :position, :limit";
-            break;
-        case 'http://localhost/IMDterest/home.php#':
-            query = "SELECT * FROM posts p INNER JOIN follows f ON p.user_ID = f.user WHERE f.follower = :usersession ORDER BY id DESC LIMIT :position, :limit";
+
+    switch ($(document).find("title").text()){
+
+        case 'IMDterest | Home':
+            query = "select * from posts p inner join users_topics ut on p.topics_ID = ut.topics_ID where ut.users_ID = :userid ORDER BY p.id DESC LIMIT :position, :limit";
             break;
 
-        case 'http://localhost/IMDterest/explore.php':
-            query = "SELECT * FROM posts WHERE id not in (SELECT posts.id FROM posts INNER JOIN follows ON posts.user_ID = follows.user INNER JOIN users ON follows.user = users.id WHERE follows.follower = :usersession ) ORDER BY id DESC LIMIT :position, :limit";
-            break;
-        case 'http://localhost/IMDterest/explore.php#':
-            query = "SELECT * FROM posts WHERE id not in (SELECT posts.id FROM posts INNER JOIN follows ON posts.user_ID = follows.user INNER JOIN users ON follows.user = users.id WHERE follows.follower = :usersession ) ORDER BY id DESC LIMIT :position, :limit";
+        case 'IMDterest | Explore':
+            query = "SELECT * FROM posts where user_ID = :userid OR user_ID in (select user from follows where follower = :userid) ORDER BY id DESC LIMIT :position, :limit";
             break;
     }
+
     load_contents(track_page, query); //load content
 
     $(".loadMoreBtn").on('click', function (e) { //user clicks on button
+
         track_page++; //page number increment everytime user clicks load button
         var query;
+
         if($(this).hasClass('loadMoreBtnHome')){
-            query = "SELECT * FROM posts p INNER JOIN follows f ON p.user_ID = f.user WHERE f.follower = :usersession ORDER BY id DESC LIMIT :position, :limit";
+            query = "select * from posts p inner join users_topics ut on p.topics_ID = ut.topics_ID where ut.users_ID = :userid ORDER BY p.id DESC LIMIT :position, :limit";
+
         }else if($(this).hasClass('loadMoreBtnExplore')){
-            query = "SELECT * FROM posts WHERE id not in (SELECT posts.id FROM posts INNER JOIN follows ON posts.user_ID = follows.user INNER JOIN users ON follows.user = users.id WHERE follows.follower = :usersession ) ORDER BY id DESC LIMIT :position, :limit";
+            query = "SELECT * FROM posts where user_ID = :userid OR user_ID in (select user from follows where follower = :userid) ORDER BY id DESC LIMIT :position, :limit";
         }
         load_contents(track_page, query); //load content
     });
 
 //Ajax load function
+
     function load_contents(track_page, query){
         $.post( 'ajax/loadMore.php', {'page': track_page, 'query': query}, function(data){
-
             $("#results").append(data); //append data into #results element
-
         });
     }
 });

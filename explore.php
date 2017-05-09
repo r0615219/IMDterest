@@ -9,6 +9,7 @@ if (isset($_SESSION['user'])) {
 } else {
     header('Location: signin.php');
 }
+include_once('post.inc.php');
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -34,7 +35,6 @@ if (isset($_SESSION['user'])) {
     <script src="js/loadMore.js"></script>
     <script src="js/comment-btn.js"></script>
     <script src="js/location.js"></script>
-
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
     <title>IMDterest | Explore</title>
@@ -47,12 +47,9 @@ if (isset($_SESSION['user'])) {
     <div class="container">
         <div id="results"></div>
 
-        <?php ob_start(); ?>
-
         <div class="loadMore">
             <button class="loadMoreBtn loadMoreBtnExplore btn btn-primary">Load 20 more</button>
         </div>
-        <?php echo ob_get_clean(); ?>
 
         <?php include_once('addBtn.php'); ?>
     </div>

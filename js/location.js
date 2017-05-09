@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+alert('blub');
     var error = "";
     var url = "";
     const api = "AIzaSyAhxQ5kJzjss1GHBr_rGwKNbD6SyxNCIAI";
