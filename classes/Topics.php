@@ -116,7 +116,7 @@ class Topics
         $statement = $conn->prepare("SELECT * FROM `topics`");
         $statement->execute();
         while ($res = $statement->fetch(PDO::FETCH_OBJ)) {
-            if ($res->name == $this->name) {
+            if (strtolower($res->name) == strtolower($this->name)) {
                 $this->id = $res->id;
                 return 'match';
             }

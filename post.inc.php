@@ -8,7 +8,7 @@ try {
         } else {
             throw new ErrorException("Please fill in a title.");
         }
-        if ($_POST['description'] != '') {
+        if ($_POST['imgDescription'] != '') {
             $description = $_POST['imgDescription'];
         } else {
             throw new ErrorException("Please fill in a description.");
