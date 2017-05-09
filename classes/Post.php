@@ -209,8 +209,7 @@ class Post
         $statement = $conn->prepare("DELETE FROM posts WHERE id = :id");
         $statement->bindValue(":id", $this->m_iID);
         $statement->execute();
-        echo "\nPDO::errorInfo() DELETE POST:\n";
-        print_r($conn->errorInfo());
+
     }
 
 

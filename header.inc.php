@@ -43,10 +43,7 @@ try {
                        aria-expanded="false">Topics <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <?php foreach ($_SESSION['topics'] as $t): ?>
-                            <?php $goToTopic = new Topics();
-                            $goToTopic->name = $t->name;
-                            $goToTopic->getTopicViaName(); ?>
-                            <li><a href="topics.php?topicsid=<?php echo $goToTopic->id; ?>"><?php echo $t->name; ?></a></li>
+                            <li><a href="topics.php?topicsid=<?php echo $t->id; ?>"><?php echo $t->name; ?></a></li>
                         <?php endforeach; ?>
                         <li role="separator" class="divider"></li>
                         <li><a <a href="topics.php?topicsid=0">More</a></li>
