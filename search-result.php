@@ -116,7 +116,7 @@
                             echo $user->Image;
                             ?>" alt="post">
                         </a>
-                        <a href="#">
+                        <a href="userDetails.php?userId=<?php echo $user->id ?>">
                             <?php
                             echo $user->Firstname . " " . $user->Lastname;
                             ?>

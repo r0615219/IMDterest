@@ -53,7 +53,7 @@ try {
                         <li><a <a href="topics.php?topicsid=0">More</a></li>
                     </ul>
                 </li>
-                <li><a href="boards.php">Boards</a></li>
+                <li <?php echo ($page == 'boards') ? "class='active'" : ""; ?>><a href="boards.php">Boards</a></li>
             </ul>
             <form class="navbar-form navbar-left" method="get" name="searchForm" id="searchForm"
                   action="search-result.php">

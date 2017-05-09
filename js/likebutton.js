@@ -8,21 +8,21 @@ $(document).ready(function(){
     var liked;
     var heart =$(this).find("img");
     var counter=$(this).parents(".likes").find(".likeAmount");
-    console.log(id)
+    console.log(id);
   $.ajax({
     type:"POST",
     url:"./ajax/like.php",
     data:{"id" : id,"action":"toggle"},
-    datatype:"html"
+    dataType:"html"
     })
 
   .done(function(res) {
       if (res=="1") {
-        console.log(res)
+        console.log(res);
         $(heart).attr("src", "./images/icons/heart_filled.svg");
       }
       else {
-        console.log(res)
+        console.log(res);
         $(heart).attr("src", "./images/icons/heart.svg");
       }
 
@@ -31,7 +31,7 @@ $(document).ready(function(){
         data:{"id" : id,
               "action":"count"
       },
-        datatype:"text",
+        dataType:"text"
       })
       .done(function(count){
         $(counter).html(count)
