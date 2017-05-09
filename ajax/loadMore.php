@@ -37,9 +37,9 @@ print_r('LIMIT: ' . $limit);
 print_r('USER ID: ' . $_SESSION['userid']);
 print_r('GEVONDEN RIJEN: ' . $rows);*/
 if ($rows > 0) {
-    $result = $statement->fetchAll(PDO::FETCH_OBJ);
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     foreach ($result as $res) {
-        if ($res->reports < 3) {
+        if ($res['reports'] < 3) {
             //fetch values
             include("../postTemplate.php");
         }
