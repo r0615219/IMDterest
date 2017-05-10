@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 10 mei 2017 om 18:05
+-- Gegenereerd op: 10 mei 2017 om 21:35
 -- Serverversie: 10.1.21-MariaDB
--- PHP-versie: 7.1.1
+-- PHP-versie: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `imdterest`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `boards`
+--
+
+CREATE TABLE `boards` (
+  `id` int(11) NOT NULL,
+  `subject` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `visibility` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -278,6 +291,12 @@ INSERT INTO `users_topics` (`id`, `users_ID`, `topics_ID`) VALUES
 --
 
 --
+-- Indexen voor tabel `boards`
+--
+ALTER TABLE `boards`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexen voor tabel `comments`
 --
 ALTER TABLE `comments`
@@ -326,6 +345,11 @@ ALTER TABLE `users_topics`
 -- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
+--
+-- AUTO_INCREMENT voor een tabel `boards`
+--
+ALTER TABLE `boards`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT voor een tabel `comments`
 --
