@@ -147,7 +147,6 @@ try {
                     if ($newTopic->checkAvailability() == 'match') {
                         $topicsId = $newTopic->id;
                     } else {
-                        $newTopic->image = $post->image;
                         $newTopic->saveTopic();
                         //topicId van nieuwe topic ophalen
                         $newTopic->getTopicViaName();
