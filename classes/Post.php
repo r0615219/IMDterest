@@ -118,8 +118,8 @@ class Post
             $statement->bindValue(":time", $this->m_iUploadtime);
             $statement->bindValue(":location", $this->m_sLocation);
             $statement->execute();
-            echo "\nPDO::errorInfo() SAVE POST:\n";
-            print_r($conn->errorInfo());
+            //echo "\nPDO::errorInfo() SAVE POST:\n";
+            //print_r($conn->errorInfo());
         } catch (PDOException $e) {
             $error = $e->getMessage();
         }

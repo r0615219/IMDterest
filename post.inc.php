@@ -82,6 +82,8 @@ try {
         $user = new User;
         $user->Email = $_SESSION['user'];
         $user->getUserPosts();
+
+        $success = "Post succesfully saved";
     }
 
 } catch (Exception $e) {
@@ -175,6 +177,8 @@ try {
             $user = new User;
             $user->Email = $_SESSION['user'];
             $user->getUserPosts();
+
+            $success = "Post succesfully saved";
         }
     }
 } catch (Exception $e) {
@@ -211,6 +215,6 @@ if (isset($_POST['pinned_post'])) {
         $post->id = $_POST['pinned_post'];
         $board_id = $_POST['selected_board'];
         $post->saveToBoard($board_id);
-
+        $success = "Post added to board";
     }
 }
