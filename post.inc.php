@@ -182,16 +182,17 @@ try {
 }
 
 if (isset($_POST['report'])) {
-    var_dump($_POST['report']);
     $post = new Post;
     $post->id = $_POST['report'];
     $post->reportPost();
+    $success = "Post succesfully reported";
 }
 
 if (isset($_POST['delete'])) {
     $post = new Post;
     $post->id = $_POST['delete'];
     $post->deletePost();
+    $success = "Post succesfully deleted";
 }
 
 ////COMMENTS/////

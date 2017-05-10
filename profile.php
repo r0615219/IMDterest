@@ -20,6 +20,9 @@ if ($user->Follow == FALSE) {
 $userPosts = new Post();
 $userPosts->user_ID = $userId;
 $userPosts->getPostsViaUser();
+
+include_once 'post.inc.php';
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -43,8 +46,14 @@ $userPosts->getPostsViaUser();
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/add-btn.js"></script>
     <script src="js/npm.js"></script>
-    <script src="js/followbutton.js"></script>
+    <script src="js/likebutton.js"></script>
+    <script src="js/loadMore.js"></script>
+    <script src="js/comment-btn.js"></script>
+    <script src="js/location.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
 
     <title>IMDterest | Profile</title>
 </head>
@@ -58,7 +67,10 @@ include_once('header.inc.php');
 
 <div class="container" style="margin-top:50px;">
     <?php if (isset($error)) {
-        echo "<p>$error</p>";
+        echo "<p class='alert alert-danger'>$error</p>";
+    } ?>
+    <?php if (!empty($success)) {
+        echo "<p class='alert alert-success'>$success</p>";
     } ?>
 
     <div class="head-profile">
