@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 10 mei 2017 om 21:35
+-- Gegenereerd op: 11 mei 2017 om 01:00
 -- Serverversie: 10.1.21-MariaDB
 -- PHP-versie: 5.6.30
 
@@ -54,7 +54,9 @@ INSERT INTO `comments` (`id`, `comment`, `user_id`, `post_id`) VALUES
 (1, 'wa een cutie!! <3', 21, 42),
 (2, 'rip :(', 21, 49),
 (3, 'test comment', 21, 14),
-(4, 'test comment', 21, 50);
+(4, 'test comment', 21, 50),
+(5, 'test', 27, 29),
+(6, 'Mourinho zegt comments werken', 27, 64);
 
 -- --------------------------------------------------------
 
@@ -73,7 +75,9 @@ CREATE TABLE `follows` (
 --
 
 INSERT INTO `follows` (`followId`, `follower`, `user`) VALUES
-(1, 30, 29);
+(1, 30, 29),
+(2, 27, 29),
+(6, 27, 21);
 
 -- --------------------------------------------------------
 
@@ -117,44 +121,49 @@ CREATE TABLE `posts` (
   `topics_ID` int(11) NOT NULL,
   `time` int(11) NOT NULL,
   `reports` int(11) NOT NULL DEFAULT '0',
-  `location` varchar(200) NOT NULL
+  `location` varchar(200) NOT NULL,
+  `privacy` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `posts`
 --
 
-INSERT INTO `posts` (`id`, `user_ID`, `title`, `image`, `description`, `link`, `topics_ID`, `time`, `reports`, `location`) VALUES
-(20, 21, 'Koe', '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe zei de koe!', '', 3, 0, 0, ''),
-(21, 21, 'Koe', 'sXjhX44-cow-backgrounds.jpg', 'Boeien, zeiden de koeien', '', 3, 0, 0, ''),
-(22, 21, 'Koe', '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe, zei weer de koe', '', 4, 0, 0, ''),
-(23, 27, 'aaa', 'rage.png', 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '', 7, 0, 0, ''),
-(24, 27, 'facebook', 'https://www.facebook.com/', 'Want facebook is toch wel kunst hoor', 'https://www.facebook.com/', 7, 0, 0, ''),
-(25, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0, 0, ''),
-(26, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0, 0, ''),
-(27, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0, 0, ''),
-(28, 28, 'selfie', 'Selfie_Robbe-01.png', 'Selfie robbe', '', 7, 0, 0, ''),
-(29, 28, 'magazine', 'magazine_graph.png', 'Magazine opdracht design', '', 4, 0, 0, ''),
-(30, 28, 'foto', 'tunnel.jpg', 'tunnel', '', 5, 0, 0, ''),
-(31, 28, 'Sparkles', 'openVLD.png', 'vuurtje op een stokje', '', 3, 0, 0, ''),
-(34, 28, '3D', '3d.png', 'zakmes 3d object challenge design', '', 5, 0, 0, ''),
-(35, 28, 'Drawing', 'Room2.0.JPG', 'room perspective challenge design atelier', '', 6, 0, 0, ''),
-(36, 28, 'Variatio', 'variatio.jpg', 'fotografie variatio', '', 7, 0, 0, ''),
-(37, 19, 'Schildpad', 'a_dream.png', 'zefrgergzetztthg', '', 3, 0, 0, ''),
-(38, 19, 'Fladder', 'lolz engel.jpg', 'lolz hihi', '', 4, 1492939048, 0, ''),
-(39, 19, 'Upload plz', 'Otter space.jpg', 'pls', '', 3, 1492939116, 0, ''),
-(40, 19, 'PLZ', 'trash.png', 'pls pretty pls', '', 4, 1492939138, 0, ''),
-(41, 21, 'Kalf', '20160709_151510.jpg', 'Kalfje', '', 3, 1493040708, 0, ''),
-(42, 21, 'Penelope', 'Penelope8.jpg', 'Penelope', '', 3, 1493104129, 0, ''),
-(44, 21, 'piggy and ice cream', 'tumblr_static_tumblr_static_3rhyuytz2q04g0c0s8k4ccgoo_640.jpg', 'piggy eating ice cream', '', 4, 1493104308, 3, ''),
-(45, 21, 'piggy and ice cream', 'tumblr_static_tumblr_static_3rhyuytz2q04g0c0s8k4ccgoo_640.jpg', 'piggy eating ice cream', '', 4, 1493106150, 5, ''),
-(49, 29, 'Blubblub', 'Blubblub291493237976.png', 'hihihihihihi', '', 3, 1493237976, 0, ''),
-(51, 29, 'test test', 'test%20test291493283206.jpg', 'ererberrgtfrvgtfr', '', 3, 1493283206, 0, ''),
-(52, 30, 'bol.com | de winkel van ons allemaal', 'https://www.bol.com/nl/upload/images/mobile/images/banner_elektronicadeals_mobiel_2017_624.jpg', 'bol.com, de winkel van ons allemaal. Kies uit &gt;14 miljoen artikelen. Snel en vanaf 20,- gratis verzonden!', 'http://bol.com', 8, 1493651210, 0, ''),
-(53, 21, 'Lisa Wouters - Your website, my passion', 'http://lisawouters.beimages/logo.svg', 'Hi, I am Lisa, a passionate webdeveloper in the making!', 'http://lisawouters.be', 8, 1493676486, 0, ''),
-(57, 30, 'sdf', 'sdf30.jpg', 'w4sd', '', 11, 1493726041, 0, ''),
-(58, 21, 'Blijven gaan', 'Blijvengaan211494357475.jpg', 'hop hop hop hop hop!!', '', 3, 1494357475, 0, 'Tienen'),
-(63, 21, 'qwerty', 'qwerty211494363435.jpg', 'qwerty', '', 13, 1494363435, 0, 'Tienen');
+INSERT INTO `posts` (`id`, `user_ID`, `title`, `image`, `description`, `link`, `topics_ID`, `time`, `reports`, `location`, `privacy`) VALUES
+(20, 21, 'Koe', '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe zei de koe!', '', 3, 0, 0, '', 0),
+(21, 21, 'Koe', 'sXjhX44-cow-backgrounds.jpg', 'Boeien, zeiden de koeien', '', 3, 0, 0, '', 0),
+(22, 21, 'Koe', '29_8_11_highland_cattle_iv_by_pdurdin-d48avpk.jpg', 'boe, zei weer de koe', '', 4, 0, 0, '', 0),
+(23, 27, 'aaa', 'rage.png', 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '', 7, 0, 0, '', 0),
+(24, 27, 'facebook', 'https://www.facebook.com/', 'Want facebook is toch wel kunst hoor', 'https://www.facebook.com/', 7, 0, 0, '', 0),
+(25, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0, 0, '', 0),
+(26, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0, 0, '', 1),
+(27, 27, 'yay', 'Herc.jpg', 'I DID IT', '', 7, 0, 0, '', 0),
+(28, 28, 'selfie', 'Selfie_Robbe-01.png', 'Selfie robbe', '', 7, 0, 0, '', 1),
+(29, 28, 'magazine', 'magazine_graph.png', 'Magazine opdracht design', '', 4, 0, 0, '', 2),
+(30, 28, 'foto', 'tunnel.jpg', 'tunnel', '', 5, 0, 0, '', 0),
+(31, 28, 'Sparkles', 'openVLD.png', 'vuurtje op een stokje', '', 3, 0, 0, '', 0),
+(34, 28, '3D', '3d.png', 'zakmes 3d object challenge design', '', 5, 0, 0, '', 0),
+(35, 28, 'Drawing', 'Room2.0.JPG', 'room perspective challenge design atelier', '', 6, 0, 0, '', 0),
+(36, 28, 'Variatio', 'variatio.jpg', 'fotografie variatio', '', 7, 0, 0, '', 0),
+(37, 19, 'Schildpad', 'a_dream.png', 'zefrgergzetztthg', '', 3, 0, 0, '', 0),
+(38, 19, 'Fladder', 'lolz engel.jpg', 'lolz hihi', '', 4, 1492939048, 0, '', 0),
+(39, 19, 'Upload plz', 'Otter space.jpg', 'pls', '', 3, 1492939116, 0, '', 0),
+(40, 19, 'PLZ', 'trash.png', 'pls pretty pls', '', 4, 1492939138, 0, '', 0),
+(41, 21, 'Kalf', '20160709_151510.jpg', 'Kalfje', '', 3, 1493040708, 0, '', 0),
+(42, 21, 'Penelope', 'Penelope8.jpg', 'Penelope', '', 3, 1493104129, 0, '', 0),
+(44, 21, 'piggy and ice cream', 'tumblr_static_tumblr_static_3rhyuytz2q04g0c0s8k4ccgoo_640.jpg', 'piggy eating ice cream', '', 4, 1493104308, 3, '', 0),
+(45, 21, 'piggy and ice cream', 'tumblr_static_tumblr_static_3rhyuytz2q04g0c0s8k4ccgoo_640.jpg', 'piggy eating ice cream', '', 4, 1493106150, 5, '', 0),
+(49, 29, 'Blubblub', 'Blubblub291493237976.png', 'hihihihihihi', '', 3, 1493237976, 0, '', 1),
+(51, 29, 'test test', 'test%20test291493283206.jpg', 'ererberrgtfrvgtfr', '', 3, 1493283206, 0, '', 0),
+(52, 30, 'bol.com | de winkel van ons allemaal', 'https://www.bol.com/nl/upload/images/mobile/images/banner_elektronicadeals_mobiel_2017_624.jpg', 'bol.com, de winkel van ons allemaal. Kies uit &gt;14 miljoen artikelen. Snel en vanaf 20,- gratis verzonden!', 'http://bol.com', 8, 1493651210, 0, '', 0),
+(53, 21, 'Lisa Wouters - Your website, my passion', 'http://lisawouters.beimages/logo.svg', 'Hi, I am Lisa, a passionate webdeveloper in the making!', 'http://lisawouters.be', 8, 1493676486, 0, '', 0),
+(57, 30, 'sdf', 'sdf30.jpg', 'w4sd', '', 11, 1493726041, 0, '', 0),
+(58, 21, 'Blijven gaan', 'Blijvengaan211494357475.jpg', 'hop hop hop hop hop!!', '', 3, 1494357475, 0, 'Tienen', 0),
+(63, 21, 'qwerty', 'qwerty211494363435.jpg', 'qwerty', '', 13, 1494363435, 0, 'Tienen', 0),
+(64, 27, 'werk pls', 'werkpls271494452194.jpg', 'ARbeit', '', 3, 1494452194, 0, 'Mechelen', 0),
+(65, 27, 'ada', 'ada271494452372.png', 'dada', '', 5, 1494452372, 0, 'Mechelen', 0),
+(66, 27, 'reeeee', 'reeeee271494452505.jpg', 'eeeeeer', '', 6, 1494452505, 0, 'Mechelen', 1),
+(67, 27, 'dad', 'dad271494453637.jpg', 'da', '', 3, 1494453637, 0, 'Mechelen', 0);
 
 -- --------------------------------------------------------
 
@@ -354,12 +363,12 @@ ALTER TABLE `boards`
 -- AUTO_INCREMENT voor een tabel `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT voor een tabel `follows`
 --
 ALTER TABLE `follows`
-  MODIFY `followId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `followId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT voor een tabel `likes`
 --
@@ -369,7 +378,7 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 --
 -- AUTO_INCREMENT voor een tabel `topics`
 --
