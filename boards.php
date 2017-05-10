@@ -33,7 +33,7 @@ $page='boards';
 
       <div class="boards">
         <?php //Board binnenhalen
-          $board = new board;
+          $board = new Board();
           $board->loadBoard();
           $boards=$_SESSION['boards'];
           //print_r($_SESSION['boards']);
@@ -77,7 +77,7 @@ $page='boards';
       <?php
       //Board aanmaken
       if (!empty($_POST['board_name'])){
-        $board = new board;
+        $board = new Board();
         $board->subject = $_POST['board_name'];
         $board->saveBoard();
       }?>
