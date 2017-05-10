@@ -34,7 +34,7 @@
                                 <option value="<?php echo $t->id; ?>"><?php echo $t->name; ?></option>
                             <?php endforeach; ?>
                         </select>
-                        <p>or</p>
+                        <p> or </p>
                         <label for="addTopic">add a new topic</label>
                         <input type="text" name="addTopic" id="addTopic">
                     </div>
@@ -72,7 +72,7 @@
                                 <option value="<?php echo $t->id; ?>"><?php echo $t->name; ?></option>
                             <?php endforeach; ?>
                         </select>
-                        <p>or</p>
+                        <p> or </p>
                         <label for="addTopic">add a new topic</label>
                         <input type="text" name="addTopic" id="addTopic">
                     </div>
