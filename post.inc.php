@@ -77,7 +77,7 @@ try {
         $post->topics_ID = (int)$topicsId;
         $post->link = "";
         $post->location = $_POST['location'];
-        $post->privacy = $_POST['privacy']
+        $post->privacy = $_POST['privacy'];
         $post->savePost();
         $user = new User;
         $user->Email = $_SESSION['user'];

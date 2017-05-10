@@ -126,7 +126,7 @@ class Post
             $statement->bindValue(":topics_ID", $this->m_iTopicsId);
             $statement->bindValue(":time", $this->m_iUploadtime);
             $statement->bindValue(":location", $this->m_sLocation);
-            $statement->bindValue(":privacy",$this->m_iPrivacy)
+            $statement->bindValue(":privacy",$this->m_iPrivacy);
             $statement->execute();
             echo "\nPDO::errorInfo() SAVE POST:\n";
             print_r($conn->errorInfo());
