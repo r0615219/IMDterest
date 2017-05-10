@@ -40,6 +40,7 @@
                     </div>
 
 
+
                     <div class="modal-privacy">
                       <label for="privacy">Who can see this post?</label>
                       <input type="radio" name="privacy" id="privacy" value="0" checked> Everyone
