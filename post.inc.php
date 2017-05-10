@@ -181,16 +181,17 @@ try {
 }
 
 if (isset($_POST['report'])) {
-    var_dump($_POST['report']);
     $post = new Post;
     $post->id = $_POST['report'];
     $post->reportPost();
+    $success = "This post is reported as spam";
 }
 
 if (isset($_POST['delete'])) {
     $post = new Post;
     $post->id = $_POST['delete'];
     $post->deletePost();
+    $success = "Post succesfully deleted";
 }
 
 ////COMMENTS/////
