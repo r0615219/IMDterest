@@ -56,6 +56,7 @@ if (!empty($_POST)) {
         }
 
         $user->updateDatabase();
+        $success = "Your profile was updated succesfully.";
     } catch (Exception $e) {
         $error = $e->getMessage();
     }
@@ -91,7 +92,9 @@ include_once('header.inc.php');
 <div class="container" style="margin-top:50px;">
     <?php
     if (isset($error)) {
-        echo "<p class='alert alert-danger'>$error</p>";
+        echo "<p class='alert alert-danger'>" . $error . "</p>";
+    } else  if(!isset($error) && isset($success)){
+        echo "<p class='alert alert-success'>" . $success . "</p>";
     }
     ?><h1 class="media-heading">Account settings</h1>
 
