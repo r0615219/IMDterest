@@ -11,12 +11,9 @@
         header('Location: signin.php');
     }
 
+    include_once 'post.inc.php';
+
 ?><!doctype html>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/npm.js"></script>
 
 <html lang="en">
 <head>
@@ -33,6 +30,16 @@
     <link rel="stylesheet" href="css/posts.css">
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/add-btn.js"></script>
+    <script src="js/npm.js"></script>
+    <script src="js/likebutton.js"></script>
+    <script src="js/loadMore.js"></script>
+    <script src="js/comment-btn.js"></script>
+    <script src="js/location.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
     <title>IMDterest | Search</title>
 
@@ -51,9 +58,11 @@
     include_once('header.inc.php'); ?>
 
     <?php if (isset($error)) {
-    echo $error;
-}
-    ?>
+        echo "<p class='alert alert-danger'>$error</p>";
+    } ?>
+    <?php if (!empty($success)) {
+        echo "<p class='alert alert-success'>$success</p>";
+    } ?>
 
     <div class="container-search">
 
@@ -90,12 +99,8 @@
                          <?php else: ?>
                             style="background-image: url('images/uploads/userImages/<?php echo $searchItem['image']; ?>');"
                         <?php endif; ?>></div>
-                    <div class="userPostTopic">
-                        <h3>
-                            <a href="#">
-                                <?php echo $searchItem['firstname'] . " " . $searchItem['lastname']; ?>
-                            </a>
-                        </h3>
+                    <div class="userInfo userInfoPreview">
+                        <a href="profile.php?userId=<?php echo $searchItem['id']; ?>"><?php echo $searchItem['firstname'] . " " . $searchItem['lastname']; ?></a>
                     </div>
                 </div>
 
@@ -119,12 +124,8 @@
                             style="background-image: url('images/uploads/postImages/<?php echo $searchItem['image']; ?>');"
                         <?php endif; ?>></div>
 
-                    <div class="userPostTopic">
-                        <h3>
-                            <a href="#">
-                                <?php echo $searchItem['name']; ?>
-                            </a>
-                        </h3>
+                    <div class="userInfo userInfoPreview">
+                        <a href="topics.php?topicsid=<?php echo $searchItem['id']; ?>"><?php echo $searchItem['name']; ?></a>
                     </div>
                 </div>
 
