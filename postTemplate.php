@@ -19,6 +19,8 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <li><a href="#" data-toggle="modal" data-target="#report<?php echo $res['id']; ?>"
                        type="submit">Report post</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#addToBoard<?php echo $res['id']; ?>"
+                       type="submit">Add to board...</a></li>
                 <?php if ($res['user_ID'] == $_SESSION['userid']): ?>
 
                     <li><a href="#" data-toggle="modal" data-target="#delete<?php echo $res['id']; ?>"
@@ -62,6 +64,46 @@
                 $post->countlikes($postid); ?>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- ADD POST TO BOARD -->
+<div class="modal fade" id="addToBoard<?php echo $res['id']; ?>" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Boards</h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="pin" action="" method="post" enctype="multipart/form-data">
+
+                    <h2>Add <?php echo $res['title']; ?> to a board</h2>
+
+                    <p>Select a board</p>
+
+                    <button class="btn-pin" type="submit" name="pinned_post" value=<?php echo $res['id']; ?>>
+                        <span class="glyphicon glyphicon-pushpin"></span>
+                    </button>
+                        <select name="selected_board" id=selected_board>
+                            <option selected>Select a board</option>
+                            <?php $board = new Board;
+                            $board->loadMyBoard();
+                            $boards = $_SESSION['boards'];
+                            foreach ($boards as $b) {
+                                echo "<option value=" . $b["id"] . ">" . $b['subject'] . "</option>";
+                            } ?>
+                        </select>
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
     </div>
 </div>
 
