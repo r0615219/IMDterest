@@ -83,6 +83,8 @@ try {
         $user = new User;
         $user->Email = $_SESSION['user'];
         $user->getUserPosts();
+
+        $success = "Post succesfully saved";
     }
 
 } catch (Exception $e) {
@@ -177,6 +179,8 @@ try {
             $user = new User;
             $user->Email = $_SESSION['user'];
             $user->getUserPosts();
+
+            $success = "Post succesfully saved";
         }
     }
 } catch (Exception $e) {
@@ -199,7 +203,7 @@ if (isset($_POST['delete'])) {
 
 ////COMMENTS/////
 if (!empty($_POST['comment'])) {
-    $comment = new comment;
+    $comment = new Comment;
     $comment->comment = htmlspecialchars($_POST['comment']);
     $comment->post_id = htmlspecialchars($_POST['post_id']);
     $comment->saveComment();
@@ -208,11 +212,11 @@ if (!empty($_POST['comment'])) {
 ////BOARDS////
 if (isset($_POST['pinned_post'])) {
     if (!empty($_POST['selected_board'])) {
-        $post = new Post;
+        $post = new Post();
 //  echo $_POST['selected_board'];
         $post->id = htmlspecialchars($_POST['pinned_post']);
         $board_id = htmlspecialchars($_POST['selected_board']);
         $post->saveToBoard($board_id);
-
+        $success = "Post succesfully saved";
     }
 }

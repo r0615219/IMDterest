@@ -210,14 +210,29 @@
                             <div class="panel-heading comment-list">
 
                                 <?php
-                                $comment = new Comment;
-                                $comment->loadComment($res['id']);
-                                $comment = $_SESSION['comments'];
-                                foreach ($comment as $c) {
-                                    echo "<div>";
-                                    print_r($c['comment']);
-                                    echo "</div>";
-                                }; ?>
+                                    $comment = new Comment();
+                                    $comment->loadComment($res['id']);
+                                    $comment = $_SESSION['comments'];
+                                ?>
+                                <?php foreach ($comment as $c): ?>
+
+                                    <?php
+                                        $commentUser = new User();
+                                        $commentUser->id = $c['user_id'];
+                                        $commentUser->getUserInfo();
+                                        $userFirstname = $commentUser->Firstname;
+                                        $userLastname = $commentUser->Lastname;
+                                        $userImage = $commentUser->Image;
+                                    ?>
+
+                                    <div class="comment-line">
+                                        <span class="profile-comment"><a href="profile.php?userId=<?php echo $c['user_id']; ?>">
+                                            <img src="images/uploads/userImages/<?php echo $userImage; ?>" alt="profile">
+                                        </a></span>
+                                        <p><?php echo $c['comment']; ?></p>
+                                    </div>
+
+                                 <?php endforeach; ?>
 
                             </div>
                             <form class="comment-form" method="post">
