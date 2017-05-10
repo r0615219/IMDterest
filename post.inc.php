@@ -67,7 +67,6 @@ try {
 
                 $newTopic->saveUserTopic();
                 array_push($_SESSION['topics'], $newTopic);
-                var_dump($_SESSION['topics']);
             } else {
                 throw new ErrorException("Please select a topic.");
             }
@@ -100,10 +99,9 @@ try {
         $title = '';
         $image = '';
         $description = '';
-        if (strpos($link, 'https://') === false || strpos($link, 'http://') === false) {
+        if (strpos($link, 'https://') === false && strpos($link, 'http://') === false) {
             $link = 'http://' . $link;
         }
-
         $html = file_get_contents($link); //get the html returned from the following url
         $doc = new DOMDocument();
         libxml_use_internal_errors(TRUE); //disable libxml errors
@@ -144,12 +142,11 @@ try {
                 if ($_POST['addTopic'] != '') {//nieuwe topic opslaan
                     $newTopic = new Topics;
                     $newTopic->name = $_POST['addTopic'];
-                    $newTopic->image = str_replace(' ', '', strtolower($_FILES['img']['name']));
+                    $newTopic->image = $image;
 
                     if ($newTopic->checkAvailability() == 'match') {
                         $topicsId = $newTopic->id;
                     } else {
-                        $newTopic->image = $post->image;
                         $newTopic->saveTopic();
                         //topicId van nieuwe topic ophalen
                         $newTopic->getTopicViaName();
@@ -158,7 +155,6 @@ try {
 
                     $newTopic->saveUserTopic();
                     array_push($_SESSION['topics'], $newTopic);
-                    var_dump($_SESSION['topics']);
                 } else {
                     throw new ErrorException("Please select a topic.");
                 }

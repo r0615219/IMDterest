@@ -9,8 +9,8 @@ class User
     private $m_sImage;
     private $m_aTopics=[];
     private $m_bFollow;
-
     private $m_iFollowers;
+    
     public function __set($p_sProperty, $p_vValue)
     {
         switch ($p_sProperty) {
@@ -163,6 +163,8 @@ class User
             while ($topic = $statement->fetch(PDO::FETCH_OBJ)) {
                 $_SESSION['topics'][] = $topic;
             }
+        } else{
+            Topics::chooseTopics();
         }
     }
     //kijken of de gebruiker posts heeft
@@ -202,13 +204,17 @@ class User
                 } elseif ($_POST['newPassword'] != $_POST['controlPassword']) {
                     throw new exception("Unable to change the password. Your passwords don't match.");
                 } else {
+                    //check length of password
+                    if (strlen($_POST['newPassword']) < 6) {
+                            throw new Exception('Your new password is too short!');
+                    }
                     //checken of het oude paswoord overeen komt met het huidige
                     $stmt1 = $conn->prepare("SELECT * FROM `users` WHERE (email = :oldemail)");
                     $stmt1->bindValue(":oldemail", $_SESSION['user']);
                     $stmt1->execute();
                     $res = $stmt1->fetch(PDO::FETCH_ASSOC);
-                    $controleerpassword = $res["password"];
-                    if (password_verify($this->m_sPassword, $controleerpassword)) {
+                    $control = $res["password"];
+                    if (password_verify($this->m_sPassword, $control)) {
                         //nieuw passwoord in database zetten
                         $options = [
                             'cost' => 12,
@@ -220,7 +226,7 @@ class User
                     }
                 }
             } else {
-                //hier wordt het huidige wachtwoord opnieuw in de database geset als de gebruiker geen nieuw wachtwoord heeft ingesteld
+                //hier wordt het huidige wachtwoord opnieuw in de database gezet als de gebruiker geen nieuw wachtwoord heeft ingesteld
                 $stmt2 = $conn->prepare("SELECT * FROM `users` WHERE (email = :oldemail)");
                 $stmt2->bindValue(":oldemail", $_SESSION['user']);
                 $stmt2->execute();
@@ -341,6 +347,11 @@ class User
         $statement6 = $conn->prepare("DELETE FROM likes WHERE UserID = :userid;");
         $statement6->bindValue(":userid", $_SESSION['userid']);
         $statement6->execute();
+        
+        //remove comments from user in session
+        $statement7 = $conn->prepare("DELETE FROM comments WHERE user_id = :userid;");
+        $statement7->bindValue(":userid", $_SESSION['userid']);
+        $statement7->execute();
 
         //unlink user picture
         if ($_SESSION["image"] != "profile_placeholder.png") {
@@ -348,8 +359,8 @@ class User
         }
 
         //remove user in session
-        $statement7 = $conn->prepare("DELETE FROM users WHERE email = :email;");
-        $statement7->bindValue(":email", $_SESSION['user']);
-        $statement7->execute();
+        $statement8 = $conn->prepare("DELETE FROM users WHERE email = :email;");
+        $statement8->bindValue(":email", $_SESSION['user']);
+        $statement8->execute();
     }
 }

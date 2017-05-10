@@ -13,20 +13,20 @@ if (!empty($_POST)) {
         $user = new User;
 
         if (!empty($_POST['firstname'])) {
-            $user->Firstname = $_POST['firstname'];
+            $user->Firstname = htmlspecialchars($_POST['firstname']);
         }
 
         if (!empty($_POST['lastname'])) {
-            $user->Lastname = $_POST['lastname'];
+            $user->Lastname = htmlspecialchars($_POST['lastname']);
         }
 
         if (!empty($_POST['email'])) {
-            $user->Email = $_POST['email'];
+            $user->Email = htmlspecialchars($_POST['email']);
         }
 
         //oud passwoord
         if (!empty($_POST['password'])) {
-            $user->Password = $_POST['password'];
+            $user->Password = htmlspecialchars($_POST['password']);
         }
 
         if (!empty($_FILES['image']['name'])) {
@@ -56,6 +56,7 @@ if (!empty($_POST)) {
         }
 
         $user->updateDatabase();
+        $success = "Your profile was updated succesfully.";
     } catch (Exception $e) {
         $error = $e->getMessage();
     }
@@ -89,10 +90,13 @@ include_once('header.inc.php');
 ?>
 
 <div class="container" style="margin-top:50px;">
-    <?php if (isset($error)) {
-        echo "<p>$error</p>";
-    } ?>
-    <h1 class="media-heading">Account settings</h1>
+    <?php
+    if (isset($error)) {
+        echo "<p class='alert alert-danger'>" . $error . "</p>";
+    } else  if(!isset($error) && isset($success)){
+        echo "<p class='alert alert-success'>" . $success . "</p>";
+    }
+    ?><h1 class="media-heading">Account settings</h1>
 
     <div class="media-body">
         <form enctype="multipart/form-data" action="" method="post">
