@@ -6,11 +6,13 @@ $(document).ready(function(){
     switch ($(document).find("title").text()){
 
         case 'IMDterest | Home':
-            query = "select * from posts p inner join users_topics ut on p.topics_ID = ut.topics_ID where ut.users_ID = :userid ORDER BY p.id DESC LIMIT :position, :limit";
+        /// ALLEEN POSTS VAN GEVOLGDE TOPICS DIE PUBLIC ZIJN////
+            query = "select * from posts p inner join users_topics ut on p.topics_ID = ut.topics_ID where ut.users_ID = :userid AND p.privacy = 0 ORDER BY p.id DESC LIMIT :position, :limit";
             break;
 
         case 'IMDterest | Explore':
-            query = "SELECT * FROM posts where user_ID = :userid OR user_ID in (select user from follows where follower = :userid) ORDER BY id DESC LIMIT :position, :limit";
+        //// POSTS VAN MENSEN DIE JE FOLLOWT -> HERWERKEN NAAR FEED///
+            query = "SELECT * FROM posts where user_ID in (select user from follows where follower = :userid) AND privacy != 2 ORDER BY id DESC LIMIT :position, :limit";
             break;
     }
 
