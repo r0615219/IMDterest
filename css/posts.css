@@ -190,7 +190,7 @@ div.modal-body div.post img{
     width: 100%;
 }
 
-div.modal .modal-topics {
+div.modal .modal-topics{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -205,8 +205,4 @@ div.modal .modal-topics {
 
 
 
-}
-.modal-privacy{
-  margin-bottom: 15px;
-}
 
