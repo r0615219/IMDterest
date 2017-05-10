@@ -42,8 +42,8 @@ include_once('post.inc.php');
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/signup-style.css">
     <link rel="stylesheet" href="css/topics.css">
-    <link rel="stylesheet" href="css/add-button.css">
     <link rel="stylesheet" href="css/posts.css">
+    <link rel="stylesheet" href="css/add-button.css">
 
     <link href="https://fonts.googleapis.com/css?family=Nova+Oval" rel="stylesheet">
 

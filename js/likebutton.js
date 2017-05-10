@@ -1,13 +1,15 @@
 $(document).ready(function(){
 
 //check for clicking like button
-  $(".likeBtn").click(function(){
+  $(".likeBtn button").click(function(){
     event.preventDefault();
     //checking if already liked or not -> 1) need userID 2) need postID = PHP check
-    var id = $(this).parents(".likes").siblings(".userInfo").children(".postId").html();
+    //var id = $(this).parents(".likes").parents(".userPostHover").parents(".userPostLinkModal").siblings(".userInfo").children(".postId").html();
+      //var id = 37;
+    var id = $(this).siblings("postId").html();
     var liked;
-    var heart =$(this).find("img");
-    var counter=$(this).parents(".likes").find(".likeAmount");
+    var heart = $(this).find("img");
+    var counter = $(this).parents(".likes").find(".likeAmount");
     console.log(id);
   $.ajax({
     type:"POST",
