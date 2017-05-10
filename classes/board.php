@@ -77,7 +77,7 @@ class board
         $loadboard->execute();
         $res = $loadboard->fetchall(PDO::FETCH_ASSOC);
         echo "\nPDO::errorInfo():\n";
-        //print_r($loadboard->errorInfo());
+        print_r($loadboard->errorInfo());
         $_SESSION['boards'] = $res;
     }
 
