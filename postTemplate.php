@@ -139,29 +139,22 @@
 <!-- DELETE post -->
 <div class="modal fade" id="delete<?php echo $res['id']; ?>" role="dialog">
     <div class="modal-dialog">
-
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Are you sure you want to delete this post?</h4>
             </div>
             <div class="modal-body">
-
                 <form action="" method="post" enctype="multipart/form-data">
-
                     <h2><?php echo $res['title']; ?></h2>
-
                     <button class="btn btn-default btn-danger" type="submit" name="delete"
                             value="<?php echo $res['id']; ?>">Delete
                     </button>
                     <button class="btn btn-default" data-dismiss="modal">Cancel</button>
 
                 </form>
-
             </div>
-
         </div>
-
     </div>
 </div>
 
