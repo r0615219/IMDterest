@@ -28,13 +28,13 @@ $(document).ready(function(){
                 console.log("something went wrong");
             }
             if( response.code == 200){
-                if(response.followers != 0){
+                if(response.message == true){
                     console.log("You now follow this user.");
                     $("#follow").removeClass("follow");
                     $("#follow").addClass("following");
                     $("#follow").text("following");
                 }
-                else{
+                if(response.message == false){
                     console.log("You stopped following this user.");
                     $("#follow").removeClass("following");
                     $("#follow").addClass("follow");
