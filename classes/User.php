@@ -206,13 +206,17 @@ class User
                 } elseif ($_POST['newPassword'] != $_POST['controlPassword']) {
                     throw new exception("Unable to change the password. Your passwords don't match.");
                 } else {
+                    //check length of password
+                    if (strlen($_POST['newPassword']) < 6) {
+                            throw new Exception('Your new password is too short!');
+                    }
                     //checken of het oude paswoord overeen komt met het huidige
                     $stmt1 = $conn->prepare("SELECT * FROM `users` WHERE (email = :oldemail)");
                     $stmt1->bindValue(":oldemail", $_SESSION['user']);
                     $stmt1->execute();
                     $res = $stmt1->fetch(PDO::FETCH_ASSOC);
-                    $controleerpassword = $res["password"];
-                    if (password_verify($this->m_sPassword, $controleerpassword)) {
+                    $control = $res["password"];
+                    if (password_verify($this->m_sPassword, $control)) {
                         //nieuw passwoord in database zetten
                         $options = [
                             'cost' => 12,
@@ -224,7 +228,7 @@ class User
                     }
                 }
             } else {
-                //hier wordt het huidige wachtwoord opnieuw in de database geset als de gebruiker geen nieuw wachtwoord heeft ingesteld
+                //hier wordt het huidige wachtwoord opnieuw in de database gezet als de gebruiker geen nieuw wachtwoord heeft ingesteld
                 $stmt2 = $conn->prepare("SELECT * FROM `users` WHERE (email = :oldemail)");
                 $stmt2->bindValue(":oldemail", $_SESSION['user']);
                 $stmt2->execute();
