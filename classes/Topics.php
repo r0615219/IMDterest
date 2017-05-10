@@ -80,16 +80,6 @@ class Topics
         $this->m_sName = $res['name'];
     }
 
-    /*public function getPostsViaTopic()
-    {
-        $conn = Db::getInstance();
-        $statement = $conn->prepare("SELECT * FROM `posts` WHERE `topics_ID` = (:topicsid)");
-        $statement->bindValue(":topicsid", $this->m_iID);
-        $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        $_SESSION['posts-topic'] = $result;
-    }*/
-
     //functie om een nieuw aangemaakte topic op te slaan
     public function saveTopic()
     {

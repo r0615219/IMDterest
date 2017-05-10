@@ -165,6 +165,8 @@ class User
             while ($topic = $statement->fetch(PDO::FETCH_OBJ)) {
                 $_SESSION['topics'][] = $topic;
             }
+        } else{
+            Topics::chooseTopics();
         }
     }
     //kijken of de gebruiker posts heeft
