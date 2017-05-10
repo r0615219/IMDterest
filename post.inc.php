@@ -59,6 +59,7 @@ try {
                     $topicsId = $newTopic->id;
                 } else {
                     $newTopic->image = $post->image;
+                    copy('images/uploads/postImages/' . $post->image, 'images/topics/' . $post->image);
                     $newTopic->saveTopic();
                     //topicId van nieuwe topic ophalen
                     $newTopic->getTopicViaName();
