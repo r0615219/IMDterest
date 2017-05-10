@@ -34,62 +34,120 @@ a:link, a:visited, a:hover, a:active, a:focus, button, button:active, button:foc
 .userPost{
     min-width: 200px;
     max-width: 400px;
-    border-radius: 10px;
+    height: 250px;
     background-color: white;
     border-bottom: 1px solid #ccc;
     margin: 10px;
     flex-grow: 1;
     flex-wrap: wrap;
     align-self: center;
+    position: relative;
 }
 
 .userPostImg{
     width: 100%;
     height: 200px;
-    border-radius: 10px 10px 0 0;
     background-size: cover;
     background-position: center;
 }
 
-.userPostDescription, .userPostTopic{
-    padding: 10px;
-    display:flex;
-    flex-wrap: wrap;
-}
-
-.userPostImg{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.userPostImg .dropdown .dropdown-menu{
-    top: 15px;
-    left: -125px;
-}
-
-.userPostInfo{
-    display: flex;
+a.userPostLinkModal:link,
+a.userPostLinkModal:visited,
+a.userPostLinkModal:hover,
+a.userPostLinkModal:active{
     width: 100%;
-    padding: 10px;
-    border-top: 1px solid #ccc;
-    justify-content: space-between;
+    height: 200px;
+    cursor: zoom-in;
+    text-decoration: none;
+    position: absolute;
+    z-index: 3;
+}
+
+.userPostHover{
+    display: block;
+    visibility: hidden;
+    width:100%;
+    height:200px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.userPost:hover .userPostHover{
+    visibility: visible;
+}
+
+.userPost h3{
+    color: white;
+    text-align: center;
+    padding-top:50px;
+}
+
+.userPost h4 small{
+    color: white;
+    text-align: center;
+}
+
+.userPost h4{
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+}
+
+.userPost a.topicDiv:link,
+.userPost a.topicDiv:visited,
+.userPost a.topicDiv:hover,
+.userPost a.topicDiv:active{
+    text-decoration: none;
+    z-index: 12;
+    position: absolute;
+    top: 5px;
+    right: 45px;
+    color: white;
 }
 
 .userInfo{
     display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    height: 25px;
+}
+
+.userInfo.userInfoPreview{
+    position: absolute;
+    bottom: 5px;
+    box-sizing: border-box;
 }
 
 .userInfo img{
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+.userPost .dropdown{
+    z-index: 10;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.userPost .dropdown .dropdown-menu{
+    top: 40px;
+    left: -125px;
 }
 
 .likes{
     display: flex;
     flex-direction: row;
     width: 50px;
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    bottom: 0;
 }
 
 .likeBtn{
@@ -109,29 +167,12 @@ a:link, a:visited, a:hover, a:active, a:focus, button, button:active, button:foc
     padding: 5px;
 }
 
-.loadMore{
-    padding: 0 25%;
-    margin-top: 20px;
-}
 
 
-.btn-topic-img, .btn-topic-img:visited{
-    background-color: rgba( 255, 255, 255, 0.5);
-    border-radius: 10px 0px 10px 0px;
-    height: 35px;
-    text-decoration: none;
-}
 
-.btn-topic-img:hover{
-    background-color: rgba( 255, 255, 255, 0.7);
-    border-radius: 10px 0px 10px 0px;
-    text-decoration: none;
-}
-
-.btn-topic-img:active{
-    background-color: rgba( 255, 255, 255, 0.5);
-    border-radius: 10px 0px 10px 0px;
-    text-decoration: none;
+/* - - - - MODAL POST - - - - - */
+.modal .navbar-inverse{
+    color: white;
 }
 
 .input-group .profile-comment img{
@@ -152,11 +193,12 @@ div.modal .modal-topics{
     margin-bottom: 15px;
 }
 
-.modal-topics p, .modal-topics label, .modal-topics input, .modal-topics select{
-    margin-right:10px;
+.panel-description-flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.btn-pin{
-    height:15px;
 
-}
+
+
