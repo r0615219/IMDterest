@@ -198,9 +198,22 @@ class Post
     public function reportPost()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("UPDATE posts SET reports = reports + 1 WHERE id = :id");
-        $statement->bindValue(":id", $this->m_iID);
+        $statement = $conn->prepare("INSERT INTO post_reports (post_id, user_id) VALUES (:post_id, :user_id)");
+        $statement->bindValue(":post_id", $this->m_iID);
+        $statement->bindValue(":user_id", $_SESSION['userid']);
         $statement->execute();
+        $this->countReports();
+    }
+
+    public function countReports(){
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * FROM post_reports WHERE post_id = :post_id");
+        $statement->bindValue(":post_id", $this->m_iID);
+        $statement->execute();
+        $rows = $statement->rowCount();
+        if($rows >= 3){
+            $this->deletePost();
+        }
     }
 
     public function deletePost()
