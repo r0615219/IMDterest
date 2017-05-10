@@ -89,10 +89,11 @@ include_once('header.inc.php');
 ?>
 
 <div class="container" style="margin-top:50px;">
-    <?php if (isset($error)) {
-        echo "<p>$error</p>";
-    } ?>
-    <h1 class="media-heading">Account settings</h1>
+    <?php
+    if (isset($error)) {
+        echo "<p class='alert alert-danger'>$error</p>";
+    }
+    ?><h1 class="media-heading">Account settings</h1>
 
     <div class="media-body">
         <form enctype="multipart/form-data" action="" method="post">
