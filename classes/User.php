@@ -38,7 +38,6 @@ class User
             case "Follow":
                 $this->m_bFollow = $p_vValue;
                 break;
-
             case "Followers":
                 $this->m_iFollowers = $p_vValue;
                 break;
@@ -70,7 +69,6 @@ class User
                 break;
             case "Follow":
                 return $this->m_bFollow;
-
                 break;
             case "Followers":
                 return $this->m_iFollowers;
@@ -278,8 +276,13 @@ class User
         $this->Firstname = $res["firstname"];
         $this->Lastname = $res["lastname"];
         $this->Image = $res["image"];
+    }
 
-        // Checken of deze user gevolgd wordt door de gebruiker in sessie
+    public function checkfollow($user)
+    {
+
+          // Checken of deze user gevolgd wordt door de gebruiker in sessie
+        $conn = Db::getInstance();
         $statement2 = $conn->prepare("SELECT * FROM follows WHERE follower = :usersession AND user = :user_ID");
         $statement2->bindValue(":usersession", $_SESSION['userid']);
         $statement2->bindValue(":user_ID", $user);
@@ -291,10 +294,11 @@ class User
         } else {
             $this->Follow = FALSE;
         }
+    }
 
-
-
+  public function countfollow($user){
         //tellen hoeveel volgers deze gebruiker heeft
+        $conn = Db::getInstance();
         $statement3 = $conn->prepare("SELECT * FROM follows WHERE user = :user_ID");
         $statement3->bindValue(":user_ID", $user);
         $statement3->execute();
@@ -349,4 +353,3 @@ class User
         $statement7->execute();
     }
 }
-

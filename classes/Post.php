@@ -271,4 +271,22 @@ class Post
         $res=$statement->fetchAll(PDO::FETCH_ASSOC);
         $_SESSION['boardposts']=$res;
       }
+
+      public function loadfollowedprofile ($userid){
+        $conn = Db::getInstance();
+        $statement =$conn->prepare("SELECT * FROM `posts` WHERE `user_ID` = :user_id AND `privacy`IN (0,1)");
+        $statement->bindvalue(":user_id",$userid);
+        $statement->execute();
+        $res=$statement->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['ProfilePost']=$res;
+      }
+
+      public function loadprofile ($userid){
+        $conn = Db::getInstance();
+        $statement =$conn->prepare("SELECT * FROM `posts` WHERE `user_ID` = :user_id AND `privacy`=0");
+        $statement->bindvalue(":user_id",$userid);
+        $statement->execute();
+        $res=$statement->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['ProfilePost']=$res;
+      }
 }
