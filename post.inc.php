@@ -186,14 +186,14 @@ try {
 }
 
 if (isset($_POST['report'])) {
-    $post = new Post;
+    $post = new Post();
     $post->id = $_POST['report'];
     $post->reportPost();
     $success = "This post is reported as spam";
 }
 
 if (isset($_POST['delete'])) {
-    $post = new Post;
+    $post = new Post();
     $post->id = $_POST['delete'];
     $post->deletePost();
     $success = "Post succesfully deleted";
@@ -201,7 +201,7 @@ if (isset($_POST['delete'])) {
 
 ////COMMENTS/////
 if (!empty($_POST['comment'])) {
-    $comment = new comment;
+    $comment = new Comment();
     $comment->comment = $_POST['comment'];
     $comment->post_id = $_POST['post_id'];
     $comment->saveComment();
@@ -210,11 +210,11 @@ if (!empty($_POST['comment'])) {
 ////BOARDS////
 if (isset($_POST['pinned_post'])) {
     if (!empty($_POST['selected_board'])) {
-        $post = new Post;
+        $post = new Post();
 //  echo $_POST['selected_board'];
         $post->id = $_POST['pinned_post'];
         $board_id = $_POST['selected_board'];
         $post->saveToBoard($board_id);
-        $success = "Post added to board";
+        $success = "Post succesfully saved";
     }
 }
