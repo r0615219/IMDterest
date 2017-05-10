@@ -100,10 +100,9 @@ try {
         $title = '';
         $image = '';
         $description = '';
-        if (strpos($link, 'https://') === false || strpos($link, 'http://') === false) {
+        if (strpos($link, 'https://') === false && strpos($link, 'http://') === false) {
             $link = 'http://' . $link;
         }
-
         $html = file_get_contents($link); //get the html returned from the following url
         $doc = new DOMDocument();
         libxml_use_internal_errors(TRUE); //disable libxml errors
