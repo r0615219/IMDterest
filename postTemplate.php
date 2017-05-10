@@ -27,34 +27,6 @@
             </ul>
         </div>
         <h3><?php echo $res['title']; ?></h3>
-        <h4>
-            <?php $post = new Post; ?>
-            <small><?php echo $post->uploadedWhen($res['time']); ?></small>
-            <small><?php echo " ".$res['location']; ?></small>
-        </h4>
-        <div class="likes">
-            <div class="likeBtn">
-                <button class="btn btn-danger" href="#">
-                    <span class="badgexxx">
-                        <?php
-                        $post = new Post;
-                        $postid = $res['id'];
-                        $liked = $post->checkLiked($postid);
-                        if ($liked == false) {
-                            echo '<img class="media-object" src="images/icons/heart.svg" alt="heart">';
-                        } else {
-                            echo '<img class="media-object" src="images/icons/heart_filled.svg" alt="heart">';
-                        } ?>
-                    </span>
-                    <div class="likeAmount">
-                        <?php
-                        $postid = $res['id'];
-                        $post->countlikes($postid); ?>
-                    </div>
-                </button>
-                <div class="postId"><?php echo $res['id']; ?></div>
-            </div>
-        </div>
     </div>
     </a>
 
@@ -69,6 +41,27 @@
         <a href="profile.php?userId=<?php echo $user->id ?>">
             <?php echo $user->Firstname . " " . $user->Lastname; ?>
         </a>
+        <div class="postId" style="display:none"><?php echo $res['id']; ?></div>
+        <div class="likes">
+            <div class="likeBtn">
+                <a href="#">
+                    <?php
+                    $post = new Post;
+                    $postid = $res['id'];
+                    $liked = $post->checkLiked($postid);
+                    if ($liked == false) {
+                        echo '<img class="media-object" src="images/icons/heart.svg" alt="heart">';
+                    } else {
+                        echo '<img class="media-object" src="images/icons/heart_filled.svg" alt="heart">';
+                    } ?>
+                </a>
+            </div>
+            <div class="likeAmount">
+                <?php
+                $postid = $res['id'];
+                $post->countlikes($postid); ?>
+            </div>
+        </div>
     </div>
 </div>
 
