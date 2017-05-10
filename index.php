@@ -8,6 +8,9 @@ spl_autoload_register(function ($class) {
 if (!isset($_SESSION['user'])) {
     header('Location: signin.php');
 }
+
+$success = "";
+
 //TOPICS
 try {
     if (isset($_POST['selectedTopics'])) {
@@ -27,6 +30,8 @@ try {
 } catch (Exception $e) {
     $error = $e->getMessage();
 }
+
+
 
 include_once('post.inc.php');
 
@@ -67,6 +72,10 @@ include_once('header.inc.php'); ?>
     <?php if (isset($error)) {
         echo "<p class='alert alert-danger'>$error</p>";
     } ?>
+    <?php if (!empty($success)) {
+        echo "<p class='alert alert-success'>$success</p>";
+    } ?>
+
     <?php
 
     if (isset($_SESSION['topics'])) {
