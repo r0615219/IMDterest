@@ -39,6 +39,13 @@
                         <input type="text" name="addTopic" id="addTopic">
                     </div>
 
+                    <div class="modal-privacy">
+                      <label for="privacy">Who can see this post?</label>
+                      <input type="radio" name="privacy" value="0" checked> Everyone
+                      <input type="radio" name="privacy" value="1"> Only my followers
+                      <input type="radio" name="privacy" value="2"> Only me
+                    </div>
+
                     <div class="modal-footer">
                         <input type="submit" name="imgSubmit" class="btn btn-default submitBtn" value="Save"/>
                     </div>
