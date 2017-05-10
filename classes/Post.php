@@ -13,6 +13,7 @@ class Post
     private $m_iUploadtime;
     private $m_iReports;
     private $m_sLocation;
+    private $m_iPrivacy;
 
     public function __set($p_sProperty, $p_vValue)
     {
@@ -55,6 +56,10 @@ class Post
 
             case 'location':
                 $this->m_sLocation = $p_vValue;
+                break;
+
+            case 'privacy':
+                $this->m_iPrivacy = $p_vValue;
                 break;
         }
     }
@@ -101,6 +106,10 @@ class Post
             case 'location':
                 return $this->m_sLocation;
                 break;
+
+            case 'privacy':
+                return $this->m_iPrivacy;
+                break;
         }
     }
 
@@ -108,7 +117,7 @@ class Post
     {
         try {
             $conn = Db::getInstance();
-            $statement = $conn->prepare("INSERT INTO `posts`(`user_ID`, `title`, `image`, `description`, `link`, `topics_ID`, `time`, `location`) VALUES (:user_ID, :title, :image, :description, :link, :topics_ID, :time, :location);");
+            $statement = $conn->prepare("INSERT INTO `posts`(`user_ID`, `title`, `image`, `description`, `link`, `topics_ID`, `time`, `location`, `privacy`) VALUES (:user_ID, :title, :image, :description, :link, :topics_ID, :time, :location, :privacy);");
             $statement->bindValue(":user_ID", $_SESSION['userid']);
             $statement->bindValue(":title", $this->m_sTitle);
             $statement->bindValue(":image", $this->m_sImage);
@@ -117,6 +126,7 @@ class Post
             $statement->bindValue(":topics_ID", $this->m_iTopicsId);
             $statement->bindValue(":time", $this->m_iUploadtime);
             $statement->bindValue(":location", $this->m_sLocation);
+            $statement->bindValue(":privacy",$this->m_iPrivacy);
             $statement->execute();
             echo "\nPDO::errorInfo() SAVE POST:\n";
             print_r($conn->errorInfo());
@@ -198,9 +208,22 @@ class Post
     public function reportPost()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare("UPDATE posts SET reports = reports + 1 WHERE id = :id");
-        $statement->bindValue(":id", $this->m_iID);
+        $statement = $conn->prepare("INSERT INTO post_reports (post_id, user_id) VALUES (:post_id, :user_id)");
+        $statement->bindValue(":post_id", $this->m_iID);
+        $statement->bindValue(":user_id", $_SESSION['userid']);
         $statement->execute();
+        $this->countReports();
+    }
+
+    public function countReports(){
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * FROM post_reports WHERE post_id = :post_id");
+        $statement->bindValue(":post_id", $this->m_iID);
+        $statement->execute();
+        $rows = $statement->rowCount();
+        if($rows >= 3){
+            $this->deletePost();
+        }
     }
 
     public function deletePost()
@@ -261,5 +284,23 @@ class Post
         $statement->execute();
         $res=$statement->fetchAll(PDO::FETCH_ASSOC);
         $_SESSION['boardposts']=$res;
+      }
+
+      public function loadfollowedprofile ($userid){
+        $conn = Db::getInstance();
+        $statement =$conn->prepare("SELECT * FROM `posts` WHERE `user_ID` = :user_id AND `privacy`IN (0,1)");
+        $statement->bindvalue(":user_id",$userid);
+        $statement->execute();
+        $res=$statement->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['ProfilePost']=$res;
+      }
+
+      public function loadprofile ($userid){
+        $conn = Db::getInstance();
+        $statement =$conn->prepare("SELECT * FROM `posts` WHERE `user_ID` = :user_id AND `privacy`=0");
+        $statement->bindvalue(":user_id",$userid);
+        $statement->execute();
+        $res=$statement->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['ProfilePost']=$res;
       }
 }

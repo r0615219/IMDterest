@@ -6,7 +6,7 @@ include_once('../classes/User.php');
 try{
     if(!empty($_POST) ){
         $user = new User();
-        $user->getUserDetails($_POST['user_ID']);
+        $user->checkfollow($_POST['user_ID']);
         if ($user->Follow==FALSE) { //if follow == false, voeg follow record toe aan tabel follows
             $conn = Db::getInstance();
             $statement = $conn->prepare("INSERT INTO `follows`(`follower`, `user`) VALUES(:usersession,:user_ID)");
@@ -23,7 +23,7 @@ try{
             $statement->execute();
         }
 
-        $user->getUserDetails($_POST['user_ID']);
+        $user->countfollow($_POST['user_ID']);
     }
     $feedback = [
         "code" => 200,

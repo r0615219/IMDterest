@@ -11,6 +11,8 @@ if (isset($_SESSION['user'])) {
 $userId = $_GET['userId'];
 $user = new User;
 $user->getUserDetails($userId);
+$user->checkfollow($userId);
+$user->countfollow($userId);
 if ($user->Follow == TRUE) {
     $follow = "following";
 }
@@ -52,6 +54,7 @@ include_once('post.inc.php');
     <script src="js/loadMore.js"></script>
     <script src="js/comment-btn.js"></script>
     <script src="js/location.js"></script>
+    <script src="js/followbutton.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
 
@@ -110,11 +113,44 @@ include_once('header.inc.php');
 
         <?php endif; ?>
 
-        <?php foreach ($_SESSION['userPosts'] as $res): ?>
 
-            <?php include("postTemplate.php"); ?>
+          <?php
+            if ($userId != $_SESSION['userid'])
+            {
 
-        <?php endforeach; ?>
+              // volgt de user deze persoon?
+                $user =new user;
+                $user->checkfollow($_GET['userId']);
+
+                if ($user->Follow==FALSE) {
+                  $p = new post;
+                  $p->loadprofile($_GET['userId']);
+                  foreach ($_SESSION['ProfilePost'] as $res)
+                  {
+                    include("postTemplate.php");
+                  }
+                }
+
+                if ($user->Follow==TRUE) {
+                  $p = new post;
+                  $p->loadfollowedprofile($_GET['userId']);
+                  foreach ($_SESSION['ProfilePost'] as $res)
+                  {
+                    include("postTemplate.php");
+                  }
+                }
+            }
+
+
+            if ($userId == $_SESSION['userid'])
+            {
+              foreach ($_SESSION['userPosts'] as $res)
+              {
+                include("postTemplate.php");
+              }
+            };
+              ?>
+
     </div>
 </div>
 </body>
