@@ -101,7 +101,7 @@ class User
             $statement->bindValue(":firstname", $this->m_sFirstname);
             $statement->bindValue(":lastname", $this->m_sLastname);
             $statement->bindValue(":password", $this->m_sPassword);
-            $statement->bindValue(":image", "profile_placeholder.png");
+            $statement->bindValue(":image", $this->Image);
             $result = $statement->execute();
             return $result;
         } else {
