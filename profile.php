@@ -22,7 +22,7 @@ if ($user->Follow == FALSE) {
 $userPosts = new Post();
 $userPosts->user_ID = $userId;
 $userPosts->getPostsViaUser();
-
+        
 include_once('post.inc.php');
 
 ?><!doctype html>
