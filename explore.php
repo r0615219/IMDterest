@@ -45,6 +45,14 @@ include_once('post.inc.php');
     include_once('header.inc.php');
     include_once('emptyStates.php'); ?>
     <div class="container">
+
+        <?php if (isset($error)) {
+            echo "<p class='alert alert-danger'>$error</p>";
+        } ?>
+        <?php if (!empty($success)) {
+            echo "<p class='alert alert-success'>$success</p>";
+        } ?>
+
         <div id="results"></div>
 
         <div class="loadMore">

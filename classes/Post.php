@@ -13,7 +13,6 @@ class Post
     private $m_iUploadtime;
     private $m_iReports;
     private $m_sLocation;
-    private $m_iPrivacy;
 
     public function __set($p_sProperty, $p_vValue)
     {
@@ -56,10 +55,6 @@ class Post
 
             case 'location':
                 $this->m_sLocation = $p_vValue;
-                break;
-
-            case 'privacy':
-                $this->m_iPrivacy = $p_vValue;
                 break;
         }
     }
@@ -106,10 +101,6 @@ class Post
             case 'location':
                 return $this->m_sLocation;
                 break;
-
-            case 'privacy':
-                return $this->m_iPrivacy;
-                break;
         }
     }
 
@@ -117,7 +108,7 @@ class Post
     {
         try {
             $conn = Db::getInstance();
-            $statement = $conn->prepare("INSERT INTO `posts`(`user_ID`, `title`, `image`, `description`, `link`, `topics_ID`, `time`, `location`, `privacy`) VALUES (:user_ID, :title, :image, :description, :link, :topics_ID, :time, :location, :privacy);");
+            $statement = $conn->prepare("INSERT INTO `posts`(`user_ID`, `title`, `image`, `description`, `link`, `topics_ID`, `time`, `location`) VALUES (:user_ID, :title, :image, :description, :link, :topics_ID, :time, :location);");
             $statement->bindValue(":user_ID", $_SESSION['userid']);
             $statement->bindValue(":title", $this->m_sTitle);
             $statement->bindValue(":image", $this->m_sImage);
@@ -271,23 +262,5 @@ class Post
         $statement->execute();
         $res=$statement->fetchAll(PDO::FETCH_ASSOC);
         $_SESSION['boardposts']=$res;
-      }
-
-      public function loadfollowedprofile ($userid){
-        $conn = Db::getInstance();
-        $statement =$conn->prepare("SELECT * FROM `posts` WHERE `user_ID` = :user_id AND `privacy`IN (0,1)");
-        $statement->bindvalue(":user_id",$userid);
-        $statement->execute();
-        $res=$statement->fetchAll(PDO::FETCH_ASSOC);
-        $_SESSION['ProfilePost']=$res;
-      }
-
-      public function loadprofile ($userid){
-        $conn = Db::getInstance();
-        $statement =$conn->prepare("SELECT * FROM `posts` WHERE `user_ID` = :user_id AND `privacy`=0");
-        $statement->bindvalue(":user_id",$userid);
-        $statement->execute();
-        $res=$statement->fetchAll(PDO::FETCH_ASSOC);
-        $_SESSION['ProfilePost']=$res;
       }
 }

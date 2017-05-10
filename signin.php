@@ -14,9 +14,9 @@ if (!empty($_POST)) {
 
             $user = new User();
 
-            $user->Email = $_POST['email'];
+            $user->Email = htmlspecialchars($_POST['email']);
 
-            $user->Password = $_POST['password'];
+            $user->Password = htmlspecialchars($_POST['password']);
 
             if ($user->canLogin()) {
 

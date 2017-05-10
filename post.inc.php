@@ -59,6 +59,7 @@ try {
                     $topicsId = $newTopic->id;
                 } else {
                     $newTopic->image = $post->image;
+                    copy('images/uploads/postImages/' . $post->image, 'images/topics/' . $post->image);
                     $newTopic->saveTopic();
                     //topicId van nieuwe topic ophalen
                     $newTopic->getTopicViaName();
@@ -183,16 +184,17 @@ try {
 }
 
 if (isset($_POST['report'])) {
-    var_dump($_POST['report']);
     $post = new Post;
     $post->id = $_POST['report'];
     $post->reportPost();
+    $success = "This post is reported as spam";
 }
 
 if (isset($_POST['delete'])) {
     $post = new Post;
     $post->id = $_POST['delete'];
     $post->deletePost();
+    $success = "Post succesfully deleted";
 }
 
 ////COMMENTS/////

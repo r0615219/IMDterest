@@ -7,11 +7,11 @@ $required = array('email', 'firstname', 'lastname', 'password');
 try {
     if (!empty($_POST)) {
         $user = new User();
-        $user->Email = $_POST['email'];
-        $user->Firstname = $_POST['firstname'];
-        $user->Lastname = $_POST['lastname'];
-        $user->Password = $_POST['password'];
-        $user->Image = "http://www.gfcactivatingland.org/media/uploads/images/profile_placeholder.png";
+        $user->Email = htmlspecialchars($_POST['email']);
+        $user->Firstname = htmlspecialchars($_POST['firstname']);
+        $user->Lastname = htmlspecialchars($_POST['lastname']);
+        $user->Password = htmlspecialchars($_POST['password']);
+        $user->Image = "profile_placeholder.png";
         if ($user->register()) {
             $user->handleLogin();
         }
@@ -38,8 +38,9 @@ try {
           </style>';
         $duplicatemail = 1;
     }
-};?><!doctype html>
+};
 
+?><!doctype html>
 <html lang="en">
 
 <head>

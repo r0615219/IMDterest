@@ -101,7 +101,7 @@ class User
             $statement->bindValue(":firstname", $this->m_sFirstname);
             $statement->bindValue(":lastname", $this->m_sLastname);
             $statement->bindValue(":password", $this->m_sPassword);
-            $statement->bindValue(":image", "profile_placeholder.png");
+            $statement->bindValue(":image", $this->Image);
             $result = $statement->execute();
             return $result;
         } else {
@@ -282,13 +282,8 @@ class User
         $this->Firstname = $res["firstname"];
         $this->Lastname = $res["lastname"];
         $this->Image = $res["image"];
-    }
 
-    public function checkfollow($user)
-    {
-
-          // Checken of deze user gevolgd wordt door de gebruiker in sessie
-        $conn = Db::getInstance();
+        // Checken of deze user gevolgd wordt door de gebruiker in sessie
         $statement2 = $conn->prepare("SELECT * FROM follows WHERE follower = :usersession AND user = :user_ID");
         $statement2->bindValue(":usersession", $_SESSION['userid']);
         $statement2->bindValue(":user_ID", $user);
@@ -300,11 +295,10 @@ class User
         } else {
             $this->Follow = FALSE;
         }
-    }
 
-  public function countfollow($user){
+
+
         //tellen hoeveel volgers deze gebruiker heeft
-        $conn = Db::getInstance();
         $statement3 = $conn->prepare("SELECT * FROM follows WHERE user = :user_ID");
         $statement3->bindValue(":user_ID", $user);
         $statement3->execute();
@@ -364,3 +358,4 @@ class User
         $statement8->execute();
     }
 }
+
