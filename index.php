@@ -75,6 +75,7 @@ include_once('header.inc.php'); ?>
     <?php if (!empty($success)) {
         echo "<p class='alert alert-success'>$success</p>";
     } ?>
+
     <?php
 
     if (isset($_SESSION['topics'])) {
