@@ -339,6 +339,11 @@ class User
         $statement6 = $conn->prepare("DELETE FROM likes WHERE UserID = :userid;");
         $statement6->bindValue(":userid", $_SESSION['userid']);
         $statement6->execute();
+        
+        //remove comments from user in session
+        $statement7 = $conn->prepare("DELETE FROM comments WHERE user_id = :userid;");
+        $statement7->bindValue(":userid", $_SESSION['userid']);
+        $statement7->execute();
 
         //unlink user picture
         if ($_SESSION["image"] != "profile_placeholder.png") {
@@ -346,9 +351,9 @@ class User
         }
 
         //remove user in session
-        $statement7 = $conn->prepare("DELETE FROM users WHERE email = :email;");
-        $statement7->bindValue(":email", $_SESSION['user']);
-        $statement7->execute();
+        $statement8 = $conn->prepare("DELETE FROM users WHERE email = :email;");
+        $statement8->bindValue(":email", $_SESSION['user']);
+        $statement8->execute();
     }
 }
 
