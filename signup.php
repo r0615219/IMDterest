@@ -38,8 +38,9 @@ try {
           </style>';
         $duplicatemail = 1;
     }
-};?><!doctype html>
+};
 
+?><!doctype html>
 <html lang="en">
 
 <head>
