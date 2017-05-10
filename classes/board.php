@@ -1,6 +1,6 @@
 <?php
 
-class Board
+class board
 {
     private $m_iID;
     private $m_sSubject;
@@ -19,11 +19,11 @@ class Board
                 break;
 
             case 'user_id':
-                $this->m_iUserId = $p_vValue;
+                $this->$m_iUserId = $p_vValue;
                 break;
 
             case 'visibility':
-                $this->m_sVisibility = $p_vValue;
+                $this->$m_sVisibility = $p_vValue;
                 break;
         }
     }
@@ -40,11 +40,11 @@ class Board
                 break;
 
             case 'user_id':
-                return $this->m_iUserId;
+                return $this->$m_iUserId;
                 break;
 
             case 'visibility':
-                return $this->m_sVisibility;
+                return $this->$m_sVisibility;
                 break;
         }
     }
@@ -77,7 +77,7 @@ class Board
         $loadboard->execute();
         $res = $loadboard->fetchall(PDO::FETCH_ASSOC);
         echo "\nPDO::errorInfo():\n";
-        //print_r($loadboard->errorInfo());
+        print_r($loadboard->errorInfo());
         $_SESSION['boards'] = $res;
     }
 
