@@ -128,8 +128,8 @@ class Post
             $statement->bindValue(":location", $this->m_sLocation);
             $statement->bindValue(":privacy",$this->m_iPrivacy);
             $statement->execute();
-            echo "\nPDO::errorInfo() SAVE POST:\n";
-            print_r($conn->errorInfo());
+            //echo "\nPDO::errorInfo() SAVE POST:\n";
+            //print_r($conn->errorInfo());
         } catch (PDOException $e) {
             $error = $e->getMessage();
         }

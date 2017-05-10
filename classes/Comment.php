@@ -77,7 +77,7 @@ class Comment
       }
       catch(PDOException $e)
       {
-        $error->$e->getMessage();
+        throw new Exception('Oops, something went wrong.');
       }
     }
 

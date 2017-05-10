@@ -57,14 +57,14 @@
     $page = 'search';
     include_once('header.inc.php'); ?>
 
-    <?php if (isset($error)) {
-        echo "<p class='alert alert-danger'>$error</p>";
-    } ?>
-    <?php if (!empty($success)) {
-        echo "<p class='alert alert-success'>$success</p>";
-    } ?>
-
     <div class="container-search">
+
+        <?php if (isset($error)) {
+            echo "<p class='alert alert-danger'>$error</p>";
+        } ?>
+        <?php if (!empty($success)) {
+            echo "<p class='alert alert-success'>$success</p>";
+        } ?>
 
         <h1>Search Results</h1>
 
@@ -72,9 +72,10 @@
 
     </div>
 
-    <?php if ($_SESSION['zoekselect'] == 'posts'): ?>
+    <div class="container">
 
-        <div class="container">
+
+    <?php if ($_SESSION['zoekselect'] == 'posts'): ?>
 
         <?php foreach ($_SESSION['search'] as $res): ?>
 
@@ -82,13 +83,9 @@
 
         <?php endforeach; ?>
 
-        </div>
-
     <?php endif; ?>
 
     <?php if ($_SESSION['zoekselect'] == 'users'): ?>
-
-        <div class="container">
 
             <?php foreach ($_SESSION['search'] as $searchItem): ?>
 
@@ -106,13 +103,9 @@
 
             <?php endforeach; ?>
 
-        </div>
-
     <?php endif; ?>
 
     <?php if ($_SESSION['zoekselect'] == 'topics'): ?>
-
-        <div class="container">
 
             <?php foreach ($_SESSION['search'] as $searchItem): ?>
 
@@ -131,9 +124,9 @@
 
             <?php endforeach; ?>
 
-        </div>
-
     <?php endif; ?>
+
+    </div>
 
 </body>
 </html>
