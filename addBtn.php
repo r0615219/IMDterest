@@ -41,9 +41,9 @@
 
                     <div class="modal-privacy">
                       <label for="privacy">Who can see this post?</label>
-                      <input type="radio" name="privacy" value="0" checked> Everyone
-                      <input type="radio" name="privacy" value="1"> Only my followers
-                      <input type="radio" name="privacy" value="2"> Only me
+                      <input type="radio" name="privacy" id="privacy" value="0" checked> Everyone
+                      <input type="radio" name="privacy" id="privacy" value="1"> Only my followers
+                      <input type="radio" name="privacy" id="privacy" value="2"> Only me
                     </div>
 
                     <div class="modal-footer">
