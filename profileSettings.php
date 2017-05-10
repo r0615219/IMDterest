@@ -13,20 +13,20 @@ if (!empty($_POST)) {
         $user = new User;
 
         if (!empty($_POST['firstname'])) {
-            $user->Firstname = $_POST['firstname'];
+            $user->Firstname = htmlspecialchars($_POST['firstname']);
         }
 
         if (!empty($_POST['lastname'])) {
-            $user->Lastname = $_POST['lastname'];
+            $user->Lastname = htmlspecialchars($_POST['lastname']);
         }
 
         if (!empty($_POST['email'])) {
-            $user->Email = $_POST['email'];
+            $user->Email = htmlspecialchars($_POST['email']);
         }
 
         //oud passwoord
         if (!empty($_POST['password'])) {
-            $user->Password = $_POST['password'];
+            $user->Password = htmlspecialchars($_POST['password']);
         }
 
         if (!empty($_FILES['image']['name'])) {
