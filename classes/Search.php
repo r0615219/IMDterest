@@ -1,5 +1,5 @@
 <?php
-
+namespace Imdterest;
     class Search
     {
         private $m_sZoekterm;
@@ -41,7 +41,7 @@
             }
             $statement->bindValue(":zoekterm", $this->m_sZoekterm);
             $statement->execute();
-            $searchResult = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $searchResult = $statement->fetchAll(\PDO::FETCH_ASSOC);
             $_SESSION['aantalResults'] = $statement->rowCount();
             $_SESSION['search'] = $searchResult;
             $_SESSION['zoekterm'] = $this->m_sZoekterm;
