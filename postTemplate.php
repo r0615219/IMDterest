@@ -173,11 +173,12 @@
           <div class="modal-body">
               <form action="" method="post" enctype="multipart/form-data">
                   <h2><?php echo $res['title']; ?></h2>
+                  <p><?php echo $res['description'] ?></p>
                     <label for="title">New title:</label>
                     <input type="text" name="edit-title">
                     <label for="description">New description:</label>
                     <input type="text" name="edit-description" >
-                    <button class="btn btn-default"type="submit" name="button">Edit</button>
+                    <button class="btn btn-default"type="submit" name="edit" value="<?php echo $res['id']; ?>">Edit</button>
                   <button class="btn btn-default" data-dismiss="modal">Cancel</button>
 
               </form>
