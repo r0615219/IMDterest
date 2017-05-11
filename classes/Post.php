@@ -230,6 +230,7 @@ class Post
     {
         $conn = Db::getInstance();
         $statement = $conn->prepare("DELETE FROM posts WHERE id = :id");
+        //Werkt ni, id meegeven met functie//
         $statement->bindValue(":id", $this->m_iID);
         $statement->execute();
 
@@ -302,5 +303,21 @@ class Post
         $statement->execute();
         $res=$statement->fetchAll(PDO::FETCH_ASSOC);
         $_SESSION['ProfilePost']=$res;
+      }
+
+      public function changeTitle($title_edit, $post_id){
+        $conn = Db::getInstance();
+        $statement =$conn->prepare("UPDATE `posts` SET `title`=:title WHERE `id` = :post_id");
+        $statement->bindValue(":post_id",$post_id);
+        $statement->bindValue(":title",$title_edit);
+        $statement->execute();
+      }
+
+      public function changeDescription($desc_edit, $post_id){
+        $conn = Db::getInstance();
+        $statement =$conn->prepare("UPDATE `posts` SET `description`=:desc WHERE `id` = :post_id");
+        $statement->bindValue(":post_id",$post_id);
+        $statement->bindValue(":desc",$desc_edit);
+        $statement->execute();
       }
 }
