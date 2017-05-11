@@ -262,7 +262,7 @@ class Post
     {
         //console.log("hey");
         $conn = Db::getInstance();
-        $statement = $conn->prepare("INSERT INTO `boardposts`(`post_id`, `board_id`) VALUES (:post_id,:board_id)");
+        $statement = $conn->prepare("INSERT INTO `board_posts`(`post_id`, `board_id`) VALUES (:post_id,:board_id)");
         $statement->bindvalue(":post_id",$this->m_iID);
         $statement->bindvalue(":board_id",$board_id);
         $res=$statement->execute();
@@ -271,7 +271,7 @@ class Post
 
     public function loadToBoard($board_id){
         $conn = Db::getInstance();
-        $statement =$conn->prepare("SELECT * FROM `boardposts` WHERE `board_id` = (:board_id)");
+        $statement =$conn->prepare("SELECT * FROM `board_posts` WHERE `board_id` = (:board_id)");
         $statement->bindvalue(":board_id",$board_id);
         $statement->execute();
         $res=$statement->fetchAll(PDO::FETCH_ASSOC);
