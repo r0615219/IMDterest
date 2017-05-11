@@ -1,12 +1,17 @@
 <?php
 session_start();
 spl_autoload_register(function ($class) {
+
     include_once("classes/" . $class . ".php");
+
 });
 
 if (!empty($_POST)) {
+
     try {
+
         if (!empty($_POST['email'] && $_POST['password'])) {
+
             $user = new User();
 
             $user->Email = htmlspecialchars($_POST['email']);
@@ -14,16 +19,27 @@ if (!empty($_POST)) {
             $user->Password = htmlspecialchars($_POST['password']);
 
             if ($user->canLogin()) {
+
                 $user->handleLogin();
+
             } else {
+
                 $error = "<p class='alert alert-danger'> Failed to sign in. </p>";
+
             }
+
         } else {
+
             throw new exception("<p class='alert alert-danger'>Failed to sign in. All fields need to be filled in.</p>");
+
         }
+
     } catch (exception $e) {
+
         $error= $e->getMessage();
+
     }
+
 }
 
 
@@ -119,7 +135,9 @@ if (!empty($_POST)) {
     <div class="container">
 
         <?php if (isset($error)) {
+
     echo "<p class='alert alert-danger'>$error</p>";
+
 } ?>
 
         <h1>A creative way to share ideas!</h1>

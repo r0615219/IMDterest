@@ -45,7 +45,7 @@ if ($rows > 0) {
         }
     }
 } else {
-    include_once('../emptyStateMessage.php');
+    include_once ('../emptyStateMessage.php');
 };
 
 echo '<script src="js/likebutton.js"></script>';

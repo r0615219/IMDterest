@@ -50,20 +50,20 @@ $page='boards';
               $boardpins->loadToBoard($board_id);
               $boardpins=$_SESSION['boardposts_id'];
               foreach ($boardpins as $p) {
-                  $post = new post;
-                  $post_id=$p['post_id'];
+                $post = new post;
+                $post_id=$p['post_id'];
                 //echo $post_id;
                 $post->loadPost($post_id);
-                  $posts=$_SESSION['boardposts'];
+                $posts=$_SESSION['boardposts'];
                 //print_r($posts);
                 foreach ($posts as $p) {
-                    //print_r($p);
+                //print_r($p);
                 echo "<div class='boardPost'>";
-                    echo"<p>".$p['title']."<p/>";
-                    echo "<img class='board-image' src=./images/uploads/postImages/".$p['image'].">";
-                    echo "</div>";
-                }
+                echo"<p>".$p['title']."<p/>";
+                echo "<img class='board-image' src=./images/uploads/postImages/".$p['image'].">";
+                echo "</div>";
               }
+            }
 
                ?>
             </div>
@@ -76,10 +76,10 @@ $page='boards';
 
       <?php
       //Board aanmaken
-      if (!empty($_POST['board_name'])) {
-          $board = new Board();
-          $board->subject = $_POST['board_name'];
-          $board->saveBoard();
+      if (!empty($_POST['board_name'])){
+        $board = new Board();
+        $board->subject = $_POST['board_name'];
+        $board->saveBoard();
       }?>
 
 

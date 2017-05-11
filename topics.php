@@ -10,13 +10,13 @@
         header('Location: signin.php');
     }
 
-    if ($_GET['topicsid'] != 0) {
+    if($_GET['topicsid'] != 0){
         $topicInfo = new Topics();
-        $topicInfo->id = $_GET['topicsid'];
+        $topicInfo->id = htmlspecialchars($_GET['topicsid']);
         $topicInfo->getTopic();
 
         $topicPost = new Post();
-        $topicPost->topics_ID = $_GET['topicsid'];
+        $topicPost->topics_ID = htmlspecialchars($_GET['topicsid']);
         $topicPost->getPostsViaTopic();
     } else {
         $allTopics = new Topics();
@@ -54,7 +54,7 @@
 $page = 'topics';
 include_once('header.inc.php'); ?>
 
-<?php if ($_GET['topicsid'] != 0): ?>
+<?php if($_GET['topicsid'] != 0): ?>
 
     <div class="container-search">
 
@@ -64,9 +64,7 @@ include_once('header.inc.php'); ?>
 
     <div class="container">
 
-    <?php if (isset($error)) {
-    echo "<p class='alert alert-danger'>$error</p>";
-} ?>
+    <?php if(isset($error)){ echo "<p class='alert alert-danger'>$error</p>"; } ?>
 
 
     <?php foreach ($_SESSION['posts-topic'] as $res): ?>
@@ -79,7 +77,7 @@ include_once('header.inc.php'); ?>
 
 <?php endif; ?>
 
-<?php if ($_GET['topicsid'] == 0): ?>
+<?php if($_GET['topicsid'] == 0): ?>
 
     <div class="container-search">
 
