@@ -2,11 +2,11 @@
 session_start();
 spl_autoload_register(function ($class) {
     include_once("classes/" . $class . ".php");
-});?>
+}); ?>
 <?php
-$page='boards';
- include_once('header.inc.php');
- ?><!doctype html>
+$page = 'boards';
+include_once('header.inc.php');
+?><!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,67 +28,67 @@ $page='boards';
     <script src="js/userDetails.js"></script>
 
     <title>IMDterest | Boards</title>
-    </head>
-    <body>
+</head>
+<body>
 
-      <div class="boards">
-        <?php //Board binnenhalen
-          $board = new Board();
-          $board->loadBoard();
-          $boards=$_SESSION['boards'];
-          //print_r($_SESSION['boards']);
-      foreach ($boards as $b):?>
+<div class="boards">
+    <?php //Board binnenhalen
+    $board = new Board();
+    $board->loadBoard();
+    $boards = $_SESSION['boards'];
+    //print_r($_SESSION['boards']);
+    foreach ($boards as $b):?>
 
-          <div class="board userPost">
+        <div class="board userPost">
             <div class="board-title">
-            <h2 class="pin_title"> <?php echo($b['subject']); ?></h2> 
+                <h2 class="pin_title"> <?php echo($b['subject']); ?></h2>
             </div>
             <div class="board-pins">
-              <?php
-              $boardpins = new post;
-              $board_id = $b['id'];
-              $boardpins->loadToBoard($board_id);
-              $boardpins=$_SESSION['boardposts_id'];
-              foreach ($boardpins as $p) {
-                  $post = new post;
-                  $post_id=$p['post_id'];
-                //echo $post_id;
-                $post->loadPost($post_id);
-                  $posts=$_SESSION['boardposts'];
-                //print_r($posts);
-                foreach ($posts as $p) {
-                    //print_r($p);
-                echo "<div class='boardPost'>";
-                    echo"<p>".$p['title']."<p/>";
-                    echo "<img class='board-image' src=./images/uploads/postImages/".$p['image'].">";
-                    echo "</div>";
-                }
-              }
+                <?php
+                $boardpins = new Post;
+                $board_id = $b['id'];
+                $boardpins->loadToBoard($board_id);
+                $boardpins = $_SESSION['boardposts_id'];
+                foreach ($boardpins as $p): ?>
+                    <?php $post = new Post;
+                    $post_id = $p['post_id'];
+                    //echo $post_id;
+                    $post->loadPost($post_id);
+                    $posts = $_SESSION['boardposts'];
+                    //print_r($posts);
+                    foreach ($posts as $p): ?>
+                        <div class='boardPost'>
+                            <p><?php echo $p['title'] ?></p>
 
-               ?>
+                            <img class='board-image' src=<?php if (strpos($p['image'], 'http') === false) {
+                                echo 'images/uploads/postImages/';
+                            }
+                            echo $p['image']; ?>>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
             </div>
-          </div>
+        </div>
 
-      <?php endforeach; ?>
-    </div>
-
-
-
-      <?php
-      //Board aanmaken
-      if (!empty($_POST['board_name'])) {
-          $board = new Board();
-          $board->subject = $_POST['board_name'];
-          $board->saveBoard();
-      }?>
+    <?php endforeach; ?>
+</div>
 
 
-      <form id="createboard" class="create-board add" method="post">
-        <label for="subject">Subject of your board?</label>
-        <input type="text" name="board_name" id="board_name">
-        <label for="visibility">Do you want this board to be visible for others?</label>
-        <input type="radio" name="visibility" value="yes" checked> Yes
-        <input type="radio" name="visibility" value="no"> No
-        <button type="submit" class="btn btn-success addBtn" name="boardsubmit">Create a board!</button>
-      </form>
-    </body>
+<?php
+//Board aanmaken
+if (!empty($_POST['board_name'])) {
+    $board = new Board();
+    $board->subject = $_POST['board_name'];
+    $board->saveBoard();
+} ?>
+
+
+<form id="createboard" class="create-board add" method="post">
+    <label for="subject">Subject of your board?</label>
+    <input type="text" name="board_name" id="board_name">
+    <label for="visibility">Do you want this board to be visible for others?</label>
+    <input type="radio" name="visibility" value="yes" checked> Yes
+    <input type="radio" name="visibility" value="no"> No
+    <button type="submit" class="btn btn-success addBtn" name="boardsubmit">Create a board!</button>
+</form>
+</body>
