@@ -18,6 +18,8 @@ $userId = $_GET['userId'];
 $user = new User;
 
 $user->getUserDetails($userId);
+$user->checkFollow($userId);
+$user->countFollow($userId);
 
 if ($user->Follow == true) {
     $follow = "following";

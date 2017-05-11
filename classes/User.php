@@ -284,7 +284,7 @@ class User
         $this->Image = $res["image"];
     }
 
-    public function checkfollow($user)
+    public function checkFollow($user)
     {
 
           // Checken of deze user gevolgd wordt door de gebruiker in sessie
@@ -302,7 +302,7 @@ class User
         }
     }
 
-    public function countfollow($user)
+    public function countFollow($user)
     {
         //tellen hoeveel volgers deze gebruiker heeft
         $conn = Db::getInstance();
