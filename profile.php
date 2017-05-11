@@ -3,19 +3,14 @@
 session_start();
 
 spl_autoload_register(function ($class) {
-
     include_once("classes/" . $class . ".php");
-
 });
 
 //stuur de gebruiker weg als ze niet zijn ingelogd
 
 if (isset($_SESSION['user'])) {
-
 } else {
-
     header('Location: signin.php');
-
 }
 
 $userId = $_GET['userId'];
@@ -24,16 +19,12 @@ $user = new User;
 
 $user->getUserDetails($userId);
 
-if ($user->Follow == TRUE) {
-
+if ($user->Follow == true) {
     $follow = "following";
-
 }
 
-if ($user->Follow == FALSE) {
-
+if ($user->Follow == false) {
     $follow = "follow";
-
 }
 
 $userPosts = new Post();
@@ -136,16 +127,12 @@ include_once('header.inc.php');
 <div class="container" style="margin-top:50px;">
 
     <?php if (isset($error)) {
-
-        echo "<p class='alert alert-danger'>$error</p>";
-
-    } ?>
+    echo "<p class='alert alert-danger'>$error</p>";
+} ?>
 
     <?php if (!empty($success)) {
-
-        echo "<p class='alert alert-success'>$success</p>";
-
-    } ?>
+    echo "<p class='alert alert-success'>$success</p>";
+} ?>
 
 
 

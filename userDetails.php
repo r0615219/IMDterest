@@ -9,15 +9,15 @@ if (isset($_SESSION['user'])) {
     header('Location: signin.php');
 }
 $userId = $_GET['userId'];
-if($userId == $_SESSION['userid']){
+if ($userId == $_SESSION['userid']) {
     header('Location: profile.php');
 }
 $user = new User;
 $user->getUserDetails($userId);
-if($user->Follow==TRUE){
+if ($user->Follow==true) {
     $follow = "following";
 }
-if($user->Follow==FALSE){
+if ($user->Follow==false) {
     $follow = "follow";
 }
 ?><!doctype html>

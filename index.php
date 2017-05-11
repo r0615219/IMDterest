@@ -70,11 +70,11 @@ $page = 'home';
 include_once('header.inc.php'); ?>
 <div class="container">
     <?php if (isset($error)) {
-        echo "<p class='alert alert-danger'>$error</p>";
-    } ?>
+    echo "<p class='alert alert-danger'>$error</p>";
+} ?>
     <?php if (!empty($success)) {
-        echo "<p class='alert alert-success'>$success</p>";
-    } ?>
+    echo "<p class='alert alert-success'>$success</p>";
+} ?>
 
     <?php
 

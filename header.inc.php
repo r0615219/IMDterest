@@ -5,14 +5,12 @@ spl_autoload_register(function ($class) {
 });
 
 try {
-
     if (!empty($_GET['search']) && !empty($_GET['search-select'])) {
         $search = new Search();
         $search->Zoekterm = htmlspecialchars($_GET['search']);
         $search->ZoekSelect = htmlspecialchars($_GET['search-select']);
         $search->zoeken();
     }
-
 } catch (Exception $e) {
     $error = $e->getMessage();
 }

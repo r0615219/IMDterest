@@ -60,11 +60,11 @@
     <div class="container-search">
 
         <?php if (isset($error)) {
-            echo "<p class='alert alert-danger'>$error</p>";
-        } ?>
+        echo "<p class='alert alert-danger'>$error</p>";
+    } ?>
         <?php if (!empty($success)) {
-            echo "<p class='alert alert-success'>$success</p>";
-        } ?>
+        echo "<p class='alert alert-success'>$success</p>";
+    } ?>
 
         <h1>Search Results</h1>
 

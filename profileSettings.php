@@ -93,7 +93,7 @@ include_once('header.inc.php');
     <?php
     if (isset($error)) {
         echo "<p class='alert alert-danger'>" . $error . "</p>";
-    } else  if(!isset($error) && isset($success)){
+    } elseif (!isset($error) && isset($success)) {
         echo "<p class='alert alert-success'>" . $success . "</p>";
     }
     ?><h1 class="media-heading">Account settings</h1>
