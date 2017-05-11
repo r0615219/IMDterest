@@ -210,6 +210,7 @@
                             <div class="panel-heading comment-list">
 
                                 <?php
+                                    include_once("classes/Comment.php");
                                     $comment = new Imdterest\Comment;
                                     $comment->loadComment($res['id']);
                                     $comment = $_SESSION['comments'];
