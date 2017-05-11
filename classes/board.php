@@ -1,4 +1,5 @@
 <?php
+namespace Imdterest;
 
 class Board
 {
@@ -65,7 +66,7 @@ class Board
         $loadboard = $conn->prepare("SELECT * FROM boards WHERE `user_id` = :user_id OR `visibility` = 'yes'");
         $loadboard->bindValue(":user_id", $_SESSION['userid']);
         $loadboard->execute();
-        $res = $loadboard->fetchall(PDO::FETCH_ASSOC);
+        $res = $loadboard->fetchall(\PDO::FETCH_ASSOC);
         $_SESSION['boards'] = $res;
     }
 
@@ -75,7 +76,7 @@ class Board
         $loadboard = $conn->prepare("SELECT * FROM boards WHERE `user_id` = :user_id");
         $loadboard->bindValue(":user_id", $_SESSION['userid']);
         $loadboard->execute();
-        $res = $loadboard->fetchall(PDO::FETCH_ASSOC);
+        $res = $loadboard->fetchall(\PDO::FETCH_ASSOC);
         echo "\nPDO::errorInfo():\n";
         print_r($loadboard->errorInfo());
         $_SESSION['boards'] = $res;
