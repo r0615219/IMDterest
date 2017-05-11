@@ -260,8 +260,6 @@ class Post
 
     public function saveToBoard($board_id)
     {
-        echo 'hey';
-        //console.log("hey");
         $conn = Db::getInstance();
         $statement = $conn->prepare("INSERT INTO `boardposts`(`post_id`, `board_id`) VALUES (:post_id,:board_id)");
         $statement->bindvalue(":post_id",$this->m_iID);
