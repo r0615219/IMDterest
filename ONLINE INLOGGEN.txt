@@ -1,0 +1,7 @@
+ftp connectie maken (geen ftps)
+
+host name: lisawouters.be
+username: lisawo1q
+password: L1saW0ut3rs1109
+
+files plaatsen in imdterest.lisawouters.be

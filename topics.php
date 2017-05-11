@@ -12,11 +12,11 @@
 
     if($_GET['topicsid'] != 0){
         $topicInfo = new Topics();
-        $topicInfo->id = htmlspecialchars($_GET['topicsid']);
+        $topicInfo->id = $_GET['topicsid'];
         $topicInfo->getTopic();
 
         $topicPost = new Post();
-        $topicPost->topics_ID = htmlspecialchars($_GET['topicsid']);
+        $topicPost->topics_ID = $_GET['topicsid'];
         $topicPost->getPostsViaTopic();
     } else {
         $allTopics = new Topics();
