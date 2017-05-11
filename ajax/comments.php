@@ -31,4 +31,3 @@ $c->user_id=$userid;
 $c->saveComment();
 
 echo $c->comment;
-

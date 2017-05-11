@@ -1,6 +1,6 @@
 <?php
 
-header ('Content-Type: application/json');
+header('Content-Type: application/json');
 
 session_start();
 
@@ -8,15 +8,13 @@ include_once('../classes/Db.php');
 
 include_once('../classes/User.php');
 
-try{
-
-    if(!empty($_POST) ){
-
+try {
+    if (!empty($_POST)) {
         $user = new User();
 
         $user->checkFollow($_POST['user_ID']);
 
-        if ($user->Follow==FALSE) { //if follow == false, voeg follow record toe aan tabel follows
+        if ($user->Follow==false) { //if follow == false, voeg follow record toe aan tabel follows
 
             $conn = Db::getInstance();
 
@@ -27,10 +25,9 @@ try{
             $statement->bindValue(":user_ID", $_POST['user_ID']);
 
             $statement->execute();
-
         }
 
-        if ($user->Follow==TRUE) {
+        if ($user->Follow==true) {
 
             //if follow == true, verwijder follow record uit tabel follows
 
@@ -43,13 +40,11 @@ try{
             $statement->bindValue(":user_ID", $_POST['user_ID']);
 
             $statement->execute();
-
         }
 
 
 
         $user->countfollow($_POST['user_ID']);
-
     }
 
     $feedback = [
@@ -61,9 +56,7 @@ try{
         "followers" => $user->Followers
 
     ];
-
 } catch (Exception $e) {
-
     $error = $e->getMessage();
 
     $feedback = [
@@ -73,8 +66,6 @@ try{
         "message" => $error
 
     ];
-
 }
 
 echo json_encode($feedback);
-
