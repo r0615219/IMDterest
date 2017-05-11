@@ -1,8 +1,15 @@
 <?php
 session_start();
-spl_autoload_register(function ($class) {
+/*spl_autoload_register(function ($class) {
     include_once("classes/" . $class . ".php");
-});
+});*/
+include_once("classes/User.php");
+include_once("classes/Db.php");
+include_once("classes/Board.php");
+include_once("classes/Comment.php");
+include_once("classes/Post.php");
+include_once("classes/Search.php");
+include_once("classes/Topics.php");
 //stuur de gebruiker weg als ze niet zijn ingelogd
 if (isset($_SESSION['user'])) {
 } else {
@@ -10,7 +17,7 @@ if (isset($_SESSION['user'])) {
 }
 if (!empty($_POST)) {
     try {
-        $user = new User;
+        $user = new Imdterest\User;
 
         if (!empty($_POST['firstname'])) {
             $user->Firstname = htmlspecialchars($_POST['firstname']);
