@@ -378,7 +378,7 @@ try {
 
 if (isset($_POST['report'])) {
 
-    $post = new Post;
+    $post = new Imdterest\Post;
 
     $post->id = htmlspecialchars($_POST['report']);
 

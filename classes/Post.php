@@ -1,5 +1,5 @@
 <?php
-
+namespace Imdterest;
 
 class Post
 {
@@ -142,7 +142,7 @@ class Post
         $likecheckstatement->bindValue(":userid", $_SESSION['userid']);
         $likecheckstatement->bindValue(":postid", $PostId);
         $likecheckstatement->execute();
-        $likes = $likecheckstatement->fetch(PDO::FETCH_ASSOC);
+        $likes = $likecheckstatement->fetch(\PDO::FETCH_ASSOC);
         if (empty($likes)) {
             return false;
         } else {
@@ -242,7 +242,7 @@ class Post
         $statement = $conn->prepare("SELECT * FROM `posts` WHERE `topics_ID` = (:topicsid)");
         $statement->bindValue(":topicsid", $this->m_iTopicsId);
         $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
         $_SESSION['posts-topic'] = $result;
     }
 
@@ -252,7 +252,7 @@ class Post
         $statement = $conn->prepare("SELECT * FROM `posts` WHERE `user_ID` = (:userid)");
         $statement->bindValue(":userid", $this->m_iUserId);
         $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
         $_SESSION['userPosts'] = $result;
     }
 
@@ -273,7 +273,7 @@ class Post
         $statement =$conn->prepare("SELECT * FROM `boardposts` WHERE `board_id` = (:board_id)");
         $statement->bindvalue(":board_id",$board_id);
         $statement->execute();
-        $res=$statement->fetchAll(PDO::FETCH_ASSOC);
+        $res=$statement->fetchAll(\PDO::FETCH_ASSOC);
         $_SESSION['boardposts_id']=$res;
       }
 
@@ -282,7 +282,7 @@ class Post
         $statement =$conn->prepare("SELECT * FROM `posts` WHERE `id` = (:id)");
         $statement->bindvalue(":id",$post_id);
         $statement->execute();
-        $res=$statement->fetchAll(PDO::FETCH_ASSOC);
+        $res=$statement->fetchAll(\PDO::FETCH_ASSOC);
         $_SESSION['boardposts']=$res;
       }
 
@@ -291,7 +291,7 @@ class Post
         $statement =$conn->prepare("SELECT * FROM `posts` WHERE `user_ID` = :user_id AND `privacy`IN (0,1)");
         $statement->bindvalue(":user_id",$userid);
         $statement->execute();
-        $res=$statement->fetchAll(PDO::FETCH_ASSOC);
+        $res=$statement->fetchAll(\PDO::FETCH_ASSOC);
         $_SESSION['ProfilePost']=$res;
       }
 
@@ -300,7 +300,7 @@ class Post
         $statement =$conn->prepare("SELECT * FROM `posts` WHERE `user_ID` = :user_id AND `privacy`=0");
         $statement->bindvalue(":user_id",$userid);
         $statement->execute();
-        $res=$statement->fetchAll(PDO::FETCH_ASSOC);
+        $res=$statement->fetchAll(\PDO::FETCH_ASSOC);
         $_SESSION['ProfilePost']=$res;
       }
 }
