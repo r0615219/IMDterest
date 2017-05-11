@@ -25,7 +25,11 @@
 
                     <li><a href="#" data-toggle="modal" data-target="#delete<?php echo $res['id']; ?>"
                            type="submit">Delete</a></li>
+
+                    <li><a href="#" data-toggle="modal" data-target="#edit<?php echo $res['id']; ?>"
+                            type="submit">Edit Post</a></li>
                 <?php endif; ?>
+
             </ul>
         </div>
         <h3><?php echo $res['title']; ?></h3>
@@ -156,6 +160,30 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- EDIT post -->
+<div class="modal fade" id="edit<?php echo $res['id']; ?>" role="dialog">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Are you sure you want to delete this post?</h4>
+          </div>
+          <div class="modal-body">
+              <form action="" method="post" enctype="multipart/form-data">
+                  <h2><?php echo $res['title']; ?></h2>
+                    <label for="title">New title:</label>
+                    <input type="text" name="edit-title">
+                    <label for="description">New description:</label>
+                    <input type="text" name="edit-description" >
+                    <button class="btn btn-default"type="submit" name="button">Edit</button>
+                  <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+              </form>
+          </div>
+      </div>
+  </div>
 </div>
 
 <!-- Post Modal -->
