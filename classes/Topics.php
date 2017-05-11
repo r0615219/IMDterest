@@ -53,11 +53,8 @@ class Topics
         $conn = Db::getInstance();
         $statement = $conn->prepare("SELECT * FROM `topics`");
         $statement->execute();
-        $res = $statement->fetchAll(PDO::FETCH_OBJ);
-        foreach ($res as $r){
-            $_SESSION['alltopics'] = $res;
-        }
-
+        $res = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['alltopics'] = $res;
     }
 
     public static function chooseTopics()

@@ -98,12 +98,8 @@ include_once('header.inc.php'); ?>
                         style="background-image: url('images/uploads/postImages/<?php echo $t['image']; ?>');"
                     <?php endif; ?>></div>
 
-                <div class="userPostTopic">
-                    <h3>
-                        <a href="topics.php?topicsid=<?php echo $t['id']; ?>">
-                            <?php echo $t['name']; ?>
-                        </a>
-                    </h3>
+                <div class="userInfo userInfoPreview">
+                    <a href="topics.php?topicsid=<?php echo $t['id']; ?>"><?php echo $t['name']; ?></a>
                 </div>
             </div>
 
