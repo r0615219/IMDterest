@@ -8,7 +8,7 @@ $(document).ready(function(){
         case 'IMDterest | Home':
 
         /// ALLEEN POSTS VAN GEVOLGDE TOPICS DIE PUBLIC ZIJN////
-            query = "select * from posts p inner join users_topics ut on p.topics_ID = ut.topics_ID where ut.users_ID = :userid AND p.privacy = 0 ORDER BY p.id DESC LIMIT :position, :limit";
+            query = "select p.id, p.user_ID, p.title, p.image, p.description, p.link, p.topics_ID, p.time, p.reports, p.location, p.privacy from posts p inner join users_topics ut on p.topics_ID = ut.topics_ID where ut.users_ID = :userid AND p.privacy = 0 ORDER BY p.id DESC LIMIT :position, :limit";
 
             break;
 
@@ -26,7 +26,7 @@ $(document).ready(function(){
         var query;
 
         if($(this).hasClass('loadMoreBtnHome')){
-            query = "select p.id, p.user_ID, p.title, p.image, p.description, p.link, p.topics_ID, p.time, p.reports, p.location from posts p inner join users_topics ut on p.topics_ID = ut.topics_ID where ut.users_ID = :userid ORDER BY p.id DESC LIMIT :position, :limit";
+            query = "select p.id, p.user_ID, p.title, p.image, p.description, p.link, p.topics_ID, p.time, p.reports, p.location, p.privacy from posts p inner join users_topics ut on p.topics_ID = ut.topics_ID where ut.users_ID = :userid ORDER BY p.id DESC LIMIT :position, :limit";
 
         }else if($(this).hasClass('loadMoreBtnExplore')){
             query = "SELECT * FROM posts where user_ID = :userid OR user_ID in (select user from follows where follower = :userid) ORDER BY id DESC LIMIT :position, :limit";

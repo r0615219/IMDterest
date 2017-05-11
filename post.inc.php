@@ -52,7 +52,7 @@ try {
         if ($_POST['imgTopic'] == 'none') { //indien select niet geselecteerd is
             if ($_POST['addTopic'] != '') {//nieuwe topic opslaan
                 $newTopic = new Topics;
-                $newTopic->name = $_POST['addTopic'];
+                $newTopic->name = htmlspecialchars($_POST['addTopic']);
                 $newTopic->image = str_replace(' ', '', strtolower($_FILES['img']['name']));
 
                 if ($newTopic->checkAvailability() == 'match') {
@@ -72,17 +72,19 @@ try {
                 throw new ErrorException("Please select a topic.");
             }
         } else {
-            $topicsId = $_POST['imgTopic'];
+            $topicsId = htmlspecialchars($_POST['imgTopic']);
         }
 
         $post->topics_ID = (int)$topicsId;
         $post->link = "";
-        $post->location = $_POST['location'];
-        $post->privacy = $_POST['privacy'];
+        $post->location = htmlspecialchars($_POST['location']);
+        $post->privacy = htmlspecialchars($_POST['privacy']);
         $post->savePost();
         $user = new User;
         $user->Email = $_SESSION['user'];
         $user->getUserPosts();
+
+        $success = "Post succesfully saved";
     }
 
 } catch (Exception $e) {
@@ -94,7 +96,7 @@ try {
     if (isset($_POST['linkSubmit'])) {
         $post = new Post;
         if ($_POST['url'] != '') {
-            $link = $_POST['url'];
+            $link = htmlspecialchars($_POST['url']);
         } else {
             throw new ErrorException("Please fill in a link.");
         }
@@ -143,7 +145,7 @@ try {
                 //nieuwe topic opslaan
                 if ($_POST['addTopic'] != '') {//nieuwe topic opslaan
                     $newTopic = new Topics;
-                    $newTopic->name = $_POST['addTopic'];
+                    $newTopic->name = htmlspecialchars($_POST['addTopic']);
                     $newTopic->image = $image;
 
                     if ($newTopic->checkAvailability() == 'match') {
@@ -161,7 +163,7 @@ try {
                     throw new ErrorException("Please select a topic.");
                 }
             } else {
-                $topicsId = $_POST['linkTopic'];
+                $topicsId = htmlspecialchars($_POST['linkTopic']);
             }
 
             $post->time = time(); //timestamp
@@ -170,13 +172,15 @@ try {
             $post->link = $link;
             $post->image = $image;
             $post->title = $title;
-            $post->location = $_POST['location'];
-            $post->privacy = $_POST['privacy'];
+            $post->location = htmlspecialchars($_POST['location']);
+            $post->privacy = htmlspecialchars($_POST['privacy']);
             $post->savePost();
 
             $user = new User;
             $user->Email = $_SESSION['user'];
             $user->getUserPosts();
+
+            $success = "Post succesfully saved";
         }
     }
 } catch (Exception $e) {
@@ -185,34 +189,34 @@ try {
 
 if (isset($_POST['report'])) {
     $post = new Post;
-    $post->id = $_POST['report'];
+    $post->id = htmlspecialchars($_POST['report']);
     $post->reportPost();
     $success = "This post is reported as spam";
 }
 
 if (isset($_POST['delete'])) {
     $post = new Post;
-    $post->id = $_POST['delete'];
+    $post->id = htmlspecialchars($_POST['delete']);
     $post->deletePost();
     $success = "Post succesfully deleted";
 }
 
 ////COMMENTS/////
 if (!empty($_POST['comment'])) {
-    $comment = new comment;
-    $comment->comment = $_POST['comment'];
-    $comment->post_id = $_POST['post_id'];
+    $comment = new Comment;
+    $comment->comment = htmlspecialchars($_POST['comment']);
+    $comment->post_id = htmlspecialchars($_POST['post_id']);
     $comment->saveComment();
 }
 
 ////BOARDS////
 if (isset($_POST['pinned_post'])) {
     if (!empty($_POST['selected_board'])) {
-        $post = new Post;
+        $post = new Post();
 //  echo $_POST['selected_board'];
-        $post->id = $_POST['pinned_post'];
-        $board_id = $_POST['selected_board'];
+        $post->id = htmlspecialchars($_POST['pinned_post']);
+        $board_id = htmlspecialchars($_POST['selected_board']);
         $post->saveToBoard($board_id);
-
+        $success = "Post succesfully saved";
     }
 }

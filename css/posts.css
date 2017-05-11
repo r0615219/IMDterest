@@ -171,7 +171,29 @@ a.userPostLinkModal:active{
     padding: 5px;
 }
 
+.comment-line{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-bottom: 1px solid #DDDDDD;
+}
 
+.comment-line img{
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin:10px;
+}
+
+.comment-line p{
+    margin:10px;
+}
+
+#comment-btn{
+    border:0px solid black;
+    background-color: transparent;
+}
 
 
 /* - - - - MODAL POST - - - - - */
