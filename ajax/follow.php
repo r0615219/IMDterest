@@ -12,9 +12,11 @@ try {
     if (!empty($_POST)) {
         $user = new User();
 
+        $user->getUserDetails($_POST['user_ID']);
         $user->checkFollow($_POST['user_ID']);
+        $user->countFollow($_POST['user_ID']);
 
-        if ($user->Follow==false) { //if follow == false, voeg follow record toe aan tabel follows
+        if ($user->Follow == false) { //if follow == false, voeg follow record toe aan tabel follows
 
             $conn = Db::getInstance();
 
@@ -27,7 +29,7 @@ try {
             $statement->execute();
         }
 
-        if ($user->Follow==true) {
+        if ($user->Follow == true) {
 
             //if follow == true, verwijder follow record uit tabel follows
 
@@ -42,9 +44,9 @@ try {
             $statement->execute();
         }
 
-
-
-        $user->countfollow($_POST['user_ID']);
+        $user->getUserDetails($_POST['user_ID']);
+        $user->checkFollow($_POST['user_ID']);
+        $user->countFollow($_POST['user_ID']);
     }
 
     $feedback = [
