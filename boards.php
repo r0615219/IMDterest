@@ -41,7 +41,7 @@ $page='boards';
 
           <div class="board userPost">
             <div class="board-title">
-              <?php print_r($b['subject']); ?>
+            <h2 class="pin_title"> <?php echo($b['subject']); ?></h2> 
             </div>
             <div class="board-pins">
               <?php

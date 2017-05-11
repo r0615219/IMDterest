@@ -1,3 +1,9 @@
+.boards{
+  display: flex;
+  justify-content: space-around;
+
+}
+
 .board{
   display: flex;
   flex-direction: column;
@@ -5,8 +11,8 @@
   max-width: 400px;
   min-height: 200px;
   border-radius: 10px;
-  background-color: lightgrey;
-  border-bottom: 1px solid #ccc;
+  background-color: #e5e5e5;
+  border: 1px solid #ccc;
   margin-top: 50px;
   padding:4px;
   flex-grow: 1;
@@ -14,16 +20,42 @@
   align-self: center;
 }
 
+.pin_title{
+  margin: 5px;
+  margin-bottom: 1px;
+  border-bottom: 2px solid #ccc;
+
+}
+
 .create-board{
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid #ccc;
   padding:10px;
   max-width: 50%;
   margin:0 auto;
-
+  position:fixed;
+  bottom:15px;
+  left:25%;
 }
 
 .board-image{
-  max-height: 150px;
+  height: 100px;
+  width: 100px;
   flex-wrap: nowrap;
+}
+
+
+.boardPost{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: block;
+  width: 120px;
+  margin: 15px;
+  text-align: center;
+  background-color: #f7f7f7;
+  box-shadow: 1px 1px 3px 3px #ccc;
+}
+
+.boarPost,p{
+  border-bottom: 1px solid #ccc;
 }

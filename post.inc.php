@@ -442,8 +442,8 @@ if (isset($_POST['pinned_post'])) {
 
 }
 
-<<<<<<< HEAD
-=======
+
+
 
 ///EDITS////
 if (!empty($_POST['edit-title'])) {
@@ -459,4 +459,3 @@ if (!empty($_POST['edit-description'])) {
   $post_id = $_POST['edit'];
   $post->changeDescription($desc_edit,$post_id);
 }
->>>>>>> 58e0b5a639eb6178108ced1cbb951eeaffa94075
