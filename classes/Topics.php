@@ -1,4 +1,5 @@
 <?php
+namespace Imdterest;
 
 class Topics
 {
@@ -44,7 +45,7 @@ class Topics
         $statement = $conn->prepare("SELECT * FROM `topics` WHERE id = :id");
         $statement->bindValue(":id", $this->m_iID);
         $statement->execute();
-        $res = $statement->fetch(PDO::FETCH_ASSOC);
+        $res = $statement->fetch(\PDO::FETCH_ASSOC);
         $this->m_sName = $res['name'];
         $this->m_sImage = $res['image'];
     }
@@ -56,13 +57,13 @@ class Topics
         $statement->execute();
         $rows = $statement->rowCount();
         if ($rows > 0) {
-            while ($topic = $statement->fetch(PDO::FETCH_OBJ)) {
+            while ($topic = $statement->fetch(\PDO::FETCH_OBJ)) {
                 $_SESSION['chooseTopics'][] = $topic;
             }
         } else {
             $statement = $conn->prepare("SELECT * FROM topics LIMIT 5");
             $statement->execute();
-            while ($topic = $statement->fetch(PDO::FETCH_OBJ)) {
+            while ($topic = $statement->fetch(\PDO::FETCH_OBJ)) {
                 $_SESSION['chooseTopics'][] = $topic;
             }
         }
@@ -74,7 +75,7 @@ class Topics
         $statement = $conn->prepare("SELECT * FROM `topics` WHERE name = :name");
         $statement->bindValue(":name", $this->m_sName);
         $statement->execute();
-        $res = $statement->fetch(PDO::FETCH_ASSOC);
+        $res = $statement->fetch(\PDO::FETCH_ASSOC);
         $this->m_iID = $res['id'];
         $this->m_sImage = $res['image'];
         $this->m_sName = $res['name'];
@@ -105,7 +106,7 @@ class Topics
         $conn = Db::getInstance();
         $statement = $conn->prepare("SELECT * FROM `topics`");
         $statement->execute();
-        while ($res = $statement->fetch(PDO::FETCH_OBJ)) {
+        while ($res = $statement->fetch(\PDO::FETCH_OBJ)) {
             if (strtolower($res->name) == strtolower($this->name)) {
                 $this->id = $res->id;
                 return 'match';

@@ -1,4 +1,6 @@
 <?php
+namespace Imdterest;
+
 class User
 {
     private $m_iId;
@@ -93,7 +95,7 @@ class User
             $checkduplicate = $conn->prepare("SELECT * FROM `users` WHERE (email =:email)");
             $checkduplicate->bindValue(":email", $this->m_sEmail);
             $checkduplicate->execute();
-            $found_duplicates = $checkduplicate->fetch(PDO::FETCH_ASSOC);
+            $found_duplicates = $checkduplicate->fetch(\PDO::FETCH_ASSOC);
             if (!empty($found_duplicates)) {
                 echo "oh no";
                 throw new Exception("email already registered");
@@ -114,7 +116,7 @@ class User
         $statement = $conn->prepare("SELECT * FROM `users` WHERE (email = :email)");
         $statement->bindValue(":email", $this->m_sEmail);
         $statement->execute();
-        $res = $statement->fetch(PDO::FETCH_ASSOC);
+        $res = $statement->fetch(\PDO::FETCH_ASSOC);
         $password = $res["password"];
         if (password_verify($this->m_sPassword, $password)) {
             return true;
@@ -129,7 +131,7 @@ class User
             $statement = $conn->prepare("SELECT * FROM `users` WHERE (email = :email)");
             $statement->bindValue(":email", $this->m_sEmail);
             $statement->execute();
-            $res = $statement->fetch(PDO::FETCH_ASSOC);
+            $res = $statement->fetch(\PDO::FETCH_ASSOC);
             $firstname = $res["firstname"];
             $lastname = $res["lastname"];
             $email = $res["email"];
@@ -160,7 +162,7 @@ class User
         $rows = $statement->rowCount();
         //als de gebruiker topics heeft deze als Topics object aanmaken -> afbeelding en naam van topic ophalen
         if ($rows > 0) {
-            while ($topic = $statement->fetch(PDO::FETCH_OBJ)) {
+            while ($topic = $statement->fetch(\PDO::FETCH_OBJ)) {
                 $_SESSION['topics'][] = $topic;
             }
         } else {
@@ -180,7 +182,7 @@ class User
         //als de gebruiker topics heeft deze als Topics object aanmaken -> afbeelding en naam van topic ophalen
         if ($rows > 0) {
             $i = 1;
-            while ($post = $statement->fetch(PDO::FETCH_OBJ)) {
+            while ($post = $statement->fetch(\PDO::FETCH_OBJ)) {
                 $_SESSION['posts'][] = $post;
                 $i++;
             }
@@ -191,7 +193,7 @@ class User
         try {
             //alles dat in de velden staat wordt heringesteld in de database
             $conn = Db::getInstance();
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             $statement = $conn->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, password = :password, image = :image WHERE email = :oldemail");
             $statement->bindValue(":firstname", $this->m_sFirstname);
             $statement->bindValue(":lastname", $this->m_sLastname);
@@ -212,7 +214,7 @@ class User
                     $stmt1 = $conn->prepare("SELECT * FROM `users` WHERE (email = :oldemail)");
                     $stmt1->bindValue(":oldemail", $_SESSION['user']);
                     $stmt1->execute();
-                    $res = $stmt1->fetch(PDO::FETCH_ASSOC);
+                    $res = $stmt1->fetch(\PDO::FETCH_ASSOC);
                     $control = $res["password"];
                     if (password_verify($this->m_sPassword, $control)) {
                         //nieuw passwoord in database zetten
@@ -230,7 +232,7 @@ class User
                 $stmt2 = $conn->prepare("SELECT * FROM `users` WHERE (email = :oldemail)");
                 $stmt2->bindValue(":oldemail", $_SESSION['user']);
                 $stmt2->execute();
-                $res = $stmt2->fetch(PDO::FETCH_ASSOC);
+                $res = $stmt2->fetch(\PDO::FETCH_ASSOC);
                 $password = $res["password"];
                 $statement->bindValue(":password", $password);
                 //als de gebruiker het onvolledig heeft ingevuld -> een foutmelding
@@ -254,7 +256,7 @@ class User
             $_SESSION['lastname'] = $this->m_sLastname;
             $_SESSION['image'] = $this->m_sImage;
             //echo $statement->rowCount() . " records UPDATED successfully";
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
         $conn = null;
@@ -265,7 +267,7 @@ class User
         $statement = $conn->prepare("SELECT firstname, lastname, image FROM users WHERE id = :user_ID ");
         $statement->bindValue(":user_ID", $this->m_iId);
         $statement->execute();
-        $res = $statement->fetch(PDO::FETCH_ASSOC);
+        $res = $statement->fetch(\PDO::FETCH_ASSOC);
         $this->Firstname = $res["firstname"];
         $this->Lastname = $res["lastname"];
         $this->Image = $res["image"];
@@ -278,7 +280,7 @@ class User
         $statement = $conn->prepare("SELECT firstname, lastname, image FROM users WHERE id = :user_ID ");
         $statement->bindValue(":user_ID", $user);
         $statement->execute();
-        $res = $statement->fetch(PDO::FETCH_ASSOC);
+        $res = $statement->fetch(\PDO::FETCH_ASSOC);
         $this->Firstname = $res["firstname"];
         $this->Lastname = $res["lastname"];
         $this->Image = $res["image"];
@@ -293,7 +295,7 @@ class User
         $statement2->bindValue(":usersession", $_SESSION['userid']);
         $statement2->bindValue(":user_ID", $user);
         $statement2->execute();
-        $res2 = $statement2->fetchAll(PDO::FETCH_ASSOC);
+        $res2 = $statement2->fetchAll(\PDO::FETCH_ASSOC);
         $rows = count($res2);
         if ($rows > 0) {
             $this->Follow = true;
@@ -309,7 +311,7 @@ class User
         $statement3 = $conn->prepare("SELECT * FROM follows WHERE user = :user_ID");
         $statement3->bindValue(":user_ID", $user);
         $statement3->execute();
-        $res3 = $statement3->fetchAll(PDO::FETCH_ASSOC);
+        $res3 = $statement3->fetchAll(\PDO::FETCH_ASSOC);
         $rows2 = count($res3);
         $this->Followers = $rows2;
     }
@@ -322,7 +324,7 @@ class User
         $statement = $conn->prepare("SELECT * FROM posts WHERE user_ID = :userid;");
         $statement->bindValue(":userid", $_SESSION['userid']);
         $statement->execute();
-        $res = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $res = $statement->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($res as $key => $post) {
             unlink("images/uploads/postImages/" . $post["image"]);
         };

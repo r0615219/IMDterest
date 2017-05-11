@@ -6,7 +6,7 @@ spl_autoload_register(function ($class) {
 $required = array('email', 'firstname', 'lastname', 'password');
 try {
     if (!empty($_POST)) {
-        $user = new User();
+        $user = new Imdterest\User();
         $user->Email = htmlspecialchars($_POST['email']);
         $user->Firstname = htmlspecialchars($_POST['firstname']);
         $user->Lastname = htmlspecialchars($_POST['lastname']);
