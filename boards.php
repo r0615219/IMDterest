@@ -1,9 +1,17 @@
 <?php
 session_start();
-spl_autoload_register(function ($class) {
+/*spl_autoload_register(function ($class) {
     include_once("classes/" . $class . ".php");
-});?>
-<?php
+});?>*/
+
+include_once("classes/User.php");
+include_once("classes/Db.php");
+include_once("classes/Board.php");
+include_once("classes/Comment.php");
+include_once("classes/Post.php");
+include_once("classes/Search.php");
+include_once("classes/Topics.php");
+
 $page='boards';
  include_once('header.inc.php');
  ?><!doctype html>
@@ -33,7 +41,7 @@ $page='boards';
 
       <div class="boards">
         <?php //Board binnenhalen
-          $board = new Board();
+          $board = new Imdterest\Board;
           $board->loadBoard();
           $boards=$_SESSION['boards'];
           //print_r($_SESSION['boards']);
@@ -45,12 +53,12 @@ $page='boards';
             </div>
             <div class="board-pins">
               <?php
-              $boardpins = new post;
+              $boardpins = new Imdterest\Post;
               $board_id = $b['id'];
               $boardpins->loadToBoard($board_id);
               $boardpins=$_SESSION['boardposts_id'];
               foreach ($boardpins as $p) {
-                  $post = new post;
+                  $post = new Imdterest\Post;
                   $post_id=$p['post_id'];
                 //echo $post_id;
                 $post->loadPost($post_id);
@@ -77,7 +85,7 @@ $page='boards';
       <?php
       //Board aanmaken
       if (!empty($_POST['board_name'])) {
-          $board = new Board();
+          $board = new Imdterest\Board();
           $board->subject = $_POST['board_name'];
           $board->saveBoard();
       }?>
