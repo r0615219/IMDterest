@@ -7,7 +7,7 @@
     <div class="userPostHover">
                 <a href="topics.php?topicsid=<?php echo $res['topics_ID']; ?>"
                    class="btn btn-primary topicDiv"><?php
-                    $topic = new Topics();
+                    $topic = new Imdterest\Topics();
                     $topic->id = $res['topics_ID'];
                     $topic->getTopic();
                     echo $topic->name; ?></a>
@@ -35,7 +35,7 @@
     <div class="userInfo userInfoPreview">
         <a href="#">
             <img class="media-object profile-pic" src="images/uploads/userImages/<?php
-            $user = new User;
+            $user = new Imdterest\User;
             $user->id = $res['user_ID'];
             $user->getUserInfo();
             echo $user->Image; ?>" alt="post">
@@ -48,7 +48,7 @@
             <div class="likeBtn">
                 <a href="#">
                     <?php
-                    $post = new Post;
+                    $post = new Imdterest\Post;
                     $postid = $res['id'];
                     $liked = $post->checkLiked($postid);
                     if ($liked == false) {
@@ -89,7 +89,7 @@
                     </button>
                         <select name="selected_board" id=selected_board>
                             <option selected>Select a board</option>
-                            <?php $board = new Board;
+                            <?php $board = new imdterest\Board;
                             $board->loadMyBoard();
                             $boards = $_SESSION['boards'];
                             foreach ($boards as $b) {
@@ -180,7 +180,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading panel-description-flex">
                             <p><?php echo $res['description']; ?>
-                                <?php $post = new Post; ?>
+                                <?php $post = new Imdterest\Post; ?>
                             </p>
                             <h4>
                                 <small><?php echo $post->uploadedWhen($res['time']); ?></small>
@@ -188,7 +188,7 @@
                             </h4>
                         </div>
                         <div class="panel-body">
-                            <?php $user = new User;
+                            <?php $user = new Imdterest\User;
                             $user->id = $res['user_ID']; ?>
                             <div class="userInfo">
                                 <a href="profile.php?userId=<?php echo $user->id ?>">
@@ -210,14 +210,14 @@
                             <div class="panel-heading comment-list">
 
                                 <?php
-                                    $comment = new Comment();
+                                    $comment = new Imdterest\Comment;
                                     $comment->loadComment($res['id']);
                                     $comment = $_SESSION['comments'];
                                 ?>
                                 <?php foreach ($comment as $c): ?>
 
                                     <?php
-                                        $commentUser = new User();
+                                        $commentUser = new Imdterest\User;
                                         $commentUser->id = $c['user_id'];
                                         $commentUser->getUserInfo();
                                         $userFirstname = $commentUser->Firstname;
