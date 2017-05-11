@@ -163,7 +163,7 @@ class User
             while ($topic = $statement->fetch(PDO::FETCH_OBJ)) {
                 $_SESSION['topics'][] = $topic;
             }
-        } else{
+        } else {
             Topics::chooseTopics();
         }
     }
@@ -206,7 +206,7 @@ class User
                 } else {
                     //check length of password
                     if (strlen($_POST['newPassword']) < 6) {
-                            throw new Exception('Your new password is too short!');
+                        throw new Exception('Your new password is too short!');
                     }
                     //checken of het oude paswoord overeen komt met het huidige
                     $stmt1 = $conn->prepare("SELECT * FROM `users` WHERE (email = :oldemail)");
@@ -295,14 +295,15 @@ class User
         $statement2->execute();
         $res2 = $statement2->fetchAll(PDO::FETCH_ASSOC);
         $rows = count($res2);
-        if($rows > 0){
-            $this->Follow = TRUE;
+        if ($rows > 0) {
+            $this->Follow = true;
         } else {
-            $this->Follow = FALSE;
+            $this->Follow = false;
         }
     }
 
-  public function countfollow($user){
+    public function countfollow($user)
+    {
         //tellen hoeveel volgers deze gebruiker heeft
         $conn = Db::getInstance();
         $statement3 = $conn->prepare("SELECT * FROM follows WHERE user = :user_ID");
@@ -313,7 +314,8 @@ class User
         $this->Followers = $rows2;
     }
 
-    public function deleteUser(){
+    public function deleteUser()
+    {
         $conn = Db::getInstance();
 
         //unlink images from posts from user in session
@@ -321,7 +323,7 @@ class User
         $statement->bindValue(":userid", $_SESSION['userid']);
         $statement->execute();
         $res = $statement->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($res as $key => $post){
+        foreach ($res as $key => $post) {
             unlink("images/uploads/postImages/" . $post["image"]);
         };
 

@@ -80,5 +80,4 @@ class Board
         print_r($loadboard->errorInfo());
         $_SESSION['boards'] = $res;
     }
-
 }
