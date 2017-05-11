@@ -23,12 +23,12 @@ try {
     if (isset($_POST['selectedTopics'])) {
         $selectedTopics = $_POST['selectedTopics'];
         for ($i = 0; $i < count($selectedTopics); $i++) {
-            $usertopic = new Topics();
+            $usertopic = new Imdterest\Topics();
             $usertopic->id = $selectedTopics[$i];
             $usertopic->saveUserTopic();
         }
         //6. alle topics van user in session steken
-        $user = new User;
+        $user = new Imdterest\User;
         $user->Email = $_SESSION['user'];
         $user->getUserTopics();
     }
