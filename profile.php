@@ -8,7 +8,7 @@ if (isset($_SESSION['user'])) {
 } else {
     header('Location: signin.php');
 }
-$userId = $_GET['userId'];
+$userId = htmlspecialchars($_GET['userId']);
 $user = new User;
 $user->getUserDetails($userId);
 $user->checkfollow($userId);
