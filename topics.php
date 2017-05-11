@@ -19,8 +19,7 @@
         $topicPost->topics_ID = $_GET['topicsid'];
         $topicPost->getPostsViaTopic();
     } else {
-        $allTopics = new Topics();
-        $allTopics->getAllTopics();
+        Topics::getAllTopics();
     }
 
 ?><!doctype html>
