@@ -448,14 +448,14 @@ if (isset($_POST['pinned_post'])) {
 ///EDITS////
 if (!empty($_POST['edit-title'])) {
   $post = new Post();
-  $title_edit = $_POST['edit-title'];
-  $post_id = $_POST['edit'];
+  $title_edit = htmlspecialchars($_POST['edit-title']);
+  $post_id = htmlspecialchars($_POST['edit']);
   $post->changeTitle($title_edit,$post_id);
 }
 
 if (!empty($_POST['edit-description'])) {
   $post = new Post();
-  $desc_edit = $_POST['edit-description'];
-  $post_id = $_POST['edit'];
+  $desc_edit = htmlspecialchars($_POST['edit-description']);
+  $post_id = htmlspecialchars($_POST['edit']);
   $post->changeDescription($desc_edit,$post_id);
 }
