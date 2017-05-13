@@ -30,7 +30,7 @@ try {
 
 
 
-        $post = new Post;
+        $post = new Imdterest\Post;
 
         $post->title = $title;
 
@@ -104,7 +104,7 @@ try {
 
             if ($_POST['addTopic'] != '') {//nieuwe topic opslaan
 
-                $newTopic = new Topics;
+                $newTopic = new Imdterest\Topics;
 
                 $newTopic->name = htmlspecialchars($_POST['addTopic']);
 
@@ -162,7 +162,7 @@ try {
 
         $post->savePost();
 
-        $user = new User;
+        $user = new Imdterest\User;
 
         $user->Email = $_SESSION['user'];
 
@@ -190,7 +190,7 @@ try {
 
     if (isset($_POST['linkSubmit'])) {
 
-        $post = new Post;
+        $post = new Imdterest\Post;
 
         if ($_POST['url'] != '') {
 
@@ -216,7 +216,7 @@ try {
 
         $html = file_get_contents($link); //get the html returned from the following url
 
-        $doc = new DOMDocument();
+        $doc = new \DOMDocument();
 
         libxml_use_internal_errors(TRUE); //disable libxml errors
 
@@ -228,7 +228,7 @@ try {
 
             libxml_clear_errors(); //remove errors for yucky html
 
-            $xpath = new DOMXPath($doc);
+            $xpath = new \DOMXPath($doc);
 
 
 
@@ -290,7 +290,7 @@ try {
 
                 if ($_POST['addTopic'] != '') {//nieuwe topic opslaan
 
-                    $newTopic = new Topics;
+                    $newTopic = new Imdterest\Topics;
 
                     $newTopic->name = htmlspecialchars($_POST['addTopic']);
 
@@ -354,7 +354,7 @@ try {
 
 
 
-            $user = new User;
+            $user = new Imdterest\User;
 
             $user->Email = $_SESSION['user'];
 
@@ -378,7 +378,7 @@ try {
 
 if (isset($_POST['report'])) {
 
-    $post = new Post;
+    $post = new Imdterest\Post;
 
     $post->id = htmlspecialchars($_POST['report']);
 
@@ -392,7 +392,7 @@ if (isset($_POST['report'])) {
 
 if (isset($_POST['delete'])) {
 
-    $post = new Post;
+    $post = new Imdterest\Post;
 
     $post->id = htmlspecialchars($_POST['delete']);
 
@@ -408,7 +408,7 @@ if (isset($_POST['delete'])) {
 
 if (!empty($_POST['comment'])) {
 
-    $comment = new Comment;
+    $comment = new Imdterest\Comment;
 
     $comment->comment = htmlspecialchars($_POST['comment']);
 
@@ -426,7 +426,7 @@ if (isset($_POST['pinned_post'])) {
 
     if (!empty($_POST['selected_board'])) {
 
-        $post = new Post();
+        $post = new Imdterest\Post();
 
 //  echo $_POST['selected_board'];
 
@@ -447,14 +447,14 @@ if (isset($_POST['pinned_post'])) {
 
 ///EDITS////
 if (!empty($_POST['edit-title'])) {
-  $post = new Post();
+  $post = new Imdterest\Post();
   $title_edit = htmlspecialchars($_POST['edit-title']);
   $post_id = htmlspecialchars($_POST['edit']);
   $post->changeTitle($title_edit,$post_id);
 }
 
 if (!empty($_POST['edit-description'])) {
-  $post = new Post();
+  $post = new Imdterest\Post();
   $desc_edit = htmlspecialchars($_POST['edit-description']);
   $post_id = htmlspecialchars($_POST['edit']);
   $post->changeDescription($desc_edit,$post_id);

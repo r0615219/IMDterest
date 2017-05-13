@@ -1,4 +1,6 @@
 <?php
+namespace Imdterest;
+
 class Comment
 {
     private $m_iID;
@@ -72,7 +74,7 @@ class Comment
             $statement = $conn->prepare("SELECT * FROM comments where post_id = :post_id");
             $statement->bindValue(":post_id", $id);
             $statement->execute();
-            $comments = $statement->fetchall(PDO::FETCH_ASSOC);
+            $comments = $statement->fetchall(\PDO::FETCH_ASSOC);
             $_SESSION['comments']=$comments;
         } catch (PDOException $e) {
             throw new Exception('Oops, something went wrong.');

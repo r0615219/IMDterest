@@ -1,9 +1,17 @@
 <?php
 
 session_start();
-spl_autoload_register(function ($class) {
+/*spl_autoload_register(function ($class) {
     include_once("../classes/" . $class . ".php");
-});
+});*/
+
+include_once("../classes/User.php");
+include_once("../classes/Db.php");
+include_once("../classes/Board.php");
+include_once("../classes/Comment.php");
+include_once("../classes/Post.php");
+include_once("../classes/Search.php");
+include_once("../classes/Topics.php");
 
 //include_once('../emptyStates.php');
 
@@ -22,10 +30,10 @@ $position = (($page_number) * 20);
 $limit = 20;
 
 //fetch records using page position and item per page.
-$conn = Db::getInstance();
+$conn = Imdterest\Db::getInstance();
 $statement = $conn->prepare($query);
-$statement->bindValue(":position", $position, PDO::PARAM_INT);
-$statement->bindValue(":limit", $limit, PDO::PARAM_INT);
+$statement->bindValue(":position", $position, \PDO::PARAM_INT);
+$statement->bindValue(":limit", $limit, \PDO::PARAM_INT);
 $statement->bindValue(":userid", $_SESSION['userid']);
 $statement->execute(); //Execute prepared Query
 
@@ -37,7 +45,7 @@ print_r('LIMIT: ' . $limit);
 print_r('USER ID: ' . $_SESSION['userid']);
 print_r('GEVONDEN RIJEN: ' . $rows);*/
 if ($rows > 0) {
-    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
     foreach ($result as $res) {
         if ($res['reports'] < 3) {
             //fetch values

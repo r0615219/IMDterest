@@ -14,7 +14,7 @@ $userid=$_SESSION['userid'];
 
 
 
-$c = new Comment;
+$c = new Imdterest\Comment;
 
 $c->post_id=$postid;
 
