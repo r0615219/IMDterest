@@ -10,7 +10,7 @@ include_once('../classes/User.php');
 
 try {
     if (!empty($_POST)) {
-        $user = new User();
+        $user = new Imdterest\User();
 
         $user->getUserDetails($_POST['user_ID']);
         $user->checkFollow($_POST['user_ID']);
@@ -18,7 +18,7 @@ try {
 
         if ($user->Follow == false) { //if follow == false, voeg follow record toe aan tabel follows
 
-            $conn = Db::getInstance();
+            $conn = Imdterest\Db::getInstance();
 
             $statement = $conn->prepare("INSERT INTO `follows`(`follower`, `user`) VALUES(:usersession,:user_ID)");
 
@@ -33,7 +33,7 @@ try {
 
             //if follow == true, verwijder follow record uit tabel follows
 
-            $conn = Db::getInstance();
+            $conn = Imdterest\Db::getInstance();
 
             $statement = $conn->prepare("DELETE FROM `follows` WHERE follower = :usersession AND user = :user_ID");
 
