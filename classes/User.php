@@ -1,4 +1,6 @@
 <?php
+namespace Imdterest;
+
 class User
 {
     private $m_iId;
@@ -84,7 +86,7 @@ class User
                 'cost' => 12,
             ];
             if (strlen($this->m_sPassword) < 6) {
-                throw new Exception('This password is too short!');
+                throw new \Exception('This password is too short!');
             }
             $this->m_sPassword = password_hash($this->m_sPassword, PASSWORD_DEFAULT, $options);
             $conn = Db::getInstance();
@@ -93,10 +95,9 @@ class User
             $checkduplicate = $conn->prepare("SELECT * FROM `users` WHERE (email =:email)");
             $checkduplicate->bindValue(":email", $this->m_sEmail);
             $checkduplicate->execute();
-            $found_duplicates = $checkduplicate->fetch(PDO::FETCH_ASSOC);
+            $found_duplicates = $checkduplicate->fetch(\PDO::FETCH_ASSOC);
             if (!empty($found_duplicates)) {
-                echo "oh no";
-                throw new Exception("email already registered");
+                throw new \Exception("email already registered");
             }
             $statement->bindValue(":firstname", $this->m_sFirstname);
             $statement->bindValue(":lastname", $this->m_sLastname);
@@ -105,7 +106,7 @@ class User
             $result = $statement->execute();
             return $result;
         } else {
-            throw new Exception('There are empty fields.');
+            throw new \Exception('There are empty fields.');
         }
     }
     public function canLogin()
@@ -114,12 +115,12 @@ class User
         $statement = $conn->prepare("SELECT * FROM `users` WHERE (email = :email)");
         $statement->bindValue(":email", $this->m_sEmail);
         $statement->execute();
-        $res = $statement->fetch(PDO::FETCH_ASSOC);
+        $res = $statement->fetch(\PDO::FETCH_ASSOC);
         $password = $res["password"];
         if (password_verify($this->m_sPassword, $password)) {
             return true;
         } else {
-            throw new exception("Failed to sign in. Wrong password or username.");
+            throw new \Exception("Failed to sign in. Wrong password or username.");
         }
     }
     public function handleLogin()
@@ -129,7 +130,7 @@ class User
             $statement = $conn->prepare("SELECT * FROM `users` WHERE (email = :email)");
             $statement->bindValue(":email", $this->m_sEmail);
             $statement->execute();
-            $res = $statement->fetch(PDO::FETCH_ASSOC);
+            $res = $statement->fetch(\PDO::FETCH_ASSOC);
             $firstname = $res["firstname"];
             $lastname = $res["lastname"];
             $email = $res["email"];
@@ -160,7 +161,7 @@ class User
         $rows = $statement->rowCount();
         //als de gebruiker topics heeft deze als Topics object aanmaken -> afbeelding en naam van topic ophalen
         if ($rows > 0) {
-            while ($topic = $statement->fetch(PDO::FETCH_OBJ)) {
+            while ($topic = $statement->fetch(\PDO::FETCH_OBJ)) {
                 $_SESSION['topics'][] = $topic;
             }
         } else {
@@ -180,7 +181,7 @@ class User
         //als de gebruiker topics heeft deze als Topics object aanmaken -> afbeelding en naam van topic ophalen
         if ($rows > 0) {
             $i = 1;
-            while ($post = $statement->fetch(PDO::FETCH_OBJ)) {
+            while ($post = $statement->fetch(\PDO::FETCH_OBJ)) {
                 $_SESSION['posts'][] = $post;
                 $i++;
             }
@@ -191,7 +192,7 @@ class User
         try {
             //alles dat in de velden staat wordt heringesteld in de database
             $conn = Db::getInstance();
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             $statement = $conn->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, password = :password, image = :image WHERE email = :oldemail");
             $statement->bindValue(":firstname", $this->m_sFirstname);
             $statement->bindValue(":lastname", $this->m_sLastname);
@@ -200,19 +201,19 @@ class User
             if (!empty($this->m_sPassword) && !empty($_POST['newPassword']) && !empty($_POST['controlPassword'])) {
                 // hier zetten we de input als een nieuw gehast wachtwoord in de database
                 if ($_POST['newPassword'] == $this->m_sPassword) {
-                    throw new exception("Unable to change the password. Your new password can't be the same as your current one.");
+                    throw new \Exception("Unable to change the password. Your new password can't be the same as your current one.");
                 } elseif ($_POST['newPassword'] != $_POST['controlPassword']) {
-                    throw new exception("Unable to change the password. Your passwords don't match.");
+                    throw new \Exception("Unable to change the password. Your passwords don't match.");
                 } else {
                     //check length of password
                     if (strlen($_POST['newPassword']) < 6) {
-                        throw new Exception('Your new password is too short!');
+                        throw new \Exception('Your new password is too short!');
                     }
                     //checken of het oude paswoord overeen komt met het huidige
                     $stmt1 = $conn->prepare("SELECT * FROM `users` WHERE (email = :oldemail)");
                     $stmt1->bindValue(":oldemail", $_SESSION['user']);
                     $stmt1->execute();
-                    $res = $stmt1->fetch(PDO::FETCH_ASSOC);
+                    $res = $stmt1->fetch(\PDO::FETCH_ASSOC);
                     $control = $res["password"];
                     if (password_verify($this->m_sPassword, $control)) {
                         //nieuw passwoord in database zetten
@@ -222,7 +223,7 @@ class User
                         $this->m_sPassword = password_hash($_POST['newPassword'], PASSWORD_DEFAULT, $options);
                         $statement->bindValue(":password", $this->m_sPassword);
                     } else {
-                        throw new exception("Unable to change the password. Your current password was wrong.");
+                        throw new \Exception("Unable to change the password. Your current password was wrong.");
                     }
                 }
             } else {
@@ -230,12 +231,12 @@ class User
                 $stmt2 = $conn->prepare("SELECT * FROM `users` WHERE (email = :oldemail)");
                 $stmt2->bindValue(":oldemail", $_SESSION['user']);
                 $stmt2->execute();
-                $res = $stmt2->fetch(PDO::FETCH_ASSOC);
+                $res = $stmt2->fetch(\PDO::FETCH_ASSOC);
                 $password = $res["password"];
                 $statement->bindValue(":password", $password);
                 //als de gebruiker het onvolledig heeft ingevuld -> een foutmelding
                 if (!empty($this->m_sPassword) || !empty($_POST['newPassword']) || !empty($_POST['controlPassword'])) {
-                    throw new exception("Unable to change the password. You didn't fill in all required fields.");
+                    throw new \Exception("Unable to change the password. You didn't fill in all required fields.");
                 }
             }
             //IMAGE:
@@ -265,7 +266,7 @@ class User
         $statement = $conn->prepare("SELECT firstname, lastname, image FROM users WHERE id = :user_ID ");
         $statement->bindValue(":user_ID", $this->m_iId);
         $statement->execute();
-        $res = $statement->fetch(PDO::FETCH_ASSOC);
+        $res = $statement->fetch(\PDO::FETCH_ASSOC);
         $this->Firstname = $res["firstname"];
         $this->Lastname = $res["lastname"];
         $this->Image = $res["image"];
@@ -278,7 +279,7 @@ class User
         $statement = $conn->prepare("SELECT firstname, lastname, image FROM users WHERE id = :user_ID ");
         $statement->bindValue(":user_ID", $user);
         $statement->execute();
-        $res = $statement->fetch(PDO::FETCH_ASSOC);
+        $res = $statement->fetch(\PDO::FETCH_ASSOC);
         $this->Firstname = $res["firstname"];
         $this->Lastname = $res["lastname"];
         $this->Image = $res["image"];
@@ -293,7 +294,7 @@ class User
         $statement2->bindValue(":usersession", $_SESSION['userid']);
         $statement2->bindValue(":user_ID", $user);
         $statement2->execute();
-        $res2 = $statement2->fetchAll(PDO::FETCH_ASSOC);
+        $res2 = $statement2->fetchAll(\PDO::FETCH_ASSOC);
         $rows = count($res2);
         if ($rows > 0) {
             $this->Follow = true;
@@ -309,7 +310,7 @@ class User
         $statement3 = $conn->prepare("SELECT * FROM follows WHERE user = :user_ID");
         $statement3->bindValue(":user_ID", $user);
         $statement3->execute();
-        $res3 = $statement3->fetchAll(PDO::FETCH_ASSOC);
+        $res3 = $statement3->fetchAll(\PDO::FETCH_ASSOC);
         $rows2 = count($res3);
         $this->Followers = $rows2;
     }
@@ -322,7 +323,7 @@ class User
         $statement = $conn->prepare("SELECT * FROM posts WHERE user_ID = :userid;");
         $statement->bindValue(":userid", $_SESSION['userid']);
         $statement->execute();
-        $res = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $res = $statement->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($res as $key => $post) {
             unlink("images/uploads/postImages/" . $post["image"]);
         };
