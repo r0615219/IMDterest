@@ -20,7 +20,7 @@
     }
 
     if ($_GET['topicsid'] != 0) {
-        $topicInfo = new Imdterest\Topics();
+        $topicInfo = new Imdterest\Topics;
         $topicInfo->id = $_GET['topicsid'];
         $topicInfo->getTopic();
 
@@ -28,7 +28,7 @@
         $topicPost->topics_ID = $_GET['topicsid'];
         $topicPost->getPostsViaTopic();
     } else {
-        Topics::getAllTopics();
+        Imdterest\Topics::getAllTopics();
     }
 
 ?><!doctype html>
@@ -104,7 +104,7 @@ include_once('header.inc.php'); ?>
                     <?php if (substr($t['image'], 0, 4) === "http"): ?>
                         style="background-image: url(<?php echo $t['image']; ?>);"
                     <?php else: ?>
-                        style="background-image: url('images/uploads/postImages/<?php echo $t['image']; ?>');"
+                        style="background-image: url('images/topics/<?php echo $t['image']; ?>');"
                     <?php endif; ?>></div>
 
                 <div class="userInfo userInfoPreview">

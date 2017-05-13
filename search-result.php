@@ -118,7 +118,12 @@
             <?php foreach ($_SESSION['search'] as $searchItem): ?>
 
                 <div class="userPost">
-                    <div class="userPostImg" style="background-image: url('images/topics/<?php echo $searchItem['image']; ?>');"></div>
+                    <div class="userPostImg"
+                        <?php if (substr($searchItem['image'], 0, 4) === "http"): ?>
+                            style="background-image: url('<?php echo $searchItem['image']; ?>');"
+                        <?php else: ?>
+                            style="background-image: url('images/topics/<?php echo $searchItem['image']; ?>');"
+                        <?php endif; ?>></div>
 
                     <div class="userInfo userInfoPreview">
                         <a href="topics.php?topicsid=<?php echo $searchItem['id']; ?>"><?php echo $searchItem['name']; ?></a>
