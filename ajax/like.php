@@ -10,12 +10,12 @@ include_once("../classes/Db.php");
   $liked;
 if (($_POST['action']=='toggle')) {
     //HARTJE UPDATEN
-  $conn = Db::getInstance();
+  $conn = Imdterest\Db::getInstance();
     $likecheckstatement = $conn->prepare("SELECT * FROM `likes` WHERE UserId = :userid AND PostId = :postid");
     $likecheckstatement->bindValue(":userid", $userid);
     $likecheckstatement->bindValue(":postid", $postid);
     $likecheckstatement->execute();
-    $likes = $likecheckstatement->fetch(PDO::FETCH_OBJ);
+    $likes = $likecheckstatement->fetch(\PDO::FETCH_OBJ);
 
     if (empty($likes)) {
         $addlike = $conn->prepare("INSERT INTO `likes`(`UserId`, `PostId`) VALUES(:userid,:postid)");
@@ -37,7 +37,7 @@ if (($_POST['action']=='toggle')) {
 
 //TELLER UPDATEN
 if ($_POST['action']=='count') {
-    $conn = Db::getInstance();
+    $conn = Imdterest\Db::getInstance();
     $likecheckstatement = $conn->prepare("SELECT * FROM `likes` WHERE PostId = :postid");
     $likecheckstatement->bindValue(":postid", $postid);
     $likecheckstatement->execute();

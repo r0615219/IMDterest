@@ -1,9 +1,17 @@
 <?php
     session_start();
 
-    spl_autoload_register(function ($class) {
+    /*spl_autoload_register(function ($class) {
         include_once("classes/" . $class . ".php");
-    });
+    });*/
+
+    include_once("classes/board.php");
+    include_once("classes/Comment.php");
+    include_once("classes/Db.php");
+    include_once("classes/Post.php");
+    include_once("classes/Search.php");
+    include_once("classes/Topics.php");
+    include_once("classes/User.php");
 
     //stuur de gebruiker weg als ze niet zijn ingelogd
     if (isset($_SESSION['user'])) {
@@ -112,9 +120,9 @@
                 <div class="userPost">
                     <div class="userPostImg"
                         <?php if (substr($searchItem['image'], 0, 4) === "http"): ?>
-                            style="background-image: url(<?php echo $searchItem['image']; ?>);"
+                            style="background-image: url('<?php echo $searchItem['image']; ?>');"
                         <?php else: ?>
-                            style="background-image: url('images/uploads/postImages/<?php echo $searchItem['image']; ?>');"
+                            style="background-image: url('images/topics/<?php echo $searchItem['image']; ?>');"
                         <?php endif; ?>></div>
 
                     <div class="userInfo userInfoPreview">

@@ -1,9 +1,18 @@
 <?php
 
     session_start();
-    spl_autoload_register(function ($class) {
+    /*spl_autoload_register(function ($class) {
         include_once("classes/" . $class . ".php");
-    });
+    });*/
+
+    include_once("classes/board.php");
+    include_once("classes/Comment.php");
+    include_once("classes/Db.php");
+    include_once("classes/Post.php");
+    include_once("classes/Search.php");
+    include_once("classes/Topics.php");
+    include_once("classes/User.php");
+
     //stuur de gebruiker weg als ze niet zijn ingelogd
     if (isset($_SESSION['user'])) {
     } else {
@@ -11,15 +20,15 @@
     }
 
     if ($_GET['topicsid'] != 0) {
-        $topicInfo = new Topics();
+        $topicInfo = new Imdterest\Topics;
         $topicInfo->id = $_GET['topicsid'];
         $topicInfo->getTopic();
 
-        $topicPost = new Post();
+        $topicPost = new Imdterest\Post();
         $topicPost->topics_ID = $_GET['topicsid'];
         $topicPost->getPostsViaTopic();
     } else {
-        Topics::getAllTopics();
+        Imdterest\Topics::getAllTopics();
     }
 
 ?><!doctype html>
@@ -95,7 +104,7 @@ include_once('header.inc.php'); ?>
                     <?php if (substr($t['image'], 0, 4) === "http"): ?>
                         style="background-image: url(<?php echo $t['image']; ?>);"
                     <?php else: ?>
-                        style="background-image: url('images/uploads/postImages/<?php echo $t['image']; ?>');"
+                        style="background-image: url('images/topics/<?php echo $t['image']; ?>');"
                     <?php endif; ?>></div>
 
                 <div class="userInfo userInfoPreview">

@@ -1,8 +1,15 @@
 <?php
 session_start();
-spl_autoload_register(function ($class) {
+/*spl_autoload_register(function ($class) {
     include_once("classes/" . $class . ".php");
-});
+});*/
+include_once("classes/board.php");
+include_once("classes/Comment.php");
+include_once("classes/Db.php");
+include_once("classes/Post.php");
+include_once("classes/Search.php");
+include_once("classes/Topics.php");
+include_once("classes/User.php");
 
 //stuur de gebruiker weg als ze niet zijn ingelogd
 if (!isset($_SESSION['user'])) {
@@ -16,12 +23,12 @@ try {
     if (isset($_POST['selectedTopics'])) {
         $selectedTopics = $_POST['selectedTopics'];
         for ($i = 0; $i < count($selectedTopics); $i++) {
-            $usertopic = new Topics();
+            $usertopic = new Imdterest\Topics();
             $usertopic->id = $selectedTopics[$i];
             $usertopic->saveUserTopic();
         }
         //6. alle topics van user in session steken
-        $user = new User;
+        $user = new Imdterest\User;
         $user->Email = $_SESSION['user'];
         $user->getUserTopics();
     }
