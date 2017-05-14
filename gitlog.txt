@@ -1,0 +1,573 @@
+10c3c2b	roelifant	Sun May 14 10:44:11 2017 +0200	Merge pull request #87 from r0615219/namespaces2
+04367de	Roel Van Rossen	Sat May 13 13:01:03 2017 +0200	database veranderen
+00e9986	Roel Van Rossen	Sat May 13 12:57:53 2017 +0200	profile en ajax calls werken met nieuwe namespaces
+24783e7	Roel Van Rossen	Sat May 13 12:19:49 2017 +0200	afbeeldingen van topics werken
+897780a	Roel Van Rossen	Sat May 13 12:11:25 2017 +0200	search namespaces en ook afbeelding van topic search gefixed
+9846f66	Roel Van Rossen	Sat May 13 11:37:00 2017 +0200	index werkt met klasses in namespaces
+3d5825a	Roel Van Rossen	Sat May 13 10:51:00 2017 +0200	signup en signin werken met klasses in namespaces
+b1ebce1	Roel Van Rossen	Sat May 13 09:59:35 2017 +0200	bug in uploadedWhen fixed
+f8b7e21	Joris-Keirsmeakers	Fri May 12 16:40:17 2017 +0200	Merge pull request #86 from Joris-Keirsmeakers/master
+a03ed5e	Joris Keirsmaekers	Fri May 12 16:38:41 2017 +0200	XSS op edits fix
+3078578	r0615219	Thu May 11 11:12:52 2017 +0200	check all topics fixed
+d8fa7c7	Caroline	Thu May 11 11:10:55 2017 +0200	check all topics
+9eaa2de	Caroline	Thu May 11 11:04:47 2017 +0200	Merge branch 'caro' of https://github.com/r0615219/IMDterest into caro
+cb23569	Caroline	Thu May 11 01:45:14 2017 +0200	commit for rebase
+addd982	Lisa9W	Thu May 11 10:46:22 2017 +0200	following fixed!!
+931a055	Lisa9W	Thu May 11 10:14:09 2017 +0200	getAllTopics - almost fixed
+b5cf055	Roel Van Rossen	Thu May 11 10:08:42 2017 +0200	merge
+05cd6b9	Roel Van Rossen	Thu May 11 10:06:14 2017 +0200	checkFollow en countFollow weer aanroepen in profile.php
+920f9d6	Lisa9W	Thu May 11 09:53:25 2017 +0200	minor fixes again
+3410ade	Lisa9W	Thu May 11 09:44:21 2017 +0200	minor fixes again
+baf472f	LisaW9	Thu May 11 07:27:00 2017 +0200	Merge pull request #83 from Joris-Keirsmeakers/boardsfix
+7713255	LisaW9	Thu May 11 07:16:21 2017 +0200	Merge pull request #82 from Joris-Keirsmeakers/master
+27329a8	Joris Keirsmaekers	Thu May 11 05:50:19 2017 +0200	Boards werkend OFFLINE
+e775133	Joris Keirsmaekers	Thu May 11 04:20:22 2017 +0200	conflict solved
+58e0b5a	Joris Keirsmaekers	Thu May 11 04:12:20 2017 +0200	Edit button werkt normaal gezien, nakijken op syntaxfoutjes en queryconflicten. NEVER AGAIN
+0c587aa	Roel Van Rossen	Thu May 11 04:02:51 2017 +0200	ajax php bestanden gefixed
+f26bfef	Roel Van Rossen	Thu May 11 03:53:29 2017 +0200	bestanden fixen in classes
+11b5608	Roel Van Rossen	Thu May 11 03:47:01 2017 +0200	fixen van main php bestanden
+8faada6	Lisa9W	Thu May 11 03:11:05 2017 +0200	Miracle backup
+c72c8d6	Joris Keirsmaekers	Thu May 11 02:51:15 2017 +0200	Merge branch 'master' of https://github.com/r0615219/IMDterest into postsaanpassen
+0f234ae	Lisa9W	Thu May 11 02:33:04 2017 +0200	Merge remote-tracking branch 'origin/master'
+3b14f8b	Lisa9W	Thu May 11 02:23:54 2017 +0200	posts should be fixed again
+c5e4c7e	Joris Keirsmaekers	Thu May 11 02:03:04 2017 +0200	edit form in modal gestoken
+ae53824	Roel Van Rossen	Thu May 11 02:02:42 2017 +0200	klaar met htmlspecialchars in alle inputs
+a11cca7	Roel Van Rossen	Thu May 11 01:57:21 2017 +0200	conflicten oplossen
+acffd4c	Caroline	Thu May 11 01:46:12 2017 +0200	commit for rebase
+08508e7	Caroline	Thu May 11 01:45:14 2017 +0200	commit for rebase
+c4bb4ea	r0615219	Thu May 11 01:12:55 2017 +0200	comments gedesigned
+6061f8d	Caroline	Thu May 11 01:10:05 2017 +0200	comments gedesigned
+005f020	Joris Keirsmaekers	Thu May 11 01:01:10 2017 +0200	db update
+c4a813d	Roel Van Rossen	Thu May 11 00:52:27 2017 +0200	conflicten oplossen
+3209f4c	Roel Van Rossen	Thu May 11 00:49:46 2017 +0200	htmlspecialchars in post.inc.php
+4041bf5	Lisa9W	Thu May 11 00:15:13 2017 +0200	Merge remote-tracking branch 'origin/master'
+d68bbd0	Lisa9W	Thu May 11 00:14:24 2017 +0200	follow function fixed
+c8766e4	Caroline	Wed May 10 23:58:10 2017 +0200	succes messages
+cec9434	Joris-Keirsmeakers	Wed May 10 23:57:44 2017 +0200	Merge pull request #78 from Joris-Keirsmeakers/postprivacy
+123a4be	Joris-Keirsmeakers	Wed May 10 23:57:38 2017 +0200	Merge branch 'master' into postprivacy
+6b3c27f	Joris-Keirsmeakers	Wed May 10 23:57:17 2017 +0200	Merge pull request #79 from r0615219/revert-76-revert-75-postprivacy
+02b7dc7	Joris-Keirsmeakers	Wed May 10 23:56:58 2017 +0200	Revert "Revert "Postprivacy""
+0c51106	Caroline	Wed May 10 23:48:41 2017 +0200	Merge branch 'caro' of https://github.com/r0615219/IMDterest into caro
+67d41ea	Caroline	Wed May 10 23:42:00 2017 +0200	error messages
+15b1351	Joris-Keirsmeakers	Wed May 10 23:44:05 2017 +0200	Merge branch 'master' into postprivacy
+6e35fe9	Lisa9W	Wed May 10 23:43:53 2017 +0200	Merge remote-tracking branch 'origin/master'
+47f475a	Roel Van Rossen	Wed May 10 23:43:16 2017 +0200	post afbeelding van nieuw aangemaakte topic naar images/topics kopieren.
+2aa1c5a	Joris Keirsmaekers	Wed May 10 23:43:15 2017 +0200	bug fixes
+a2211ea	Caroline	Wed May 10 23:42:00 2017 +0200	error messages
+d974365	Roel Van Rossen	Wed May 10 23:33:58 2017 +0200	merge
+abb8498	Lisa9W	Wed May 10 23:31:13 2017 +0200	Merge remote-tracking branch 'origin/master'
+27f6b5b	Lisa9W	Wed May 10 23:30:23 2017 +0200	reported posts worden verwijderd
+a15a8d9	Joris Keirsmaekers	Wed May 10 23:28:07 2017 +0200	bug fix
+547dbba	r0615219	Wed May 10 23:24:18 2017 +0200	doorklikken bij search
+f159415	Caroline	Wed May 10 23:23:16 2017 +0200	doorklikken bij search
+a999a29	Roel Van Rossen	Wed May 10 23:21:49 2017 +0200	merge
+387bf9f	Roel Van Rossen	Wed May 10 23:20:25 2017 +0200	htmlspecialchars in search en signin
+1c9f60f	Caroline	Wed May 10 23:07:20 2017 +0200	git merge
+8fc4ced	Caroline	Wed May 10 22:58:03 2017 +0200	rebase git
+b65bfac	Caroline	Wed May 10 22:10:20 2017 +0200	git error
+6c6b311	Caroline	Wed May 10 22:06:40 2017 +0200	board to Board
+a6a4333	Caroline	Wed May 10 22:10:20 2017 +0200	git error
+865d2b1	Caroline	Wed May 10 22:06:40 2017 +0200	board to Board
+f9629f7	Caroline	Wed May 10 21:57:20 2017 +0200	git wilt board niet online zetten
+20abad4	Joris-Keirsmeakers	Wed May 10 23:04:58 2017 +0200	Merge pull request #76 from r0615219/revert-75-postprivacy
+2963f7a	Joris-Keirsmeakers	Wed May 10 23:04:50 2017 +0200	Revert "Postprivacy"
+1f9bb1a	Caroline	Wed May 10 23:00:19 2017 +0200	git merge
+49660fe	Caroline	Wed May 10 22:58:03 2017 +0200	rebase git
+d44e071	Caroline	Wed May 10 22:10:20 2017 +0200	git error
+1bac77a	Caroline	Wed May 10 22:06:40 2017 +0200	board to Board
+94c8664	Caroline	Wed May 10 21:57:20 2017 +0200	git wilt board niet online zetten
+850d5fe	Joris-Keirsmeakers	Wed May 10 22:47:59 2017 +0200	Merge pull request #75 from Joris-Keirsmeakers/postprivacy
+57836d2	Joris-Keirsmeakers	Wed May 10 22:47:07 2017 +0200	Merge branch 'master' into postprivacy
+d4a9305	Lisa9W	Wed May 10 22:45:05 2017 +0200	minor choose Topics fix
+3e7a4fe	Joris Keirsmaekers	Wed May 10 22:43:59 2017 +0200	profile post privacy werkt
+1367c52	Roel Van Rossen	Wed May 10 22:43:57 2017 +0200	htmlspecialchars in signup.php
+24bbdeb	Caroline	Wed May 10 22:41:05 2017 +0200	success messages
+854af15	Lisa9W	Wed May 10 22:35:17 2017 +0200	deleten en reporten werkt ook vanop profile.php
+cdd395e	Lisa9W	Wed May 10 22:33:05 2017 +0200	Merge remote-tracking branch 'origin/master'
+e3cc7ab	Lisa9W	Wed May 10 22:32:34 2017 +0200	new topic with link fixed
+f614192	Roel Van Rossen	Wed May 10 22:28:24 2017 +0200	htmlspecialchars in profileSettings.php
+54cbd8a	Caroline	Wed May 10 22:12:45 2017 +0200	Merge branch 'caro' of https://github.com/r0615219/IMDterest into caro
+4978df7	Caroline	Wed May 10 22:10:20 2017 +0200	git error
+473da88	Caroline	Wed May 10 22:06:40 2017 +0200	board to Board
+a07a389	Lisa9W	Wed May 10 22:04:22 2017 +0200	minor fixes
+4787c11	Caroline	Wed May 10 21:57:20 2017 +0200	git wilt board niet online zetten
+5fd10a2	r0615219	Wed May 10 21:46:18 2017 +0200	klein foutje gevonden in boards
+9e12f47	Caroline	Wed May 10 21:44:45 2017 +0200	klein foutje gevonden in boards
+55e05ad	Lisa9W	Wed May 10 21:42:39 2017 +0200	Merge remote-tracking branch 'origin/master'
+977f551	Lisa9W	Wed May 10 21:42:13 2017 +0200	deleting and reporting fixed
+56a1b71	r0615219	Wed May 10 21:39:38 2017 +0200	boards in database
+c13e8ff	Caroline	Wed May 10 21:38:14 2017 +0200	boards in database
+dc1ed36	Lisa9W	Wed May 10 21:11:08 2017 +0200	Merge remote-tracking branch 'origin/master'
+1ecb631	Lisa9W	Wed May 10 21:10:49 2017 +0200	post via link with http fixed
+2d245cd	Roel Van Rossen	Wed May 10 21:06:19 2017 +0200	succes feeback bij aanpassen van profiel
+ef397a7	Roel Van Rossen	Wed May 10 20:36:06 2017 +0200	errors tonen in standaard alert-danger vak i.p.v. gewoon echo.
+b9a012c	Roel Van Rossen	Wed May 10 20:29:43 2017 +0200	pogingen om POST uit klasse te halen, FAIL
+602b84d	Roel Van Rossen	Wed May 10 20:08:06 2017 +0200	lengte controleren van nieuw paswoord
+572a265	Roel Van Rossen	Wed May 10 19:23:54 2017 +0200	merge
+3bda716	Roel Van Rossen	Wed May 10 19:23:06 2017 +0200	comments verwijderen bij deleten profile
+6736d0d	r0615219	Wed May 10 19:12:19 2017 +0200	Add to board in dropdown
+994f455	Caroline	Wed May 10 19:10:17 2017 +0200	Add to board in dropdown
+6e51a41	Lisa9W	Wed May 10 18:07:18 2017 +0200	database with comments
+633c594	r0615219	Wed May 10 17:55:52 2017 +0200	Nieuwe layout posts!
+213a377	Caroline	Wed May 10 17:17:47 2017 +0200	likes gefixt
+523a34d	Caroline	Wed May 10 17:15:58 2017 +0200	likes gefixt in nieuwe layout
+37b7c29	Caroline	Wed May 10 17:09:23 2017 +0200	nog een beetje layout
+3789fcf	Caroline	Wed May 10 15:14:14 2017 +0200	complete make-over layout
+b870c55	Joris Keirsmaekers	Wed May 10 15:06:09 2017 +0200	Home en explore/feed houden nu rekening met privacy settings
+413edc6	Lisa9W	Wed May 10 10:30:42 2017 +0200	chooseTopics fixed
+716213b	Lisa9W	Tue May 9 23:21:41 2017 +0200	trying to delete posts again
+bb2b36d	Lisa9W	Tue May 9 23:01:23 2017 +0200	no more empty topics or topics with same name
+f35ce51	Lisa9W	Tue May 9 22:27:27 2017 +0200	error handeling when creating posts done
+10478dc	Lisa9W	Tue May 9 22:18:43 2017 +0200	Merge remote-tracking branch 'origin/master'
+4e4b0c5	Lisa9W	Tue May 9 22:18:19 2017 +0200	error on upload size and empty topic
+a7259a7	r0615219	Tue May 9 22:01:42 2017 +0200	postTemplate.php om alle post te includen
+39acadc	r0615219	Tue May 9 22:01:34 2017 +0200	Merge branch 'master' into caro
+77581ff	Caroline	Tue May 9 21:59:32 2017 +0200	postTemplate.php om alle post te includen
+099dea6	Lisa9W	Tue May 9 21:18:59 2017 +0200	posten werkt terug
+70026fa	r0615219	Tue May 9 20:32:33 2017 +0200	profiles met posts
+704b908	r0615219	Tue May 9 20:32:18 2017 +0200	Merge branch 'master' into caro
+8feb662	Caroline	Tue May 9 20:29:55 2017 +0200	profielen
+16bde71	Lisa9W	Tue May 9 20:02:36 2017 +0200	removed "unfollow"
+946f1cf	Lisa9W	Tue May 9 19:57:38 2017 +0200	adjusted database
+bbf9b68	Lisa9W	Tue May 9 19:46:14 2017 +0200	onlineTest merged | .idea folder in gitIgnore
+265f0ef	Lisa9W	Tue May 9 19:43:41 2017 +0200	Merge branch 'onlineTest'
+00e2873	Lisa9W	Tue May 9 19:02:13 2017 +0200	Merge branch 'master' into onlineTest
+b28d099	Lisa9W	Tue May 9 18:50:10 2017 +0200	updates from master - not working yet
+3fde803	r0615219	Tue May 9 15:53:09 2017 +0200	profile in header fixed
+3f37318	Caroline	Tue May 9 15:51:24 2017 +0200	profile in header fixed
+6efafb4	Roel Van Rossen	Tue May 9 15:36:07 2017 +0200	follow knop werkt in profile.php
+acb2899	r0615219	Tue May 9 15:24:29 2017 +0200	user profiles met posts
+ac23af2	Joris-Keirsmeakers	Tue May 9 15:21:14 2017 +0200	Merge pull request #66 from Joris-Keirsmeakers/EmailAjax
+40ac2f1	Caroline	Tue May 9 15:21:00 2017 +0200	user profiles check!
+262700f	Lisa9W	Tue May 9 15:16:26 2017 +0200	home shizzle naar post.inc.php -> werkt nu ook op explore.php
+e7d5109	Joris Keirsmaekers	Tue May 9 15:12:47 2017 +0200	Email checking with Ajax now works
+836145f	Lisa9W	Tue May 9 15:05:01 2017 +0200	images with spaces fixed | loadmore.js minor fix
+3a74505	Caroline	Tue May 9 14:47:49 2017 +0200	Merge branch 'caro' of https://github.com/r0615219/IMDterest into caro
+616c217	Caroline	Tue May 9 14:47:15 2017 +0200	test
+316c83f	Caroline	Tue May 9 14:22:34 2017 +0200	userdetails weg error
+0fd86fa	Caroline	Tue May 9 14:22:34 2017 +0200	userdetails weg error
+8f80dff	r0615219	Mon May 8 23:53:50 2017 +0200	user profiles posts bekijken (momenteel enkel bij eigen profiel)
+081e7f5	Caroline	Mon May 8 23:52:10 2017 +0200	working on user profiles
+4a9038e	Roel Van Rossen	Mon May 8 23:10:33 2017 +0200	link naar profielpagina in zoek resultaten werkt
+ab4b0cb	Roel Van Rossen	Mon May 8 23:05:12 2017 +0200	user verwijderen zonder ajax (was onnodig).
+f227c9f	roelifant	Mon May 8 19:17:11 2017 +0200	Merge pull request #64 from r0615219/feature20
+b6d401a	Roel Van Rossen	Mon May 8 18:47:36 2017 +0200	database vervangen, tabel voor boards er weer in gezet
+0e724d7	Roel Van Rossen	Mon May 8 18:45:48 2017 +0200	verwijderen van databank voor vervanging
+395fe1b	roelifant	Mon May 8 18:43:18 2017 +0200	Merge pull request #63 from r0615219/feature20
+362a818	Roel Van Rossen	Mon May 8 18:31:49 2017 +0200	boards van user verwijderen
+8af6ae6	Roel Van Rossen	Mon May 8 18:27:02 2017 +0200	like relaties van user verwijderen
+0dce6c8	Roel Van Rossen	Mon May 8 18:23:00 2017 +0200	follow relaties van user verwijderen
+7e77188	Roel Van Rossen	Mon May 8 18:17:52 2017 +0200	posts verwijderen van user
+c5349b1	Roel Van Rossen	Mon May 8 18:11:31 2017 +0200	unlinken van afbeeldingen van posts
+ea775e4	Roel Van Rossen	Mon May 8 17:26:11 2017 +0200	user verwijderen.
+79a4080	Roel Van Rossen	Mon May 8 17:20:22 2017 +0200	foto user verwijderen, maar ajaxcall's response werkt niet meer
+70561b0	roelifant	Mon May 8 15:57:17 2017 +0200	Merge pull request #62 from r0615219/feature20
+9bce7c1	Roel Van Rossen	Mon May 8 15:55:44 2017 +0200	redirect from javascript
+c8d299c	Lisa9W	Mon May 8 15:24:15 2017 +0200	online querries werken (home en explore)
+500e46a	Roel Van Rossen	Mon May 8 14:59:37 2017 +0200	ajax call werkt en activeert deleteUser() in User.php
+ea6f2ff	Caroline	Mon May 8 14:50:44 2017 +0200	Merge branch 'caro' of https://github.com/r0615219/IMDterest into caro
+8160fc9	Caroline	Mon May 8 14:48:23 2017 +0200	database error
+b047d57	Caroline	Mon May 8 14:48:23 2017 +0200	database error
+148a240	r0615219	Mon May 8 14:46:15 2017 +0200	Location toevoegen bij home, explore, image & link
+36bdc8a	Caroline	Mon May 8 14:44:52 2017 +0200	weg error danku
+ae02416	Caroline	Mon May 8 14:37:59 2017 +0200	git error merge
+56e086a	Roel Van Rossen	Mon May 8 14:29:04 2017 +0200	knop aanklikken met jquery.
+f47b408	Roel Van Rossen	Thu May 4 15:44:16 2017 +0200	delete profile knop aan profileSettings toegevoegd
+a47373e	Caroline	Mon May 8 14:23:35 2017 +0200	locatie komt nu ook bij explore en link
+6bf1bc4	r0615219	Fri May 5 00:33:18 2017 +0200	Location weergeven compleet! DATABASE UPDATEN!
+5c6ca1b	Caroline	Fri May 5 00:31:31 2017 +0200	Locatie wordt opgeslagen in database & weergegeven in posts
+710867f	Caroline	Fri May 5 00:08:56 2017 +0200	locatie verschijnt in form
+21bcbeb	Caroline	Thu May 4 23:55:45 2017 +0200	locatie weergeven
+8090a0e	Caroline	Thu May 4 23:36:21 2017 +0200	merge
+a2c823f	Caroline	Thu May 4 23:32:51 2017 +0200	locatie komt al tevoorschijn! Yay!
+54fc588	Caroline	Thu May 4 17:27:03 2017 +0200	git rebase master
+0d3c2bd	Caroline	Thu May 4 16:55:51 2017 +0200	git error
+133e033	Caroline	Thu May 4 16:40:38 2017 +0200	location
+6c55c07	Lisa9W	Thu May 4 15:33:38 2017 +0200	FOUT OPGELOST !! - Fout bij borden
+2d22017	Lisa9W	Thu May 4 15:26:51 2017 +0200	FOUT GEVONDEN
+0f6ae6d	Lisa9W	Thu May 4 14:02:18 2017 +0200	slechts 1 post wordt geladen, haalt wel alle rows binnen
+9df6bcf	Roel Van Rossen	Thu May 4 13:25:26 2017 +0200	bug fix follow knop
+fca2f66	roelifant	Thu May 4 13:08:32 2017 +0200	Merge pull request #58 from r0615219/feature12
+d2fb925	Roel Van Rossen	Thu May 4 13:04:41 2017 +0200	live updaten van followers op de pagina van de user
+398fe01	Roel Van Rossen	Thu May 4 12:49:56 2017 +0200	followers worden getoond op pagina
+875b73d	Roel Van Rossen	Thu May 4 12:34:38 2017 +0200	nieuwe variabele m_iFollowers in user klasse
+7294c50	Lisa9W	Thu May 4 12:28:24 2017 +0200	posts opgekuist -> werkt al beter
+89be793	Roel Van Rossen	Thu May 4 12:26:34 2017 +0200	style van follow knop verbeteren
+e74cf2f	Roel Van Rossen	Thu May 4 12:21:37 2017 +0200	follow knop werkt juist
+d1f8a96	Roel Van Rossen	Thu May 4 12:14:02 2017 +0200	feedback bij follow knop in de console
+d5e6b08	Joris-Keirsmeakers	Thu May 4 11:56:56 2017 +0200	Merge pull request #57 from Joris-Keirsmeakers/safetynet
+a058e66	Joris Keirsmaekers	Thu May 4 11:55:54 2017 +0200	Bugfix
+bed35f8	Roel Van Rossen	Thu May 4 11:50:49 2017 +0200	follow ajax call geeft een bruikbare response
+40a1265	Roel Van Rossen	Thu May 4 11:38:52 2017 +0200	nederlandse variabelen engels gemaakt in uploadedWhen()
+7546c5e	Joris-Keirsmeakers	Thu May 4 11:28:58 2017 +0200	Merge pull request #56 from Joris-Keirsmeakers/master
+3d7bddb	Joris Keirsmaekers	Thu May 4 11:20:54 2017 +0200	Privacy werkt nu
+06e22d5	Lisa9W	Thu May 4 11:13:38 2017 +0200	querries aanpassen
+91bad55	Lisa9W	Thu May 4 10:17:48 2017 +0200	chooseTopics werkt
+ddf4390	Lisa9W	Thu May 4 00:51:28 2017 +0200	header fixed | renewing topics
+d85b172	Roel Van Rossen	Thu May 4 00:02:32 2017 +0200	navigatie in home hersteld
+bf24999	Lisa9W	Wed May 3 22:57:46 2017 +0200	Files online testen
+cdbbf5d	Lisa9W	Wed May 3 22:24:03 2017 +0200	Files online testen
+c5d16bf	Roel Van Rossen	Wed May 3 20:42:31 2017 +0200	kleine schoonmaak
+6ee122f	Lisa9W	Wed May 3 19:27:39 2017 +0200	Merge remote-tracking branch 'origin/master'
+aa05084	Lisa9W	Wed May 3 19:26:50 2017 +0200	Files aangepast zodat online inloggen werkt - querries nog kapot !!
+cf17c33	Caroline	Tue May 2 16:58:06 2017 +0200	merge
+bb2f4f5	Joris-Keirsmeakers	Tue May 2 14:23:51 2017 +0200	Merge pull request #55 from r0615219/revert-54-revert-53-boards
+237ca3e	Joris-Keirsmeakers	Tue May 2 14:23:01 2017 +0200	Revert "Revert "Boards""
+3fadbe7	Joris-Keirsmeakers	Tue May 2 13:58:14 2017 +0200	Merge pull request #54 from r0615219/revert-53-boards
+dbfcd45	Joris-Keirsmeakers	Tue May 2 13:58:07 2017 +0200	Revert "Boards"
+670d471	Joris-Keirsmeakers	Tue May 2 13:52:00 2017 +0200	Merge pull request #53 from Joris-Keirsmeakers/boards
+5ef48a2	Joris Keirsmaekers	Tue May 2 13:50:20 2017 +0200	new database & removing error tracking print_r's
+f26bb9d	Roel Van Rossen	Tue May 2 11:41:42 2017 +0200	Uploadtime setter en getters time noemen
+7985135	Roel Van Rossen	Tue May 2 11:29:44 2017 +0200	feature12 doen mergen met master
+d081311	Lisa9W	Tue May 2 10:40:07 2017 +0200	header in user details fixed
+f72aa33	Lisa9W	Tue May 2 10:37:56 2017 +0200	header in search fixed
+b1121b7	Joris Keirsmaekers	Tue May 2 05:14:23 2017 +0200	Posts kunnen in boards worden geplaats, nog niet verwijderd
+48882ee	Lisa9W	Tue May 2 00:21:41 2017 +0200	timestamp fixed !!
+d9449f0	Joris Keirsmaekers	Mon May 1 23:32:23 2017 +0200	Merge branch 'master' of https://github.com/r0615219/IMDterest into boards
+03470c3	Joris Keirsmaekers	Mon May 1 23:21:43 2017 +0200	makes boards better visible during build, and preps for adding posts to builds
+f5b6d16	Joris Keirsmaekers	Mon May 1 22:37:49 2017 +0200	Zichtbaarheid can worden ingesteld
+f2fdc98	Joris Keirsmaekers	Mon May 1 22:27:46 2017 +0200	Boards worden nu in de database opgeslagen
+a517b75	Lisa9W	Mon May 1 21:09:19 2017 +0200	location.php stuurt data terug
+c92d020	Caroline	Mon May 1 18:49:10 2017 +0200	location (werkt nog niet)
+7370258	LisaW9	Mon May 1 17:50:15 2017 +0200	LoadMore and Explore updated
+6936b73	Lisa9W	Mon May 1 17:18:53 2017 +0200	fout bij load more btn in explore.php :(
+5db557e	Lisa9W	Mon May 1 16:22:58 2017 +0200	Explore laad alle posts met topics dat user NIET volgt
+4d56a0b	Lisa9W	Mon May 1 16:03:29 2017 +0200	home laad enkel posts met topics dat de user volgt
+546a9c4	Lisa9W	Mon May 1 14:58:15 2017 +0200	loadMore function cleaned up
+5536474	Caroline	Mon May 1 14:37:47 2017 +0200	rebase master
+62ed1f3	Caroline	Mon May 1 14:34:16 2017 +0200	merge
+05dcd36	Roel Van Rossen	Mon May 1 11:42:16 2017 +0200	bugs in user klasse gecorrigeerd
+d274cb2	Roel Van Rossen	Mon May 1 11:13:58 2017 +0200	mergen van user klasse
+63928c0	Roel Van Rossen	Mon May 1 11:02:04 2017 +0200	follow records toevoegen en verwijderen aan database via ajax werkt nu
+bb5606e	Roel Van Rossen	Mon May 1 10:01:13 2017 +0200	followen werkt in database
+455528a	Joris-Keirsmeakers	Mon May 1 06:42:58 2017 +0200	Merge pull request #50 from Joris-Keirsmeakers/commentsfix
+4c41017	Joris Keirsmaekers	Mon May 1 06:41:41 2017 +0200	Er was een klein groot foutje in de comments geslopen, maar nu zou het moeten werken
+7015ee8	Joris-Keirsmeakers	Mon May 1 06:02:23 2017 +0200	Merge pull request #49 from Joris-Keirsmeakers/comments
+2e716c9	Joris-Keirsmeakers	Mon May 1 05:47:35 2017 +0200	Merge branch 'master' into comments
+1d133fb	Joris Keirsmaekers	Mon May 1 05:43:31 2017 +0200	Ajax comments zijn klaar, op layout na
+427ba93	LisaW9	Sun Apr 30 20:04:12 2017 +0200	Merge pull request #48 from r0615219/Scraping
+4b555c7	Lisa9W	Sun Apr 30 20:02:27 2017 +0200	scraping should be working right now
+6285578	Caroline	Sun Apr 30 17:28:18 2017 +0200	location wordt niet herkent in php file
+752be09	Joris Keirsmaekers	Sun Apr 30 15:57:37 2017 +0200	Comments per post & niet buiten klasses geladen
+3eae168	Lisa9W	Sun Apr 30 15:55:38 2017 +0200	nog wa gepruts
+af311e2	Caroline	Sun Apr 30 15:38:19 2017 +0200	start location opvragen van user
+d26a4d9	Joris Keirsmaekers	Sun Apr 30 03:23:23 2017 +0200	Comments are now read out, but not in a correct way
+0fca53d	Lisa9W	Sat Apr 29 22:46:43 2017 +0200	scraping werkt - nog niet optimaal
+7e822ea	Roel Van Rossen	Sat Apr 29 18:01:54 2017 +0200	variabelen uit de url halen
+291d875	Roel Van Rossen	Sat Apr 29 17:23:00 2017 +0200	bij laden van pagina checken of de gebruiker al wordt gefollowed of niet.
+bc3aa4d	Roel Van Rossen	Sat Apr 29 16:36:59 2017 +0200	toevoegen van nieuwe variabele follow (boolean) aan user klasse
+63572a1	Lisa9W	Sat Apr 29 16:23:50 2017 +0200	adjusted css
+348e886	Roel Van Rossen	Sat Apr 29 16:20:34 2017 +0200	nieuwe database met tabel 'follows'
+b3f14a4	Roel Van Rossen	Sat Apr 29 16:19:03 2017 +0200	database verwijderen voor aanpassing
+a82f8db	Lisa9W	Sat Apr 29 16:09:32 2017 +0200	description wordt ook uitgelezen
+19ea0f8	Lisa9W	Sat Apr 29 15:55:28 2017 +0200	Merge remote-tracking branch 'origin/Scraping' into Scraping
+184812e	Lisa9W	Sat Apr 29 15:55:05 2017 +0200	Links worden herkent en opgeslagen, nog paar fouten in
+a4dc0c4	Lisa9W	Thu Apr 27 12:45:33 2017 +0200	scraping feature started
+3b4ca04	Roel Van Rossen	Thu Apr 27 17:30:20 2017 +0200	onclick ajax call
+1c531bd	Roel Van Rossen	Thu Apr 27 17:28:44 2017 +0200	aanmaken van follow.php, bestand om ajax call uit js op te vangen
+4f6e374	Roel Van Rossen	Thu Apr 27 17:27:33 2017 +0200	beginsel userDetails is compleet
+53e189c	r0615219	Thu Apr 27 15:41:38 2017 +0200	overzicht topics bij more in nav
+0a878e8	Caroline	Thu Apr 27 15:40:23 2017 +0200	overzicht topics bij more in nav
+0113357	r0615219	Thu Apr 27 14:40:07 2017 +0200	filteren op topics
+c593ec1	Caroline	Thu Apr 27 14:38:38 2017 +0200	filteren op topics
+80cb6ea	Lisa9W	Thu Apr 27 12:45:33 2017 +0200	scraping feature started
+d492b81	Joris Keirsmaekers	Thu Apr 27 12:40:26 2017 +0200	comments are saved to the database
+4e75958	Roel Van Rossen	Thu Apr 27 12:05:33 2017 +0200	toevoegen follow button in userDetails
+f35c870	r0615219	Thu Apr 27 11:53:36 2017 +0200	Merge pull request #45 from r0615219/caro
+712e0a3	Caroline	Thu Apr 27 11:47:00 2017 +0200	backround-images postImages
+27ef2b8	Caroline	Thu Apr 27 11:36:28 2017 +0200	zoeken op title + likes meesturen bij search
+a033bdb	Joris Keirsmaekers	Thu Apr 27 02:55:48 2017 +0200	start-up comment system
+d15d8eb	Roel Van Rossen	Wed Apr 26 22:17:18 2017 +0200	details van aangeklikte user tonen
+5c29973	Roel Van Rossen	Wed Apr 26 22:08:05 2017 +0200	userId in url via method GET
+0f44b8d	Roel Van Rossen	Wed Apr 26 22:00:23 2017 +0200	userId in url via method GET
+9e4712e	Roel Van Rossen	Wed Apr 26 21:32:49 2017 +0200	userpage.php hernoemd naar userDetails.php
+9124e72	Roel Van Rossen	Wed Apr 26 21:29:38 2017 +0200	userpage (kopie van profile.php) toevoegen.
+bd1117a	Roel Van Rossen	Wed Apr 26 22:20:20 2017 +0200	bestanden uploaden tijdens het testen :p
+a7050cb	LisaW9	Wed Apr 26 22:14:37 2017 +0200	Merge pull request Caro
+3dc86ca	Lisa9W	Wed Apr 26 22:11:21 2017 +0200	Creating new topics works
+bbbc812	Roel Van Rossen	Wed Apr 26 21:23:43 2017 +0200	bestandsnamen van userImages zijn vanaf nu ook uniek door timestamp.
+fff42c0	Lisa9W	Tue Apr 25 23:15:37 2017 +0200	Merge remote-tracking branch 'origin/caro' into caro
+e6147b7	Lisa9W	Tue Apr 25 23:11:43 2017 +0200	Posts from every user shown
+1b387cb	Caroline	Tue Apr 25 22:26:18 2017 +0200	topics - werkt nog niet :(
+7579cc4	Caroline	Tue Apr 25 21:27:43 2017 +0200	topic aanmaken
+ad4ddd7	Caroline	Tue Apr 25 18:05:38 2017 +0200	nieuw topic aanmaken
+a111db8	Roel Van Rossen	Tue Apr 25 15:56:16 2017 +0200	userHome.php fix
+0685a49	Roel Van Rossen	Tue Apr 25 15:50:29 2017 +0200	header en home gefixed
+c944a57	Lisa9W	Tue Apr 25 21:16:39 2017 +0200	Posts from every user shown
+78a318d	r0615219	Tue Apr 25 19:58:40 2017 +0200	nieuwe topic aanmaken
+c0da3cc	Caroline	Tue Apr 25 19:37:35 2017 +0200	nieuw topic aanmaken
+72c169f	Caroline	Tue Apr 25 19:22:05 2017 +0200	topics aanmaken
+b89bcbd	Caroline	Tue Apr 25 18:05:38 2017 +0200	nieuw topic aanmaken
+ad36bf8	Roel Van Rossen	Tue Apr 25 17:36:31 2017 +0200	methods in User.php camelcase maken
+62a4194	Roel Van Rossen	Tue Apr 25 15:56:16 2017 +0200	userHome.php fix
+67d7477	Roel Van Rossen	Tue Apr 25 15:54:52 2017 +0200	search-results.php fix
+4c3a0fb	Roel Van Rossen	Tue Apr 25 15:54:00 2017 +0200	profileSettings.php fix
+8a3944a	Roel Van Rossen	Tue Apr 25 15:53:00 2017 +0200	logout en profile fix
+bdce44c	Roel Van Rossen	Tue Apr 25 15:50:29 2017 +0200	header en home gefixed
+333e034	Roel Van Rossen	Tue Apr 25 15:47:22 2017 +0200	emptyStates.php fix
+81a567c	Roel Van Rossen	Tue Apr 25 15:46:28 2017 +0200	chooseTopic.php fix
+2a9f694	Roel Van Rossen	Tue Apr 25 15:45:04 2017 +0200	merge opkuisen van pagina's
+6277ada	Roel Van Rossen	Tue Apr 25 15:41:57 2017 +0200	signup.php fix
+360fc7b	Joris-Keirsmeakers	Tue Apr 25 15:40:28 2017 +0200	Merge pull request #41 from Joris-Keirsmeakers/ajax-cleanup
+14ec1d4	Roel Van Rossen	Tue Apr 25 15:40:27 2017 +0200	signin fix
+c178be1	joris	Tue Apr 25 15:39:35 2017 +0200	grote kuis bij de ajax
+747253c	Caroline	Tue Apr 25 15:34:06 2017 +0200	start addTopic
+512e6af	Joris-Keirsmeakers	Tue Apr 25 15:33:13 2017 +0200	Merge pull request #40 from Joris-Keirsmeakers/classes-cleanup
+47005da	joris	Tue Apr 25 15:31:10 2017 +0200	blijkbaar niet helemaal opgekuist
+310affb	Joris-Keirsmeakers	Tue Apr 25 15:29:59 2017 +0200	Merge pull request #39 from Joris-Keirsmeakers/classes-cleanup
+8d8bcf1	joris	Tue Apr 25 15:27:57 2017 +0200	Cleans up the classes
+f8b7d4b	Caroline	Tue Apr 25 15:18:16 2017 +0200	error output home.php
+d7bb281	Caroline	Tue Apr 25 14:04:13 2017 +0200	add new topic (start)
+ef43a4f	Joris-Keirsmeakers	Tue Apr 25 13:23:28 2017 +0200	Merge pull request #38 from Joris-Keirsmeakers/likesfix
+b21b058	joris	Tue Apr 25 13:21:47 2017 +0200	fixed the likes, hopefully for good this time
+4a60a9e	r0615219	Tue Apr 25 11:57:55 2017 +0200	images popup ware grootte
+2986388	Caroline	Tue Apr 25 11:57:02 2017 +0200	images popup ware grootte
+bd924a6	Roel Van Rossen	Tue Apr 25 11:50:27 2017 +0200	unieke namen van files in postImages
+b5b5550	Caroline	Tue Apr 25 11:49:21 2017 +0200	post worden geopent
+e618bc6	Caroline	Tue Apr 25 11:42:45 2017 +0200	error opgelost
+979d2f0	LisaW9	Tue Apr 25 11:26:28 2017 +0200	Feature 10 and 11 done
+e80a814	LisaW9	Tue Apr 25 11:23:34 2017 +0200	Merge branch 'master' into feature10
+f0f3ca4	Lisa9W	Tue Apr 25 11:07:06 2017 +0200	Fixed modals
+89eccfd	Lisa9W	Tue Apr 25 11:01:07 2017 +0200	Fixed delete function
+acbbcc3	Roel Van Rossen	Tue Apr 25 11:00:51 2017 +0200	bug gefixed
+6441064	Roel Van Rossen	Tue Apr 25 10:53:32 2017 +0200	tijdnotatie tot een jaar terug, en daarna datum.
+ba914cd	Lisa9W	Tue Apr 25 10:53:09 2017 +0200	reporting done - adjusted database!
+d890e1a	Lisa9W	Tue Apr 25 10:52:22 2017 +0200	reporting done
+b998144	Roel Van Rossen	Tue Apr 25 10:42:56 2017 +0200	tijdnotatie
+15a5d20	Roel Van Rossen	Tue Apr 25 10:18:06 2017 +0200	uploadedWhen() in posts tonen
+b6ea58f	Roel Van Rossen	Tue Apr 25 09:34:55 2017 +0200	stuk description toegevoegd voor moment van uploaden
+a038a58	Lisa9W	Tue Apr 25 09:12:21 2017 +0200	load more function fixed
+74c5fbf	Roel Van Rossen	Sun Apr 23 18:57:15 2017 +0200	toevoegen aan de post layout.
+d491d9a	r0615219	Mon Apr 24 15:27:14 2017 +0200	Merge pull request #35 from r0615219/caro
+924b575	Caroline	Mon Apr 24 15:26:08 2017 +0200	css modal
+7658cc7	r0615219	Mon Apr 24 15:15:22 2017 +0200	Post wordt weergegeven in modal (pop-up)
+912ea1e	Caroline	Mon Apr 24 15:14:00 2017 +0200	error weg
+f251b65	Caroline	Mon Apr 24 15:12:49 2017 +0200	merge
+d8bde64	Caroline	Mon Apr 24 15:11:31 2017 +0200	posts modal pop-ups
+ad9adb7	Caroline	Mon Apr 24 14:09:00 2017 +0200	profile - settings
+50b3faf	Caroline	Sun Apr 23 20:02:20 2017 +0200	delete post (werkt nog niet)
+ad2e2bd	Caroline	Sun Apr 23 19:59:02 2017 +0200	weg bug
+57998b0	Caroline	Mon Apr 24 14:13:11 2017 +0200	error rebase
+8215eda	r0615219	Mon Apr 24 14:10:33 2017 +0200	profile + settings
+1d7d5d3	Caroline	Mon Apr 24 14:09:00 2017 +0200	profile - settings
+7af77db	Caroline	Sun Apr 23 20:02:20 2017 +0200	delete post (werkt nog niet)
+163dd8f	Caroline	Sun Apr 23 19:59:02 2017 +0200	weg bug
+86dfa8c	Caroline	Sun Apr 23 19:42:23 2017 +0200	test 784582
+4f6d263	Caroline	Sun Apr 23 19:32:36 2017 +0200	delete tab
+ea5c53f	Joris-Keirsmeakers	Sun Apr 23 15:45:23 2017 +0200	Merge pull request #24 from Joris-Keirsmeakers/ajaxlikes
+34daa1c	Joris-Keirsmeakers	Sun Apr 23 15:44:40 2017 +0200	Merge branch 'master' into ajaxlikes
+4290b74	joris	Sun Apr 23 15:32:03 2017 +0200	should fix the like system that's a bit messed up right now
+4562e47	r0615219	Sun Apr 23 14:59:04 2017 +0200	Merge pull request #32 from r0615219/caro
+8f9f7e3	Caroline	Sun Apr 23 14:57:52 2017 +0200	weer een error weg
+99e6ccc	Caroline	Sun Apr 23 14:53:38 2017 +0200	laatste error verwijderd
+f1e0a68	Caroline	Sun Apr 23 14:37:05 2017 +0200	nog eens dropdown delete
+ffbe585	r0615219	Sun Apr 23 14:32:57 2017 +0200	dropdown report post + delete post
+729ff95	Caroline	Sun Apr 23 14:31:29 2017 +0200	dropdown report post + delete post
+36bef43	Caroline	Sun Apr 23 14:24:02 2017 +0200	report post
+5a58d4c	Caroline	Sun Apr 23 14:22:23 2017 +0200	report post
+75c585f	Caroline	Sun Apr 23 14:16:06 2017 +0200	report post
+5eadeef	Caroline	Sun Apr 23 14:11:52 2017 +0200	dropdown rapporteer/delete
+ae13bee	Caroline	Wed Apr 19 16:15:03 2017 +0200	database updated
+62ac0e2	Caroline	Tue Apr 18 22:20:11 2017 +0200	OPGELET aanpassing database
+784e5d2	Caroline	Tue Apr 18 22:10:09 2017 +0200	beetje layout gesleuteld & title aangemaakt bij post
+fcc97a8	Caroline	Tue Apr 18 19:59:09 2017 +0200	upload image
+a68736b	r0615219	Sun Apr 23 14:14:13 2017 +0200	dropdown rapporteer/delete
+efad35a	r0615219	Sun Apr 23 14:13:59 2017 +0200	Merge branch 'master' into caro
+fcd672f	Caroline	Sun Apr 23 14:11:52 2017 +0200	dropdown rapporteer/delete
+4b85a4e	Roel Van Rossen	Sun Apr 23 11:26:27 2017 +0200	database vervangen (column 'time' toegevoegd aan tabel 'posts')
+89b542e	Roel Van Rossen	Sun Apr 23 11:23:47 2017 +0200	database verwijderd voor vervanging
+caa0355	Roel Van Rossen	Sun Apr 23 11:22:11 2017 +0200	posts worden opgeslaan met tijdsmarkering
+746924a	Lisa9W	Sat Apr 22 20:33:14 2017 +0200	no more showing multiple 'no posts found' messages
+35e1017	r0615219	Wed Apr 19 16:16:56 2017 +0200	database updated
+df41a28	Caroline	Wed Apr 19 16:15:03 2017 +0200	database updated
+3b67350	Caroline	Tue Apr 18 22:20:11 2017 +0200	OPGELET aanpassing database
+003010f	r0615219	Tue Apr 18 22:17:48 2017 +0200	layout aangepast + post title aangemaakt
+88c3de5	Caroline	Tue Apr 18 22:12:45 2017 +0200	Merge branch 'caro' of https://github.com/r0615219/IMDterest into caro
+1894536	Caroline	Tue Apr 18 22:10:09 2017 +0200	beetje layout gesleuteld & title aangemaakt bij post
+833d206	Caroline	Tue Apr 18 19:59:09 2017 +0200	upload image
+8ad360c	Caroline	Tue Apr 18 19:59:09 2017 +0200	upload image
+fbbde97	joris	Mon Apr 17 23:21:58 2017 +0200	Merge branch 'ajaxlikes' of https://github.com/Joris-Keirsmeakers/IMDterest into ajaxlikes
+4f5fefb	joris	Mon Apr 17 23:18:48 2017 +0200	Likes worden nu geteld op de counter
+8f7bf03	Joris-Keirsmeakers	Mon Apr 17 22:15:49 2017 +0200	Merge branch 'master' into ajaxlikes
+50c0091	joris	Mon Apr 17 22:14:55 2017 +0200	resolving conflict(?)
+22c898d	joris	Mon Apr 17 22:13:16 2017 +0200	hartjes doen nu wat ze moeten doen
+9c8bcd0	LisaW9	Mon Apr 17 21:11:32 2017 +0200	Merge pull request #27 from r0615219/Feature6
+ed215d5	Lisa9W	Mon Apr 17 21:08:01 2017 +0200	Merge remote-tracking branch 'origin/Feature6' into Feature6
+f47a863	r0615219	Mon Apr 17 21:07:44 2017 +0200	laatste aanpassing search
+ac7cd7d	Lisa9W	Mon Apr 17 21:07:31 2017 +0200	Added empty states
+9ca5c34	Caroline	Mon Apr 17 21:05:41 2017 +0200	laatste aanpassing search
+106d9a7	joris	Mon Apr 17 21:05:14 2017 +0200	testing thingies
+aa5f477	Roel Van Rossen	Mon Apr 17 20:49:43 2017 +0200	.PNG .JPG en .GIF (uppercase) kunnen ook geupload worden als userImage.
+da552e8	Roel Van Rossen	Mon Apr 17 20:37:06 2017 +0200	.PNG .JPG en .GIF (uppercase) kunnen ook geupload worden als post
+7c88119	joris	Mon Apr 17 20:28:46 2017 +0200	WIP ajax likes
+5962c50	r0615219	Mon Apr 17 20:21:56 2017 +0200	search is klaaarrrrrr
+13c1536	Caroline	Mon Apr 17 20:20:43 2017 +0200	search is klaarrrrrrrr
+1ce9076	Lisa9W	Mon Apr 17 19:45:24 2017 +0200	newest posts are shown first
+fc79b92	Lisa9W	Mon Apr 17 19:42:49 2017 +0200	newest posts are shown first
+fc2cf0b	Lisa9W	Mon Apr 17 19:40:53 2017 +0200	Load more function should be working
+ee99445	Roel Van Rossen	Mon Apr 17 18:48:05 2017 +0200	settings.php van naam verandert en achter de link Profile gezet.
+81d2d1c	r0615219	Mon Apr 17 18:38:30 2017 +0200	Merge pull request #22 from r0615219/caro
+58ddf8b	Caroline	Mon Apr 17 18:32:58 2017 +0200	search almost ready!
+7d02879	joris	Mon Apr 17 16:21:30 2017 +0200	Console opgekuist en posts kunnen ontliked worden, en likes verdwijnen daarmee uit de database
+2832a7d	joris	Mon Apr 17 15:28:37 2017 +0200	Adding likes to database
+bfc519b	Joris-Keirsmeakers	Mon Apr 17 13:32:46 2017 +0200	Merge pull request #21 from Joris-Keirsmeakers/database
+48bca65	joris	Mon Apr 17 13:07:31 2017 +0200	mijn db
+d0d5696	LisaW9	Mon Apr 17 12:02:27 2017 +0200	Merge pull request #20 from Joris-Keirsmeakers/ajaxlikes
+7bb4e6f	Lisa9W	Mon Apr 17 11:58:54 2017 +0200	removed error info
+853508b	Lisa9W	Mon Apr 17 11:56:59 2017 +0200	search function fixed
+b8321f2	Lisa9W	Mon Apr 17 11:30:35 2017 +0200	Merge remote-tracking branch 'origin/caro' into caro
+235f4b8	Caroline	Mon Apr 17 10:53:27 2017 +0200	start search.php
+12447ef	joris	Mon Apr 17 06:26:35 2017 +0200	posts now count amount of likes per post
+fcfc6b1	joris	Mon Apr 17 05:55:34 2017 +0200	Merge branch 'ajaxlikes' of https://github.com/Joris-Keirsmeakers/IMDterest into ajaxlikes
+a561adc	joris	Mon Apr 17 05:49:43 2017 +0200	Merge branch 'master' of https://github.com/r0615219/IMDterest into ajaxlikes
+6630339	joris	Mon Apr 17 05:45:38 2017 +0200	Post are now checked for likes on being loaded
+8aafc8f	Joris-Keirsmeakers	Mon Apr 17 04:38:34 2017 +0200	Merge branch 'master' into ajaxlikes
+1b114d6	joris	Mon Apr 17 04:35:25 2017 +0200	baseline for checking if already liked + reading post & user id for individual posts
+7f2477b	r0615219	Sat Apr 15 20:38:48 2017 +0200	Merge pull request #19 from r0615219/caro
+0b6bd2a	Lisa9W	Sat Apr 15 20:16:46 2017 +0200	Merge remote-tracking branch 'origin/caro' into caro
+7ee9c19	Caroline	Sat Apr 15 20:09:49 2017 +0200	layout + search
+76da31a	Caroline	Sat Apr 15 17:26:36 2017 +0200	test
+0dcf712	Caroline	Sat Apr 15 16:55:19 2017 +0200	git wil je dit aub online zetten
+48c46ae	Caroline	Sat Apr 15 16:47:25 2017 +0200	layout + search
+1477e25	r0615219	Sat Apr 15 16:06:21 2017 +0200	layout aangepast bij errormessages + begonnen aan search
+3586aba	r0615219	Sat Apr 15 16:06:21 2017 +0200	layout aangepast bij errormessages + begonnen aan search
+2975f42	LisaW9	Fri Apr 14 12:58:32 2017 +0200	Merge pull request #17 from r0615219/feature5
+9374390	Lisa9W	Thu Apr 13 22:15:41 2017 +0200	Link werkt, nog geen afbeelding
+3808fbb	Lisa9W	Thu Apr 13 16:47:23 2017 +0200	Link werkt, nog geen afbeelding
+bc4a50a	Lisa9W	Thu Apr 13 16:35:52 2017 +0200	layout klaar
+1161810	Lisa9W	Wed Apr 12 19:35:55 2017 +0200	layout klaar
+cc77fff	Lisa9W	Wed Apr 12 18:56:29 2017 +0200	naam en afbeelding van user van de post wordt getoond (NIET VAN HUIDIGE USER!)
+236c90b	Lisa9W	Wed Apr 12 18:10:24 2017 +0200	basic css - nog niet klaar
+21a2f00	Lisa9W	Wed Apr 12 16:19:01 2017 +0200	Databank bug fixed
+11d8fbe	Lisa9W	Wed Apr 12 15:16:33 2017 +0200	databank geupdate
+2c8ba56	LisaW9	Wed Apr 12 15:13:37 2017 +0200	Merge pull request #16 from r0615219/feature5
+bec23fc	Lisa9W	Wed Apr 12 15:10:12 2017 +0200	posts worden uitgelezen (nog geen css)
+ece3865	Lisa9W	Wed Apr 12 14:29:58 2017 +0200	postImages folder toegevoegd
+8aa7c8f	Lisa9W	Wed Apr 12 14:29:22 2017 +0200	topics en afbeeldingen worden opgeslagen
+556c568	Lisa9W	Wed Apr 12 11:41:02 2017 +0200	HELP
+ae16224	Lisa9W	Wed Apr 12 11:37:45 2017 +0200	Merge remote-tracking branch 'origin/feature5' into feature5
+80c56d0	Lisa9W	Wed Apr 12 11:37:15 2017 +0200	werkt nog niet :( reden onbekend
+972c72b	Lisa9W	Wed Apr 12 00:16:32 2017 +0200	images worden niet opgeslagen
+5a15855	Lisa9W	Tue Apr 11 22:21:35 2017 +0200	CSS en JS in orde
+713a809	Lisa9W	Tue Apr 11 20:42:08 2017 +0200	Started Feature 5
+12d78ab	Lisa9W	Wed Apr 12 10:25:03 2017 +0200	geen extra connectie meer voor userID
+32e8509	Lisa9W	Wed Apr 12 00:16:32 2017 +0200	images worden niet opgeslagen
+c4719e2	Roel Van Rossen	Tue Apr 11 22:50:46 2017 +0200	kleine bug gefixt waarbij de user niet twee maal een afbeelding van hetzelfde data type kon uploaden.
+badb817	Lisa9W	Tue Apr 11 22:21:35 2017 +0200	CSS en JS in orde
+047da54	Roel Van Rossen	Tue Apr 11 22:15:41 2017 +0200	correctie van slechte foutmelding
+80f5d85	Roel Van Rossen	Tue Apr 11 22:09:27 2017 +0200	foutmelding bij uploaden van bestand dat geen foto is.
+28b8c2d	Roel Van Rossen	Tue Apr 11 22:06:32 2017 +0200	afbeeldingen worden nu genoemd naar userid, en worden overgeschreven bij nieuwe aanpassing.
+e0a85b0	Roel Van Rossen	Tue Apr 11 20:50:22 2017 +0200	voor de ordelijkheid img een max-width gegeven (inline-css).
+aaf16de	Lisa9W	Tue Apr 11 20:42:08 2017 +0200	Started Feature 5
+7c9c50d	Roel Van Rossen	Tue Apr 11 20:23:01 2017 +0200	foto wordt verwijderd nadat gebruiker van afbeelding verandert
+5a0fb41	Roel Van Rossen	Tue Apr 11 20:03:19 2017 +0200	merge bij pullen van remote master
+cc5fe63	Roel Van Rossen	Tue Apr 11 20:01:19 2017 +0200	default profile picture wordt nu ingesteld bij registratie
+ab4f2f4	Lisa9W	Tue Apr 11 19:32:44 2017 +0200	minor fix
+f15c8b0	Lisa9W	Tue Apr 11 19:10:39 2017 +0200	Merge remote-tracking branch 'origin/master'
+bc8dcbd	Lisa9W	Tue Apr 11 19:10:24 2017 +0200	Topics klaar
+6c344ca	Roel Van Rossen	Tue Apr 11 17:55:39 2017 +0200	oud passwoord via parameter binnenhalen i.p.v. ,          in updateDatabase()
+aa708f6	Lisa9W	Tue Apr 11 16:30:16 2017 +0200	fixed topics
+1621eb2	Roel Van Rossen	Tue Apr 11 15:46:44 2017 +0200	database vervangen (username uit users weggehaald)
+6db0e41	Roel Van Rossen	Tue Apr 11 15:43:56 2017 +0200	verouderde database verwijderd voor vervanging
+5e79880	Roel Van Rossen	Tue Apr 11 15:39:09 2017 +0200	nieuwe parameters, updateDatabase() werkt. Klaar!
+9ad20a3	Roel Van Rossen	Tue Apr 11 15:23:33 2017 +0200	email i.p.v. username voor getUserTopics
+1074d6d	Roel Van Rossen	Tue Apr 11 15:20:21 2017 +0200	nieuwe parameters, CanLogin() werkt
+4ce16f2	Roel Van Rossen	Tue Apr 11 15:15:20 2017 +0200	nieuwe parameters, HandleLogin() werkt
+9dfb625	Roel Van Rossen	Tue Apr 11 15:11:34 2017 +0200	nieuwe parameters, Register() werkt
+d496766	Lisa9W	Tue Apr 11 14:30:20 2017 +0200	databank geupdate
+bfa0ad7	Lisa9W	Tue Apr 11 14:17:28 2017 +0200	DIT WERKT
+0e75ed9	Caroline	Mon Apr 10 19:00:08 2017 +0200	login werkt terug, settings niet
+40703d7	Caroline	Mon Apr 10 17:49:37 2017 +0200	database aangepast firstname lastname
+9c9a6ca	Roel Van Rossen	Mon Apr 10 17:40:52 2017 +0200	merge.
+ddb0348	Caroline	Mon Apr 10 17:40:36 2017 +0200	firstname & lastname changed. Error...
+7c61bee	Roel Van Rossen	Mon Apr 10 17:38:40 2017 +0200	profiel afbeeldingen uploaden werkt nu
+d67f561	Lisa9W	Mon Apr 10 15:48:28 2017 +0200	topics worden iets mooier getoond
+280f360	Lisa9W	Mon Apr 10 15:36:02 2017 +0200	Merge remote-tracking branch 'origin/master'
+7a43352	Lisa9W	Mon Apr 10 15:35:18 2017 +0200	Topics klaar
+a33d12a	Roel Van Rossen	Mon Apr 10 14:32:09 2017 +0200	ok, NU werkt het paswoord aanpassen :p
+4e80472	Roel Van Rossen	Mon Apr 10 14:26:22 2017 +0200	paswoord aanpassen is af. Mappen voor uploaden toegevoegd.
+42a82ac	Roel Van Rossen	Mon Apr 10 11:50:51 2017 +0200	paswoord aanpassen verbeteren
+c35e7ee	Lisa9W	Tue Apr 4 17:26:02 2017 +0200	topics van user ophalen -> werkt nog niet
+9978a28	Lisa9W	Tue Apr 4 16:19:13 2017 +0200	Gekozen topics worden in de databank opgeslagen
+669a334	LisaW9	Mon Mar 27 10:25:29 2017 +0200	fixed ophalen topics
+b60f3cd	Roel Van Rossen	Sun Mar 26 23:39:27 2017 +0200	passwoord wijzigen werkt nu.
+959ae19	Roel Van Rossen	Sun Mar 26 23:00:29 2017 +0200	3 eerste velden werken nu en paswoord wordt behouden als het niet wordt aangepast
+3ead770	Roel Van Rossen	Sun Mar 26 22:29:00 2017 +0200	terug naar vorige code
+13180f0	Joris-Keirsmeakers	Sun Mar 26 21:41:36 2017 +0200	Merge pull request #15 from Joris-Keirsmeakers/fixes
+8e62e02	joris	Sun Mar 26 21:40:52 2017 +0200	fixes a tiny bug that would throw the wrong exception on a bad sign-in
+2fa9945	Joris-Keirsmeakers	Sun Mar 26 20:13:25 2017 +0200	Merge pull request #14 from Joris-Keirsmeakers/duplicates
+61fc5f4	joris	Sun Mar 26 20:12:23 2017 +0200	Adds duplicate checker, should be fine
+0f9f2b8	Lisa9W	Sun Mar 26 17:43:02 2017 +0200	topics van user geeft leeg resultaat weer
+7d05faa	Lisa9W	Sun Mar 26 17:18:16 2017 +0200	Merge remote-tracking branch 'origin/master'
+66221aa	Lisa9W	Sun Mar 26 17:17:28 2017 +0200	topics worden geladen indien user er nog geen heeft gekozen
+7c71606	Joris-Keirsmeakers	Sun Mar 26 14:30:34 2017 +0200	Merge pull request #13 from Joris-Keirsmeakers/errors
+95f8c56	joris	Sun Mar 26 14:25:22 2017 +0200	Merge branch 'master' into errors
+81731f4	joris	Sun Mar 26 14:21:57 2017 +0200	fixed a mistake i made while resolving merge conflicts
+34608df	Joris-Keirsmeakers	Sun Mar 26 14:08:47 2017 +0200	Merge pull request #12 from Joris-Keirsmeakers/errors
+e9bc083	Joris-Keirsmeakers	Sun Mar 26 14:07:32 2017 +0200	Merge branch 'master' into errors
+b02be71	joris	Sun Mar 26 13:48:28 2017 +0200	First set of errors,
+ffec25a	Lisa9W	Sun Mar 26 13:42:24 2017 +0200	check todo, help me out pls
+0f563bd	Lisa9W	Sun Mar 26 11:50:53 2017 +0200	databank geupdate
+7e5a1f9	LisaW9	Sat Mar 25 21:52:31 2017 +0100	Merge pull request #11 from r0615219/Lisa
+e475471	Lisa9W	Sat Mar 25 21:31:47 2017 +0100	poging tot opslaan afbeeldingen -> werkt nog niet
+b38c3bf	Lisa9W	Sat Mar 25 20:55:16 2017 +0100	controleren of wachtwoord juist is bij aanpassen Nog doen: error messages aanpassen
+37bea2d	LisaW9	Sat Mar 25 20:02:46 2017 +0100	Merge pull request #10 from r0615219/lisa
+5482f31	Lisa9W	Sat Mar 25 20:00:37 2017 +0100	updaten werkt, nog kleine aanpassingen te doen
+0ef7d22	Roel Van Rossen	Sat Mar 25 19:35:38 2017 +0100	autoload in plaats van include's
+8da3dc9	Roel Van Rossen	Sat Mar 25 19:31:03 2017 +0100	connectie maken in een aparte class
+8c8aa19	Lisa9W	Sat Mar 25 19:17:30 2017 +0100	begin updaten informatie
+2380863	Lisa9W	Sat Mar 25 16:19:09 2017 +0100	modal voor wachtwoord en afbeelding
+febc358	Lisa9W	Sat Mar 25 15:58:13 2017 +0100	vormgeving settings + image toevoegen aan en uithalen uit databank
+2cdd69f	Lisa9W	Sat Mar 25 15:20:31 2017 +0100	vormgeving settings + image toevoegen aan en uithalen uit databank
+aba3d30	Lisa9W	Sat Mar 25 14:25:54 2017 +0100	image toegevoegd aan databank
+8fc97cf	Roel Van Rossen	Sat Mar 25 13:54:01 2017 +0100	alle nodige data wordt nu in sessiosn gestoken bij het inloggen
+556e876	Caroline	Sat Mar 25 12:15:55 2017 +0100	dropdown zal nu wel werken!
+c5a0f48	Roel Van Rossen	Fri Mar 24 19:29:33 2017 +0100	errors throw en catch
+85936c7	Roel Van Rossen	Fri Mar 24 18:27:37 2017 +0100	git doet weer vreemd
+de55702	Roel Van Rossen	Fri Mar 24 18:23:52 2017 +0100	zorgen dat gebruiker niet via url naar settings.php kan
+6e177b7	roelifant	Fri Mar 24 18:21:43 2017 +0100	Merge pull request #8 from r0615219/Roel
+c4ee659	Roel Van Rossen	Fri Mar 24 18:20:12 2017 +0100	voorkomen dat de gebruiker naar home.php kan gaan via de url
+344e8c5	Roel Van Rossen	Fri Mar 24 17:43:00 2017 +0100	SQL database bijgewerkt
+9680cdb	Roel Van Rossen	Fri Mar 24 17:53:57 2017 +0100	database vervangen
+24a4fcd	Roel Van Rossen	Fri Mar 24 17:50:00 2017 +0100	outdated databank verwijderd
+747cc49	roelifant	Fri Mar 24 17:20:30 2017 +0100	Merge pull request #7 from r0615219/Roel
+0b5a271	Roel Van Rossen	Fri Mar 24 17:16:33 2017 +0100	wat rare dingen verwijderen
+66d41b5	roelifant	Fri Mar 24 17:09:23 2017 +0100	Merge pull request #6 from r0615219/Roel
+ae07bcf	Roel Van Rossen	Fri Mar 24 17:03:53 2017 +0100	implementeren van CanLogin() en HandleLogin()
+29f666b	Roel Van Rossen	Fri Mar 24 16:53:52 2017 +0100	Canlogin() en HandleLogin() gemaakt
+0f91a13	Roel Van Rossen	Fri Mar 24 14:39:44 2017 +0100	Login functie (nog niet af(verre van))
+b585a25	Caroline	Thu Mar 23 17:19:49 2017 +0100	settings.php layout fixed
+3596af3	Caroline	Thu Mar 23 16:57:15 2017 +0100	home.php layout fixed
+02a1cef	Caroline	Thu Mar 23 16:37:54 2017 +0100	layout bootstrap
+6141ddb	LisaW9	Thu Mar 23 13:44:50 2017 +0100	settings proberen beginnen - I don't know what I'm doing, help pls
+2a59d96	Roel Van Rossen	Thu Mar 23 13:09:26 2017 +0100	sessions
+ac23f0b	Roel Van Rossen	Thu Mar 23 13:02:13 2017 +0100	sessies en variabelen er in gezet
+3de408a	Roel Van Rossen	Thu Mar 23 12:44:38 2017 +0100	branch Roel gemaakt, start signin
+c37f48b	r0615219	Thu Mar 23 17:22:17 2017 +0100	Merge pull request #5 from r0615219/caro
+922371a	Caroline	Thu Mar 23 17:19:49 2017 +0100	settings.php layout fixed
+d845694	r0615219	Thu Mar 23 16:58:40 2017 +0100	Merge pull request #4 from r0615219/caro
+5056df8	Caroline	Thu Mar 23 16:57:15 2017 +0100	home.php layout fixed
+de7bc0a	r0615219	Thu Mar 23 16:39:38 2017 +0100	Merge pull request #3 from r0615219/caro
+56b3e5d	Caroline	Thu Mar 23 16:37:54 2017 +0100	layout bootstrap
+417f9dd	LisaW9	Thu Mar 23 13:44:50 2017 +0100	settings proberen beginnen - I don't know what I'm doing, help pls
+a878b3e	roelifant	Thu Mar 23 13:10:06 2017 +0100	Merge pull request #2 from r0615219/Roel
+d931339	Roel Van Rossen	Thu Mar 23 13:09:26 2017 +0100	sessions
+9dde7f7	Roel Van Rossen	Thu Mar 23 13:02:13 2017 +0100	sessies en variabelen er in gezet
+48ce595	Roel Van Rossen	Thu Mar 23 12:44:38 2017 +0100	branch Roel gemaakt, start signin
+f9dfd9b	Roel Van Rossen	Thu Mar 23 12:41:22 2017 +0100	merge
+0a83701	Roel Van Rossen	Thu Mar 23 12:37:28 2017 +0100	Ik heb geen idee waar ik mee bezig ben
+ece9710	LisaW9	Thu Mar 23 12:36:27 2017 +0100	Merge pull request #1 from r0615219/Lisa
+f08d2c4	LisaW9	Thu Mar 23 12:35:37 2017 +0100	save is nu register encryption in class
+d343f58	Caroline	Thu Mar 23 11:26:19 2017 +0100	sql database
+d69be06	Caroline	Tue Mar 21 10:03:03 2017 +0100	logout fixed + css
+371718b	Caroline	Mon Mar 20 14:28:22 2017 +0100	layout aangepast
+43d763d	Caroline	Mon Mar 20 11:36:46 2017 +0100	Merge branch 'master' of https://github.com/r0615219/IMDterest
+a0a16fb	Caroline	Mon Mar 20 11:36:07 2017 +0100	css added
+f996034	r0615219	Mon Mar 20 11:14:44 2017 +0100	Delete index.php
+e8a6779	Caroline	Mon Mar 20 11:14:05 2017 +0100	Sign Up & Sign In
+2a0f227	Caroline	Mon Mar 20 10:45:41 2017 +0100	index.php added registration form
+515bac1	Caroline	Mon Mar 20 10:44:34 2017 +0100	Merge branch 'master' of https://github.com/r0615219/IMDterest
+a4c189b	Caroline	Mon Mar 20 10:43:44 2017 +0100	home.php added
+d48c776	Caroline	Mon Mar 20 10:43:00 2017 +0100	classes added
+cef7b50	Joris-Keirsmeakers	Mon Mar 20 09:56:54 2017 +0100	Update README.md
+669c9f7	r0615219	Mon Mar 20 09:34:00 2017 +0100	Initial commit

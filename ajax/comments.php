@@ -6,9 +6,9 @@ include_once("../classes/Db.php");
 
 include_once("../classes/Comment.php");
 
-$postid=$_POST['postid'];
+$postid=htmlspecialchars($_POST['postid']);
 
-$comment=$_POST['comment'];
+$comment=htmlspecialchars($_POST['comment']);
 
 $userid=$_SESSION['userid'];
 
