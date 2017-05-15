@@ -76,8 +76,8 @@ class Board
         $loadboard->bindValue(":user_id", $_SESSION['userid']);
         $loadboard->execute();
         $res = $loadboard->fetchall(PDO::FETCH_ASSOC);
-        echo "\nPDO::errorInfo():\n";
-        print_r($loadboard->errorInfo());
+        //echo "\nPDO::errorInfo():\n";
+        //print_r($loadboard->errorInfo());
         $_SESSION['boards'] = $res;
     }
 }
