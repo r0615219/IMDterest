@@ -1,3 +1,4 @@
+b3f5e10	Roel Van Rossen	Sun May 14 20:52:12 2017 +0200	XSS beveiliging die ontbrak bij comments toepassen
 10c3c2b	roelifant	Sun May 14 10:44:11 2017 +0200	Merge pull request #87 from r0615219/namespaces2
 04367de	Roel Van Rossen	Sat May 13 13:01:03 2017 +0200	database veranderen
 00e9986	Roel Van Rossen	Sat May 13 12:57:53 2017 +0200	profile en ajax calls werken met nieuwe namespaces
